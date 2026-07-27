@@ -575,7 +575,12 @@ function Analyst({
                       <span className="bar-value">{point.display}</span>
                       <div className="bar-track">
                         <span
-                          style={{ height: `${Math.max(18, (point.value / max) * 100)}%` }}
+                          style={{
+                            height:
+                              point.value <= 0
+                                ? "0%"
+                                : `${Math.max(6, (point.value / max) * 100)}%`,
+                          }}
                         />
                       </div>
                       <span className="bar-label">{point.label}</span>
