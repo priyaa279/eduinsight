@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import commandCenter from "./data/command-center.generated.json";
 
 type ViewId =
   | "overview"
@@ -31,6 +32,9 @@ type AnalystAnswer = {
   notes: string[];
   metric: string;
   sources: string[];
+  limitations: string[];
+  confidence: "High" | "Medium" | "Low";
+  queryPlan: string;
 };
 
 const navigation: { id: ViewId; label: string; glyph: string }[] = [
@@ -41,71 +45,6 @@ const navigation: { id: ViewId; label: string; glyph: string }[] = [
   { id: "scenario", label: "Scenario lab", glyph: "⌁" },
   { id: "memory", label: "Institutional memory", glyph: "◫" },
 ];
-
-const queryAnswers: Record<string, AnalystAnswer> = {
-  enrollment: {
-    eyebrow: "Graduate enrollment • Fall census",
-    headline: "MS Computer Science enrollment is up 28.6% since 2021.",
-    summary:
-      "Growth accelerated in Fall 2024 and remained strong in 2025. International students account for 61% of the net increase, while domestic enrollment is nearly flat.",
-    delta: "+28.6%",
-    points: [
-      { label: "2021", value: 214, display: "214" },
-      { label: "2022", value: 226, display: "226" },
-      { label: "2023", value: 241, display: "241" },
-      { label: "2024", value: 269, display: "269" },
-      { label: "2025", value: 275, display: "275" },
-    ],
-    notes: [
-      "Online enrollment grew 44% over the period.",
-      "Three gateway sections are above 92% capacity.",
-      "Spring persistence remained stable at 94.1%.",
-    ],
-    metric: "Fall census headcount · active degree-seeking students",
-    sources: ["student_term_snapshot", "program_dim", "term_dim"],
-  },
-  retention: {
-    eyebrow: "First-year retention • 2024 cohort",
-    headline: "First-generation retention trails peers by 11.8 points.",
-    summary:
-      "The gap is concentrated among Pell-eligible commuters taking fewer than 15 credits. Students who completed the first six weeks without a DFW outcome retained at 84.7%.",
-    delta: "−11.8 pts",
-    points: [
-      { label: "All FTIC", value: 78.4, display: "78.4%" },
-      { label: "Continuing-gen", value: 83.1, display: "83.1%" },
-      { label: "First-gen", value: 71.3, display: "71.3%" },
-      { label: "First-gen + Pell", value: 67.8, display: "67.8%" },
-    ],
-    notes: [
-      "The gap widened 2.1 points year over year.",
-      "Gateway math DFW is the strongest academic signal.",
-      "312 students fit the highest-friction segment.",
-    ],
-    metric: "IPEDS-aligned first-time, full-time fall cohort retention",
-    sources: ["cohort_fact", "student_term_snapshot", "financial_aid_fact"],
-  },
-  dfw: {
-    eyebrow: "Course outcomes • Current academic year",
-    headline: "Five gateway courses drive 43% of all DFW outcomes.",
-    summary:
-      "College Algebra has the largest volume, while General Chemistry I has the highest rate. Online sections average 6.4 points higher DFW than in-person sections after controlling for course.",
-    delta: "2,184 DFWs",
-    points: [
-      { label: "MATH 110", value: 31.8, display: "31.8%" },
-      { label: "CHEM 101", value: 34.6, display: "34.6%" },
-      { label: "ENG 101", value: 18.9, display: "18.9%" },
-      { label: "BIO 120", value: 23.7, display: "23.7%" },
-      { label: "CS 101", value: 21.4, display: "21.4%" },
-    ],
-    notes: [
-      "Evening sections show the largest modality gap.",
-      "Adjunct-taught sections are 3.2 points above the course mean.",
-      "MATH 110 improved 1.7 points from last year.",
-    ],
-    metric: "Final grades D, F, or W divided by graded enrollments",
-    sources: ["course_enrollment_fact", "section_dim", "faculty_assignment_fact"],
-  },
-};
 
 const startingIssues: QualityIssue[] = [
   {
@@ -306,7 +245,7 @@ function Header({
   return (
     <header className="page-header">
       <div>
-        <p className="eyebrow">Atlas Valley University</p>
+        <p className="eyebrow">{commandCenter.institution.name}</p>
         <h1>{title}</h1>
         <p className="page-description">{description}</p>
       </div>
@@ -331,6 +270,13 @@ function Overview({
   onNavigate: (view: ViewId) => void;
   onAudit: () => void;
 }) {
+  const metrics = [
+    { data: commandCenter.kpis.fallHeadcount, tone: "negative" },
+    { data: commandCenter.kpis.firstYearRetention, tone: "positive" },
+    { data: commandCenter.kpis.ipedsReadiness, tone: "positive" },
+    { data: commandCenter.kpis.openQualityIssues, tone: "neutral" },
+  ];
+
   return (
     <div className="view">
       <Header
@@ -362,102 +308,48 @@ function Overview({
         <article className="brief-card">
           <div className="section-heading">
             <div>
-              <p className="eyebrow">Agent brief • Oct 14, 2025</p>
+              <p className="eyebrow">Agent brief • {commandCenter.briefDate}</p>
               <h2>Three items need your attention.</h2>
             </div>
-            <span className="agent-badge">5 agents active</span>
+            <span className="agent-badge">{commandCenter.activeAgents} agents active</span>
           </div>
           <div className="brief-list">
-            <button
-              className="brief-item"
-              onClick={() => onNavigate("quality")}
-            >
-              <span className="severity-marker critical">1</span>
-              <span>
-                <strong>146 full-time classifications look wrong</strong>
-                <small>Data Quality Agent · 8 minutes ago</small>
-              </span>
-              <span aria-hidden="true">→</span>
-            </button>
-            <button
-              className="brief-item"
-              onClick={() => onNavigate("quality")}
-            >
-              <span className="severity-marker warning">2</span>
-              <span>
-                <strong>Fall headcount is 4.2% below last year</strong>
-                <small>Silent Error Monitor · 21 minutes ago</small>
-              </span>
-              <span aria-hidden="true">→</span>
-            </button>
-            <button
-              className="brief-item"
-              onClick={() => onNavigate("ipeds")}
-            >
-              <span className="severity-marker calm">3</span>
-              <span>
-                <strong>Fall Enrollment is 91% submission-ready</strong>
-                <small>IPEDS Agent · 34 minutes ago</small>
-              </span>
-              <span aria-hidden="true">→</span>
-            </button>
+            {commandCenter.brief.map((item) => (
+              <button
+                className="brief-item"
+                onClick={() => onNavigate(item.destination as ViewId)}
+                key={item.priority}
+              >
+                <span className={`severity-marker ${item.severity}`}>
+                  {item.priority}
+                </span>
+                <span>
+                  <strong>{item.title}</strong>
+                  <small>{item.subtitle}</small>
+                </span>
+                <span aria-hidden="true">→</span>
+              </button>
+            ))}
           </div>
         </article>
       </section>
 
       <section className="metric-grid" aria-label="Institutional metrics">
-        <article className="metric-card">
-          <div className="metric-topline">
-            <span>Fall headcount</span>
-            <span className="trend negative">−4.2%</span>
-          </div>
-          <div className="metric-content">
-            <div>
-              <strong>18,426</strong>
-              <small>as of census</small>
+        {metrics.map(({ data, tone }) => (
+          <article className="metric-card" key={data.label}>
+            <div className="metric-topline">
+              <span>{data.label}</span>
+              <span className={`trend ${tone}`}>{data.deltaDisplay}</span>
             </div>
-            <Sparkline values={[88, 91, 94, 96, 99, 95]} />
-          </div>
-        </article>
-        <article className="metric-card">
-          <div className="metric-topline">
-            <span>First-year retention</span>
-            <span className="trend positive">+0.8 pts</span>
-          </div>
-          <div className="metric-content">
-            <div>
-              <strong>78.4%</strong>
-              <small>2024 FTIC cohort</small>
+            <div className="metric-content">
+              <div>
+                <strong>{data.display}</strong>
+                <small>{data.context}</small>
+              </div>
+              <Sparkline values={data.trend} />
             </div>
-            <Sparkline values={[70, 72, 71, 74, 76, 78]} />
-          </div>
-        </article>
-        <article className="metric-card">
-          <div className="metric-topline">
-            <span>IPEDS readiness</span>
-            <span className="trend positive">+12 pts</span>
-          </div>
-          <div className="metric-content">
-            <div>
-              <strong>91%</strong>
-              <small>Fall Enrollment</small>
-            </div>
-            <Sparkline values={[45, 54, 61, 74, 82, 91]} />
-          </div>
-        </article>
-        <article className="metric-card">
-          <div className="metric-topline">
-            <span>Open quality issues</span>
-            <span className="trend neutral">−9 this week</span>
-          </div>
-          <div className="metric-content">
-            <div>
-              <strong>27</strong>
-              <small>3 critical</small>
-            </div>
-            <Sparkline values={[92, 84, 70, 63, 50, 41]} />
-          </div>
-        </article>
+          </article>
+        ))}
       </section>
 
       <section className="two-column">
@@ -475,19 +367,14 @@ function Overview({
             </button>
           </div>
           <div className="capacity-chart">
-            {[
-              ["Business Analytics", 92, "+17%"],
-              ["Computer Science", 86, "+13%"],
-              ["Nursing", 78, "+8%"],
-              ["Public Administration", 53, "−4%"],
-            ].map(([label, value, delta]) => (
-              <div className="capacity-row" key={label}>
-                <span>{label}</span>
+            {commandCenter.programSignals.map((signal) => (
+              <div className="capacity-row" key={signal.programId}>
+                <span>{signal.label}</span>
                 <div className="capacity-track">
-                  <span style={{ width: `${value}%` }} />
+                  <span style={{ width: signal.utilizationDisplay }} />
                 </div>
-                <strong className={delta.startsWith("−") ? "down" : ""}>
-                  {delta}
+                <strong className={signal.growth < 0 ? "down" : ""}>
+                  {signal.delta}
                 </strong>
               </div>
             ))}
@@ -502,30 +389,16 @@ function Overview({
             </div>
           </div>
           <div className="activity-list">
-            <div>
-              <span className="activity-icon">✓</span>
-              <p>
-                <strong>Reconciled Fall census snapshot</strong>
-                <small>2.4M records · full source lineage retained</small>
-              </p>
-              <time>9:42</time>
-            </div>
-            <div>
-              <span className="activity-icon">✓</span>
-              <p>
-                <strong>Validated Completions package</strong>
-                <small>38 checks passed · ready for approval</small>
-              </p>
-              <time>8:17</time>
-            </div>
-            <div>
+            {commandCenter.activity.map((item) => (
+              <div key={`${item.time}-${item.activity}`}>
               <span className="activity-icon">↻</span>
               <p>
-                <strong>Indexed three new policy documents</strong>
-                <small>Definitions and effective dates extracted</small>
+                  <strong>{item.activity}</strong>
+                  <small>{item.detail}</small>
               </p>
-              <time>7:54</time>
-            </div>
+                <time>{item.time}</time>
+              </div>
+            ))}
           </div>
         </article>
       </section>
@@ -541,31 +414,57 @@ function Analyst({
   const [query, setQuery] = useState(
     "How has MS Computer Science enrollment changed since 2021?"
   );
-  const [answer, setAnswer] = useState<AnalystAnswer>(queryAnswers.enrollment);
+  const [answer, setAnswer] = useState<AnalystAnswer | null>(null);
   const [thinking, setThinking] = useState(false);
   const [showMethod, setShowMethod] = useState(false);
+  const [analysisMode, setAnalysisMode] = useState("governed local planner");
+  const [error, setError] = useState("");
 
-  function runQuery(question = query) {
-    setQuery(question);
+  async function runQuery(question = query) {
+    const nextQuestion = question.trim();
+    if (!nextQuestion) return;
+    setQuery(nextQuestion);
     setThinking(true);
-    window.setTimeout(() => {
-      const lower = question.toLowerCase();
-      if (lower.includes("retention") || lower.includes("first-generation")) {
-        setAnswer(queryAnswers.retention);
-      } else if (
-        lower.includes("dfw") ||
-        lower.includes("gateway") ||
-        lower.includes("course")
-      ) {
-        setAnswer(queryAnswers.dfw);
-      } else {
-        setAnswer(queryAnswers.enrollment);
+    setError("");
+    setShowMethod(false);
+    try {
+      const response = await fetch("/api/ask", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question: nextQuestion }),
+      });
+      const payload = (await response.json()) as {
+        answer?: AnalystAnswer;
+        error?: string;
+        planner?: string;
+        plannerWarning?: string | null;
+      };
+      if (!response.ok || !payload.answer) {
+        throw new Error(payload.error || "EduInsight could not calculate an answer.");
       }
+      setAnswer(payload.answer);
+      setAnalysisMode(
+        payload.planner === "openai"
+          ? "AI semantic planner + governed calculation"
+          : payload.planner === "local_fallback"
+            ? "governed local planner · AI planner temporarily unavailable"
+            : "governed local planner",
+      );
+    } catch (requestError) {
+      setAnswer(null);
+      setError(
+        requestError instanceof Error
+          ? requestError.message
+          : "EduInsight could not calculate an answer.",
+      );
+    } finally {
       setThinking(false);
-    }, 620);
+    }
   }
 
-  const max = Math.max(...answer.points.map((point) => point.value));
+  const max = answer
+    ? Math.max(1, ...answer.points.map((point) => point.value))
+    : 1;
 
   return (
     <div className="view">
@@ -611,9 +510,12 @@ function Analyst({
           <div className="suggestion-row">
             <span>Try asking</span>
             {[
-              "Why is first-generation retention lower?",
-              "Which gateway courses have the highest DFW?",
-              "Show graduate enrollment since 2021",
+              "Enrollment by residency in 2025",
+              "How has BS retention changed since 2021?",
+              "Which program has the most international students?",
+              "Which graduate programs use the most capacity?",
+              "Which IPEDS checks require review?",
+              "What data is available?",
             ].map((suggestion) => (
               <button key={suggestion} onClick={() => runQuery(suggestion)}>
                 {suggestion}
@@ -632,7 +534,8 @@ function Analyst({
             <li><span>4</span> Explain with sources and limitations</li>
           </ol>
           <p className="context-note">
-            This workspace contains synthesized student-level records only.
+            Supports governed enrollment, retention, IPEDS, quality, capacity,
+            and course-outcome questions from the uploaded sources.
           </p>
         </aside>
       </section>
@@ -643,10 +546,18 @@ function Analyst({
             <div className="thinking-mark">✦</div>
             <div>
               <strong>EduInsight is checking the evidence</strong>
-              <span>Resolving metric → validating query → testing result</span>
+              <span>Resolving metric → calculating from the upload → testing result</span>
             </div>
           </div>
-        ) : (
+        ) : error ? (
+          <div className="thinking-state analyst-error" role="alert">
+            <div className="thinking-mark">!</div>
+            <div>
+              <strong>The analysis could not be completed</strong>
+              <span>{error}</span>
+            </div>
+          </div>
+        ) : answer ? (
           <>
             <div className="answer-heading">
               <div>
@@ -657,19 +568,26 @@ function Analyst({
               <span className="answer-delta">{answer.delta}</span>
             </div>
             <div className="answer-body">
-              <div className="bar-chart" aria-label={answer.headline}>
-                {answer.points.map((point) => (
-                  <div className="bar-column" key={point.label}>
-                    <span className="bar-value">{point.display}</span>
-                    <div className="bar-track">
-                      <span
-                        style={{ height: `${Math.max(18, (point.value / max) * 100)}%` }}
-                      />
+              {answer.points.length ? (
+                <div className="bar-chart" aria-label={answer.headline}>
+                  {answer.points.map((point) => (
+                    <div className="bar-column" key={point.label}>
+                      <span className="bar-value">{point.display}</span>
+                      <div className="bar-track">
+                        <span
+                          style={{ height: `${Math.max(18, (point.value / max) * 100)}%` }}
+                        />
+                      </div>
+                      <span className="bar-label">{point.label}</span>
                     </div>
-                    <span className="bar-label">{point.label}</span>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="answer-empty-chart">
+                  <strong>No unrelated chart was shown.</strong>
+                  <span>The current upload does not support this calculation.</span>
+                </div>
+              )}
               <div className="finding-list">
                 <p className="eyebrow">What matters</p>
                 {answer.notes.map((note, index) => (
@@ -684,8 +602,12 @@ function Analyst({
               <div className="confidence">
                 <span className="confidence-dot" />
                 <span>
-                  <strong>High confidence</strong>
-                  <small>Metric definition and source checks passed</small>
+                  <strong>{answer.confidence} confidence</strong>
+                  <small>
+                    {answer.confidence === "High"
+                      ? "Metric definition and source checks passed"
+                      : "Review the stated source limitations"}
+                  </small>
                 </span>
               </div>
               <button
@@ -703,12 +625,20 @@ function Analyst({
                   <strong>{answer.metric}</strong>
                 </div>
                 <div>
-                  <span>Semantic path</span>
-                  <strong>Question → governed metric → verified SQL → result</strong>
+                  <span>Validated query plan</span>
+                  <strong>{answer.queryPlan}</strong>
+                </div>
+                <div>
+                  <span>Planning mode</span>
+                  <strong>{analysisMode}</strong>
                 </div>
                 <div>
                   <span>Certified sources</span>
-                  <strong>{answer.sources.join(" · ")}</strong>
+                  <strong>{answer.sources.length ? answer.sources.join(" · ") : "No matching source"}</strong>
+                </div>
+                <div>
+                  <span>Limitations</span>
+                  <strong>{answer.limitations.join(" ")}</strong>
                 </div>
                 <button className="text-button" onClick={onAudit}>
                   Open full lineage <span aria-hidden="true">→</span>
@@ -716,6 +646,16 @@ function Analyst({
               </div>
             )}
           </>
+        ) : (
+          <div className="thinking-state analyst-ready">
+            <div className="thinking-mark">✦</div>
+            <div>
+              <strong>Ready to calculate from the current upload</strong>
+              <span>
+                Change the program, population, metric, or year and select Analyze.
+              </span>
+            </div>
+          </div>
         )}
       </section>
     </div>
@@ -1006,7 +946,7 @@ function Scenario({
 }) {
   const [change, setChange] = useState(-15);
   const [tuition, setTuition] = useState(12400);
-  const baselineStudents = 18426;
+  const baselineStudents = commandCenter.kpis.fallHeadcount.value;
   const impactedStudents = Math.round(baselineStudents * (change / 100));
   const revenueImpact = (impactedStudents * tuition) / 1_000_000;
   const sectionImpact = Math.round(impactedStudents / 24);
@@ -1222,28 +1162,14 @@ function AuditDrawer({
           </div>
           <button aria-label="Close audit trail" onClick={onClose}>×</button>
         </div>
-        <div className="audit-id">RUN-2025-10-14-0942 · Completed</div>
+        <div className="audit-id">{commandCenter.audit.runId} · Completed</div>
         <div className="lineage-flow">
-          <div>
-            <span>1</span>
-            <p><strong>Source snapshot</strong><small>Banner SIS · Fall census · 2025-10-13 23:00</small></p>
-          </div>
-          <div>
-            <span>2</span>
-            <p><strong>Transformation</strong><small>dbt model: fct_student_term · commit 7c19e2</small></p>
-          </div>
-          <div>
-            <span>3</span>
-            <p><strong>Metric definition</strong><small>fall_headcount v3.2 · effective 2025–26</small></p>
-          </div>
-          <div>
-            <span>4</span>
-            <p><strong>Validation</strong><small>12 checks passed · 0 suppressed warnings</small></p>
-          </div>
-          <div>
-            <span>5</span>
-            <p><strong>Result</strong><small>18,426 students · generated 2025-10-14 09:42</small></p>
-          </div>
+          {commandCenter.audit.steps.map((step, index) => (
+            <div key={step.label}>
+              <span>{index + 1}</span>
+              <p><strong>{step.label}</strong><small>{step.detail}</small></p>
+            </div>
+          ))}
         </div>
         <div className="audit-note">
           <strong>Synthetic data boundary</strong>

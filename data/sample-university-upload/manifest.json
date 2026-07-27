@@ -1,0 +1,53 @@
+{
+  "package_name": "Atlas Valley University synthetic upload",
+  "generated_at": "2025-10-14T09:42:00-07:00",
+  "deterministic_seed": 20251014,
+  "contains_real_student_data": false,
+  "files": [
+    {
+      "file": "institution.csv",
+      "system": "Institution configuration",
+      "rows": 1
+    },
+    {
+      "file": "terms.csv",
+      "system": "SIS",
+      "rows": 6
+    },
+    {
+      "file": "programs.csv",
+      "system": "Curriculum catalog",
+      "rows": 12
+    },
+    {
+      "file": "students.csv",
+      "system": "SIS",
+      "rows": 40669
+    },
+    {
+      "file": "student_terms.csv",
+      "system": "SIS",
+      "rows": 111093
+    },
+    {
+      "file": "sections.csv",
+      "system": "SIS course schedule",
+      "rows": 40
+    },
+    {
+      "file": "section_enrollments.csv",
+      "system": "SIS registration",
+      "rows": 3090
+    },
+    {
+      "file": "ipeds_validation_results.csv",
+      "system": "IPEDS validation engine",
+      "rows": 294
+    },
+    {
+      "file": "data_quality_issue_log.csv",
+      "system": "Data quality agent",
+      "rows": 53
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+program_id,program_name,degree_level,cip_code,college,active_from,active_to
+PBA,MS Business Analytics,Graduate,52.1301,College of Business,2020FA,
+PCS,MS Computer Science,Graduate,11.0701,College of Computing,2020FA,
+PNUR,MS Nursing,Graduate,51.3801,College of Health,2020FA,
+PPA,Master of Public Administration,Graduate,44.0401,College of Public Service,2020FA,
+PENG,BA English,Undergraduate,23.0101,College of Arts and Sciences,2020FA,
+PBIO,BS Biology,Undergraduate,26.0101,College of Arts and Sciences,2020FA,
+PBUS,BBA Business Administration,Undergraduate,52.0201,College of Business,2020FA,
+PMATH,BS Mathematics,Undergraduate,27.0101,College of Arts and Sciences,2020FA,
+PEDU,BS Education,Undergraduate,13.0101,College of Education,2020FA,
+PCRJ,BS Criminal Justice,Undergraduate,43.0104,College of Public Service,2020FA,
+PPSY,BA Psychology,Undergraduate,42.0101,College of Arts and Sciences,2020FA,
+PGEN,General Studies,Undergraduate,24.0102,University Programs,2020FA,

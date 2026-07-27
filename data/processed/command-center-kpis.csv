@@ -1,0 +1,5 @@
+metric,current_value,comparison_value,delta,display
+fall_headcount,18426,19234,-0.04200894249766039,"18,426"
+first_year_retention,0.784,0.776,0.008000000000000007,78.4%
+ipeds_readiness,0.910000000018,0.790000000042,0.11999999997599997,91%
+open_quality_issues,27,36,-9,27

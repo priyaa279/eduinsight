@@ -1,0 +1,6 @@
+run_id,step,stage,system,artifact,event_detail,data_boundary
+RUN-2025-10-14-0942,1,Source snapshot,Banner SIS,Fall 2025 census,2025-10-13 23:00,Synthetic
+RUN-2025-10-14-0942,2,Transformation,dbt,fct_student_term,commit 7c19e2,Synthetic
+RUN-2025-10-14-0942,3,Metric definition,Semantic layer,fall_headcount v3.2,effective 2025-26,Synthetic
+RUN-2025-10-14-0942,4,Validation,Quality rules,12 checks passed,0 suppressed warnings,Synthetic
+RUN-2025-10-14-0942,5,Result,Command Center,"18,426 students",2025-10-14 09:42,Synthetic

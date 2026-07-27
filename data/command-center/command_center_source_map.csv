@@ -1,0 +1,11 @@
+file,section,purpose,status
+app/page.tsx,Overview component,All visible command-center content and interactions,Implemented source
+app/globals.css,Command-center layout and styling,"Sidebar, cards, typography, responsive behavior",Implemented source
+app/layout.tsx,Application metadata and root shell,Page title and global stylesheet,Implemented source
+data/command-center/institution_profile.csv,Synthetic institution context,Atlas Valley University banner,Extracted data source
+data/command-center/kpi_snapshot.csv,Current and comparison KPI inputs,Four KPI cards and deltas,Extracted data source
+data/command-center/kpi_history.csv,Historic/display sequences,Four mini trend charts,Extracted data source
+data/command-center/agent_brief.csv,Prioritized agent findings,Three attention items,Extracted data source
+data/command-center/program_signals.csv,Program capacity and growth,Enrollment signal panel,Extracted data source
+data/command-center/agent_activity.csv,Completed background work,Agent activity panel,Extracted data source
+data/command-center/metric_dictionary.csv,Definitions and calculations,Governance and audit reference,Extracted data source

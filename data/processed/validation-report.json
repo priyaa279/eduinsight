@@ -1,0 +1,48 @@
+{
+  "status": "passed",
+  "generatedAt": "2025-10-14T09:42:00-07:00",
+  "checks": [
+    {
+      "check": "required_files",
+      "status": "passed",
+      "files": 9
+    },
+    {
+      "check": "required_columns",
+      "status": "passed"
+    },
+    {
+      "check": "unique_source_keys",
+      "status": "passed"
+    },
+    {
+      "check": "referential_integrity",
+      "status": "passed"
+    },
+    {
+      "check": "current_headcount",
+      "status": "passed",
+      "value": 18426
+    },
+    {
+      "check": "prior_headcount",
+      "status": "passed",
+      "value": 19234
+    },
+    {
+      "check": "retention_cohort",
+      "status": "passed",
+      "value": 0.784
+    },
+    {
+      "check": "full_time_credit_mismatch_reconciliation",
+      "status": "passed",
+      "value": 146
+    },
+    {
+      "check": "ipeds_weight_total",
+      "status": "passed",
+      "value": 100.00000001999997
+    }
+  ]
+}

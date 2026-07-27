@@ -1,0 +1,54 @@
+issue_id,severity,title,rule_id,affected_records,owner,source_system,status,opened_at,resolved_at
+DQ-1001,Critical,Full-time status conflicts with attempted credits,UG_FT_CREDIT_THRESHOLD,146,Registrar,SIS student term,Open,2025-09-01 08:00,
+DQ-1002,High,Fall headcount changed outside the expected band,YOY_HEADCOUNT_VARIANCE,808,Institutional Research,Enterprise data warehouse,Open,2025-09-01 08:00,
+DQ-1003,High,Race and ethnicity value is missing,DEMOGRAPHIC_COMPLETENESS,119,Admissions,Enterprise data warehouse,Open,2025-09-01 08:00,
+DQ-1004,High,Financial aid records lack term enrollment,AID_WITHOUT_ENROLLMENT,23,Student Financial Services,Enterprise data warehouse,Open,2025-09-01 08:00,
+DQ-1005,Medium,Program CIP changed without a bridge record,CIP_EFFECTIVE_DATING,307,Academic Affairs,Enterprise data warehouse,Open,2025-09-01 08:00,
+DQ-1006,Critical,Synthetic governance exception 6,GOVERNANCE_RULE_06,31,Registrar,Enterprise data warehouse,Open,2025-09-01 08:00,
+DQ-1007,Critical,Synthetic governance exception 7,GOVERNANCE_RULE_07,48,Enterprise Systems,Enterprise data warehouse,Open,2025-09-01 08:00,
+DQ-1008,High,Synthetic governance exception 8,GOVERNANCE_RULE_08,65,Financial Aid,Enterprise data warehouse,Open,2025-09-01 08:00,
+DQ-1009,High,Synthetic governance exception 9,GOVERNANCE_RULE_09,9,Financial Aid,Enterprise data warehouse,Open,2025-09-01 08:00,
+DQ-1010,High,Synthetic governance exception 10,GOVERNANCE_RULE_10,26,Admissions,Enterprise data warehouse,Open,2025-09-01 08:00,
+DQ-1011,High,Synthetic governance exception 11,GOVERNANCE_RULE_11,43,Enterprise Systems,Enterprise data warehouse,Open,2025-09-01 08:00,
+DQ-1012,High,Synthetic governance exception 12,GOVERNANCE_RULE_12,60,Enterprise Systems,Enterprise data warehouse,Open,2025-09-01 08:00,
+DQ-1013,High,Synthetic governance exception 13,GOVERNANCE_RULE_13,4,Enterprise Systems,Enterprise data warehouse,Open,2025-09-01 08:00,
+DQ-1014,High,Synthetic governance exception 14,GOVERNANCE_RULE_14,21,Enterprise Systems,Enterprise data warehouse,Open,2025-09-01 08:00,
+DQ-1015,Medium,Synthetic governance exception 15,GOVERNANCE_RULE_15,38,Academic Affairs,Enterprise data warehouse,Open,2025-09-01 08:00,
+DQ-1016,Medium,Synthetic governance exception 16,GOVERNANCE_RULE_16,55,Financial Aid,Enterprise data warehouse,Open,2025-09-01 08:00,
+DQ-1017,Medium,Synthetic governance exception 17,GOVERNANCE_RULE_17,72,Registrar,Enterprise data warehouse,Open,2025-09-01 08:00,
+DQ-1018,Medium,Synthetic governance exception 18,GOVERNANCE_RULE_18,16,Academic Affairs,Enterprise data warehouse,Open,2025-09-01 08:00,
+DQ-1019,Medium,Synthetic governance exception 19,GOVERNANCE_RULE_19,33,Registrar,Enterprise data warehouse,Open,2025-09-01 08:00,
+DQ-1020,Medium,Synthetic governance exception 20,GOVERNANCE_RULE_20,50,Financial Aid,Enterprise data warehouse,Open,2025-09-01 08:00,
+DQ-1021,Medium,Synthetic governance exception 21,GOVERNANCE_RULE_21,67,Admissions,Enterprise data warehouse,Open,2025-09-01 08:00,
+DQ-1022,Medium,Synthetic governance exception 22,GOVERNANCE_RULE_22,11,Academic Affairs,Enterprise data warehouse,Open,2025-09-01 08:00,
+DQ-1023,Medium,Synthetic governance exception 23,GOVERNANCE_RULE_23,28,Financial Aid,Enterprise data warehouse,Open,2025-09-01 08:00,
+DQ-1024,Medium,Synthetic governance exception 24,GOVERNANCE_RULE_24,45,Academic Affairs,Enterprise data warehouse,Open,2025-09-01 08:00,
+DQ-1025,Medium,Synthetic governance exception 25,GOVERNANCE_RULE_25,62,Registrar,Enterprise data warehouse,Open,2025-09-01 08:00,
+DQ-1026,Medium,Synthetic governance exception 26,GOVERNANCE_RULE_26,6,Financial Aid,Enterprise data warehouse,Open,2025-09-01 08:00,
+DQ-1027,Medium,Synthetic governance exception 27,GOVERNANCE_RULE_27,23,Admissions,Enterprise data warehouse,Open,2025-09-01 08:00,
+DQ-R001,Medium,Resolved synthetic exception 1,RESOLVED_RULE_01,14,Registrar,Enterprise data warehouse,Resolved,2025-09-01 08:00,2025-09-12 12:00
+DQ-R002,Medium,Resolved synthetic exception 2,RESOLVED_RULE_02,27,Financial Aid,Enterprise data warehouse,Resolved,2025-09-01 08:00,2025-09-12 12:00
+DQ-R003,Medium,Resolved synthetic exception 3,RESOLVED_RULE_03,40,Admissions,Enterprise data warehouse,Resolved,2025-09-01 08:00,2025-09-12 12:00
+DQ-R004,High,Resolved synthetic exception 4,RESOLVED_RULE_04,2,Registrar,Enterprise data warehouse,Resolved,2025-09-01 08:00,2025-09-12 12:00
+DQ-R005,Medium,Resolved synthetic exception 5,RESOLVED_RULE_05,15,Registrar,Enterprise data warehouse,Resolved,2025-09-01 08:00,2025-09-12 12:00
+DQ-R006,Medium,Resolved synthetic exception 6,RESOLVED_RULE_06,28,Academic Affairs,Enterprise data warehouse,Resolved,2025-09-01 08:00,2025-09-19 12:00
+DQ-R007,Medium,Resolved synthetic exception 7,RESOLVED_RULE_07,41,Academic Affairs,Enterprise data warehouse,Resolved,2025-09-01 08:00,2025-09-19 12:00
+DQ-R008,High,Resolved synthetic exception 8,RESOLVED_RULE_08,3,Registrar,Enterprise data warehouse,Resolved,2025-09-01 08:00,2025-09-19 12:00
+DQ-R009,Medium,Resolved synthetic exception 9,RESOLVED_RULE_09,16,Financial Aid,Enterprise data warehouse,Resolved,2025-09-01 08:00,2025-09-19 12:00
+DQ-R010,Medium,Resolved synthetic exception 10,RESOLVED_RULE_10,29,Academic Affairs,Enterprise data warehouse,Resolved,2025-09-01 08:00,2025-09-26 12:00
+DQ-R011,Medium,Resolved synthetic exception 11,RESOLVED_RULE_11,42,Financial Aid,Enterprise data warehouse,Resolved,2025-09-01 08:00,2025-09-26 12:00
+DQ-R012,High,Resolved synthetic exception 12,RESOLVED_RULE_12,4,Registrar,Enterprise data warehouse,Resolved,2025-09-01 08:00,2025-09-26 12:00
+DQ-R013,Medium,Resolved synthetic exception 13,RESOLVED_RULE_13,17,Academic Affairs,Enterprise data warehouse,Resolved,2025-09-01 08:00,2025-09-26 12:00
+DQ-R014,Medium,Resolved synthetic exception 14,RESOLVED_RULE_14,30,Financial Aid,Enterprise data warehouse,Resolved,2025-09-01 08:00,2025-09-26 12:00
+DQ-R015,Medium,Resolved synthetic exception 15,RESOLVED_RULE_15,43,Admissions,Enterprise data warehouse,Resolved,2025-09-01 08:00,2025-10-03 12:00
+DQ-R016,High,Resolved synthetic exception 16,RESOLVED_RULE_16,5,Financial Aid,Enterprise data warehouse,Resolved,2025-09-01 08:00,2025-10-03 12:00
+DQ-R017,Medium,Resolved synthetic exception 17,RESOLVED_RULE_17,18,Admissions,Enterprise data warehouse,Resolved,2025-09-01 08:00,2025-10-03 12:00
+DQ-R018,Medium,Resolved synthetic exception 18,RESOLVED_RULE_18,31,Registrar,Enterprise data warehouse,Resolved,2025-09-01 08:00,2025-10-10 12:00
+DQ-R019,Medium,Resolved synthetic exception 19,RESOLVED_RULE_19,44,Academic Affairs,Enterprise data warehouse,Resolved,2025-09-01 08:00,2025-10-10 12:00
+DQ-R020,High,Resolved synthetic exception 20,RESOLVED_RULE_20,6,Academic Affairs,Enterprise data warehouse,Resolved,2025-09-01 08:00,2025-10-10 12:00
+DQ-R021,Medium,Resolved synthetic exception 21,RESOLVED_RULE_21,19,Admissions,Enterprise data warehouse,Resolved,2025-09-01 08:00,2025-10-10 12:00
+DQ-R022,Medium,Resolved synthetic exception 22,RESOLVED_RULE_22,32,Academic Affairs,Enterprise data warehouse,Resolved,2025-09-01 08:00,2025-10-10 12:00
+DQ-R023,Medium,Resolved synthetic exception 23,RESOLVED_RULE_23,45,Admissions,Enterprise data warehouse,Resolved,2025-09-01 08:00,2025-10-10 12:00
+DQ-R024,High,Resolved synthetic exception 24,RESOLVED_RULE_24,7,Admissions,Enterprise data warehouse,Resolved,2025-09-01 08:00,2025-10-10 12:00
+DQ-R025,Medium,Resolved synthetic exception 25,RESOLVED_RULE_25,20,Admissions,Enterprise data warehouse,Resolved,2025-09-01 08:00,2025-10-10 12:00
+DQ-R026,Medium,Resolved synthetic exception 26,RESOLVED_RULE_26,33,Admissions,Enterprise data warehouse,Resolved,2025-09-01 08:00,2025-10-10 12:00

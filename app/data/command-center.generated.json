@@ -1,0 +1,269 @@
+{
+  "generatedAt": "2025-10-14T09:42:00-07:00",
+  "pipelineVersion": "1.0.0",
+  "dataBoundary": "Synthetic demonstration data",
+  "institution": {
+    "id": "AVU001",
+    "name": "Atlas Valley University",
+    "currentTerm": "2025FA",
+    "currentTermLabel": "Fall 2025",
+    "censusDate": "2025-09-15"
+  },
+  "briefDate": "Oct 14, 2025",
+  "activeAgents": 5,
+  "kpis": {
+    "fallHeadcount": {
+      "label": "Fall headcount",
+      "value": 18426,
+      "display": "18,426",
+      "comparisonValue": 19234,
+      "delta": -0.04201,
+      "deltaDisplay": "−4.2%",
+      "context": "as of census",
+      "trend": [
+        17580,
+        18120,
+        18715,
+        19018,
+        19234,
+        18426
+      ],
+      "sources": [
+        "student_terms.csv",
+        "terms.csv"
+      ]
+    },
+    "firstYearRetention": {
+      "label": "First-year retention",
+      "value": 0.784,
+      "display": "78.4%",
+      "comparisonValue": 0.776,
+      "delta": 0.008,
+      "deltaDisplay": "+0.8 pts",
+      "context": "2024 FTFT cohort",
+      "trend": [
+        70,
+        72,
+        71,
+        77.6,
+        78.4
+      ],
+      "sources": [
+        "students.csv",
+        "student_terms.csv",
+        "terms.csv"
+      ]
+    },
+    "ipedsReadiness": {
+      "label": "IPEDS readiness",
+      "value": 0.91,
+      "display": "91%",
+      "comparisonValue": 0.79,
+      "delta": 0.12,
+      "deltaDisplay": "+12 pts",
+      "context": "Fall Enrollment",
+      "trend": [
+        45,
+        54,
+        61,
+        74,
+        79,
+        91
+      ],
+      "sources": [
+        "ipeds_validation_results.csv"
+      ]
+    },
+    "openQualityIssues": {
+      "label": "Open quality issues",
+      "value": 27,
+      "display": "27",
+      "comparisonValue": 36,
+      "delta": -9,
+      "deltaDisplay": "-9 this week",
+      "context": "3 critical",
+      "trend": [
+        53,
+        48,
+        44,
+        39,
+        36,
+        27
+      ],
+      "sources": [
+        "data_quality_issue_log.csv"
+      ]
+    }
+  },
+  "brief": [
+    {
+      "priority": 1,
+      "severity": "critical",
+      "title": "146 full-time classifications look wrong",
+      "subtitle": "Data Quality Agent · reconciled to SIS upload",
+      "destination": "quality",
+      "affectedRecords": 146,
+      "sourceFiles": [
+        "student_terms.csv",
+        "data_quality_issue_log.csv"
+      ]
+    },
+    {
+      "priority": 2,
+      "severity": "warning",
+      "title": "Fall headcount is 4.2% below last year",
+      "subtitle": "Silent Error Monitor · census comparison",
+      "destination": "quality",
+      "affectedRecords": 808,
+      "sourceFiles": [
+        "student_terms.csv",
+        "terms.csv"
+      ]
+    },
+    {
+      "priority": 3,
+      "severity": "calm",
+      "title": "Fall Enrollment is 91% submission-ready",
+      "subtitle": "IPEDS Agent · 46 of 49 checks passed",
+      "destination": "ipeds",
+      "affectedRecords": 0,
+      "sourceFiles": [
+        "ipeds_validation_results.csv"
+      ]
+    }
+  ],
+  "programSignals": [
+    {
+      "programId": "PBA",
+      "label": "Business Analytics",
+      "currentHeadcount": 585,
+      "priorHeadcount": 500,
+      "utilization": 0.92,
+      "utilizationDisplay": "92%",
+      "growth": 0.17,
+      "delta": "+17%"
+    },
+    {
+      "programId": "PCS",
+      "label": "Computer Science",
+      "currentHeadcount": 678,
+      "priorHeadcount": 600,
+      "utilization": 0.86,
+      "utilizationDisplay": "86%",
+      "growth": 0.13,
+      "delta": "+13%"
+    },
+    {
+      "programId": "PNUR",
+      "label": "Nursing",
+      "currentHeadcount": 540,
+      "priorHeadcount": 500,
+      "utilization": 0.78,
+      "utilizationDisplay": "78%",
+      "growth": 0.08,
+      "delta": "+8%"
+    },
+    {
+      "programId": "PPA",
+      "label": "Public Administration",
+      "currentHeadcount": 480,
+      "priorHeadcount": 500,
+      "utilization": 0.53,
+      "utilizationDisplay": "53%",
+      "growth": -0.04,
+      "delta": "−4%"
+    }
+  ],
+  "activity": [
+    {
+      "status": "complete",
+      "activity": "Reconciled Fall census snapshot",
+      "detail": "111,093 student-term rows · source lineage retained",
+      "time": "9:42"
+    },
+    {
+      "status": "complete",
+      "activity": "Validated Fall Enrollment package",
+      "detail": "46 checks passed · 3 need review",
+      "time": "8:17"
+    },
+    {
+      "status": "complete",
+      "activity": "Evaluated data-quality rules",
+      "detail": "27 open findings · 146 record-level mismatches reconciled",
+      "time": "7:54"
+    }
+  ],
+  "audit": {
+    "runId": "RUN-2025-10-14-0942",
+    "steps": [
+      {
+        "label": "Source upload",
+        "detail": "9 files · 40,669 students · 111,093 student-term rows"
+      },
+      {
+        "label": "Schema validation",
+        "detail": "All required files and columns passed"
+      },
+      {
+        "label": "Metric transformation",
+        "detail": "Command-center semantic rules v1.0.0"
+      },
+      {
+        "label": "Cross-source reconciliation",
+        "detail": "146 SIS mismatches agree with the issue log"
+      },
+      {
+        "label": "Published result",
+        "detail": "18,426 Fall students · generated 2025-10-14 09:42"
+      }
+    ]
+  },
+  "sourceManifest": [
+    {
+      "file": "institution.csv",
+      "rows": 1,
+      "role": "Institution context"
+    },
+    {
+      "file": "terms.csv",
+      "rows": 6,
+      "role": "Term and census definitions"
+    },
+    {
+      "file": "programs.csv",
+      "rows": 12,
+      "role": "Program hierarchy and CIP codes"
+    },
+    {
+      "file": "students.csv",
+      "rows": 40669,
+      "role": "Student cohort and demographic attributes"
+    },
+    {
+      "file": "student_terms.csv",
+      "rows": 111093,
+      "role": "Official enrollment snapshots"
+    },
+    {
+      "file": "sections.csv",
+      "rows": 40,
+      "role": "Course capacity"
+    },
+    {
+      "file": "section_enrollments.csv",
+      "rows": 3090,
+      "role": "Filled seats"
+    },
+    {
+      "file": "ipeds_validation_results.csv",
+      "rows": 294,
+      "role": "IPEDS readiness"
+    },
+    {
+      "file": "data_quality_issue_log.csv",
+      "rows": 53,
+      "role": "Open and resolved findings"
+    }
+  ]
+}
