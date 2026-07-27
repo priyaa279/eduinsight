@@ -1,6 +1,7 @@
 import dataset from "../../data/ask-eduinsight.generated.json";
 import {
   analyzeQuestion,
+  governancePolicyForQuestion,
   queryPlanSchema,
 } from "../../../lib/ask-engine.mjs";
 
@@ -63,6 +64,7 @@ Important resolution rules:
 - For retention questions explicitly comparing one population with the full matched cohort, use comparisonMode=groups. Use trend for a cohort-year trend, ranking for highest/lowest, and snapshot otherwise.
 - Use ranking=highest or lowest only when requested; otherwise none.
 - Use measure=affected_records only for record-impact questions, available_seats only for open-seat questions, utilization for capacity percentages, dfw_rate for outcomes, retention_rate for retention, readiness for readiness, and count otherwise.
+- Use measure=percentage when the user requests a percentage, share, or portion. Percentage intent must never be converted to a count.
 - Residency values are ${dataset.catalogs.residencies.join(", ")}. Gender values are ${dataset.catalogs.genders.join(", ")}. Race/ethnicity values are ${dataset.catalogs.raceEthnicities.join(", ")}.
 - Course codes are ${dataset.catalogs.courses.join(", ")}. Modalities are ${dataset.catalogs.modalities.join(", ")}.
 - If the requested field or metric is absent, select unsupported or the closest correct governed metric so the deterministic executor can return an explicit source limitation. Never silently drop a requested filter.
@@ -116,9 +118,10 @@ export async function POST(request: Request) {
     }
 
     let proposedPlan = null;
-    let planner = "local";
+    const governance = governancePolicyForQuestion(question);
+    let planner = governance.blocked ? "policy" : "local";
     let plannerWarning: string | null = null;
-    if (process.env.OPENAI_API_KEY) {
+    if (!governance.blocked && process.env.OPENAI_API_KEY) {
       try {
         proposedPlan = await planWithOpenAI(question);
         planner = "openai";

@@ -28,6 +28,26 @@ test("a named program produces a program-specific enrollment calculation", () =>
   );
 });
 
+test("a subject-only program question uses the subject in the headline and preserves catalog lineage", () => {
+  const result = analyzeQuestion(
+    "How has Computer Science enrollment changed since 2021?",
+    dataset,
+  );
+  assert.equal(result.plan.programId, "PCS");
+  assert.equal(result.plan.programScope, "specific");
+  assert.equal(result.plan.programDisplayName, "Computer Science");
+  assert.match(
+    result.answer.headline,
+    /^Computer Science enrollment is up 42\.7%/,
+  );
+  assert.doesNotMatch(result.answer.headline, /^MS Computer Science/);
+  assert.match(
+    result.answer.notes[0],
+    /resolved to catalog program MS Computer Science \(PCS\)/,
+  );
+  assert.match(result.answer.notes[0], /No other programs are included/);
+});
+
 test("removing Computer Science recalculates all MS programs", () => {
   const result = analyzeQuestion(
     "How has MS enrollment changed since 2021?",
@@ -206,4 +226,33 @@ test("unknown metrics return a source limitation instead of a reused answer", ()
   assert.equal(result.plan.metric, "unsupported");
   assert.equal(result.answer.points.length, 0);
   assert.equal(result.answer.queryPlan, "unsupported");
+});
+
+test("a proposed language-model plan cannot override deterministic safety rules", () => {
+  const unsafeProposal = {
+    metric: "enrollment",
+    programId: null,
+    programScope: "all",
+    populationDimension: "all",
+    populationValue: null,
+    startYear: 2025,
+    endYear: 2025,
+    timeMode: "single",
+    groupBy: "none",
+  };
+  const unsupported = analyzeQuestion(
+    "What is the average student GPA?",
+    dataset,
+    unsafeProposal,
+  );
+  assert.equal(unsupported.answer.confidence, "Low");
+  assert.equal(unsupported.answer.points.length, 0);
+
+  const domestic = analyzeQuestion(
+    "How many domestic students were enrolled in Fall 2025?",
+    dataset,
+    unsafeProposal,
+  );
+  assert.equal(domestic.plan.populationValue, "Domestic");
+  assert.equal(domestic.answer.points[0].value, 12209);
 });

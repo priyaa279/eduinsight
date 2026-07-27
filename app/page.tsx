@@ -34,7 +34,19 @@ type AnalystAnswer = {
   sources: string[];
   limitations: string[];
   confidence: "High" | "Medium" | "Low";
+  confidenceDetails: {
+    query: "Resolved" | "Unresolved";
+    data: "Certified" | "Caveat" | "Unavailable";
+    calculation: "Validated" | "Not run";
+  };
+  disposition: "answer" | "clarification" | "limitation";
   queryPlan: string;
+};
+
+type FilterAudit = {
+  detected: string[];
+  applied: string[];
+  complete: boolean;
 };
 
 const navigation: { id: ViewId; label: string; glyph: string }[] = [
@@ -418,6 +430,7 @@ function Analyst({
   const [thinking, setThinking] = useState(false);
   const [showMethod, setShowMethod] = useState(false);
   const [analysisMode, setAnalysisMode] = useState("governed local planner");
+  const [filterAudit, setFilterAudit] = useState<FilterAudit | null>(null);
   const [error, setError] = useState("");
 
   async function runQuery(question = query) {
@@ -438,11 +451,13 @@ function Analyst({
         error?: string;
         planner?: string;
         plannerWarning?: string | null;
+        plan?: { filterAudit?: FilterAudit };
       };
       if (!response.ok || !payload.answer) {
         throw new Error(payload.error || "EduInsight could not calculate an answer.");
       }
       setAnswer(payload.answer);
+      setFilterAudit(payload.plan?.filterAudit ?? null);
       setAnalysisMode(
         payload.planner === "openai"
           ? "AI semantic planner + governed calculation"
@@ -452,6 +467,7 @@ function Analyst({
       );
     } catch (requestError) {
       setAnswer(null);
+      setFilterAudit(null);
       setError(
         requestError instanceof Error
           ? requestError.message
@@ -540,7 +556,10 @@ function Analyst({
         </aside>
       </section>
 
-      <section className={`answer-card ${thinking ? "is-thinking" : ""}`}>
+      <section
+        className={`answer-card ${thinking ? "is-thinking" : ""}`}
+        aria-live="polite"
+      >
         {thinking ? (
           <div className="thinking-state">
             <div className="thinking-mark">✦</div>
@@ -589,8 +608,16 @@ function Analyst({
                 </div>
               ) : (
                 <div className="answer-empty-chart">
-                  <strong>No unrelated chart was shown.</strong>
-                  <span>The current upload does not support this calculation.</span>
+                  <strong>
+                    {answer.queryPlan === "clarification_required"
+                      ? "No assumption was made."
+                      : "No unrelated chart was shown."}
+                  </strong>
+                  <span>
+                    {answer.queryPlan === "clarification_required"
+                      ? "Clarify the requested metric or population to continue."
+                      : "The current upload does not support this calculation."}
+                  </span>
                 </div>
               )}
               <div className="finding-list">
@@ -604,14 +631,18 @@ function Analyst({
               </div>
             </div>
             <div className="answer-footer">
-              <div className="confidence">
+              <div className={`confidence confidence-${answer.confidence.toLowerCase()}`}>
                 <span className="confidence-dot" />
                 <span>
                   <strong>{answer.confidence} confidence</strong>
                   <small>
                     {answer.confidence === "High"
-                      ? "Metric definition and source checks passed"
-                      : "Review the stated source limitations"}
+                      ? "Query, data, and calculation checks passed"
+                      : answer.confidence === "Medium"
+                        ? "Calculation supported; review the data caveat"
+                      : answer.queryPlan === "clarification_required"
+                        ? "Waiting for a precise metric or population"
+                        : "No governed result was published"}
                   </small>
                 </span>
               </div>
@@ -636,6 +667,32 @@ function Analyst({
                 <div>
                   <span>Planning mode</span>
                   <strong>{analysisMode}</strong>
+                </div>
+                <div>
+                  <span>Filter completeness</span>
+                  <strong>
+                    {filterAudit
+                      ? filterAudit.complete
+                        ? "Every detected filter was applied"
+                        : "Fail closed: one or more filters could not be applied"
+                      : "No filter audit available"}
+                  </strong>
+                </div>
+                <div>
+                  <span>Applied filters</span>
+                  <strong>
+                    {filterAudit?.applied.length
+                      ? filterAudit.applied.join(" Â· ")
+                      : "No filters applied"}
+                  </strong>
+                </div>
+                <div>
+                  <span>Confidence checks</span>
+                  <strong>
+                    Query: {answer.confidenceDetails.query} Â· Data:{" "}
+                    {answer.confidenceDetails.data} Â· Calculation:{" "}
+                    {answer.confidenceDetails.calculation}
+                  </strong>
                 </div>
                 <div>
                   <span>Certified sources</span>

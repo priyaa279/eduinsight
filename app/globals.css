@@ -1181,6 +1181,16 @@ textarea:focus-visible {
   box-shadow: 0 0 0 5px #e9f8f2;
 }
 
+.confidence-medium .confidence-dot {
+  background: #d89a45;
+  box-shadow: 0 0 0 5px #fff3df;
+}
+
+.confidence-low .confidence-dot {
+  background: #c86c62;
+  box-shadow: 0 0 0 5px #fae9e7;
+}
+
 .confidence strong,
 .confidence small {
   display: block;

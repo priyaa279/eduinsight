@@ -79,9 +79,13 @@ The built-in local planner supports:
   grades; and
 - a data-catalog answer that explains the available sources and capabilities.
 
-If a question requires a metric that is not present in the upload package, the
-agent returns a specific source limitation instead of dropping a requested
-filter, displaying an unrelated answer, or inventing a number.
+For recognized unsupported, ambiguous, and contradictory requests, the agent
+returns a source limitation or asks for clarification instead of inventing a
+number. The second blind evaluation below originally found language and
+governance paths that dropped filters, defaulted vague requests, or displayed
+unrelated aggregates. Those observed cases are now remediated and retained as
+regression coverage. A future untouched blind set is still required to measure
+generalization beyond all known cases.
 
 An optional OpenAI language-planning layer can interpret more varied phrasing.
 Copy `.env.example` to `.env.local`, add `OPENAI_API_KEY`, and restart the
@@ -89,6 +93,69 @@ development server. Only the question and governed catalogs are sent to the
 language planner. Student-level records remain inside EduInsight, and all
 filters, groupings, rankings, denominators, and numeric results are still
 calculated deterministically by the application.
+
+## Ask-engine evaluation suite
+
+Run the data-driven regression suite after changing the planner, calculations,
+or answer renderer:
+
+```bash
+npm run eval:ask
+```
+
+The suite exercises enrollment, demographics, combined filters, comparisons,
+retention, capacity, DFW, IPEDS, data quality, ranking limits, ambiguity,
+unsupported questions, impossible values, contradictions, dates,
+calculations, causal wording, and provenance follow-ups. Each case declares the
+expected metric, filters, chart dimension, numeric result, or rejection
+behavior. The command returns a non-zero exit code while any expectation fails,
+so it can be used as a CI regression gate once the known gaps are fixed.
+
+Additional suites measure behavior beyond the known regression cases:
+
+```bash
+npm run eval:blind
+npm run eval:blind2
+npm run test:adversarial
+npm run test:systemic
+npm run test:ask-release
+```
+
+`eval:blind` contains the 100 questions that were sealed before their first
+execution. The original 55/100 score remains preserved in
+`tests/reports/blind-first-run.md`; after that score was reported, the cases
+were promoted to regression coverage and now pass 100/100. Create a different
+unseen set for the next true blind evaluation instead of treating the current
+100 as blind again.
+
+`eval:blind2` is the separately sealed 180-question evaluation. Its untouched
+first and only blind run scored 84/180 (46.7%); the hash, category scores, and
+failure IDs are preserved in `tests/reports/blind-2-first-run.md`. It is no
+longer a blind set and must not be used as the next unbiased release score.
+After remediation it passes 180/180 as ordinary regression coverage.
+
+`test:adversarial` checks arithmetic identities, missing and contradictory
+data, duplicate records, zero denominators, prompt injection, partial
+compound answers, stateless follow-ups, dataset isolation, narrative
+consistency, ties, repeatability, provenance, confidence, and a local
+1,000-query performance budget. Its latest diagnostic report is in
+`tests/reports/adversarial-run.md`.
+
+`test:systemic` uses controlled numeric fixtures, destructive data mutations,
+cross-answer reconciliation, narrative and chart contracts, provenance,
+aggregate-only governance checks, and a structurally different second
+university. Its first run scored 36/44 (81.8%); that original result remains in
+`tests/reports/systemic-first-run.md`. The remediated suite now passes 47/47,
+including filter auditing, pre-planner privacy enforcement, and an
+API-planner governance-bypass check.
+
+The original browser smoke result remains preserved as 1/4 in
+`tests/reports/blind-2-browser-smoke.md`. Post-remediation critical flows pass
+7/7 in `tests/reports/remediation-browser-critical-flows.md`.
+
+`test:ask-release` runs every known Ask EduInsight evaluation in sequence. A
+green result proves that known behavior remains fixed; it does not replace a
+fresh sealed blind evaluation.
 
 ## Product architecture
 
