@@ -1,0 +1,43 @@
+{
+  "blindSet": 8,
+  "createdAt": "2026-07-27T21:21:08.8223484-07:00",
+  "protocol": "single untouched first run; frozen implementation; no remediation before review",
+  "caseCount": 250,
+  "suiteFiles": [
+    "tests/ask-engine-blind-8-suite.mjs",
+    "tests/blind-8-oracle.mjs"
+  ],
+  "suiteBundleSha256": "d2a08c1eba2bc384ec5ff9e3a34e4c668f50840b0376c7656ae3d5482fbe2ed6",
+  "files": {
+    "tests/ask-engine-blind-8-suite.mjs": "c4c7bd17c6b09aff02c101880e789fed7f2fe47f82ed74d5aac053ce9fbf54f3",
+    "tests/blind-8-oracle.mjs": "f7760f963914ede242398d8cc9719a5b427e48d4682a157670259b9eefaf057f",
+    "tests/ask-engine-blind-8-preflight.mjs": "85953f8b74cdf0072bbb76244f760e71b59cb5363c4609bd18c48a4c16c482af",
+    "tests/ask-engine-blind-8-evaluation.mjs": "04f2acfe729d034c7a0ff8f46c56ad21e55b65d02ccf7c3c3c4622165301a98f"
+  },
+  "frozenImplementation": {
+    "lib/ask-engine.mjs": "33e144a092d574c93a429f177a67e1d6dafdc5e2161acaedf1d5f0d506c9e660",
+    "lib/ask/comparison-parser.mjs": "f8fd8b00c3f05c82462a231dcb72f89519ab0b07f1b3b1496705bf839992e850",
+    "lib/ask/confidence-provenance.mjs": "b02f13115323aa698c27f61d95e67b9872d8ffec57829c5ff5c1efd13dd758eb",
+    "lib/ask/filter-audit.mjs": "3c03cbc66db4e48adb7c7940a47ee3a2f9aa0b8b883ff6a8a30ac53a280d03d2",
+    "lib/ask/governance.mjs": "f153c50a508fe2a843f54f4fcbc3cf977e799bebffa67a2465a9f30c954bb0a6",
+    "lib/ask/intent-detector.mjs": "7f7515841a922df0dfac6349337fd9c6b5246ac1b2f12e4186ccb1f138596d27",
+    "lib/ask/measure-parser.mjs": "bd091e8901d6fd99162356da66441d1854e78180556ef00c747d9c78bbeeaad5",
+    "lib/ask/normalization.mjs": "3995ae0603610ef8cc358df4f046701cc32ed00de8b4e820430ef39a953d655a",
+    "lib/ask/plan-contract.mjs": "4cc695b0c5755aaf25b7a93f341e95f338e29eb9d214ca36d65392b1027f5cb8",
+    "lib/ask/plan-scope.mjs": "0e4029b5a02b548dd2dfa77a96a6baec669c2519abdfe6a5dbcdedd7084ca920",
+    "lib/ask/plan-validator.mjs": "3373f7c3ea0f460ab5392419be7043a44762198486d53357c31687e566232de5",
+    "lib/ask/resolvers.mjs": "b72cbf1303befb2d73c852576ef829bdd89d34a6ac612ef0c7946d128ffa7584",
+    "lib/ask/semantic-planner.mjs": "10764c6df7b853c1841e42246b02535b2ff5cff56fafa89acc9c81f6b48cba44",
+    "lib/ask/semantic-policy.mjs": "a42588078c636a45023e5b3cb190287b49c5e18b1b958c53b0fe9badf2f39ff8",
+    "lib/ask/source-integrity.mjs": "89548e06ea546bd3e058a7ea6df62857b0797e75078dcd98ead87202040132be",
+    "lib/ask/time-parser.mjs": "7fba0988ba3271bbaed87232070c74548667e94d9a65a89b08fb4decaf95017e"
+  },
+  "preflight": {
+    "draftRunPassed": true,
+    "exactPriorQuestionCollisions": 0,
+    "supportedNumericalCases": 189,
+    "semanticConstraintCasesAtLeastThree": 157,
+    "independentOraclePointsValidated": 453,
+    "firstRunReportExistedBeforeSeal": false
+  }
+}

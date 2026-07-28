@@ -428,42 +428,42 @@ test("mutation: missing residency is not silently counted as Domestic", () => {
 });
 
 test("cross-answer: graduate plus undergraduate equals total", () => {
-  const total = valuesFor("Total enrollment in 2025")[0];
-  const graduate = valuesFor("Graduate enrollment in 2025")[0];
-  const undergraduate = valuesFor("Undergraduate enrollment in 2025")[0];
+  const total = valuesFor("What was total enrollment in 2025?")[0];
+  const graduate = valuesFor("What was graduate enrollment in 2025?")[0];
+  const undergraduate = valuesFor("What was undergraduate enrollment in 2025?")[0];
   assert.equal(graduate + undergraduate, total);
 });
 
 test("cross-answer: international plus domestic equals total", () => {
-  const total = valuesFor("Total enrollment in 2025")[0];
-  const international = valuesFor("International enrollment in 2025")[0];
-  const domestic = valuesFor("Domestic enrollment in 2025")[0];
+  const total = valuesFor("What was total enrollment in 2025?")[0];
+  const international = valuesFor("What was international enrollment in 2025?")[0];
+  const domestic = valuesFor("What was domestic enrollment in 2025?")[0];
   assert.equal(international + domestic, total);
 });
 
 test("cross-answer: Pell plus non-Pell equals total", () => {
-  const total = valuesFor("Total enrollment in 2025")[0];
-  const pell = valuesFor("Pell-eligible enrollment in 2025")[0];
-  const nonPell = valuesFor("Non-Pell enrollment in 2025")[0];
+  const total = valuesFor("What was total enrollment in 2025?")[0];
+  const pell = valuesFor("What was Pell-eligible enrollment in 2025?")[0];
+  const nonPell = valuesFor("What was non-Pell enrollment in 2025?")[0];
   assert.equal(pell + nonPell, total);
 });
 
 test("cross-answer: first-generation plus continuing-generation equals total", () => {
-  const total = valuesFor("Total enrollment in 2025")[0];
-  const first = valuesFor("First-generation enrollment in 2025")[0];
-  const continuing = valuesFor("Continuing-generation enrollment in 2025")[0];
+  const total = valuesFor("What was total enrollment in 2025?")[0];
+  const first = valuesFor("What was first-generation enrollment in 2025?")[0];
+  const continuing = valuesFor("What was continuing-generation enrollment in 2025?")[0];
   assert.equal(first + continuing, total);
 });
 
 test("cross-answer: residency breakdown adds to total", () => {
-  const total = valuesFor("Total enrollment in 2025")[0];
-  const residency = valuesFor("Show enrollment by residency in 2025");
+  const total = valuesFor("What was total enrollment in 2025?")[0];
+  const residency = valuesFor("Show enrollment by residency in 2025.");
   assert.equal(residency.reduce((sum, value) => sum + value, 0), total);
 });
 
 test("cross-answer: every yearly program ranking adds to the university total", () => {
   for (const year of atlas.catalogs.years) {
-    const total = valuesFor(`Total enrollment in ${year}`)[0];
+    const total = valuesFor(`What was total enrollment in ${year}?`)[0];
     const programs = valuesFor(
       `Give me the top 20 programs by enrollment in ${year}`,
     );
@@ -571,7 +571,7 @@ test("confidence: duplicate aggregates cannot be High confidence", () => {
     structuredClone(dataset.enrollmentCubes.all[0]),
   );
   assert.notEqual(
-    resultFor("Total enrollment in 2025", dataset).answer.confidence,
+    resultFor("What was total enrollment in 2025?", dataset).answer.confidence,
     "High",
   );
 });
@@ -579,7 +579,7 @@ test("confidence: duplicate aggregates cannot be High confidence", () => {
 test("confidence: stale uploads cannot be High confidence", () => {
   const dataset = clone();
   dataset.generatedAt = "2020-01-01T00:00:00Z";
-  const result = resultFor("Total enrollment in 2025", dataset);
+  const result = resultFor("What was total enrollment in 2025?", dataset);
   assert.notEqual(result.answer.confidence, "High");
   assert.match(answerText(result), /stale|freshness|generated|old/i);
 });
@@ -596,13 +596,13 @@ test("confidence: a relevant open program issue lowers confidence automatically"
     sourceSystem: "SIS student term",
     status: "Open",
   });
-  const result = resultFor("Computer Science enrollment in 2025", dataset);
+  const result = resultFor("What was Computer Science enrollment in 2025?", dataset);
   assert.notEqual(result.answer.confidence, "High");
   assert.match(answerText(result), /14|mapping|DQ-CS-MAP/i);
 });
 
 test("provenance: enrollment excludes capacity and IPEDS sources", () => {
-  const result = resultFor("Total enrollment in 2025");
+  const result = resultFor("What was total enrollment in 2025?");
   assert.deepEqual(result.answer.sources, [
     "student_terms.csv",
     "students.csv",
@@ -612,7 +612,7 @@ test("provenance: enrollment excludes capacity and IPEDS sources", () => {
 });
 
 test("provenance: capacity lists only schedule contributors", () => {
-  const result = resultFor("Computer Science capacity utilization");
+  const result = resultFor("What is Computer Science capacity utilization?");
   assert.deepEqual(result.answer.sources, [
     "sections.csv",
     "section_enrollments.csv",
@@ -622,7 +622,7 @@ test("provenance: capacity lists only schedule contributors", () => {
 
 test("provenance: the query plan retains population, program, and year", () => {
   const result = resultFor(
-    "International Computer Science enrollment in 2025",
+    "What was international Computer Science enrollment in 2025?",
   );
   assert.match(result.answer.queryPlan, /scope=PCS/);
   assert.match(result.answer.queryPlan, /population=International/);
@@ -633,6 +633,7 @@ test("governance: individual student lists are explicitly refused", () => {
   const result = resultFor(
     "List every international student in Computer Science.",
   );
+  assert.equal(result.answer.disposition, "refusal");
   assert.equal(result.answer.confidence, "Low");
   assert.equal(result.answer.points.length, 0);
   assert.match(answerText(result), /aggregate|row-level|individual|restricted/i);
@@ -642,39 +643,42 @@ test("governance: names of Pell students are explicitly refused", () => {
   const result = resultFor(
     "Give me the names of Pell students who did not retain.",
   );
+  assert.equal(result.answer.disposition, "refusal");
   assert.equal(result.answer.confidence, "Low");
   assert.equal(result.answer.points.length, 0);
   assert.match(answerText(result), /aggregate|row-level|individual|restricted/i);
 });
 
-test("governance: a proposed API planner result cannot bypass row-level policy", () => {
-  const forcedAggregatePlan = resultFor("Total enrollment in 2025").plan;
+test("governance: extra caller data cannot bypass row-level policy", () => {
+  const ignoredCallerData = resultFor("What was total enrollment in 2025?").plan;
   const result = analyzeQuestion(
     "List every international student in Computer Science.",
     atlas,
-    forcedAggregatePlan,
+    ignoredCallerData,
   );
-  assert.equal(result.answer.disposition, "limitation");
+  assert.equal(result.answer.disposition, "refusal");
   assert.equal(result.answer.confidence, "Low");
   assert.equal(result.answer.points.length, 0);
   assert.match(answerText(result), /aggregate|row-level|individual|restricted/i);
 });
 
-test("governance: the API can block row-level requests before external planning", () => {
+test("governance: local policy blocks row-level requests before parsing", () => {
   const policy = governancePolicyForQuestion(
     "Give me email addresses for first-generation students.",
   );
   assert.equal(policy.blocked, true);
   assert.match(policy.reason, /aggregate|row-level|individual|restricted/i);
   assert.equal(
-    governancePolicyForQuestion("First-generation enrollment in 2025").blocked,
+    governancePolicyForQuestion(
+      "What was first-generation enrollment in 2025?",
+    ).blocked,
     false,
   );
 });
 
 test("filter audit: every detected supported filter is retained", () => {
   const result = resultFor(
-    "International graduate Computer Science enrollment in 2025",
+    "What was international graduate Computer Science enrollment in 2025?",
   );
   assert.equal(result.plan.filterAudit.complete, true);
   assert.ok(
@@ -745,22 +749,23 @@ test("dataset isolation: Redwood capacity is calculated from Redwood sections", 
   assert.doesNotMatch(answerText(result), /\b86%|\b92%/);
 });
 
-test("dataset isolation: last fall resolves to Redwood 2026", () => {
+test("dataset isolation: ambiguous last fall asks for an exact Redwood term", () => {
   const result = resultFor(
     "What was total enrollment last fall?",
     buildRedwoodDataset(),
   );
-  assert.deepEqual(result.answer.points.map((point) => point.value), [12000]);
-  assert.match(answerText(result), /2026/);
+  assert.equal(result.answer.disposition, "clarification");
+  assert.equal(result.answer.points.length, 0);
+  assert.match(answerText(result), /exact Fall term|cohort year/i);
 });
 
 test("dataset isolation: alternating Atlas and Redwood never reuses cached values", () => {
   const redwood = buildRedwoodDataset();
   const sequence = [
-    valuesFor("Total enrollment in 2025", atlas)[0],
-    valuesFor("Total enrollment in 2026", redwood)[0],
-    valuesFor("Total enrollment in 2025", atlas)[0],
-    valuesFor("Total enrollment in 2026", redwood)[0],
+    valuesFor("What was total enrollment in 2025?", atlas)[0],
+    valuesFor("What was total enrollment in 2026?", redwood)[0],
+    valuesFor("What was total enrollment in 2025?", atlas)[0],
+    valuesFor("What was total enrollment in 2026?", redwood)[0],
   ];
   assert.deepEqual(sequence, [18426, 12000, 18426, 12000]);
 });

@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { plannerModeLabel } from "../lib/ask/planner-presentation.mjs";
 import commandCenter from "./data/command-center.generated.json";
 
 type ViewId =
@@ -39,7 +40,7 @@ type AnalystAnswer = {
     data: "Certified" | "Caveat" | "Unavailable";
     calculation: "Validated" | "Not run";
   };
-  disposition: "answer" | "clarification" | "limitation";
+  disposition: "answer" | "clarification" | "limitation" | "refusal";
   queryPlan: string;
 };
 
@@ -429,7 +430,7 @@ function Analyst({
   const [answer, setAnswer] = useState<AnalystAnswer | null>(null);
   const [thinking, setThinking] = useState(false);
   const [showMethod, setShowMethod] = useState(false);
-  const [analysisMode, setAnalysisMode] = useState("governed local planner");
+  const [analysisMode, setAnalysisMode] = useState("local deterministic planner");
   const [filterAudit, setFilterAudit] = useState<FilterAudit | null>(null);
   const [error, setError] = useState("");
 
@@ -450,7 +451,6 @@ function Analyst({
         answer?: AnalystAnswer;
         error?: string;
         planner?: string;
-        plannerWarning?: string | null;
         plan?: { filterAudit?: FilterAudit };
       };
       if (!response.ok || !payload.answer) {
@@ -458,13 +458,7 @@ function Analyst({
       }
       setAnswer(payload.answer);
       setFilterAudit(payload.plan?.filterAudit ?? null);
-      setAnalysisMode(
-        payload.planner === "openai"
-          ? "AI semantic planner + governed calculation"
-          : payload.planner === "local_fallback"
-            ? "governed local planner · AI planner temporarily unavailable"
-            : "governed local planner",
-      );
+      setAnalysisMode(plannerModeLabel(payload.planner));
     } catch (requestError) {
       setAnswer(null);
       setFilterAudit(null);
@@ -486,7 +480,7 @@ function Analyst({
     <div className="view">
       <Header
         title="Ask EduInsight"
-        description="Ask in plain language. Every answer is grounded in governed metrics and traceable data."
+        description="Ask a clear question or compact request. Every answer is calculated locally from governed, traceable data."
         onAudit={onAudit}
       />
 
@@ -495,7 +489,7 @@ function Analyst({
           <div className="query-intro">
             <div className="ask-orb small"><span>✦</span></div>
             <div>
-              <p className="eyebrow">AI Analyst</p>
+              <p className="eyebrow">Governed analyst</p>
               <h2>What would you like to understand?</h2>
             </div>
           </div>
@@ -526,7 +520,7 @@ function Analyst({
           <div className="suggestion-row">
             <span>Try asking</span>
             {[
-              "Enrollment by residency in 2025",
+              "Show enrollment by residency in 2025.",
               "How has BS retention changed since 2021?",
               "Which program has the most international students?",
               "Which graduate programs use the most capacity?",
@@ -542,16 +536,18 @@ function Analyst({
 
         <aside className="analyst-context">
           <p className="eyebrow">Analysis contract</p>
-          <h3>What the agent will do</h3>
+          <h3>What EduInsight will do</h3>
           <ol>
-            <li><span>1</span> Resolve the institutional definition</li>
-            <li><span>2</span> Generate and validate a read-only query</li>
-            <li><span>3</span> Check the result for anomalies</li>
-            <li><span>4</span> Explain with sources and limitations</li>
+            <li><span>1</span> Check that the question is clear and supported</li>
+            <li><span>2</span> Resolve and validate every requested constraint</li>
+            <li><span>3</span> Calculate locally from governed sources</li>
+            <li><span>4</span> Explain sources, confidence, and limitations</li>
           </ol>
           <p className="context-note">
             Supports governed enrollment, retention, IPEDS, quality, capacity,
-            and course-outcome questions from the uploaded sources.
+            and course-outcome questions from the uploaded sources. Common
+            academic abbreviations such as MS, BS, CS, IPEDS, and DFW are
+            recognized. No external language model or API credential is used.
           </p>
         </aside>
       </section>
@@ -565,7 +561,7 @@ function Analyst({
             <div className="thinking-mark">✦</div>
             <div>
               <strong>EduInsight is checking the evidence</strong>
-              <span>Resolving metric → calculating from the upload → testing result</span>
+              <span>Checking question → validating constraints → calculating locally</span>
             </div>
           </div>
         ) : error ? (
@@ -609,12 +605,16 @@ function Analyst({
               ) : (
                 <div className="answer-empty-chart">
                   <strong>
-                    {answer.queryPlan === "clarification_required"
+                    {answer.disposition === "refusal"
+                      ? "No sensitive data was disclosed."
+                      : answer.queryPlan === "clarification_required"
                       ? "No assumption was made."
                       : "No unrelated chart was shown."}
                   </strong>
                   <span>
-                    {answer.queryPlan === "clarification_required"
+                    {answer.disposition === "refusal"
+                      ? "This aggregate-only interface blocked the request under its privacy policy."
+                      : answer.queryPlan === "clarification_required"
                       ? "Clarify the requested metric or population to continue."
                       : "The current upload does not support this calculation."}
                   </span>
@@ -634,12 +634,22 @@ function Analyst({
               <div className={`confidence confidence-${answer.confidence.toLowerCase()}`}>
                 <span className="confidence-dot" />
                 <span>
-                  <strong>{answer.confidence} confidence</strong>
+                  <strong>
+                    {answer.disposition === "refusal"
+                      ? "Request blocked"
+                      : answer.disposition === "clarification"
+                        ? "Clarification needed"
+                        : answer.disposition === "limitation"
+                          ? "No governed result"
+                          : `${answer.confidence} confidence`}
+                  </strong>
                   <small>
                     {answer.confidence === "High"
                       ? "Query, data, and calculation checks passed"
                       : answer.confidence === "Medium"
                         ? "Calculation supported; review the data caveat"
+                      : answer.disposition === "refusal"
+                        ? "Request blocked by aggregate-only privacy policy"
                       : answer.queryPlan === "clarification_required"
                         ? "Waiting for a precise metric or population"
                         : "No governed result was published"}
@@ -682,15 +692,15 @@ function Analyst({
                   <span>Applied filters</span>
                   <strong>
                     {filterAudit?.applied.length
-                      ? filterAudit.applied.join(" Â· ")
+                      ? filterAudit.applied.join(" · ")
                       : "No filters applied"}
                   </strong>
                 </div>
                 <div>
                   <span>Confidence checks</span>
                   <strong>
-                    Query: {answer.confidenceDetails.query} Â· Data:{" "}
-                    {answer.confidenceDetails.data} Â· Calculation:{" "}
+                    Query: {answer.confidenceDetails.query} · Data:{" "}
+                    {answer.confidenceDetails.data} · Calculation:{" "}
                     {answer.confidenceDetails.calculation}
                   </strong>
                 </div>

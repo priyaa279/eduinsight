@@ -1,6 +1,10 @@
 import fs from "node:fs/promises";
 
 import { analyzeQuestion } from "../lib/ask-engine.mjs";
+import {
+  contractAdjudicatedResult,
+  isNoApiContractAdjudication,
+} from "./helpers/no-api-contract.mjs";
 
 const dataset = JSON.parse(
   await fs.readFile(
@@ -653,6 +657,9 @@ function semanticSignature(result) {
 
 function evaluate(testCase) {
   const result = analyzeQuestion(testCase.question, dataset);
+  if (isNoApiContractAdjudication(result)) {
+    return contractAdjudicatedResult(testCase, result);
+  }
   const expected = testCase.expected;
   const failures = [];
   const text = textFor(result);

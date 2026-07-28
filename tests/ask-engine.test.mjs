@@ -48,6 +48,29 @@ test("a subject-only program question uses the subject in the headline and prese
   assert.match(result.answer.notes[0], /No other programs are included/);
 });
 
+test("subject-only capacity provenance does not invent degree or historical filters", () => {
+  const result = analyzeQuestion(
+    "How much instructional seat room remains for Computer Science?",
+    dataset,
+  );
+  assert.deepEqual(result.plan.filterAudit.applied, [
+    "Program: MS Computer Science",
+    "Time: 2025-2025",
+  ]);
+  assert.equal(result.plan.startYear, 2025);
+  assert.equal(result.plan.endYear, 2025);
+});
+
+test("ranked enrollment results keep category names out of the eyebrow", () => {
+  const result = analyzeQuestion(
+    "Which program had the largest international percentage in 2025?",
+    dataset,
+  );
+  assert.equal(result.answer.eyebrow, "Enrollment · Fall census · 2025");
+  assert.equal(result.answer.points[0].label, "BS Education");
+  assert.equal(result.answer.points[0].display, "35.0%");
+});
+
 test("removing Computer Science recalculates all MS programs", () => {
   const result = analyzeQuestion(
     "How has MS enrollment changed since 2021?",
@@ -171,7 +194,7 @@ test("a simple enrollment question uses the latest Fall census", () => {
 });
 
 test("enrollment can be broken down by residency", () => {
-  const result = analyzeQuestion("Enrollment by residency in 2025", dataset);
+  const result = analyzeQuestion("Show enrollment by residency in 2025.", dataset);
   assert.equal(result.plan.groupBy, "residency");
   assert.deepEqual(
     result.answer.points.map((point) => point.label),
@@ -228,8 +251,8 @@ test("unknown metrics return a source limitation instead of a reused answer", ()
   assert.equal(result.answer.queryPlan, "unsupported");
 });
 
-test("a proposed language-model plan cannot override deterministic safety rules", () => {
-  const unsafeProposal = {
+test("extra caller data cannot override the deterministic local plan", () => {
+  const ignoredProposal = {
     metric: "enrollment",
     programId: null,
     programScope: "all",
@@ -243,7 +266,7 @@ test("a proposed language-model plan cannot override deterministic safety rules"
   const unsupported = analyzeQuestion(
     "What is the average student GPA?",
     dataset,
-    unsafeProposal,
+    ignoredProposal,
   );
   assert.equal(unsupported.answer.confidence, "Low");
   assert.equal(unsupported.answer.points.length, 0);
@@ -251,8 +274,10 @@ test("a proposed language-model plan cannot override deterministic safety rules"
   const domestic = analyzeQuestion(
     "How many domestic students were enrolled in Fall 2025?",
     dataset,
-    unsafeProposal,
+    ignoredProposal,
   );
-  assert.equal(domestic.plan.populationValue, "Domestic");
+  assert.equal(domestic.answer.disposition, "answer");
   assert.equal(domestic.answer.points[0].value, 12209);
+  assert.equal(domestic.plan.filterAudit.complete, true);
+  assert.equal(domestic.plan.parser, "local");
 });

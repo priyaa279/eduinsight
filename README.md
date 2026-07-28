@@ -79,20 +79,43 @@ The built-in local planner supports:
   grades; and
 - a data-catalog answer that explains the available sources and capabilities.
 
-For recognized unsupported, ambiguous, and contradictory requests, the agent
-returns a source limitation or asks for clarification instead of inventing a
-number. The second blind evaluation below originally found language and
-governance paths that dropped filters, defaulted vague requests, or displayed
-unrelated aggregates. Those observed cases are now remediated and retained as
-regression coverage. A future untouched blind set is still required to measure
-generalization beyond all known cases.
+Ask EduInsight is intentionally local and deterministic. It does not call
+OpenAI or another external language-model API, does not use API keys, and has no
+token or credit cost. The runtime path is:
 
-An optional OpenAI language-planning layer can interpret more varied phrasing.
-Copy `.env.example` to `.env.local`, add `OPENAI_API_KEY`, and restart the
-development server. Only the question and governed catalogs are sent to the
-language planner. Student-level records remain inside EduInsight, and all
-filters, groupings, rankings, denominators, and numeric results are still
-calculated deterministically by the application.
+```text
+question-quality check
+  -> local semantic parser
+  -> strict governed-plan validation
+  -> deterministic calculation
+  -> sourced answer
+```
+
+The local parser is designed for clear, complete institutional-data questions
+written in normal English. A supported question is executed only when its
+metric, entity, population, filters, comparison, and time semantics can be
+represented without loss. Complete questions may use recognized governed
+higher-education abbreviations, including MS, BS, CS, grad, undergrad, intl,
+FT/PT, IPEDS, DFW, HC, pct, and terms such as FA25. Shorthand-heavy or
+incomplete fragments still ask for a full-English rephrase. Compact requests
+such as `CS enrollment in 2024?` execute because the program, metric, and exact
+year are all explicit. Vague metrics and ambiguous entities or dates ask a
+targeted clarification. Contradictory filters are explained, unsupported
+domains return a governed source limitation, and individual or student-level
+requests are refused.
+
+Every recognized constraint is reconciled against the executable plan. If a
+constraint is unresolved or disappears during planning, EduInsight fails closed
+and publishes no number or chart. Numeric calculations, denominators, source
+lineage, and confidence checks remain deterministic.
+
+Verify the no-API execution contract separately:
+
+```bash
+npm run test:no-api-contract
+npm run test:semantic-parser
+npm run test:planner-ui
+```
 
 ## Ask-engine evaluation suite
 
@@ -154,8 +177,9 @@ The original browser smoke result remains preserved as 1/4 in
 7/7 in `tests/reports/remediation-browser-critical-flows.md`.
 
 `test:ask-release` runs every known Ask EduInsight evaluation in sequence. A
-green result proves that known behavior remains fixed; it does not replace a
-fresh sealed blind evaluation.
+green result verifies the documented deterministic contract, including safe
+clarification for questions that intentionally fall outside the supported
+full-English grammar.
 
 ## Product architecture
 
@@ -173,4 +197,5 @@ source snapshots
 The current build is a deterministic, interaction-complete batch-upload
 prototype. Production deployment would add an authenticated upload service,
 institution-specific source mappings, encrypted storage, approved model access
-behind read-only query guardrails, and persistent approvals and audit events.
+controls, and persistent approvals and audit events. Ask EduInsight itself
+remains local and deterministic under this product contract.
