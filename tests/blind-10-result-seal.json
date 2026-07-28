@@ -1,0 +1,57 @@
+{
+  "blindSet": 10,
+  "status": "immutable untouched baseline",
+  "executedAt": "2026-07-28T19:41:18.066Z",
+  "frozenGitCommit": "db7254a1ddcd2b9296e03c3d2a66848250a5ba05",
+  "frozenGitTag": "ask-eduinsight-blind10-freeze-2026-07-28",
+  "frozenGitTree": "23f7175db51c691062d38dc8bab1586495f3b4c1",
+  "suiteBundleSha256": "7427bff36d1b976ea1b5e961065633cfadd2abf9bb79f33560470ae8f86c7f4d",
+  "frozenBoundaryBundleSha256": "d170c6b7f2c6fe4ab22d5fc9e35f62f6f1e5c9fdb33401b2f85ef8ae485c900f",
+  "artifactSha256": {
+    "tests/ask-engine-blind-10-suite.mjs": "4b94f003221def842290d4049fa97cfa1d428196c423c60a17183cec30a9a0b3",
+    "tests/blind-10-oracle.mjs": "7143ddb87c901c428f872a62e1e4072a2420d975fd349bae68ee1e651ff7b83a",
+    "tests/ask-engine-blind-10-preflight.mjs": "21e09731cac510119c31d057a29c460aa416fa4024af730bac2cb38976483f47",
+    "tests/ask-engine-blind-10-evaluation.mjs": "d2f378c2ca61f090f321086177a82bd64fb3deada055977410cdc509a25861c4",
+    "tests/blind-10-seal.json": "87e22a7b2baab57cb69d8325b62c1648634f453ad53405a5dde32e7cbcf18df1",
+    "tests/reports/blind-10-first-run.md": "89a941cdf3c974d9c5a0998066f227bc44185715287358c37d828699ea08c481"
+  },
+  "result": {
+    "passed": 133,
+    "total": 225,
+    "percentage": 59.1,
+    "correctGovernedAnswers": {
+      "passed": 113,
+      "total": 180
+    },
+    "supportedNumericalCorrectness": {
+      "passed": 118,
+      "total": 170
+    },
+    "safeFailureHandling": {
+      "passed": 20,
+      "total": 45
+    },
+    "privacyRefusals": {
+      "passed": 3,
+      "total": 7
+    },
+    "wrongHighConfidence": 39,
+    "wrongLowOrMediumConfidence": 0,
+    "wrongMetricOrDomain": 15,
+    "silentFilterDrops": 22,
+    "privacyLeaks": 4,
+    "unsafeAnswers": 10,
+    "safeAbstentions": 23,
+    "crashes": 0,
+    "provenanceMismatches": 18,
+    "presentationMismatches": 65,
+    "reliabilityGatesPassed": false
+  },
+  "protocol": {
+    "implementationChangedDuringConstructionOrRun": false,
+    "remediationPerformed": false,
+    "evaluationRerun": false,
+    "publicationPerformed": false,
+    "userReviewRequiredBeforeAnyRemediation": true
+  }
+}
