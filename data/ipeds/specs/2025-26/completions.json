@@ -1,0 +1,40 @@
+{
+  "specId": "ipeds_spec.completions.v2025_26",
+  "surveyCode": "C",
+  "uploadCode": "COM",
+  "collectionYear": "2025-26",
+  "verifiedAt": "2026-07-29",
+  "sourceUrl": "https://nces.ed.gov/ipeds/use-the-data/annual-survey-forms-packages-archived",
+  "keyOrder": ["UNITID", "SURVSECT", "MAJORNUM", "CIPCODE", "AWLEVEL", "RACE", "SEX", "COUNT"],
+  "codeTables": {
+    "race": {
+      "Nonresident alien": 1,
+      "Hispanic/Latino": 2,
+      "American Indian or Alaska Native": 3,
+      "Asian": 4,
+      "Black or African American": 5,
+      "Native Hawaiian or Other Pacific Islander": 6,
+      "White": 7,
+      "Two or more races": 8,
+      "Race/ethnicity unknown": 9,
+      "": 9
+    },
+    "sex": {
+      "M": 1,
+      "Man": 1,
+      "Male": 1,
+      "F": 2,
+      "Woman": 2,
+      "Female": 2,
+      "N": 3,
+      "Nonbinary": 3,
+      "Unknown": 3,
+      "": 3
+    },
+    "awardLevel": ["1a", "1b", "2", "3", "4", "5", "6", "7", "8", "17", "18", "19"]
+  },
+  "manualReview": [
+    "Distance education is not modeled per CIP/award level.",
+    "Second majors are not modeled."
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "collectionYear": "2025-26",
+  "catalogVersion": "ipeds-survey-catalog.v2025_26",
+  "verifiedAt": "2026-07-29",
+  "sourceUrl": "https://nces.ed.gov/ipeds/report-your-data/overview-survey-components-data-cycle",
+  "changesUrl": "https://nces.ed.gov/ipeds/report-your-data/archived-changes",
+  "annualVerificationRequired": true,
+  "surveys": [
+    {
+      "window": "Fall",
+      "name": "Institutional Characteristics",
+      "code": "IC",
+      "coverage": "unsupported",
+      "status": "Not supported",
+      "reason": "Requires an institution_profile domain for address, control, calendar, mission, and award-level metadata.",
+      "generator": false
+    },
+    {
+      "window": "Fall",
+      "name": "Completions",
+      "code": "C",
+      "uploadCode": "COM",
+      "coverage": "full",
+      "status": "Buildable",
+      "reason": "Governed completion, student demographic, program, CIP, and award-level data are available.",
+      "generator": true,
+      "specId": "ipeds_spec.completions.v2025_26"
+    },
+    {
+      "window": "Fall",
+      "name": "12-Month Enrollment",
+      "code": "E12",
+      "coverage": "partial",
+      "status": "Partially supported",
+      "reason": "Unduplicated headcount is derivable, but governed instructional contact-hour data are missing.",
+      "generator": false
+    },
+    {
+      "window": "Fall",
+      "name": "Cost",
+      "code": "CST",
+      "coverage": "unsupported",
+      "status": "Not supported",
+      "reason": "Requires tuition, fee, cost-of-attendance, and net-price source domains.",
+      "generator": false
+    },
+    {
+      "window": "Winter",
+      "name": "Admissions",
+      "code": "ADM",
+      "coverage": "unsupported",
+      "status": "Not supported",
+      "reason": "Requires applicant, admit, enrolled, and test-score funnel data.",
+      "generator": false
+    },
+    {
+      "window": "Winter",
+      "name": "Graduation Rates",
+      "code": "GR",
+      "coverage": "partial",
+      "status": "Partially supported",
+      "reason": "Cohorts are derivable, but official exclusions and transfer-out rules are not implemented.",
+      "generator": false
+    },
+    {
+      "window": "Winter",
+      "name": "200% Graduation Rates",
+      "code": "GR200",
+      "coverage": "partial",
+      "status": "Partially supported",
+      "reason": "Cohorts are derivable, but official 200%-time exclusions and transfer-out rules are not implemented.",
+      "generator": false
+    },
+    {
+      "window": "Winter",
+      "name": "Outcome Measures",
+      "code": "OM",
+      "coverage": "unsupported",
+      "status": "Not supported",
+      "reason": "Requires governed 4-, 6-, and 8-year cohort tracking joined to Pell and loan status.",
+      "generator": false
+    },
+    {
+      "window": "Winter",
+      "name": "Student Financial Aid",
+      "code": "SFA",
+      "coverage": "partial",
+      "status": "Partially supported",
+      "reason": "A Pell-recipient field is now modeled, but award amounts, aid categories, and reconciliation rules are not yet complete.",
+      "generator": false
+    },
+    {
+      "window": "Spring",
+      "name": "Fall Enrollment",
+      "code": "EF",
+      "uploadCode": "EF1",
+      "coverage": "full",
+      "status": "Buildable with blockers",
+      "reason": "Parts A, B, D, and H are generated from governed fall census data; Parts C, E, F, and G remain blocked on missing governed fields.",
+      "generator": true,
+      "specId": "ipeds_spec.fall_enrollment.v2025_26"
+    },
+    {
+      "window": "Spring",
+      "name": "Finance",
+      "code": "F",
+      "coverage": "unsupported",
+      "status": "Not supported",
+      "reason": "Requires a governed general-ledger/chart-of-accounts source domain.",
+      "generator": false
+    },
+    {
+      "window": "Spring",
+      "name": "Human Resources",
+      "code": "HR",
+      "coverage": "unsupported",
+      "status": "Not supported",
+      "reason": "Requires occupational category, tenure, salary, and employee demographic fields.",
+      "generator": false
+    }
+  ],
+  "retired": [
+    {
+      "name": "Academic Libraries",
+      "code": "AL",
+      "retiredStarting": "2025-26",
+      "reason": "NCES retired the Academic Libraries survey component beginning with the 2025-26 collection."
+    }
+  ]
+}

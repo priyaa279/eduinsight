@@ -5,7 +5,7 @@
     {
       "check": "required_files",
       "status": "passed",
-      "files": 9
+      "files": 11
     },
     {
       "check": "required_columns",

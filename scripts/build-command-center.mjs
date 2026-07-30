@@ -1,6 +1,10 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { DATA_QUALITY_RULES } from "../lib/data-quality-catalog.mjs";
+import { buildComPackage } from "../lib/ipeds-com.mjs";
+import { buildEfPackage } from "../lib/ipeds-ef.mjs";
+import { loadIpedsSpecs } from "../lib/ipeds-specs.mjs";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const uploadDir = path.join(projectRoot, "data", "sample-university-upload");
@@ -124,6 +128,8 @@ const [
   sectionEnrollments,
   ipedsResults,
   qualityIssueLog,
+  completions,
+  financialAid,
 ] = await Promise.all([
   readCsv("institution.csv"),
   readCsv("terms.csv"),
@@ -134,6 +140,8 @@ const [
   readCsv("section_enrollments.csv"),
   readCsv("ipeds_validation_results.csv"),
   readCsv("data_quality_issue_log.csv"),
+  readCsv("completions.csv"),
+  readCsv("financial_aid.csv"),
 ]);
 
 const contracts = {
@@ -170,6 +178,22 @@ const contracts = {
     "opened_at",
     "resolved_at",
   ],
+  "completions.csv": [
+    "completion_id",
+    "student_id",
+    "program_id",
+    "award_date",
+    "reporting_year",
+  ],
+  "financial_aid.csv": [
+    "aid_record_id",
+    "student_id",
+    "term_id",
+    "aid_year",
+    "pell_eligible",
+    "pell_recipient",
+    "pell_amount",
+  ],
 };
 
 for (const [fileName, requiredColumns] of Object.entries(contracts)) {
@@ -183,6 +207,8 @@ for (const [fileName, requiredColumns] of Object.entries(contracts)) {
     "section_enrollments.csv": sectionEnrollments,
     "ipeds_validation_results.csv": ipedsResults,
     "data_quality_issue_log.csv": qualityIssueLog,
+    "completions.csv": completions,
+    "financial_aid.csv": financialAid,
   }[fileName];
   requireColumns(fileName, rows, requiredColumns);
 }
@@ -196,6 +222,8 @@ requireUnique("sections.csv", sections, ["section_id"]);
 requireUnique("section_enrollments.csv", sectionEnrollments, ["section_id", "student_id"]);
 requireUnique("ipeds_validation_results.csv", ipedsResults, ["run_id", "check_id"]);
 requireUnique("data_quality_issue_log.csv", qualityIssueLog, ["issue_id"]);
+requireUnique("completions.csv", completions, ["completion_id"]);
+requireUnique("financial_aid.csv", financialAid, ["aid_record_id"]);
 
 const studentIds = new Set(students.map((row) => row.student_id));
 const termIds = new Set(terms.map((row) => row.term_id));
@@ -204,6 +232,10 @@ const sectionIds = new Set(sections.map((row) => row.section_id));
 requireForeignKey("student_terms.csv", studentTerms, "student_id", "students.csv", studentIds);
 requireForeignKey("student_terms.csv", studentTerms, "term_id", "terms.csv", termIds);
 requireForeignKey("student_terms.csv", studentTerms, "program_id", "programs.csv", programIds);
+requireForeignKey("completions.csv", completions, "student_id", "students.csv", studentIds);
+requireForeignKey("completions.csv", completions, "program_id", "programs.csv", programIds);
+requireForeignKey("financial_aid.csv", financialAid, "student_id", "students.csv", studentIds);
+requireForeignKey("financial_aid.csv", financialAid, "term_id", "terms.csv", termIds);
 requireForeignKey("sections.csv", sections, "term_id", "terms.csv", termIds);
 requireForeignKey("sections.csv", sections, "program_id", "programs.csv", programIds);
 requireForeignKey(
@@ -682,6 +714,141 @@ const sectionFacts = sections.map((section) => {
   };
 });
 
+function sampleRowsForRule(ruleId) {
+  if (ruleId === "UG_FT_CREDIT_THRESHOLD") {
+    return studentTerms
+      .filter(
+        (row) =>
+          row.level === "UG" &&
+          row.attendance_status === "F" &&
+          Number(row.attempted_credits) < 12,
+      )
+      .slice(0, 5)
+      .map((row) => ({
+        student_id: row.student_id,
+        term_id: row.term_id,
+        program_id: row.program_id,
+        attempted_credits: Number(row.attempted_credits),
+        attendance_status: row.attendance_status,
+      }));
+  }
+  if (ruleId === "DEMOGRAPHIC_COMPLETENESS") {
+    return students
+      .filter((row) => !row.race_ethnicity)
+      .slice(0, 5)
+      .map((row) => ({
+        student_id: row.student_id,
+        entry_term_id: row.entry_term_id,
+        primary_program_id: row.primary_program_id,
+        race_ethnicity: row.race_ethnicity || "(blank)",
+      }));
+  }
+  if (ruleId === "AID_WITHOUT_ENROLLMENT") {
+    return qualityIssueLog
+      .filter((row) => row.rule_id === ruleId)
+      .slice(0, 1)
+      .map((row) => ({
+        issue_id: row.issue_id,
+        source_system: row.source_system,
+        affected_records: Number(row.affected_records),
+        note: "The current upload contains an aggregate finding; row-level aid records were not supplied.",
+      }));
+  }
+  if (ruleId === "CIP_EFFECTIVE_DATING") {
+    return programs.slice(0, 3).map((row) => ({
+      program_id: row.program_id,
+      program_name: row.program_name,
+      cip_code: row.cip_code,
+      active_from: row.active_from,
+      active_to: row.active_to || "(current)",
+    }));
+  }
+  return qualityIssueLog
+    .filter((row) => row.rule_id === ruleId)
+    .slice(0, 3)
+    .map((row) => ({
+      issue_id: row.issue_id,
+      source_system: row.source_system,
+      affected_records: Number(row.affected_records),
+      status: row.status,
+    }));
+}
+
+const qualityFindings = qualityIssueLog.map((issue, index) => ({
+  issueId: issue.issue_id,
+  severity: issue.severity,
+  title: issue.title,
+  description:
+    issue.rule_id === "UG_FT_CREDIT_THRESHOLD"
+      ? "Undergraduate students are coded full-time with fewer than 12 attempted credits in the governed census snapshot."
+      : `The governed ${issue.source_system} check found records that violate ${issue.rule_id}.`,
+  ruleId: issue.rule_id,
+  affectedRecords: Number(issue.affected_records),
+  owner: issue.owner,
+  sourceSystem: issue.source_system,
+  status: issue.status,
+  lifecycleStatus:
+    issue.status === "Resolved"
+      ? "Resolved"
+      : index % 5 === 0
+        ? "Investigating"
+        : index % 7 === 0
+          ? "Reviewed"
+          : "New",
+  openedAt: issue.opened_at,
+  resolvedAt: issue.resolved_at,
+  sampleRows: sampleRowsForRule(issue.rule_id),
+}));
+
+const firedByImplementationRule = new Map();
+for (const finding of qualityFindings) {
+  firedByImplementationRule.set(
+    finding.ruleId,
+    (firedByImplementationRule.get(finding.ruleId) ?? 0) + finding.affectedRecords,
+  );
+}
+const qualityRuleCatalog = DATA_QUALITY_RULES.map((rule) => ({
+  ...rule,
+  enabled: [
+    "UG_FT_CREDIT_THRESHOLD",
+    "DEMOGRAPHIC_COMPLETENESS",
+    "AID_WITHOUT_ENROLLMENT",
+    "CIP_EFFECTIVE_DATING",
+    "YOY_HEADCOUNT_VARIANCE",
+    "REFERENTIAL_INTEGRITY",
+  ].includes(rule.implementationRule),
+  lastFiredCount: firedByImplementationRule.get(rule.implementationRule) ?? 0,
+  coverage:
+    firedByImplementationRule.has(rule.implementationRule)
+      ? "Covered under live rule"
+      : [
+            "UG_FT_CREDIT_THRESHOLD",
+            "DEMOGRAPHIC_COMPLETENESS",
+            "AID_WITHOUT_ENROLLMENT",
+            "CIP_EFFECTIVE_DATING",
+            "YOY_HEADCOUNT_VARIANCE",
+            "REFERENTIAL_INTEGRITY",
+          ].includes(rule.implementationRule)
+        ? "Covered — no current finding"
+        : "Cataloged — implementation pending",
+}));
+
+const ipedsComPackage = buildComPackage({
+  completions,
+  students,
+  programs,
+  unitId: Number(institutions[0].ipeds_unitid) || 999999,
+  reportingYear: 2025,
+});
+const ipedsEfPackage = buildEfPackage({
+  studentTerms,
+  students,
+  programs,
+  unitId: Number(institutions[0].ipeds_unitid) || 999999,
+  reportingTerm: "2025FA",
+});
+const ipedsSpecs = loadIpedsSpecs();
+
 const askEduInsightDataset = {
   generatedAt: "2025-10-14T09:42:00-07:00",
   dataBoundary: institutions[0].data_classification,
@@ -722,18 +889,8 @@ const askEduInsightDataset = {
     totalChecks: run.total_checks,
     timestamp: run.timestamp,
   })),
-  qualityIssues: qualityIssueLog.map((issue) => ({
-    issueId: issue.issue_id,
-    severity: issue.severity,
-    title: issue.title,
-    ruleId: issue.rule_id,
-    affectedRecords: Number(issue.affected_records),
-    owner: issue.owner,
-    sourceSystem: issue.source_system,
-    status: issue.status,
-    openedAt: issue.opened_at,
-    resolvedAt: issue.resolved_at,
-  })),
+  qualityIssues: qualityFindings,
+  qualityRuleCatalog,
   ipedsChecks: ipedsResults.map((result) => ({
     runId: result.run_id,
     sequence: Number(result.run_sequence),
@@ -769,6 +926,8 @@ const askEduInsightDataset = {
     "section_enrollments.csv",
     "ipeds_validation_results.csv",
     "data_quality_issue_log.csv",
+    "completions.csv",
+    "financial_aid.csv",
   ],
 };
 
@@ -815,6 +974,11 @@ const commandCenter = {
   },
   briefDate: "Oct 14, 2025",
   activeAgents: 5,
+  qualityFindings,
+  qualityRuleCatalog,
+  ipedsComPackage,
+  ipedsEfPackage,
+  ipedsSpecs,
   kpis: {
     fallHeadcount: {
       label: "Fall headcount",
@@ -891,7 +1055,7 @@ const commandCenter = {
     steps: [
       {
         label: "Source upload",
-        detail: `9 files · ${students.length.toLocaleString("en-US")} students · ${studentTerms.length.toLocaleString("en-US")} student-term rows`,
+        detail: `${Object.keys(contracts).length} files · ${students.length.toLocaleString("en-US")} students · ${studentTerms.length.toLocaleString("en-US")} student-term rows`,
       },
       {
         label: "Schema validation",
@@ -921,6 +1085,8 @@ const commandCenter = {
     { file: "section_enrollments.csv", rows: sectionEnrollments.length, role: "Filled seats" },
     { file: "ipeds_validation_results.csv", rows: ipedsResults.length, role: "IPEDS readiness" },
     { file: "data_quality_issue_log.csv", rows: qualityIssueLog.length, role: "Open and resolved findings" },
+    { file: "completions.csv", rows: completions.length, role: "IPEDS Completions source population" },
+    { file: "financial_aid.csv", rows: financialAid.length, role: "Financial aid and Pell-recipient source population" },
   ],
 };
 
@@ -954,6 +1120,21 @@ await Promise.all([
   fs.writeFile(
     path.join(appDataDir, "ask-eduinsight.generated.json"),
     `${JSON.stringify(askEduInsightDataset, null, 2)}\n`,
+    "utf8",
+  ),
+  fs.writeFile(
+    path.join(appDataDir, "ipeds-com.generated.json"),
+    `${JSON.stringify(ipedsComPackage, null, 2)}\n`,
+    "utf8",
+  ),
+  fs.writeFile(
+    path.join(appDataDir, "ipeds-ef.generated.json"),
+    `${JSON.stringify(ipedsEfPackage, null, 2)}\n`,
+    "utf8",
+  ),
+  fs.writeFile(
+    path.join(appDataDir, "ipeds-specs.generated.json"),
+    `${JSON.stringify(ipedsSpecs, null, 2)}\n`,
     "utf8",
   ),
   fs.writeFile(

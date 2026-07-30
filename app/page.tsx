@@ -1,8 +1,11 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { plannerModeLabel } from "../lib/ask/planner-presentation.mjs";
 import commandCenter from "./data/command-center.generated.json";
+import ipedsCom from "./data/ipeds-com.generated.json";
+import ipedsEf from "./data/ipeds-ef.generated.json";
+import ipedsSpecs from "./data/ipeds-specs.generated.json";
 
 type ViewId =
   | "overview"
@@ -21,7 +24,8 @@ type QualityIssue = {
   source: string;
   owner: string;
   rule: string;
-  status: "Open" | "Reviewed";
+  status: "Open" | "New" | "Investigating" | "Reviewed" | "Resolved" | "Suppressed";
+  sampleRows?: Record<string, string | number>[];
 };
 
 type AnalystAnswer = {
@@ -42,12 +46,74 @@ type AnalystAnswer = {
   };
   disposition: "answer" | "clarification" | "limitation" | "refusal";
   queryPlan: string;
+  chartType?: "none" | "line" | "bar" | "stacked-bar";
+  intent?: "definition" | "capability" | "partial" | "analytical";
+  resolution?: ResolutionPanel;
+};
+
+type ResolutionField = {
+  id: string;
+  label: string;
+  status: "resolved" | "ambiguous" | "assumed";
+  assumed?: boolean;
+  options: { label: string; value: string }[];
+};
+
+type ResolutionPanel = {
+  originalQuestion: string;
+  fields: ResolutionField[];
 };
 
 type FilterAudit = {
   detected: string[];
   applied: string[];
   complete: boolean;
+};
+
+type IpedsApproval = {
+  id: string;
+  surveyCode: string;
+  collectionYear: string;
+  specId: string;
+  fileName: string;
+  sha256: string;
+  approver: string;
+  approvedAt: string;
+  status: string;
+};
+
+type IpedsPackage = {
+  specId: string;
+  collectionYear: string;
+  verifiedAt: string;
+  sourceUrl: string;
+  fileStem: string;
+  unitId: number;
+  cellCount: number;
+  uploadText: string;
+  reviewCsv: string;
+  validations: {
+    id: string;
+    label: string;
+    status: string;
+    passedCount: number;
+    failedCount: number;
+    detail: string;
+    category: string;
+  }[];
+  structuralFailureCount: number;
+  reconciliationFailureCount: number;
+  assumptions: string[];
+  preparedRowCount: number;
+  completeSurveyPackage?: boolean;
+  sourceCompleterCount?: number;
+  sourceEnrollmentCount?: number;
+  generatedParts?: string[];
+  blockedParts?: {
+    code: string;
+    description: string;
+    missingFields: string[];
+  }[];
 };
 
 const navigation: { id: ViewId; label: string; glyph: string }[] = [
@@ -59,7 +125,7 @@ const navigation: { id: ViewId; label: string; glyph: string }[] = [
   { id: "memory", label: "Institutional memory", glyph: "◫" },
 ];
 
-const startingIssues: QualityIssue[] = [
+const legacyStartingIssues: QualityIssue[] = [
   {
     id: "DQ-1042",
     severity: "Critical",
@@ -134,6 +200,23 @@ const startingIssues: QualityIssue[] = [
   },
 ];
 
+const startingIssues: QualityIssue[] = commandCenter.qualityFindings
+  .filter((issue) => issue.lifecycleStatus !== "Resolved")
+  .slice(0, 12)
+  .map((issue) => ({
+    id: issue.issueId,
+    severity: issue.severity as QualityIssue["severity"],
+    title: issue.title,
+    description: issue.description,
+    records: issue.affectedRecords,
+    source: issue.sourceSystem,
+    owner: issue.owner,
+    rule: issue.ruleId,
+    status: issue.lifecycleStatus as QualityIssue["status"],
+    sampleRows: issue.sampleRows,
+  }));
+void legacyStartingIssues;
+
 const memoryItems = [
   {
     kind: "Policy",
@@ -177,7 +260,7 @@ const memoryItems = [
   },
 ];
 
-const surveyCards = [
+const legacySurveyCards = [
   {
     name: "Fall Enrollment",
     code: "EF",
@@ -190,11 +273,11 @@ const surveyCards = [
   {
     name: "Completions",
     code: "C",
-    status: "Ready",
-    ready: 100,
-    checks: "38 of 38",
+    status: "Needs review",
+    ready: 88,
+    checks: "8 structural",
     due: "Apr 8",
-    note: "All CIP and award-level validations passed.",
+    note: "COM upload is structurally valid; distance education and second majors require review.",
   },
   {
     name: "Student Financial Aid",
@@ -242,6 +325,51 @@ function Sparkline({ values }: { values: number[] }) {
           style={{ height: `${34 + ((value - min) / (max - min || 1)) * 52}%` }}
         />
       ))}
+    </div>
+  );
+}
+
+function LineChart({
+  points,
+  label,
+}: {
+  points: AnalystAnswer["points"];
+  label: string;
+}) {
+  const width = 760;
+  const height = 250;
+  const padding = 34;
+  const max = Math.max(...points.map((point) => point.value), 1);
+  const min = Math.min(...points.map((point) => point.value), 0);
+  const range = max - min || 1;
+  const coordinates = points.map((point, index) => ({
+    x: padding + (index * (width - padding * 2)) / Math.max(1, points.length - 1),
+    y: height - padding - ((point.value - min) / range) * (height - padding * 2),
+    point,
+  }));
+  return (
+    <div className="line-chart" role="img" aria-label={label}>
+      <svg viewBox={`0 0 ${width} ${height}`} aria-hidden="true">
+        <polyline
+          points={coordinates.map(({ x, y }) => `${x},${y}`).join(" ")}
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="5"
+          strokeLinejoin="round"
+          strokeLinecap="round"
+        />
+        {coordinates.map(({ x, y, point }) => (
+          <g key={point.label}>
+            <circle cx={x} cy={y} r="7" />
+            <text x={x} y={Math.max(18, y - 16)} textAnchor="middle">
+              {point.display}
+            </text>
+            <text x={x} y={height - 8} textAnchor="middle">
+              {point.label}
+            </text>
+          </g>
+        ))}
+      </svg>
     </div>
   );
 }
@@ -433,6 +561,7 @@ function Analyst({
   const [analysisMode, setAnalysisMode] = useState("local deterministic planner");
   const [filterAudit, setFilterAudit] = useState<FilterAudit | null>(null);
   const [error, setError] = useState("");
+  const [resolutionChoices, setResolutionChoices] = useState<Record<string, string>>({});
 
   async function runQuery(question = query) {
     const nextQuestion = question.trim();
@@ -457,6 +586,13 @@ function Analyst({
         throw new Error(payload.error || "EduInsight could not calculate an answer.");
       }
       setAnswer(payload.answer);
+      setResolutionChoices(
+        Object.fromEntries(
+          (payload.answer.resolution?.fields ?? [])
+            .filter((field) => field.status === "resolved" && field.options[0])
+            .map((field) => [field.id, field.options[0].value]),
+        ),
+      );
       setFilterAudit(payload.plan?.filterAudit ?? null);
       setAnalysisMode(plannerModeLabel(payload.planner));
     } catch (requestError) {
@@ -475,6 +611,19 @@ function Analyst({
   const max = answer
     ? Math.max(1, ...answer.points.map((point) => point.value))
     : 1;
+
+  function runResolvedAnalysis() {
+    if (!answer?.resolution) return;
+    const fields = answer.resolution.fields;
+    if (fields.some((field) => !resolutionChoices[field.id])) return;
+    const metric = resolutionChoices.metric ?? "Enrollment headcount";
+    const program = resolutionChoices.program ?? "the institution";
+    const time = resolutionChoices.time ?? "the latest available Fall term";
+    const population = resolutionChoices.population
+      ? `${resolutionChoices.population} in `
+      : "";
+    runQuery(`What was ${metric.toLowerCase()} for ${population}${program} in ${time}?`);
+  }
 
   return (
     <div className="view">
@@ -583,7 +732,47 @@ function Analyst({
               <span className="answer-delta">{answer.delta}</span>
             </div>
             <div className="answer-body">
-              {answer.points.length ? (
+              {answer.intent === "partial" && answer.resolution ? (
+                <div className="resolution-panel">
+                  <p>I can calculate this once you confirm:</p>
+                  {answer.resolution.fields.map((field) => (
+                    <fieldset key={field.id}>
+                      <legend>
+                        {field.label}
+                        {field.assumed ? <em>Assumed — confirm before analysis</em> : null}
+                      </legend>
+                      <div className="resolution-options">
+                        {field.options.map((option) => (
+                          <button
+                            type="button"
+                            className={resolutionChoices[field.id] === option.value ? "active" : ""}
+                            onClick={() =>
+                              setResolutionChoices((current) => ({
+                                ...current,
+                                [field.id]: option.value,
+                              }))
+                            }
+                            key={option.value}
+                          >
+                            {option.label}
+                          </button>
+                        ))}
+                      </div>
+                    </fieldset>
+                  ))}
+                  <button
+                    className="button button-primary"
+                    onClick={runResolvedAnalysis}
+                    disabled={answer.resolution.fields.some(
+                      (field) => !resolutionChoices[field.id],
+                    )}
+                  >
+                    Analyze confirmed request <span aria-hidden="true">→</span>
+                  </button>
+                </div>
+              ) : answer.chartType === "line" && answer.points.length > 1 ? (
+                <LineChart points={answer.points} label={answer.headline} />
+              ) : answer.chartType !== "none" && answer.points.length > 1 ? (
                 <div className="bar-chart" aria-label={answer.headline}>
                   {answer.points.map((point) => (
                     <div className="bar-column" key={point.label}>
@@ -602,7 +791,7 @@ function Analyst({
                     </div>
                   ))}
                 </div>
-              ) : (
+              ) : answer.disposition !== "answer" ? (
                 <div className="answer-empty-chart">
                   <strong>
                     {answer.disposition === "refusal"
@@ -619,7 +808,7 @@ function Analyst({
                       : "The current upload does not support this calculation."}
                   </span>
                 </div>
-              )}
+              ) : null}
               <div className="finding-list">
                 <p className="eyebrow">What matters</p>
                 {answer.notes.map((note, index) => (
@@ -743,6 +932,7 @@ function DataQuality({
 }) {
   const [issues, setIssues] = useState(startingIssues);
   const [filter, setFilter] = useState("All");
+  const [workspaceTab, setWorkspaceTab] = useState<"findings" | "catalog">("findings");
   const [selected, setSelected] = useState<QualityIssue | null>(
     startingIssues[0]
   );
@@ -796,10 +986,27 @@ function DataQuality({
         <article className="issues-panel">
           <div className="panel-toolbar">
             <div>
-              <p className="eyebrow">Open findings</p>
-              <h2>Prioritized by reporting risk</h2>
+              <p className="eyebrow">Governed checks</p>
+              <h2>{workspaceTab === "findings" ? "Prioritized by reporting risk" : "Complete rule catalog"}</h2>
             </div>
             <div className="filter-tabs" role="group" aria-label="Filter findings">
+              <button
+                className={workspaceTab === "findings" ? "active" : ""}
+                onClick={() => setWorkspaceTab("findings")}
+              >
+                Findings
+              </button>
+              <button
+                className={workspaceTab === "catalog" ? "active" : ""}
+                onClick={() => setWorkspaceTab("catalog")}
+              >
+                Rule catalog
+              </button>
+            </div>
+          </div>
+          {workspaceTab === "findings" ? (
+            <>
+            <div className="filter-tabs quality-secondary-tabs" role="group" aria-label="Filter findings">
               {["All", "Critical", "High", "Medium", "Reviewed"].map((item) => (
                 <button
                   className={filter === item ? "active" : ""}
@@ -810,7 +1017,6 @@ function DataQuality({
                 </button>
               ))}
             </div>
-          </div>
           <div className="issue-list">
             {filtered.map((issue) => (
               <button
@@ -826,7 +1032,9 @@ function DataQuality({
                 <span className="issue-copy">
                   <span>
                     <strong>{issue.title}</strong>
-                    {issue.status === "Reviewed" && <em>Reviewed</em>}
+                    <em className={`lifecycle-chip status-${issue.status.toLowerCase()}`}>
+                      {issue.status === "Open" ? "New" : issue.status}
+                    </em>
                   </span>
                   <small>{issue.id} · {issue.source}</small>
                 </span>
@@ -834,6 +1042,42 @@ function DataQuality({
               </button>
             ))}
           </div>
+            </>
+          ) : (
+            <div className="rule-catalog-wrap">
+              <table className="rule-catalog">
+                <thead>
+                  <tr>
+                    <th>Rule ID</th>
+                    <th>Category</th>
+                    <th>Domain</th>
+                    <th>Threshold</th>
+                    <th>Owner</th>
+                    <th>State</th>
+                    <th>Last fired</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {commandCenter.qualityRuleCatalog.map((rule) => (
+                    <tr key={rule.id}>
+                      <td><strong>{rule.id}</strong><small>{rule.implementationRule}</small></td>
+                      <td>{rule.category}</td>
+                      <td>{rule.domain}</td>
+                      <td>{rule.threshold}</td>
+                      <td>{rule.owner}</td>
+                      <td>
+                        <span className={`catalog-state ${rule.enabled ? "enabled" : "pending"}`}>
+                          {rule.enabled ? "Enabled" : "Disabled"}
+                        </span>
+                        <small>{rule.coverage}</small>
+                      </td>
+                      <td>{rule.lastFiredCount.toLocaleString()}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </article>
         <aside className="issue-detail">
           {selected ? (
@@ -856,12 +1100,36 @@ function DataQuality({
                 <span>✦</span>
                 <div>
                   <strong>Why the agent flagged this</strong>
-                  <p>
-                    The values pass field-level validation but violate a
-                    cross-domain business rule. This can silently distort
-                    enrollment reporting and downstream IPEDS counts.
-                  </p>
+                  <p>{selected.description}</p>
                 </div>
+              </div>
+              <div className="sample-records">
+                <div className="sample-records-heading">
+                  <strong>Affected sample rows</strong>
+                  <span>{selected.sampleRows?.length ?? 0} source records shown</span>
+                </div>
+                {selected.sampleRows?.length ? (
+                  <div className="sample-table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          {Object.keys(selected.sampleRows[0]).map((key) => <th key={key}>{key}</th>)}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {selected.sampleRows.map((row, index) => (
+                          <tr key={`${selected.id}-${index}`}>
+                            {Object.keys(selected.sampleRows![0]).map((key) => <td key={key}>{row[key]}</td>)}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                ) : (
+                  <p className="sample-unavailable">
+                    This source supplied only an aggregate finding, so row-level samples are unavailable.
+                  </p>
+                )}
               </div>
               <div className="detail-actions">
                 <button className="button button-secondary" onClick={onAudit}>
@@ -885,7 +1153,7 @@ function DataQuality({
   );
 }
 
-function Ipeds({
+function LegacyIpeds({
   onAudit,
   notify,
 }: {
@@ -895,7 +1163,7 @@ function Ipeds({
   const [selected, setSelected] = useState(0);
   const [validating, setValidating] = useState(false);
   const [approved, setApproved] = useState(false);
-  const survey = surveyCards[selected];
+  const survey = legacySurveyCards[selected];
 
   function validate() {
     setValidating(true);
@@ -924,7 +1192,7 @@ function Ipeds({
         </div>
       </section>
       <section className="survey-grid">
-        {surveyCards.map((item, index) => (
+        {legacySurveyCards.map((item, index) => (
           <button
             key={item.code}
             className={`survey-card ${selected === index ? "selected" : ""}`}
@@ -1004,6 +1272,749 @@ function Ipeds({
           </button>
           <button className="text-button centered" onClick={onAudit}>
             View source-to-submission lineage
+          </button>
+        </aside>
+      </section>
+    </div>
+  );
+}
+
+void LegacyIpeds;
+
+function LegacyIpedsGenerated({
+  onAudit,
+  notify,
+}: {
+  onAudit: () => void;
+  notify: (message: string) => void;
+}) {
+  const [selected, setSelected] = useState(1);
+  const [validating, setValidating] = useState(false);
+  const [validationComplete, setValidationComplete] = useState(false);
+  const [generated, setGenerated] = useState(false);
+  const [approved, setApproved] = useState(false);
+  const [packageHash, setPackageHash] = useState("");
+  const [explanations, setExplanations] = useState<Record<string, string>>({});
+  const survey = legacySurveyCards[selected];
+  const isCompletions = survey.code === "C";
+  const varianceItems = [
+    "Completions changed more than 10% from the prior reporting year.",
+    "CIP 11.0701 increased outside the expected historical range.",
+  ];
+  const allExplained = varianceItems.every((_, index) =>
+    explanations[String(index)]?.trim(),
+  );
+  const canApprove =
+    isCompletions &&
+    generated &&
+    validationComplete &&
+    ipedsCom.structuralFailureCount === 0 &&
+    allExplained;
+
+  function downloadArtifact(contents: string, fileName: string, type: string) {
+    const url = URL.createObjectURL(new Blob([contents], { type }));
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = fileName;
+    anchor.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function validate() {
+    setValidating(true);
+    window.setTimeout(() => {
+      setValidating(false);
+      setValidationComplete(true);
+      const failures =
+        ipedsCom.structuralFailureCount + ipedsCom.reconciliationFailureCount;
+      notify(
+        isCompletions
+          ? `${ipedsCom.validations.length} COM checks completed with ${failures} failures.`
+          : "The survey validation run completed.",
+      );
+    }, 450);
+  }
+
+  async function approvePackage() {
+    if (!canApprove) return;
+    const digest = await crypto.subtle.digest(
+      "SHA-256",
+      new TextEncoder().encode(ipedsCom.uploadText),
+    );
+    const hash = [...new Uint8Array(digest)]
+      .map((byte) => byte.toString(16).padStart(2, "0"))
+      .join("");
+    setPackageHash(hash);
+    setApproved(true);
+    notify("COM package approved, frozen, and sealed with SHA-256.");
+  }
+
+  return (
+    <div className="view">
+      <Header
+        title="IPEDS reporting center"
+        description="Prepare, validate, review, and seal submission artifacts from governed institutional data."
+        onAudit={onAudit}
+      />
+      <section className="ipeds-banner">
+        <div>
+          <p className="eyebrow light">Spring collection · 2025–26</p>
+          <h2>Completions upload preparation is now reproducible.</h2>
+          <p>Governed source → prepared contract → aggregated cells → validated key-value file</p>
+        </div>
+        <div className="readiness-dial">
+          <strong>92%</strong>
+          <span>collection ready</span>
+        </div>
+      </section>
+      <section className="survey-grid">
+        {legacySurveyCards.map((item, index) => (
+          <button
+            key={item.code}
+            className={`survey-card ${selected === index ? "selected" : ""}`}
+            onClick={() => {
+              setSelected(index);
+              setApproved(false);
+              setValidationComplete(false);
+              setGenerated(false);
+              setPackageHash("");
+            }}
+          >
+            <span className="survey-code">{item.code}</span>
+            <span className={`survey-status ${item.status.toLowerCase().replace(" ", "-")}`}>
+              {item.status}
+            </span>
+            <strong>{item.name}</strong>
+            <div className="progress-track"><span style={{ width: `${item.ready}%` }} /></div>
+            <small>{item.ready}% ready · {item.checks} checks</small>
+          </button>
+        ))}
+      </section>
+      <section className="ipeds-detail">
+        <article className="panel ipeds-main">
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">{survey.code} · Due {survey.due}</p>
+              <h2>{survey.name}</h2>
+              <p>{survey.note}</p>
+            </div>
+            <div className="ipeds-actions">
+              <button className="button button-secondary" onClick={validate}>
+                {validating ? "Validating…" : "Run validation"}
+              </button>
+              {isCompletions ? (
+                <button
+                  className="button button-primary"
+                  onClick={() => {
+                    setGenerated(true);
+                    notify("COM upload and review artifacts generated.");
+                  }}
+                >
+                  Generate upload file
+                </button>
+              ) : null}
+            </div>
+          </div>
+          {isCompletions ? (
+            <>
+              <div className="com-pipeline">
+                <span>1 Source ({ipedsCom.sourceCompleterCount.toLocaleString()})</span>
+                <b>→</b>
+                <span>2 Prepared ({ipedsCom.preparedRowCount.toLocaleString()})</span>
+                <b>→</b>
+                <span>3 Cells ({ipedsCom.cellCount.toLocaleString()})</span>
+                <b>→</b>
+                <span>4 Key-value file</span>
+              </div>
+              <div className="validation-list">
+                {ipedsCom.validations.map((check) => (
+                  <div
+                    className={`validation-row ${check.status === "Passed" ? "passed" : "attention"}`}
+                    key={check.id}
+                  >
+                    <span>{check.status === "Passed" ? "✓" : "!"}</span>
+                    <div>
+                      <strong>{check.label}</strong>
+                      <small>{check.id} · {check.detail}</small>
+                    </div>
+                    <em>
+                      {validationComplete
+                        ? check.status === "Passed"
+                          ? `${check.passedCount} passed`
+                          : `${check.failedCount} failed`
+                        : "Not run"}
+                    </em>
+                  </div>
+                ))}
+              </div>
+              <div className="ipeds-assumptions">
+                {ipedsCom.assumptions.map((assumption) => (
+                  <p key={assumption}><strong>Manual review:</strong> {assumption}</p>
+                ))}
+              </div>
+              {generated ? (
+                <div className="download-row">
+                  <button
+                    className="button button-secondary"
+                    onClick={() =>
+                      downloadArtifact(
+                        ipedsCom.uploadText,
+                        `ipeds_com_upload_${ipedsCom.reportingYear}.txt`,
+                        "text/plain;charset=utf-8",
+                      )
+                    }
+                  >
+                    Download COM .txt
+                  </button>
+                  <button
+                    className="button button-secondary"
+                    onClick={() =>
+                      downloadArtifact(
+                        ipedsCom.reviewCsv,
+                        `ipeds_com_review_${ipedsCom.reportingYear}.csv`,
+                        "text/csv;charset=utf-8",
+                      )
+                    }
+                  >
+                    Download review CSV
+                  </button>
+                </div>
+              ) : null}
+              <div className="variance-explanations">
+                <p className="eyebrow">Required year-over-year explanations</p>
+                {varianceItems.map((item, index) => (
+                  <label key={item}>
+                    <span>{item}</span>
+                    <textarea
+                      rows={2}
+                      value={explanations[String(index)] ?? ""}
+                      onChange={(event) =>
+                        setExplanations((current) => ({
+                          ...current,
+                          [String(index)]: event.target.value,
+                        }))
+                      }
+                      placeholder="Enter the keyholder's written explanation…"
+                    />
+                  </label>
+                ))}
+              </div>
+            </>
+          ) : (
+            <div className="validation-list">
+              <div className="validation-row passed">
+                <span>✓</span>
+                <div><strong>Existing survey checks</strong><small>Select Completions to generate a COM import package.</small></div>
+                <em>{survey.checks}</em>
+              </div>
+            </div>
+          )}
+        </article>
+        <aside className="approval-panel">
+          <p className="eyebrow">Human approval gate</p>
+          <h2>{approved ? "Package approved and sealed" : "Keyholder review required"}</h2>
+          <p>
+            Approval remains blocked until the upload file validates and every
+            material year-over-year variance has a written explanation.
+          </p>
+          <div className="approval-flow">
+            <div className={generated ? "done" : ""}><span>{generated ? "✓" : "1"}</span><p><strong>Prepared</strong><small>{generated ? `${ipedsCom.cellCount} cells` : "Generate file"}</small></p></div>
+            <div className={validationComplete ? "done" : ""}><span>{validationComplete ? "✓" : "2"}</span><p><strong>Validated</strong><small>{ipedsCom.validations.length} checks</small></p></div>
+            <div className={approved ? "done" : ""}><span>{approved ? "✓" : "3"}</span><p><strong>Approve</strong><small>Keyholder required</small></p></div>
+          </div>
+          <button
+            className="button button-primary full"
+            onClick={approvePackage}
+            disabled={!canApprove || approved}
+          >
+            {approved ? "Approval recorded" : "Approve package"}
+          </button>
+          {!canApprove && !approved ? (
+            <p className="approval-blocker">
+              Generate the file, run validation, and explain both variance items to unlock approval.
+            </p>
+          ) : null}
+          {packageHash ? (
+            <div className="package-seal">
+              <span>Frozen SHA-256</span>
+              <code>{packageHash}</code>
+            </div>
+          ) : null}
+          <button className="text-button centered" onClick={onAudit}>
+            View source-to-submission lineage
+          </button>
+        </aside>
+      </section>
+    </div>
+  );
+}
+
+void LegacyIpedsGenerated;
+
+function Ipeds({
+  onAudit,
+  notify,
+  onApproval,
+}: {
+  onAudit: () => void;
+  notify: (message: string) => void;
+  onApproval: (approval: IpedsApproval) => void;
+}) {
+  const [selected, setSelected] = useState(1);
+  const [validating, setValidating] = useState(false);
+  const [validationComplete, setValidationComplete] = useState(false);
+  const [generated, setGenerated] = useState(false);
+  const [approved, setApproved] = useState(false);
+  const [packageHash, setPackageHash] = useState("");
+  const [explanations, setExplanations] = useState<Record<string, string>>({});
+  const [annualChangesAcknowledged, setAnnualChangesAcknowledged] =
+    useState(false);
+  const [approvalSaving, setApprovalSaving] = useState(false);
+  const surveyCards = ipedsSpecs.surveys;
+  const survey = surveyCards[selected];
+  const isCompletions = survey.code === "C";
+  const isFallEnrollment = survey.code === "EF";
+  const packageData = (
+    isCompletions ? ipedsCom : isFallEnrollment ? ipedsEf : null
+  ) as unknown as IpedsPackage | null;
+  const canGenerate = Boolean(survey.generator && packageData);
+  const packageComplete = packageData?.completeSurveyPackage !== false;
+  const varianceItems = isCompletions
+    ? [
+        "Completions changed more than 10% from the prior reporting year.",
+        "CIP 11.0701 increased outside the expected historical range.",
+      ]
+    : isFallEnrollment
+      ? ["Fall census headcount changed outside the expected year-over-year range."]
+      : [];
+  const allExplained = varianceItems.every((_, index) =>
+    explanations[String(index)]?.trim(),
+  );
+  const validationFailures = packageData
+    ? packageData.structuralFailureCount +
+      packageData.reconciliationFailureCount
+    : 0;
+  const canApprove =
+    canGenerate &&
+    packageComplete &&
+    generated &&
+    validationComplete &&
+    validationFailures === 0 &&
+    allExplained &&
+    annualChangesAcknowledged;
+  const readiness =
+    survey.coverage === "full" && packageComplete
+      ? 88
+      : survey.coverage === "full"
+        ? 70
+        : survey.coverage === "partial"
+          ? 35
+          : 0;
+  const blockers = [
+    !canGenerate ? survey.reason : "",
+    canGenerate && !generated ? "Generate the governed upload artifacts." : "",
+    canGenerate && !validationComplete
+      ? "Run structural and reconciliation validation."
+      : "",
+    validationFailures > 0
+      ? "Resolve every structural and reconciliation failure."
+      : "",
+    !packageComplete
+      ? "Complete every required survey part; this partial file is not ready for DCS upload."
+      : "",
+    varianceItems.length && !allExplained
+      ? "Write an explanation for every material year-over-year variance."
+      : "",
+    !annualChangesAcknowledged
+      ? "Acknowledge the 2025–26 NCES specification changes."
+      : "",
+  ].filter(Boolean);
+
+  function resetSurvey(index: number) {
+    setSelected(index);
+    setApproved(false);
+    setValidationComplete(false);
+    setGenerated(false);
+    setPackageHash("");
+    setExplanations({});
+  }
+
+  function downloadArtifact(contents: string, fileName: string, type: string) {
+    const url = URL.createObjectURL(new Blob([contents], { type }));
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = fileName;
+    anchor.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function validate() {
+    if (!packageData) {
+      notify(`${survey.code} validation is unavailable: ${survey.reason}`);
+      return;
+    }
+    setValidating(true);
+    window.setTimeout(() => {
+      setValidating(false);
+      setValidationComplete(true);
+      notify(
+        `${packageData.validations.length} ${survey.code} checks completed with ${validationFailures} failures.`,
+      );
+    }, 450);
+  }
+
+  async function approvePackage() {
+    if (!canApprove || !packageData) return;
+    setApprovalSaving(true);
+    try {
+      const fileName = `${packageData.fileStem}_approved.txt`;
+      const response = await fetch("/api/ipeds/approvals", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          surveyCode: survey.code,
+          collectionYear: packageData.collectionYear,
+          specId: packageData.specId,
+          fileName,
+          uploadText: packageData.uploadText,
+          approver: "Institutional Research",
+          explanations,
+          validationFailureCount: validationFailures,
+          completeSurveyPackage: packageComplete,
+        }),
+      });
+      const result = (await response.json()) as {
+        approval?: IpedsApproval;
+        error?: string;
+      };
+      if (!response.ok || !result.approval) {
+        throw new Error(result.error || "Approval could not be persisted.");
+      }
+      setPackageHash(result.approval.sha256);
+      setApproved(true);
+      onApproval(result.approval);
+      notify(
+        `${survey.code} package frozen and marked ready for the keyholder. EduInsight did not submit it to NCES.`,
+      );
+    } catch (error) {
+      notify(
+        error instanceof Error
+          ? error.message
+          : "The approval record could not be saved.",
+      );
+    } finally {
+      setApprovalSaving(false);
+    }
+  }
+
+  return (
+    <div className="view">
+      <Header
+        title="IPEDS reporting center"
+        description="Prepare governed files, validate every supported part, and create a durable keyholder handoff record."
+        onAudit={onAudit}
+      />
+      <section className="ipeds-banner">
+        <div>
+          <p className="eyebrow light">All collection windows · 2025–26</p>
+          <h2>Every live IPEDS component is visible—without fabricated files.</h2>
+          <p>
+            12 current components · 2 generators · unsupported data domains are
+            explicitly blocked
+          </p>
+        </div>
+        <div className="readiness-dial">
+          <strong>2/12</strong>
+          <span>generators available</span>
+        </div>
+      </section>
+      <section className="spec-governance panel">
+        <div>
+          <p className="eyebrow">Annual specification control</p>
+          <h2>{ipedsSpecs.catalogVersion}</h2>
+          <p>
+            Verified {ipedsSpecs.verifiedAt}. Survey membership, fields, parts,
+            code tables, and key order are versioned data and must be checked
+            before each collection window.
+          </p>
+        </div>
+        <div className="annual-change-list">
+          {ipedsSpecs.annualChanges.changes.map((change) => (
+            <span key={`${change.component}-${change.type}`}>
+              <strong>{change.component}</strong> {change.summary}
+            </span>
+          ))}
+        </div>
+        <button
+          className={`button ${
+            annualChangesAcknowledged
+              ? "button-secondary"
+              : "button-primary"
+          }`}
+          onClick={() => setAnnualChangesAcknowledged(true)}
+          disabled={annualChangesAcknowledged}
+        >
+          {annualChangesAcknowledged
+            ? "Annual changes acknowledged"
+            : "Acknowledge annual changes"}
+        </button>
+      </section>
+      <section className="survey-grid full-catalog">
+        {surveyCards.map((item, index) => (
+          <button
+            key={item.code}
+            className={`survey-card ${selected === index ? "selected" : ""}`}
+            onClick={() => resetSurvey(index)}
+          >
+            <span className="survey-code">{item.code}</span>
+            <span
+              className={`survey-status ${item.coverage}`}
+            >
+              {item.status}
+            </span>
+            <strong>{item.name}</strong>
+            <small>
+              {item.window} collection · {item.coverage} warehouse coverage
+            </small>
+          </button>
+        ))}
+      </section>
+      <section className="ipeds-detail">
+        <article className="panel ipeds-main">
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">
+                {survey.code} · {survey.window} collection · {readiness}% prepared
+              </p>
+              <h2>{survey.name}</h2>
+              <p>{survey.reason}</p>
+            </div>
+            <div className="ipeds-actions">
+              {canGenerate ? (
+                <button className="button button-secondary" onClick={validate}>
+                  {validating ? "Validating…" : "Run validation"}
+                </button>
+              ) : null}
+              {canGenerate ? (
+                <button
+                  className="button button-primary"
+                  onClick={() => {
+                    setGenerated(true);
+                    notify(
+                      `${survey.code} upload and review artifacts generated from governed data.`,
+                    );
+                  }}
+                >
+                  Generate upload file
+                </button>
+              ) : null}
+            </div>
+          </div>
+          {packageData ? (
+            <>
+              <div className="com-pipeline">
+                <span>
+                  1 Source (
+                  {(
+                    packageData.sourceCompleterCount ??
+                    packageData.sourceEnrollmentCount ??
+                    0
+                  ).toLocaleString()}
+                  )
+                </span>
+                <b>→</b>
+                <span>
+                  2 Prepared ({packageData.preparedRowCount.toLocaleString()})
+                </span>
+                <b>→</b>
+                <span>3 Cells ({packageData.cellCount.toLocaleString()})</span>
+                <b>→</b>
+                <span>4 Key-value file</span>
+              </div>
+              {packageData.generatedParts ? (
+                <div className="part-status-grid">
+                  {packageData.generatedParts.map((part) => (
+                    <span className="generated" key={part}>
+                      Part {part} generated
+                    </span>
+                  ))}
+                  {packageData.blockedParts?.map((part) => (
+                    <span className="blocked" key={part.code}>
+                      Part {part.code} blocked · {part.missingFields.join(", ")}
+                    </span>
+                  ))}
+                </div>
+              ) : null}
+              <div className="validation-list">
+                {packageData.validations.map((check) => (
+                  <div
+                    className={`validation-row ${
+                      check.status === "Passed" ? "passed" : "attention"
+                    }`}
+                    key={check.id}
+                  >
+                    <span>{check.status === "Passed" ? "✓" : "!"}</span>
+                    <div>
+                      <strong>{check.label}</strong>
+                      <small>
+                        {check.id} · {check.detail}
+                      </small>
+                    </div>
+                    <em>
+                      {validationComplete
+                        ? check.status === "Passed"
+                          ? `${check.passedCount} passed`
+                          : `${check.failedCount} failed`
+                        : "Not run"}
+                    </em>
+                  </div>
+                ))}
+              </div>
+              <div className="ipeds-assumptions">
+                {packageData.assumptions.map((assumption) => (
+                  <p key={assumption}>
+                    <strong>Manual review:</strong> {assumption}
+                  </p>
+                ))}
+              </div>
+              {generated ? (
+                <div className="download-row">
+                  <button
+                    className="button button-secondary"
+                    onClick={() =>
+                      downloadArtifact(
+                        packageData.uploadText,
+                        `${packageData.fileStem}_draft.txt`,
+                        "text/plain;charset=utf-8",
+                      )
+                    }
+                  >
+                    Download {survey.code} .txt
+                  </button>
+                  <button
+                    className="button button-secondary"
+                    onClick={() =>
+                      downloadArtifact(
+                        packageData.reviewCsv,
+                        `${packageData.fileStem}_review.csv`,
+                        "text/csv;charset=utf-8",
+                      )
+                    }
+                  >
+                    Download review CSV
+                  </button>
+                  <p className="filename-caption">
+                    This filename is EduInsight’s internal recordkeeping
+                    convention. NCES validates the key-value content, not a
+                    mandated filename.
+                  </p>
+                </div>
+              ) : null}
+              {varianceItems.length ? (
+                <div className="variance-explanations">
+                  <p className="eyebrow">
+                    Required year-over-year explanations
+                  </p>
+                  {varianceItems.map((item, index) => (
+                    <label key={item}>
+                      <span>{item}</span>
+                      <textarea
+                        rows={2}
+                        value={explanations[String(index)] ?? ""}
+                        onChange={(event) =>
+                          setExplanations((current) => ({
+                            ...current,
+                            [String(index)]: event.target.value,
+                          }))
+                        }
+                        placeholder="Enter the institutional review explanation…"
+                      />
+                    </label>
+                  ))}
+                </div>
+              ) : null}
+            </>
+          ) : (
+            <div className="unsupported-survey">
+              <p className="eyebrow">Generator intentionally unavailable</p>
+              <h3>{survey.status}</h3>
+              <p>{survey.reason}</p>
+              <strong>
+                No upload file will be generated until the missing governed
+                source domain and official survey rules are implemented.
+              </strong>
+            </div>
+          )}
+        </article>
+        <aside className="approval-panel">
+          <p className="eyebrow">Human approval gate</p>
+          <h2>
+            {approved
+              ? "Ready-for-keyholder record saved"
+              : "Keyholder handoff review"}
+          </h2>
+          <p>
+            This freezes and hashes the artifact for a human keyholder to upload
+            in the real NCES Data Collection System. EduInsight does not submit
+            or lock IPEDS surveys.
+          </p>
+          <div className="approval-flow">
+            <div className={generated ? "done" : ""}>
+              <span>{generated ? "✓" : "1"}</span>
+              <p>
+                <strong>Prepared</strong>
+                <small>
+                  {generated && packageData
+                    ? `${packageData.cellCount} cells`
+                    : "Generate file"}
+                </small>
+              </p>
+            </div>
+            <div className={validationComplete ? "done" : ""}>
+              <span>{validationComplete ? "✓" : "2"}</span>
+              <p>
+                <strong>Validated</strong>
+                <small>{packageData?.validations.length ?? 0} checks</small>
+              </p>
+            </div>
+            <div className={approved ? "done" : ""}>
+              <span>{approved ? "✓" : "3"}</span>
+              <p>
+                <strong>Ready for keyholder</strong>
+                <small>Persistent seal required</small>
+              </p>
+            </div>
+          </div>
+          {blockers.length && !approved ? (
+            <div className="blocker-checklist">
+              <strong>Blocking items</strong>
+              {blockers.map((blocker) => (
+                <p key={blocker}>
+                  <span>!</span>
+                  {blocker}
+                </p>
+              ))}
+            </div>
+          ) : null}
+          <button
+            className="button button-primary full"
+            onClick={approvePackage}
+            disabled={!canApprove || approved || approvalSaving}
+          >
+            {approved
+              ? "Ready-for-keyholder record saved"
+              : approvalSaving
+                ? "Freezing package…"
+                : "Mark ready for keyholder"}
+          </button>
+          {packageHash ? (
+            <div className="package-seal">
+              <span>Frozen SHA-256</span>
+              <code>{packageHash}</code>
+            </div>
+          ) : null}
+          <button className="text-button centered" onClick={onAudit}>
+            View source-to-handoff lineage
           </button>
         </aside>
       </section>
@@ -1215,9 +2226,11 @@ function Memory({
 function AuditDrawer({
   open,
   onClose,
+  ipedsApprovals,
 }: {
   open: boolean;
   onClose: () => void;
+  ipedsApprovals: IpedsApproval[];
 }) {
   return (
     <>
@@ -1243,6 +2256,23 @@ function AuditDrawer({
             </div>
           ))}
         </div>
+        {ipedsApprovals.length ? (
+          <div className="audit-approvals">
+            <p className="eyebrow">IPEDS keyholder handoffs</p>
+            {ipedsApprovals.map((approval) => (
+              <div key={approval.id}>
+                <strong>
+                  {approval.surveyCode} · {approval.status}
+                </strong>
+                <small>
+                  {approval.approver} ·{" "}
+                  {new Date(approval.approvedAt).toLocaleString()}
+                </small>
+                <code>{approval.sha256}</code>
+              </div>
+            ))}
+          </div>
+        ) : null}
         <div className="audit-note">
           <strong>Synthetic data boundary</strong>
           <p>
@@ -1261,6 +2291,25 @@ export default function EduInsightApp() {
   const [auditOpen, setAuditOpen] = useState(false);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [toast, setToast] = useState("");
+  const [ipedsApprovals, setIpedsApprovals] = useState<IpedsApproval[]>([]);
+
+  useEffect(() => {
+    let active = true;
+    fetch("/api/ipeds/approvals", { cache: "no-store" })
+      .then(async (response) => {
+        if (!response.ok) return { approvals: [] };
+        return (await response.json()) as { approvals?: IpedsApproval[] };
+      })
+      .then((result) => {
+        if (active) setIpedsApprovals(result.approvals ?? []);
+      })
+      .catch(() => {
+        // The reporting UI remains usable if the persistence service is offline.
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
 
   function navigate(next: ViewId) {
     setView(next);
@@ -1335,13 +2384,26 @@ export default function EduInsightApp() {
           />
         )}
         {view === "ipeds" && (
-          <Ipeds onAudit={() => setAuditOpen(true)} notify={notify} />
+          <Ipeds
+            onAudit={() => setAuditOpen(true)}
+            notify={notify}
+            onApproval={(approval) =>
+              setIpedsApprovals((current) => [
+                approval,
+                ...current.filter((item) => item.id !== approval.id),
+              ])
+            }
+          />
         )}
         {view === "scenario" && <Scenario onAudit={() => setAuditOpen(true)} />}
         {view === "memory" && <Memory onAudit={() => setAuditOpen(true)} />}
       </section>
 
-      <AuditDrawer open={auditOpen} onClose={() => setAuditOpen(false)} />
+      <AuditDrawer
+        open={auditOpen}
+        onClose={() => setAuditOpen(false)}
+        ipedsApprovals={ipedsApprovals}
+      />
       <div className={`toast ${toast ? "show" : ""}`} role="status">
         <span>✓</span>{toast}
       </div>

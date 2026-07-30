@@ -255,6 +255,23 @@ for (const studentId of activeByTerm.get("2025FA").slice(0, 119)) {
   students.get(studentId).race_ethnicity = "";
 }
 
+const financialAid = activeByTerm.get("2025FA").map((studentId, index) => {
+  const student = students.get(studentId);
+  const pellRecipient =
+    student.pell_eligible === 1 && (index % 7 !== 0 || index % 13 === 0);
+  return {
+    aid_record_id: `AID2025-${String(index + 1).padStart(6, "0")}`,
+    student_id: studentId,
+    term_id: "2025FA",
+    aid_year: "2025-26",
+    pell_eligible: student.pell_eligible,
+    pell_recipient: pellRecipient ? 1 : 0,
+    pell_amount: pellRecipient ? 7395 : 0,
+    federal_loan_recipient: index % 3 === 0 ? 1 : 0,
+    federal_loan_amount: index % 3 === 0 ? 5500 : 0,
+  };
+});
+
 const sections = [];
 const sectionEnrollments = [];
 const currentActiveByProgram = new Map();
@@ -386,6 +403,23 @@ const qualityIssues = openIssues.map(([issue_id, severity, title, rule_id, affec
   resolved_at: "",
 }));
 
+const completions = [];
+let completionNumber = 1;
+for (const program of programs) {
+  const pool = currentActiveByProgram.get(program.program_id) ?? [];
+  const target = program.degree_level === "Graduate" ? 72 : 96;
+  for (const studentId of pool.slice(0, Math.min(target, pool.length))) {
+    completions.push({
+      completion_id: `C${String(completionNumber).padStart(6, "0")}`,
+      student_id: studentId,
+      program_id: program.program_id,
+      award_date: "2025-05-17",
+      reporting_year: 2025,
+    });
+    completionNumber += 1;
+  }
+}
+
 const resolutionGroups = [
   { count: 5, resolvedAt: "2025-09-12 12:00" },
   { count: 4, resolvedAt: "2025-09-19 12:00" },
@@ -422,6 +456,8 @@ await Promise.all([
   writeCsv("section_enrollments.csv", Object.keys(sectionEnrollments[0]), sectionEnrollments),
   writeCsv("ipeds_validation_results.csv", Object.keys(ipedsChecks[0]), ipedsChecks),
   writeCsv("data_quality_issue_log.csv", Object.keys(qualityIssues[0]), qualityIssues),
+  writeCsv("completions.csv", Object.keys(completions[0]), completions),
+  writeCsv("financial_aid.csv", Object.keys(financialAid[0]), financialAid),
 ]);
 
 const manifest = {
@@ -439,6 +475,8 @@ const manifest = {
     { file: "section_enrollments.csv", system: "SIS registration", rows: sectionEnrollments.length },
     { file: "ipeds_validation_results.csv", system: "IPEDS validation engine", rows: ipedsChecks.length },
     { file: "data_quality_issue_log.csv", system: "Data quality agent", rows: qualityIssues.length },
+    { file: "completions.csv", system: "SIS degree history", rows: completions.length },
+    { file: "financial_aid.csv", system: "Financial aid system", rows: financialAid.length },
   ],
 };
 await fs.writeFile(path.join(outputDir, "manifest.json"), `${JSON.stringify(manifest, null, 2)}\n`, "utf8");

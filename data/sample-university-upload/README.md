@@ -38,12 +38,14 @@ For a real institution, keep the file names and headers described in the upload-
 | `institution.csv` | Institutional configuration | Institution name, reporting boundary, timezone |
 | `terms.csv` | SIS term calendar | Current census term and year-over-year comparison |
 | `programs.csv` | Curriculum catalog | Program hierarchy, degree level, and CIP mapping |
+| `financial_aid.csv` | Financial aid system | Pell eligibility, Pell-recipient status, and governed award amounts for SFA preparation |
 | `students.csv` | SIS person/cohort export | First-time full-time cohort and retention denominator |
 | `student_terms.csv` | SIS census enrollment snapshot | Headcount, retention outcomes, program demand, quality checks |
 | `sections.csv` | SIS course schedule | Available program capacity |
 | `section_enrollments.csv` | SIS registration export | Filled seats and utilization |
 | `ipeds_validation_results.csv` | IPEDS validation workflow | Submission-readiness score and validation brief |
 | `data_quality_issue_log.csv` | Data-quality platform | Open issues, severity, week-over-week movement |
+| `completions.csv` | SIS degree history | Governed completer population used to prepare the IPEDS COM upload |
 | `manifest.json` | EduInsight package manifest | Row counts, provenance, and synthetic-data declaration |
 
 ## Current reconciled results

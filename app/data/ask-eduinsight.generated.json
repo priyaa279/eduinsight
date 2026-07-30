@@ -24416,637 +24416,1622 @@
       "issueId": "DQ-1001",
       "severity": "Critical",
       "title": "Full-time status conflicts with attempted credits",
+      "description": "Undergraduate students are coded full-time with fewer than 12 attempted credits in the governed census snapshot.",
       "ruleId": "UG_FT_CREDIT_THRESHOLD",
       "affectedRecords": 146,
       "owner": "Registrar",
       "sourceSystem": "SIS student term",
       "status": "Open",
+      "lifecycleStatus": "Investigating",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": ""
+      "resolvedAt": "",
+      "sampleRows": [
+        {
+          "student_id": "S0038789",
+          "term_id": "2025FA",
+          "program_id": "PENG",
+          "attempted_credits": 6,
+          "attendance_status": "F"
+        },
+        {
+          "student_id": "S0036400",
+          "term_id": "2025FA",
+          "program_id": "PBIO",
+          "attempted_credits": 6,
+          "attendance_status": "F"
+        },
+        {
+          "student_id": "S0028491",
+          "term_id": "2025FA",
+          "program_id": "PBUS",
+          "attempted_credits": 6,
+          "attendance_status": "F"
+        },
+        {
+          "student_id": "S0027303",
+          "term_id": "2025FA",
+          "program_id": "PMATH",
+          "attempted_credits": 6,
+          "attendance_status": "F"
+        },
+        {
+          "student_id": "S0038676",
+          "term_id": "2025FA",
+          "program_id": "PEDU",
+          "attempted_credits": 6,
+          "attendance_status": "F"
+        }
+      ]
     },
     {
       "issueId": "DQ-1002",
       "severity": "High",
       "title": "Fall headcount changed outside the expected band",
+      "description": "The governed Enterprise data warehouse check found records that violate YOY_HEADCOUNT_VARIANCE.",
       "ruleId": "YOY_HEADCOUNT_VARIANCE",
       "affectedRecords": 808,
       "owner": "Institutional Research",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Open",
+      "lifecycleStatus": "New",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": ""
+      "resolvedAt": "",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-1002",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 808,
+          "status": "Open"
+        }
+      ]
     },
     {
       "issueId": "DQ-1003",
       "severity": "High",
       "title": "Race and ethnicity value is missing",
+      "description": "The governed Enterprise data warehouse check found records that violate DEMOGRAPHIC_COMPLETENESS.",
       "ruleId": "DEMOGRAPHIC_COMPLETENESS",
       "affectedRecords": 119,
       "owner": "Admissions",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Open",
+      "lifecycleStatus": "New",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": ""
+      "resolvedAt": "",
+      "sampleRows": [
+        {
+          "student_id": "S0000667",
+          "entry_term_id": "2020FA",
+          "primary_program_id": "PMATH",
+          "race_ethnicity": "(blank)"
+        },
+        {
+          "student_id": "S0001768",
+          "entry_term_id": "2020FA",
+          "primary_program_id": "PENG",
+          "race_ethnicity": "(blank)"
+        },
+        {
+          "student_id": "S0003169",
+          "entry_term_id": "2020FA",
+          "primary_program_id": "PEDU",
+          "race_ethnicity": "(blank)"
+        },
+        {
+          "student_id": "S0003281",
+          "entry_term_id": "2020FA",
+          "primary_program_id": "PENG",
+          "race_ethnicity": "(blank)"
+        },
+        {
+          "student_id": "S0003565",
+          "entry_term_id": "2020FA",
+          "primary_program_id": "PENG",
+          "race_ethnicity": "(blank)"
+        }
+      ]
     },
     {
       "issueId": "DQ-1004",
       "severity": "High",
       "title": "Financial aid records lack term enrollment",
+      "description": "The governed Enterprise data warehouse check found records that violate AID_WITHOUT_ENROLLMENT.",
       "ruleId": "AID_WITHOUT_ENROLLMENT",
       "affectedRecords": 23,
       "owner": "Student Financial Services",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Open",
+      "lifecycleStatus": "New",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": ""
+      "resolvedAt": "",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-1004",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 23,
+          "note": "The current upload contains an aggregate finding; row-level aid records were not supplied."
+        }
+      ]
     },
     {
       "issueId": "DQ-1005",
       "severity": "Medium",
       "title": "Program CIP changed without a bridge record",
+      "description": "The governed Enterprise data warehouse check found records that violate CIP_EFFECTIVE_DATING.",
       "ruleId": "CIP_EFFECTIVE_DATING",
       "affectedRecords": 307,
       "owner": "Academic Affairs",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Open",
+      "lifecycleStatus": "New",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": ""
+      "resolvedAt": "",
+      "sampleRows": [
+        {
+          "program_id": "PBA",
+          "program_name": "MS Business Analytics",
+          "cip_code": "52.1301",
+          "active_from": "2020FA",
+          "active_to": "(current)"
+        },
+        {
+          "program_id": "PCS",
+          "program_name": "MS Computer Science",
+          "cip_code": "11.0701",
+          "active_from": "2020FA",
+          "active_to": "(current)"
+        },
+        {
+          "program_id": "PNUR",
+          "program_name": "MS Nursing",
+          "cip_code": "51.3801",
+          "active_from": "2020FA",
+          "active_to": "(current)"
+        }
+      ]
     },
     {
       "issueId": "DQ-1006",
       "severity": "Critical",
       "title": "Synthetic governance exception 6",
+      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_06.",
       "ruleId": "GOVERNANCE_RULE_06",
       "affectedRecords": 31,
       "owner": "Registrar",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Open",
+      "lifecycleStatus": "Investigating",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": ""
+      "resolvedAt": "",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-1006",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 31,
+          "status": "Open"
+        }
+      ]
     },
     {
       "issueId": "DQ-1007",
       "severity": "Critical",
       "title": "Synthetic governance exception 7",
+      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_07.",
       "ruleId": "GOVERNANCE_RULE_07",
       "affectedRecords": 48,
       "owner": "Enterprise Systems",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Open",
+      "lifecycleStatus": "New",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": ""
+      "resolvedAt": "",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-1007",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 48,
+          "status": "Open"
+        }
+      ]
     },
     {
       "issueId": "DQ-1008",
       "severity": "High",
       "title": "Synthetic governance exception 8",
+      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_08.",
       "ruleId": "GOVERNANCE_RULE_08",
       "affectedRecords": 65,
       "owner": "Financial Aid",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Open",
+      "lifecycleStatus": "Reviewed",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": ""
+      "resolvedAt": "",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-1008",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 65,
+          "status": "Open"
+        }
+      ]
     },
     {
       "issueId": "DQ-1009",
       "severity": "High",
       "title": "Synthetic governance exception 9",
+      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_09.",
       "ruleId": "GOVERNANCE_RULE_09",
       "affectedRecords": 9,
       "owner": "Financial Aid",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Open",
+      "lifecycleStatus": "New",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": ""
+      "resolvedAt": "",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-1009",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 9,
+          "status": "Open"
+        }
+      ]
     },
     {
       "issueId": "DQ-1010",
       "severity": "High",
       "title": "Synthetic governance exception 10",
+      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_10.",
       "ruleId": "GOVERNANCE_RULE_10",
       "affectedRecords": 26,
       "owner": "Admissions",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Open",
+      "lifecycleStatus": "New",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": ""
+      "resolvedAt": "",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-1010",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 26,
+          "status": "Open"
+        }
+      ]
     },
     {
       "issueId": "DQ-1011",
       "severity": "High",
       "title": "Synthetic governance exception 11",
+      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_11.",
       "ruleId": "GOVERNANCE_RULE_11",
       "affectedRecords": 43,
       "owner": "Enterprise Systems",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Open",
+      "lifecycleStatus": "Investigating",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": ""
+      "resolvedAt": "",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-1011",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 43,
+          "status": "Open"
+        }
+      ]
     },
     {
       "issueId": "DQ-1012",
       "severity": "High",
       "title": "Synthetic governance exception 12",
+      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_12.",
       "ruleId": "GOVERNANCE_RULE_12",
       "affectedRecords": 60,
       "owner": "Enterprise Systems",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Open",
+      "lifecycleStatus": "New",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": ""
+      "resolvedAt": "",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-1012",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 60,
+          "status": "Open"
+        }
+      ]
     },
     {
       "issueId": "DQ-1013",
       "severity": "High",
       "title": "Synthetic governance exception 13",
+      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_13.",
       "ruleId": "GOVERNANCE_RULE_13",
       "affectedRecords": 4,
       "owner": "Enterprise Systems",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Open",
+      "lifecycleStatus": "New",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": ""
+      "resolvedAt": "",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-1013",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 4,
+          "status": "Open"
+        }
+      ]
     },
     {
       "issueId": "DQ-1014",
       "severity": "High",
       "title": "Synthetic governance exception 14",
+      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_14.",
       "ruleId": "GOVERNANCE_RULE_14",
       "affectedRecords": 21,
       "owner": "Enterprise Systems",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Open",
+      "lifecycleStatus": "New",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": ""
+      "resolvedAt": "",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-1014",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 21,
+          "status": "Open"
+        }
+      ]
     },
     {
       "issueId": "DQ-1015",
       "severity": "Medium",
       "title": "Synthetic governance exception 15",
+      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_15.",
       "ruleId": "GOVERNANCE_RULE_15",
       "affectedRecords": 38,
       "owner": "Academic Affairs",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Open",
+      "lifecycleStatus": "Reviewed",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": ""
+      "resolvedAt": "",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-1015",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 38,
+          "status": "Open"
+        }
+      ]
     },
     {
       "issueId": "DQ-1016",
       "severity": "Medium",
       "title": "Synthetic governance exception 16",
+      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_16.",
       "ruleId": "GOVERNANCE_RULE_16",
       "affectedRecords": 55,
       "owner": "Financial Aid",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Open",
+      "lifecycleStatus": "Investigating",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": ""
+      "resolvedAt": "",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-1016",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 55,
+          "status": "Open"
+        }
+      ]
     },
     {
       "issueId": "DQ-1017",
       "severity": "Medium",
       "title": "Synthetic governance exception 17",
+      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_17.",
       "ruleId": "GOVERNANCE_RULE_17",
       "affectedRecords": 72,
       "owner": "Registrar",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Open",
+      "lifecycleStatus": "New",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": ""
+      "resolvedAt": "",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-1017",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 72,
+          "status": "Open"
+        }
+      ]
     },
     {
       "issueId": "DQ-1018",
       "severity": "Medium",
       "title": "Synthetic governance exception 18",
+      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_18.",
       "ruleId": "GOVERNANCE_RULE_18",
       "affectedRecords": 16,
       "owner": "Academic Affairs",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Open",
+      "lifecycleStatus": "New",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": ""
+      "resolvedAt": "",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-1018",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 16,
+          "status": "Open"
+        }
+      ]
     },
     {
       "issueId": "DQ-1019",
       "severity": "Medium",
       "title": "Synthetic governance exception 19",
+      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_19.",
       "ruleId": "GOVERNANCE_RULE_19",
       "affectedRecords": 33,
       "owner": "Registrar",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Open",
+      "lifecycleStatus": "New",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": ""
+      "resolvedAt": "",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-1019",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 33,
+          "status": "Open"
+        }
+      ]
     },
     {
       "issueId": "DQ-1020",
       "severity": "Medium",
       "title": "Synthetic governance exception 20",
+      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_20.",
       "ruleId": "GOVERNANCE_RULE_20",
       "affectedRecords": 50,
       "owner": "Financial Aid",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Open",
+      "lifecycleStatus": "New",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": ""
+      "resolvedAt": "",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-1020",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 50,
+          "status": "Open"
+        }
+      ]
     },
     {
       "issueId": "DQ-1021",
       "severity": "Medium",
       "title": "Synthetic governance exception 21",
+      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_21.",
       "ruleId": "GOVERNANCE_RULE_21",
       "affectedRecords": 67,
       "owner": "Admissions",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Open",
+      "lifecycleStatus": "Investigating",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": ""
+      "resolvedAt": "",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-1021",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 67,
+          "status": "Open"
+        }
+      ]
     },
     {
       "issueId": "DQ-1022",
       "severity": "Medium",
       "title": "Synthetic governance exception 22",
+      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_22.",
       "ruleId": "GOVERNANCE_RULE_22",
       "affectedRecords": 11,
       "owner": "Academic Affairs",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Open",
+      "lifecycleStatus": "Reviewed",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": ""
+      "resolvedAt": "",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-1022",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 11,
+          "status": "Open"
+        }
+      ]
     },
     {
       "issueId": "DQ-1023",
       "severity": "Medium",
       "title": "Synthetic governance exception 23",
+      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_23.",
       "ruleId": "GOVERNANCE_RULE_23",
       "affectedRecords": 28,
       "owner": "Financial Aid",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Open",
+      "lifecycleStatus": "New",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": ""
+      "resolvedAt": "",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-1023",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 28,
+          "status": "Open"
+        }
+      ]
     },
     {
       "issueId": "DQ-1024",
       "severity": "Medium",
       "title": "Synthetic governance exception 24",
+      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_24.",
       "ruleId": "GOVERNANCE_RULE_24",
       "affectedRecords": 45,
       "owner": "Academic Affairs",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Open",
+      "lifecycleStatus": "New",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": ""
+      "resolvedAt": "",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-1024",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 45,
+          "status": "Open"
+        }
+      ]
     },
     {
       "issueId": "DQ-1025",
       "severity": "Medium",
       "title": "Synthetic governance exception 25",
+      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_25.",
       "ruleId": "GOVERNANCE_RULE_25",
       "affectedRecords": 62,
       "owner": "Registrar",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Open",
+      "lifecycleStatus": "New",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": ""
+      "resolvedAt": "",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-1025",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 62,
+          "status": "Open"
+        }
+      ]
     },
     {
       "issueId": "DQ-1026",
       "severity": "Medium",
       "title": "Synthetic governance exception 26",
+      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_26.",
       "ruleId": "GOVERNANCE_RULE_26",
       "affectedRecords": 6,
       "owner": "Financial Aid",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Open",
+      "lifecycleStatus": "Investigating",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": ""
+      "resolvedAt": "",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-1026",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 6,
+          "status": "Open"
+        }
+      ]
     },
     {
       "issueId": "DQ-1027",
       "severity": "Medium",
       "title": "Synthetic governance exception 27",
+      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_27.",
       "ruleId": "GOVERNANCE_RULE_27",
       "affectedRecords": 23,
       "owner": "Admissions",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Open",
+      "lifecycleStatus": "New",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": ""
+      "resolvedAt": "",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-1027",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 23,
+          "status": "Open"
+        }
+      ]
     },
     {
       "issueId": "DQ-R001",
       "severity": "Medium",
       "title": "Resolved synthetic exception 1",
+      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_01.",
       "ruleId": "RESOLVED_RULE_01",
       "affectedRecords": 14,
       "owner": "Registrar",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Resolved",
+      "lifecycleStatus": "Resolved",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-09-12 12:00"
+      "resolvedAt": "2025-09-12 12:00",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-R001",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 14,
+          "status": "Resolved"
+        }
+      ]
     },
     {
       "issueId": "DQ-R002",
       "severity": "Medium",
       "title": "Resolved synthetic exception 2",
+      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_02.",
       "ruleId": "RESOLVED_RULE_02",
       "affectedRecords": 27,
       "owner": "Financial Aid",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Resolved",
+      "lifecycleStatus": "Resolved",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-09-12 12:00"
+      "resolvedAt": "2025-09-12 12:00",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-R002",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 27,
+          "status": "Resolved"
+        }
+      ]
     },
     {
       "issueId": "DQ-R003",
       "severity": "Medium",
       "title": "Resolved synthetic exception 3",
+      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_03.",
       "ruleId": "RESOLVED_RULE_03",
       "affectedRecords": 40,
       "owner": "Admissions",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Resolved",
+      "lifecycleStatus": "Resolved",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-09-12 12:00"
+      "resolvedAt": "2025-09-12 12:00",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-R003",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 40,
+          "status": "Resolved"
+        }
+      ]
     },
     {
       "issueId": "DQ-R004",
       "severity": "High",
       "title": "Resolved synthetic exception 4",
+      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_04.",
       "ruleId": "RESOLVED_RULE_04",
       "affectedRecords": 2,
       "owner": "Registrar",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Resolved",
+      "lifecycleStatus": "Resolved",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-09-12 12:00"
+      "resolvedAt": "2025-09-12 12:00",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-R004",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 2,
+          "status": "Resolved"
+        }
+      ]
     },
     {
       "issueId": "DQ-R005",
       "severity": "Medium",
       "title": "Resolved synthetic exception 5",
+      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_05.",
       "ruleId": "RESOLVED_RULE_05",
       "affectedRecords": 15,
       "owner": "Registrar",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Resolved",
+      "lifecycleStatus": "Resolved",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-09-12 12:00"
+      "resolvedAt": "2025-09-12 12:00",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-R005",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 15,
+          "status": "Resolved"
+        }
+      ]
     },
     {
       "issueId": "DQ-R006",
       "severity": "Medium",
       "title": "Resolved synthetic exception 6",
+      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_06.",
       "ruleId": "RESOLVED_RULE_06",
       "affectedRecords": 28,
       "owner": "Academic Affairs",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Resolved",
+      "lifecycleStatus": "Resolved",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-09-19 12:00"
+      "resolvedAt": "2025-09-19 12:00",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-R006",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 28,
+          "status": "Resolved"
+        }
+      ]
     },
     {
       "issueId": "DQ-R007",
       "severity": "Medium",
       "title": "Resolved synthetic exception 7",
+      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_07.",
       "ruleId": "RESOLVED_RULE_07",
       "affectedRecords": 41,
       "owner": "Academic Affairs",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Resolved",
+      "lifecycleStatus": "Resolved",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-09-19 12:00"
+      "resolvedAt": "2025-09-19 12:00",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-R007",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 41,
+          "status": "Resolved"
+        }
+      ]
     },
     {
       "issueId": "DQ-R008",
       "severity": "High",
       "title": "Resolved synthetic exception 8",
+      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_08.",
       "ruleId": "RESOLVED_RULE_08",
       "affectedRecords": 3,
       "owner": "Registrar",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Resolved",
+      "lifecycleStatus": "Resolved",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-09-19 12:00"
+      "resolvedAt": "2025-09-19 12:00",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-R008",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 3,
+          "status": "Resolved"
+        }
+      ]
     },
     {
       "issueId": "DQ-R009",
       "severity": "Medium",
       "title": "Resolved synthetic exception 9",
+      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_09.",
       "ruleId": "RESOLVED_RULE_09",
       "affectedRecords": 16,
       "owner": "Financial Aid",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Resolved",
+      "lifecycleStatus": "Resolved",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-09-19 12:00"
+      "resolvedAt": "2025-09-19 12:00",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-R009",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 16,
+          "status": "Resolved"
+        }
+      ]
     },
     {
       "issueId": "DQ-R010",
       "severity": "Medium",
       "title": "Resolved synthetic exception 10",
+      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_10.",
       "ruleId": "RESOLVED_RULE_10",
       "affectedRecords": 29,
       "owner": "Academic Affairs",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Resolved",
+      "lifecycleStatus": "Resolved",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-09-26 12:00"
+      "resolvedAt": "2025-09-26 12:00",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-R010",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 29,
+          "status": "Resolved"
+        }
+      ]
     },
     {
       "issueId": "DQ-R011",
       "severity": "Medium",
       "title": "Resolved synthetic exception 11",
+      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_11.",
       "ruleId": "RESOLVED_RULE_11",
       "affectedRecords": 42,
       "owner": "Financial Aid",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Resolved",
+      "lifecycleStatus": "Resolved",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-09-26 12:00"
+      "resolvedAt": "2025-09-26 12:00",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-R011",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 42,
+          "status": "Resolved"
+        }
+      ]
     },
     {
       "issueId": "DQ-R012",
       "severity": "High",
       "title": "Resolved synthetic exception 12",
+      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_12.",
       "ruleId": "RESOLVED_RULE_12",
       "affectedRecords": 4,
       "owner": "Registrar",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Resolved",
+      "lifecycleStatus": "Resolved",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-09-26 12:00"
+      "resolvedAt": "2025-09-26 12:00",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-R012",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 4,
+          "status": "Resolved"
+        }
+      ]
     },
     {
       "issueId": "DQ-R013",
       "severity": "Medium",
       "title": "Resolved synthetic exception 13",
+      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_13.",
       "ruleId": "RESOLVED_RULE_13",
       "affectedRecords": 17,
       "owner": "Academic Affairs",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Resolved",
+      "lifecycleStatus": "Resolved",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-09-26 12:00"
+      "resolvedAt": "2025-09-26 12:00",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-R013",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 17,
+          "status": "Resolved"
+        }
+      ]
     },
     {
       "issueId": "DQ-R014",
       "severity": "Medium",
       "title": "Resolved synthetic exception 14",
+      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_14.",
       "ruleId": "RESOLVED_RULE_14",
       "affectedRecords": 30,
       "owner": "Financial Aid",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Resolved",
+      "lifecycleStatus": "Resolved",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-09-26 12:00"
+      "resolvedAt": "2025-09-26 12:00",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-R014",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 30,
+          "status": "Resolved"
+        }
+      ]
     },
     {
       "issueId": "DQ-R015",
       "severity": "Medium",
       "title": "Resolved synthetic exception 15",
+      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_15.",
       "ruleId": "RESOLVED_RULE_15",
       "affectedRecords": 43,
       "owner": "Admissions",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Resolved",
+      "lifecycleStatus": "Resolved",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-10-03 12:00"
+      "resolvedAt": "2025-10-03 12:00",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-R015",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 43,
+          "status": "Resolved"
+        }
+      ]
     },
     {
       "issueId": "DQ-R016",
       "severity": "High",
       "title": "Resolved synthetic exception 16",
+      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_16.",
       "ruleId": "RESOLVED_RULE_16",
       "affectedRecords": 5,
       "owner": "Financial Aid",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Resolved",
+      "lifecycleStatus": "Resolved",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-10-03 12:00"
+      "resolvedAt": "2025-10-03 12:00",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-R016",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 5,
+          "status": "Resolved"
+        }
+      ]
     },
     {
       "issueId": "DQ-R017",
       "severity": "Medium",
       "title": "Resolved synthetic exception 17",
+      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_17.",
       "ruleId": "RESOLVED_RULE_17",
       "affectedRecords": 18,
       "owner": "Admissions",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Resolved",
+      "lifecycleStatus": "Resolved",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-10-03 12:00"
+      "resolvedAt": "2025-10-03 12:00",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-R017",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 18,
+          "status": "Resolved"
+        }
+      ]
     },
     {
       "issueId": "DQ-R018",
       "severity": "Medium",
       "title": "Resolved synthetic exception 18",
+      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_18.",
       "ruleId": "RESOLVED_RULE_18",
       "affectedRecords": 31,
       "owner": "Registrar",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Resolved",
+      "lifecycleStatus": "Resolved",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-10-10 12:00"
+      "resolvedAt": "2025-10-10 12:00",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-R018",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 31,
+          "status": "Resolved"
+        }
+      ]
     },
     {
       "issueId": "DQ-R019",
       "severity": "Medium",
       "title": "Resolved synthetic exception 19",
+      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_19.",
       "ruleId": "RESOLVED_RULE_19",
       "affectedRecords": 44,
       "owner": "Academic Affairs",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Resolved",
+      "lifecycleStatus": "Resolved",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-10-10 12:00"
+      "resolvedAt": "2025-10-10 12:00",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-R019",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 44,
+          "status": "Resolved"
+        }
+      ]
     },
     {
       "issueId": "DQ-R020",
       "severity": "High",
       "title": "Resolved synthetic exception 20",
+      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_20.",
       "ruleId": "RESOLVED_RULE_20",
       "affectedRecords": 6,
       "owner": "Academic Affairs",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Resolved",
+      "lifecycleStatus": "Resolved",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-10-10 12:00"
+      "resolvedAt": "2025-10-10 12:00",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-R020",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 6,
+          "status": "Resolved"
+        }
+      ]
     },
     {
       "issueId": "DQ-R021",
       "severity": "Medium",
       "title": "Resolved synthetic exception 21",
+      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_21.",
       "ruleId": "RESOLVED_RULE_21",
       "affectedRecords": 19,
       "owner": "Admissions",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Resolved",
+      "lifecycleStatus": "Resolved",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-10-10 12:00"
+      "resolvedAt": "2025-10-10 12:00",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-R021",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 19,
+          "status": "Resolved"
+        }
+      ]
     },
     {
       "issueId": "DQ-R022",
       "severity": "Medium",
       "title": "Resolved synthetic exception 22",
+      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_22.",
       "ruleId": "RESOLVED_RULE_22",
       "affectedRecords": 32,
       "owner": "Academic Affairs",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Resolved",
+      "lifecycleStatus": "Resolved",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-10-10 12:00"
+      "resolvedAt": "2025-10-10 12:00",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-R022",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 32,
+          "status": "Resolved"
+        }
+      ]
     },
     {
       "issueId": "DQ-R023",
       "severity": "Medium",
       "title": "Resolved synthetic exception 23",
+      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_23.",
       "ruleId": "RESOLVED_RULE_23",
       "affectedRecords": 45,
       "owner": "Admissions",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Resolved",
+      "lifecycleStatus": "Resolved",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-10-10 12:00"
+      "resolvedAt": "2025-10-10 12:00",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-R023",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 45,
+          "status": "Resolved"
+        }
+      ]
     },
     {
       "issueId": "DQ-R024",
       "severity": "High",
       "title": "Resolved synthetic exception 24",
+      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_24.",
       "ruleId": "RESOLVED_RULE_24",
       "affectedRecords": 7,
       "owner": "Admissions",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Resolved",
+      "lifecycleStatus": "Resolved",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-10-10 12:00"
+      "resolvedAt": "2025-10-10 12:00",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-R024",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 7,
+          "status": "Resolved"
+        }
+      ]
     },
     {
       "issueId": "DQ-R025",
       "severity": "Medium",
       "title": "Resolved synthetic exception 25",
+      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_25.",
       "ruleId": "RESOLVED_RULE_25",
       "affectedRecords": 20,
       "owner": "Admissions",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Resolved",
+      "lifecycleStatus": "Resolved",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-10-10 12:00"
+      "resolvedAt": "2025-10-10 12:00",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-R025",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 20,
+          "status": "Resolved"
+        }
+      ]
     },
     {
       "issueId": "DQ-R026",
       "severity": "Medium",
       "title": "Resolved synthetic exception 26",
+      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_26.",
       "ruleId": "RESOLVED_RULE_26",
       "affectedRecords": 33,
       "owner": "Admissions",
       "sourceSystem": "Enterprise data warehouse",
       "status": "Resolved",
+      "lifecycleStatus": "Resolved",
       "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-10-10 12:00"
+      "resolvedAt": "2025-10-10 12:00",
+      "sampleRows": [
+        {
+          "issue_id": "DQ-R026",
+          "source_system": "Enterprise data warehouse",
+          "affected_records": 33,
+          "status": "Resolved"
+        }
+      ]
+    }
+  ],
+  "qualityRuleCatalog": [
+    {
+      "id": "DQ-ENR-001",
+      "category": "Invalid values",
+      "domain": "Enrollment",
+      "threshold": "Full-time undergraduate with <12 attempted credits",
+      "owner": "Registrar",
+      "implementationRule": "UG_FT_CREDIT_THRESHOLD",
+      "enabled": true,
+      "lastFiredCount": 146,
+      "coverage": "Covered under live rule"
+    },
+    {
+      "id": "DQ-ENR-002",
+      "category": "Unknown codes",
+      "domain": "Enrollment",
+      "threshold": "Status must be in the institution's FT/PT code set",
+      "owner": "Registrar",
+      "implementationRule": "ENROLLMENT_STATUS_VALID",
+      "enabled": false,
+      "lastFiredCount": 0,
+      "coverage": "Cataloged — implementation pending"
+    },
+    {
+      "id": "DQ-ENR-003",
+      "category": "Referential integrity",
+      "domain": "Enrollment",
+      "threshold": "Program must exist and be active for the term",
+      "owner": "Registrar",
+      "implementationRule": "ACTIVE_PROGRAM_REFERENCE",
+      "enabled": false,
+      "lastFiredCount": 0,
+      "coverage": "Cataloged — implementation pending"
+    },
+    {
+      "id": "DQ-ENR-004",
+      "category": "Duplicates",
+      "domain": "Enrollment",
+      "threshold": "One row per student + term + program",
+      "owner": "Enterprise Systems",
+      "implementationRule": "DUPLICATE_ENROLLMENT",
+      "enabled": false,
+      "lastFiredCount": 0,
+      "coverage": "Cataloged — implementation pending"
+    },
+    {
+      "id": "DQ-ENR-005",
+      "category": "Invalid values",
+      "domain": "Enrollment",
+      "threshold": "Credits earned cannot exceed attempted credits",
+      "owner": "Registrar",
+      "implementationRule": "CREDITS_EARNED_LE_ATTEMPTED",
+      "enabled": false,
+      "lastFiredCount": 0,
+      "coverage": "Cataloged — implementation pending"
+    },
+    {
+      "id": "DQ-ENR-006",
+      "category": "Invalid values",
+      "domain": "Enrollment",
+      "threshold": "Attempted and earned credits must be >= 0",
+      "owner": "Registrar",
+      "implementationRule": "NONNEGATIVE_CREDITS",
+      "enabled": false,
+      "lastFiredCount": 0,
+      "coverage": "Cataloged — implementation pending"
+    },
+    {
+      "id": "DQ-ENR-007",
+      "category": "Invalid values",
+      "domain": "Enrollment",
+      "threshold": "Term GPA must be between 0.0 and 4.0",
+      "owner": "Registrar",
+      "implementationRule": "TERM_GPA_RANGE",
+      "enabled": false,
+      "lastFiredCount": 0,
+      "coverage": "Cataloged — implementation pending"
+    },
+    {
+      "id": "DQ-ENR-008",
+      "category": "Anomalies",
+      "domain": "Enrollment",
+      "threshold": "Age at entry must be between 14 and 100",
+      "owner": "Admissions",
+      "implementationRule": "AGE_AT_ENTRY_RANGE",
+      "enabled": false,
+      "lastFiredCount": 0,
+      "coverage": "Cataloged — implementation pending"
+    },
+    {
+      "id": "DQ-ENR-009",
+      "category": "Referential integrity",
+      "domain": "Enrollment",
+      "threshold": "Every enrolled row must reference a governed term",
+      "owner": "Enterprise Systems",
+      "implementationRule": "TERM_REFERENCE",
+      "enabled": false,
+      "lastFiredCount": 0,
+      "coverage": "Cataloged — implementation pending"
+    },
+    {
+      "id": "DQ-DEM-001",
+      "category": "Nulls",
+      "domain": "Demographics",
+      "threshold": "Race/ethnicity cannot be blank for reporting",
+      "owner": "Admissions",
+      "implementationRule": "DEMOGRAPHIC_COMPLETENESS",
+      "enabled": true,
+      "lastFiredCount": 119,
+      "coverage": "Covered under live rule"
+    },
+    {
+      "id": "DQ-DEM-002",
+      "category": "Unknown codes",
+      "domain": "Demographics",
+      "threshold": "Race/ethnicity must map to IPEDS codes 1–9",
+      "owner": "Institutional Research",
+      "implementationRule": "RACE_CODE_VALID",
+      "enabled": false,
+      "lastFiredCount": 0,
+      "coverage": "Cataloged — implementation pending"
+    },
+    {
+      "id": "DQ-DEM-003",
+      "category": "Unknown codes",
+      "domain": "Demographics",
+      "threshold": "Sex/gender must map to the governed reporting set",
+      "owner": "Institutional Research",
+      "implementationRule": "SEX_CODE_VALID",
+      "enabled": false,
+      "lastFiredCount": 0,
+      "coverage": "Cataloged — implementation pending"
+    },
+    {
+      "id": "DQ-DEM-004",
+      "category": "Unknown codes",
+      "domain": "Demographics",
+      "threshold": "Residency must be in the governed residency set",
+      "owner": "Admissions",
+      "implementationRule": "RESIDENCY_CODE_VALID",
+      "enabled": false,
+      "lastFiredCount": 0,
+      "coverage": "Cataloged — implementation pending"
+    },
+    {
+      "id": "DQ-DEM-005",
+      "category": "Privacy",
+      "domain": "Demographics",
+      "threshold": "Flag published demographic cells with n < 10",
+      "owner": "Institutional Research",
+      "implementationRule": "SMALL_CELL_DISCLOSURE",
+      "enabled": false,
+      "lastFiredCount": 0,
+      "coverage": "Cataloged — implementation pending"
+    },
+    {
+      "id": "DQ-COM-001",
+      "category": "Referential integrity",
+      "domain": "Completions",
+      "threshold": "Completer must have matching enrollment history",
+      "owner": "Registrar",
+      "implementationRule": "COMPLETION_WITH_ENROLLMENT",
+      "enabled": false,
+      "lastFiredCount": 0,
+      "coverage": "Cataloged — implementation pending"
+    },
+    {
+      "id": "DQ-COM-002",
+      "category": "Invalid values",
+      "domain": "Completions",
+      "threshold": "CIP must use numeric xx.xxxx format",
+      "owner": "Academic Affairs",
+      "implementationRule": "CIP_FORMAT_VALID",
+      "enabled": false,
+      "lastFiredCount": 0,
+      "coverage": "Cataloged — implementation pending"
+    },
+    {
+      "id": "DQ-COM-003",
+      "category": "Unknown codes",
+      "domain": "Completions",
+      "threshold": "AWLEVEL must be in the official valid set",
+      "owner": "Institutional Research",
+      "implementationRule": "AWLEVEL_VALID",
+      "enabled": false,
+      "lastFiredCount": 0,
+      "coverage": "Cataloged — implementation pending"
+    },
+    {
+      "id": "DQ-COM-004",
+      "category": "Invalid values",
+      "domain": "Completions",
+      "threshold": "Completion date cannot precede entry date",
+      "owner": "Registrar",
+      "implementationRule": "COMPLETION_TIMELINE",
+      "enabled": false,
+      "lastFiredCount": 0,
+      "coverage": "Cataloged — implementation pending"
+    },
+    {
+      "id": "DQ-COM-005",
+      "category": "Duplicates",
+      "domain": "Completions",
+      "threshold": "One row per student + program + completion term",
+      "owner": "Registrar",
+      "implementationRule": "DUPLICATE_DEGREE",
+      "enabled": false,
+      "lastFiredCount": 0,
+      "coverage": "Cataloged — implementation pending"
+    },
+    {
+      "id": "DQ-AID-001",
+      "category": "Referential integrity",
+      "domain": "Financial aid",
+      "threshold": "Aid recipient must have enrollment in the award term",
+      "owner": "Student Financial Services",
+      "implementationRule": "AID_WITHOUT_ENROLLMENT",
+      "enabled": true,
+      "lastFiredCount": 23,
+      "coverage": "Covered under live rule"
+    },
+    {
+      "id": "DQ-AID-002",
+      "category": "Invalid values",
+      "domain": "Financial aid",
+      "threshold": "Aid amount must be nonnegative and below the governed ceiling",
+      "owner": "Student Financial Services",
+      "implementationRule": "AID_AMOUNT_RANGE",
+      "enabled": false,
+      "lastFiredCount": 0,
+      "coverage": "Cataloged — implementation pending"
+    },
+    {
+      "id": "DQ-AID-003",
+      "category": "Cross-domain",
+      "domain": "Financial aid",
+      "threshold": "Pell eligibility must reconcile to governed aid attributes",
+      "owner": "Student Financial Services",
+      "implementationRule": "PELL_ELIGIBILITY_RECONCILIATION",
+      "enabled": false,
+      "lastFiredCount": 0,
+      "coverage": "Cataloged — implementation pending"
+    },
+    {
+      "id": "DQ-CRS-001",
+      "category": "Invalid values",
+      "domain": "Courses/faculty",
+      "threshold": "Enrolled count cannot exceed section capacity",
+      "owner": "Academic Affairs",
+      "implementationRule": "SECTION_OVER_CAPACITY",
+      "enabled": false,
+      "lastFiredCount": 0,
+      "coverage": "Cataloged — implementation pending"
+    },
+    {
+      "id": "DQ-CRS-002",
+      "category": "Anomalies",
+      "domain": "Courses/faculty",
+      "threshold": "Zero-enrollment active sections require review",
+      "owner": "Academic Affairs",
+      "implementationRule": "EMPTY_ACTIVE_SECTION",
+      "enabled": false,
+      "lastFiredCount": 0,
+      "coverage": "Cataloged — implementation pending"
+    },
+    {
+      "id": "DQ-CRS-003",
+      "category": "Nulls",
+      "domain": "Courses/faculty",
+      "threshold": "Active section must have assigned faculty",
+      "owner": "Academic Affairs",
+      "implementationRule": "MISSING_FACULTY",
+      "enabled": false,
+      "lastFiredCount": 0,
+      "coverage": "Cataloged — implementation pending"
+    },
+    {
+      "id": "DQ-CRS-004",
+      "category": "Invalid values",
+      "domain": "Courses/faculty",
+      "threshold": "Faculty FTE must remain within the governed range",
+      "owner": "Human Resources",
+      "implementationRule": "FACULTY_FTE_RANGE",
+      "enabled": false,
+      "lastFiredCount": 0,
+      "coverage": "Cataloged — implementation pending"
+    },
+    {
+      "id": "DQ-CRS-005",
+      "category": "Cross-domain",
+      "domain": "Courses/faculty",
+      "threshold": "Faculty meeting times cannot overlap",
+      "owner": "Academic Affairs",
+      "implementationRule": "FACULTY_SCHEDULE_CONFLICT",
+      "enabled": false,
+      "lastFiredCount": 0,
+      "coverage": "Cataloged — implementation pending"
+    },
+    {
+      "id": "DQ-X-001",
+      "category": "Referential integrity",
+      "domain": "Cross-domain",
+      "threshold": "All declared foreign-key paths must resolve",
+      "owner": "Enterprise Systems",
+      "implementationRule": "REFERENTIAL_INTEGRITY",
+      "enabled": true,
+      "lastFiredCount": 0,
+      "coverage": "Covered — no current finding"
+    },
+    {
+      "id": "DQ-X-002",
+      "category": "Schema drift",
+      "domain": "Cross-domain",
+      "threshold": "Coded columns cannot introduce unrecognized values",
+      "owner": "Enterprise Systems",
+      "implementationRule": "CODESET_SCHEMA_DRIFT",
+      "enabled": false,
+      "lastFiredCount": 0,
+      "coverage": "Cataloged — implementation pending"
+    },
+    {
+      "id": "DQ-X-003",
+      "category": "Anomalies",
+      "domain": "Cross-domain",
+      "threshold": "Table row count cannot move >40% without explanation",
+      "owner": "Enterprise Systems",
+      "implementationRule": "ROW_COUNT_ANOMALY",
+      "enabled": false,
+      "lastFiredCount": 0,
+      "coverage": "Cataloged — implementation pending"
+    },
+    {
+      "id": "DQ-X-004",
+      "category": "Anomalies",
+      "domain": "Cross-domain",
+      "threshold": "Enrollment headcount variance outside ±2.5% requires explanation",
+      "owner": "Institutional Research",
+      "implementationRule": "YOY_HEADCOUNT_VARIANCE",
+      "enabled": true,
+      "lastFiredCount": 808,
+      "coverage": "Covered under live rule"
+    },
+    {
+      "id": "DQ-X-005",
+      "category": "Anomalies",
+      "domain": "Cross-domain",
+      "threshold": "Completion count variance outside ±10% requires explanation",
+      "owner": "Institutional Research",
+      "implementationRule": "YOY_COMPLETIONS_VARIANCE",
+      "enabled": false,
+      "lastFiredCount": 0,
+      "coverage": "Cataloged — implementation pending"
+    },
+    {
+      "id": "DQ-X-006",
+      "category": "Anomalies",
+      "domain": "Cross-domain",
+      "threshold": "Aid total variance outside ±10% requires explanation",
+      "owner": "Student Financial Services",
+      "implementationRule": "YOY_AID_VARIANCE",
+      "enabled": false,
+      "lastFiredCount": 0,
+      "coverage": "Cataloged — implementation pending"
+    },
+    {
+      "id": "DQ-X-007",
+      "category": "Effective dating",
+      "domain": "Cross-domain",
+      "threshold": "CIP changes require an effective-dated bridge",
+      "owner": "Academic Affairs",
+      "implementationRule": "CIP_EFFECTIVE_DATING",
+      "enabled": true,
+      "lastFiredCount": 307,
+      "coverage": "Covered under live rule"
+    },
+    {
+      "id": "DQ-X-008",
+      "category": "Duplicates",
+      "domain": "Cross-domain",
+      "threshold": "Potential duplicate identities require adjudication",
+      "owner": "Enterprise Systems",
+      "implementationRule": "IDENTITY_COLLISION",
+      "enabled": false,
+      "lastFiredCount": 0,
+      "coverage": "Cataloged — implementation pending"
     }
   ],
   "ipedsChecks": [
@@ -29009,6 +29994,8 @@
     "sections.csv",
     "section_enrollments.csv",
     "ipeds_validation_results.csv",
-    "data_quality_issue_log.csv"
+    "data_quality_issue_log.csv",
+    "completions.csv",
+    "financial_aid.csv"
   ]
 }

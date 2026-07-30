@@ -1,0 +1,82 @@
+{
+  "specId": "ipeds_spec.fall_enrollment.v2025_26",
+  "surveyCode": "EF",
+  "uploadCode": "EF1",
+  "collectionYear": "2025-26",
+  "reportingTerm": "2025FA",
+  "verifiedAt": "2026-07-29",
+  "sourceUrl": "https://nces.ed.gov/ipeds/use-the-data/annual-survey-forms-packages-archived/-1/fall%20enrollment",
+  "implementationReference": "https://alisonlanski.github.io/IPEDSuploadables/articles/use_fallenrollment.html",
+  "parts": {
+    "A": {
+      "status": "generated",
+      "description": "Enrollment by student level, attendance status, race/ethnicity, and sex.",
+      "keyOrder": ["UNITID", "SURVSECT", "PART", "CIPCODE", "LINE", "RACE", "SEX", "COUNT"]
+    },
+    "B": {
+      "status": "generated",
+      "description": "Enrollment by age, student level, attendance status, and sex.",
+      "keyOrder": ["UNITID", "SURVSECT", "PART", "LINE", "SLEVEL", "SEX", "COUNT"]
+    },
+    "C": {
+      "status": "blocked",
+      "description": "Residence of first-time degree/certificate-seeking undergraduates.",
+      "missingFields": ["admission_state_fips", "recent_high_school_graduate"]
+    },
+    "D": {
+      "status": "generated",
+      "description": "New non-degree undergraduate entrants.",
+      "keyOrder": ["UNITID", "SURVSECT", "PART", "COUNT"]
+    },
+    "E": {
+      "status": "blocked",
+      "description": "Retention cohort counts.",
+      "missingFields": ["cohort_exclusions", "cohort_inclusions"]
+    },
+    "F": {
+      "status": "blocked",
+      "description": "Student-to-faculty ratio.",
+      "missingFields": ["official_student_faculty_ratio"]
+    },
+    "G": {
+      "status": "blocked",
+      "description": "Distance education enrollment and student location.",
+      "missingFields": ["distance_education_status", "online_state_fips", "institution_state_fips"]
+    },
+    "H": {
+      "status": "generated",
+      "description": "Unknown sex counts by undergraduate/graduate level.",
+      "keyOrder": ["UNITID", "SURVSECT", "PART", "EFSEXUG", "EFSEXG"]
+    }
+  },
+  "codeTables": {
+    "race": {
+      "Nonresident alien": 1,
+      "Hispanic/Latino": 2,
+      "American Indian or Alaska Native": 3,
+      "Asian": 4,
+      "Black or African American": 5,
+      "Native Hawaiian or Other Pacific Islander": 6,
+      "White": 7,
+      "Two or more races": 8,
+      "Race/ethnicity unknown": 9,
+      "": 9
+    },
+    "sex": {
+      "M": 1,
+      "Man": 1,
+      "Male": 1,
+      "F": 2,
+      "Woman": 2,
+      "Female": 2,
+      "N": 3,
+      "Nonbinary": 3,
+      "Unknown": 3,
+      "": 3
+    },
+    "studentLevel": {
+      "UG": 1,
+      "GR": 3
+    }
+  }
+}

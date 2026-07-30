@@ -1,0 +1,344 @@
+{
+  "collectionYear": "2025-26",
+  "catalogVersion": "ipeds-survey-catalog.v2025_26",
+  "verifiedAt": "2026-07-29",
+  "sourceUrl": "https://nces.ed.gov/ipeds/report-your-data/overview-survey-components-data-cycle",
+  "changesUrl": "https://nces.ed.gov/ipeds/report-your-data/archived-changes",
+  "annualVerificationRequired": true,
+  "surveys": [
+    {
+      "window": "Fall",
+      "name": "Institutional Characteristics",
+      "code": "IC",
+      "coverage": "unsupported",
+      "status": "Not supported",
+      "reason": "Requires an institution_profile domain for address, control, calendar, mission, and award-level metadata.",
+      "generator": false
+    },
+    {
+      "window": "Fall",
+      "name": "Completions",
+      "code": "C",
+      "uploadCode": "COM",
+      "coverage": "full",
+      "status": "Buildable",
+      "reason": "Governed completion, student demographic, program, CIP, and award-level data are available.",
+      "generator": true,
+      "specId": "ipeds_spec.completions.v2025_26"
+    },
+    {
+      "window": "Fall",
+      "name": "12-Month Enrollment",
+      "code": "E12",
+      "coverage": "partial",
+      "status": "Partially supported",
+      "reason": "Unduplicated headcount is derivable, but governed instructional contact-hour data are missing.",
+      "generator": false
+    },
+    {
+      "window": "Fall",
+      "name": "Cost",
+      "code": "CST",
+      "coverage": "unsupported",
+      "status": "Not supported",
+      "reason": "Requires tuition, fee, cost-of-attendance, and net-price source domains.",
+      "generator": false
+    },
+    {
+      "window": "Winter",
+      "name": "Admissions",
+      "code": "ADM",
+      "coverage": "unsupported",
+      "status": "Not supported",
+      "reason": "Requires applicant, admit, enrolled, and test-score funnel data.",
+      "generator": false
+    },
+    {
+      "window": "Winter",
+      "name": "Graduation Rates",
+      "code": "GR",
+      "coverage": "partial",
+      "status": "Partially supported",
+      "reason": "Cohorts are derivable, but official exclusions and transfer-out rules are not implemented.",
+      "generator": false
+    },
+    {
+      "window": "Winter",
+      "name": "200% Graduation Rates",
+      "code": "GR200",
+      "coverage": "partial",
+      "status": "Partially supported",
+      "reason": "Cohorts are derivable, but official 200%-time exclusions and transfer-out rules are not implemented.",
+      "generator": false
+    },
+    {
+      "window": "Winter",
+      "name": "Outcome Measures",
+      "code": "OM",
+      "coverage": "unsupported",
+      "status": "Not supported",
+      "reason": "Requires governed 4-, 6-, and 8-year cohort tracking joined to Pell and loan status.",
+      "generator": false
+    },
+    {
+      "window": "Winter",
+      "name": "Student Financial Aid",
+      "code": "SFA",
+      "coverage": "partial",
+      "status": "Partially supported",
+      "reason": "A Pell-recipient field is now modeled, but award amounts, aid categories, and reconciliation rules are not yet complete.",
+      "generator": false
+    },
+    {
+      "window": "Spring",
+      "name": "Fall Enrollment",
+      "code": "EF",
+      "uploadCode": "EF1",
+      "coverage": "full",
+      "status": "Buildable with blockers",
+      "reason": "Parts A, B, D, and H are generated from governed fall census data; Parts C, E, F, and G remain blocked on missing governed fields.",
+      "generator": true,
+      "specId": "ipeds_spec.fall_enrollment.v2025_26"
+    },
+    {
+      "window": "Spring",
+      "name": "Finance",
+      "code": "F",
+      "coverage": "unsupported",
+      "status": "Not supported",
+      "reason": "Requires a governed general-ledger/chart-of-accounts source domain.",
+      "generator": false
+    },
+    {
+      "window": "Spring",
+      "name": "Human Resources",
+      "code": "HR",
+      "coverage": "unsupported",
+      "status": "Not supported",
+      "reason": "Requires occupational category, tenure, salary, and employee demographic fields.",
+      "generator": false
+    }
+  ],
+  "retired": [
+    {
+      "name": "Academic Libraries",
+      "code": "AL",
+      "retiredStarting": "2025-26",
+      "reason": "NCES retired the Academic Libraries survey component beginning with the 2025-26 collection."
+    }
+  ],
+  "annualChanges": {
+    "collectionYear": "2025-26",
+    "diffId": "ipeds-annual-diff.2024_25-to-2025_26",
+    "sourceUrl": "https://nces.ed.gov/ipeds/report-your-data/archived-changes",
+    "requiresAcknowledgment": true,
+    "changes": [
+      {
+        "component": "AL",
+        "type": "removed",
+        "summary": "Academic Libraries was retired as an IPEDS survey component beginning in 2025-26."
+      },
+      {
+        "component": "GR",
+        "type": "field-removed",
+        "summary": "Gender unknown and another-gender questions were removed for privacy."
+      },
+      {
+        "component": "IC/ADM",
+        "type": "field-moved",
+        "summary": "The open-admissions screening question moved from IC to ADM."
+      },
+      {
+        "component": "CST",
+        "type": "component-change",
+        "summary": "Cost remains a separately versioned component after its 2024-25 introduction."
+      }
+    ]
+  },
+  "specifications": {
+    "C": {
+      "specId": "ipeds_spec.completions.v2025_26",
+      "surveyCode": "C",
+      "uploadCode": "COM",
+      "collectionYear": "2025-26",
+      "verifiedAt": "2026-07-29",
+      "sourceUrl": "https://nces.ed.gov/ipeds/use-the-data/annual-survey-forms-packages-archived",
+      "keyOrder": [
+        "UNITID",
+        "SURVSECT",
+        "MAJORNUM",
+        "CIPCODE",
+        "AWLEVEL",
+        "RACE",
+        "SEX",
+        "COUNT"
+      ],
+      "codeTables": {
+        "race": {
+          "Nonresident alien": 1,
+          "Hispanic/Latino": 2,
+          "American Indian or Alaska Native": 3,
+          "Asian": 4,
+          "Black or African American": 5,
+          "Native Hawaiian or Other Pacific Islander": 6,
+          "White": 7,
+          "Two or more races": 8,
+          "Race/ethnicity unknown": 9,
+          "": 9
+        },
+        "sex": {
+          "M": 1,
+          "Man": 1,
+          "Male": 1,
+          "F": 2,
+          "Woman": 2,
+          "Female": 2,
+          "N": 3,
+          "Nonbinary": 3,
+          "Unknown": 3,
+          "": 3
+        },
+        "awardLevel": [
+          "1a",
+          "1b",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "17",
+          "18",
+          "19"
+        ]
+      },
+      "manualReview": [
+        "Distance education is not modeled per CIP/award level.",
+        "Second majors are not modeled."
+      ]
+    },
+    "EF": {
+      "specId": "ipeds_spec.fall_enrollment.v2025_26",
+      "surveyCode": "EF",
+      "uploadCode": "EF1",
+      "collectionYear": "2025-26",
+      "reportingTerm": "2025FA",
+      "verifiedAt": "2026-07-29",
+      "sourceUrl": "https://nces.ed.gov/ipeds/use-the-data/annual-survey-forms-packages-archived/-1/fall%20enrollment",
+      "implementationReference": "https://alisonlanski.github.io/IPEDSuploadables/articles/use_fallenrollment.html",
+      "parts": {
+        "A": {
+          "status": "generated",
+          "description": "Enrollment by student level, attendance status, race/ethnicity, and sex.",
+          "keyOrder": [
+            "UNITID",
+            "SURVSECT",
+            "PART",
+            "CIPCODE",
+            "LINE",
+            "RACE",
+            "SEX",
+            "COUNT"
+          ]
+        },
+        "B": {
+          "status": "generated",
+          "description": "Enrollment by age, student level, attendance status, and sex.",
+          "keyOrder": [
+            "UNITID",
+            "SURVSECT",
+            "PART",
+            "LINE",
+            "SLEVEL",
+            "SEX",
+            "COUNT"
+          ]
+        },
+        "C": {
+          "status": "blocked",
+          "description": "Residence of first-time degree/certificate-seeking undergraduates.",
+          "missingFields": [
+            "admission_state_fips",
+            "recent_high_school_graduate"
+          ]
+        },
+        "D": {
+          "status": "generated",
+          "description": "New non-degree undergraduate entrants.",
+          "keyOrder": [
+            "UNITID",
+            "SURVSECT",
+            "PART",
+            "COUNT"
+          ]
+        },
+        "E": {
+          "status": "blocked",
+          "description": "Retention cohort counts.",
+          "missingFields": [
+            "cohort_exclusions",
+            "cohort_inclusions"
+          ]
+        },
+        "F": {
+          "status": "blocked",
+          "description": "Student-to-faculty ratio.",
+          "missingFields": [
+            "official_student_faculty_ratio"
+          ]
+        },
+        "G": {
+          "status": "blocked",
+          "description": "Distance education enrollment and student location.",
+          "missingFields": [
+            "distance_education_status",
+            "online_state_fips",
+            "institution_state_fips"
+          ]
+        },
+        "H": {
+          "status": "generated",
+          "description": "Unknown sex counts by undergraduate/graduate level.",
+          "keyOrder": [
+            "UNITID",
+            "SURVSECT",
+            "PART",
+            "EFSEXUG",
+            "EFSEXG"
+          ]
+        }
+      },
+      "codeTables": {
+        "race": {
+          "Nonresident alien": 1,
+          "Hispanic/Latino": 2,
+          "American Indian or Alaska Native": 3,
+          "Asian": 4,
+          "Black or African American": 5,
+          "Native Hawaiian or Other Pacific Islander": 6,
+          "White": 7,
+          "Two or more races": 8,
+          "Race/ethnicity unknown": 9,
+          "": 9
+        },
+        "sex": {
+          "M": 1,
+          "Man": 1,
+          "Male": 1,
+          "F": 2,
+          "Woman": 2,
+          "Female": 2,
+          "N": 3,
+          "Nonbinary": 3,
+          "Unknown": 3,
+          "": 3
+        },
+        "studentLevel": {
+          "UG": 1,
+          "GR": 3
+        }
+      }
+    }
+  }
+}
