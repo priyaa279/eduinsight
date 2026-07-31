@@ -5107,3 +5107,32 @@ select:focus-visible,
 .card-watermark {
   color: var(--accent-on-dark);
 }
+
+/* ===========================================================================
+   Two layout corrections
+   ========================================================================= */
+
+/* The watermark lift (`.ask-card > *:not(.card-watermark)`) sets position:
+   relative on every card child to raise it above the QuadPlan. That silently
+   demoted the orb, which is meant to be pinned to the card corner — as a
+   relative box its top/right offsets pushed it 25px down and 25px LEFT of its
+   flow position, dropping it onto the eyebrow underneath. Restore absolute
+   while keeping it above the watermark. */
+.ask-card > .ask-orb {
+  position: absolute;
+  z-index: 1;
+}
+
+/* Survey codes run from one character (C, F) to five (GR200, CST). A fixed
+   29px square fits the short ones and spills the long ones outside their own
+   background. Square is now the floor, not the ceiling. */
+.survey-code {
+  width: auto;
+  min-width: 29px;
+  height: 29px;
+  padding: 0 8px;
+  display: inline-grid;
+  place-items: center;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
