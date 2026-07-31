@@ -2879,7 +2879,6 @@ export default function EduInsightApp() {
   const [view, setView] = useState<ViewId>("overview");
   const [memoryTarget, setMemoryTarget] = useState<string>();
   const [auditOpen, setAuditOpen] = useState(false);
-  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [toast, setToast] = useState("");
   const [savedScenarios, setSavedScenarios] = useState<SavedScenario[]>(() =>
     typeof window === "undefined"
@@ -2914,7 +2913,6 @@ export default function EduInsightApp() {
 
   function navigate(next: ViewId) {
     setView(next);
-    setMobileNavOpen(false);
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
@@ -2930,16 +2928,34 @@ export default function EduInsightApp() {
 
   return (
     <main className="app-shell">
-      <aside className={`sidebar ${mobileNavOpen ? "mobile-open" : ""}`}>
-        <div className="brand">
-          <span className="brand-mark">E</span>
-          <span>
-            <strong>EduInsight</strong>
-            <small>Institutional intelligence</small>
-          </span>
+      {/* Masthead, not a sidebar. A publication's section rail: it returns the
+          full page width to the data, and the horizontal rail scrolls on
+          narrow screens instead of hiding behind a hamburger drawer. */}
+      <header className="masthead">
+        <div className="masthead-bar">
+          <div className="brand">
+            <span className="brand-mark">E</span>
+            <span>
+              <strong>EduInsight</strong>
+              <small>Institutional intelligence</small>
+            </span>
+          </div>
+          <div className="masthead-meta">
+            <span className="status-note">
+              <em aria-hidden="true" />
+              Agents online · synced 8 min ago
+            </span>
+            <button className="text-link" onClick={() => setAuditOpen(true)}>
+              System status
+              <AppIcon name="arrow-right" />
+            </button>
+            <span className="profile-chip">
+              <span aria-hidden="true">IR</span>
+              Institutional Research
+            </span>
+          </div>
         </div>
-        <nav aria-label="Primary navigation">
-          <p>Workspace</p>
+        <nav className="section-rail" aria-label="Primary navigation">
           {navigation.map((item) => (
             <button
               className={view === item.id ? "active" : ""}
@@ -2953,32 +2969,7 @@ export default function EduInsightApp() {
             </button>
           ))}
         </nav>
-        <div className="sidebar-status">
-          <div>
-            <AppIcon name="sparkles" className="status-orb" />
-            <p><strong>Agents online</strong><small>Last sync 8 min ago</small></p>
-          </div>
-          <button onClick={() => setAuditOpen(true)}>
-            View system status <AppIcon name="arrow-right" />
-          </button>
-        </div>
-        <div className="profile">
-          <span>IR</span>
-          <p><strong>Institutional Research</strong><small>Administrator</small></p>
-          <button aria-label="Open profile menu">•••</button>
-        </div>
-      </aside>
-
-      <button
-        className="mobile-menu"
-        aria-label="Toggle navigation"
-        aria-expanded={mobileNavOpen}
-        onClick={() => setMobileNavOpen(!mobileNavOpen)}
-      >
-        <span />
-        <span />
-        <span />
-      </button>
+      </header>
 
       <section className="main-canvas">
         {view === "overview" && (
