@@ -1319,6 +1319,29 @@ textarea:focus-visible {
   gap: 10px;
 }
 
+/* The heading text and this action group are siblings in a space-between flex
+   row. Without flex-shrink: 0 the text column wins the space fight, the action
+   column is squeezed below the buttons' natural width, and the two buttons
+   wrap into a ragged stack of unequal widths. Kept separate from the grouped
+   rule above so .resolution-options and .download-row are unaffected. */
+.ipeds-actions {
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Scoped with :has() so the other four .section-heading instances keep their
+   current single-row behaviour. Once the actions no longer shrink, the row
+   needs permission to wrap or it would overflow on narrow viewports, where the
+   buttons then sit together on their own full-width line at natural width. */
+.section-heading:has(.ipeds-actions) {
+  flex-wrap: wrap;
+}
+
+.section-heading:has(.ipeds-actions) > div:first-child {
+  min-width: 0;
+  flex: 1 1 22rem;
+}
+
 .resolution-options {
   margin-top: 12px;
 }
