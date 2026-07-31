@@ -2,7 +2,7 @@
 
 The source of truth for every visual decision. Read this before building UI.
 
-**System: Terracotta.** Established 2026-07-31. Supersedes the earlier
+**System: Regalia.** Established 2026-07-31. Supersedes the earlier
 navy/ochre attempt, which was rejected for being a palette swap over unchanged
 structure — the lesson worth keeping is that **structure carries more of a
 design's identity than colour does**.
@@ -20,88 +20,55 @@ photography, no single school's colours.
 
 ## Colour
 
-An entirely earthen palette — **no green anywhere in the system**. Built from a
-supplied terracotta set. Token *names* are historical (`--ivy`, `--brass`) and
-kept deliberately: ~150 rules and 183 remapped aliases reference them, so only
-values moved. `--ivy` no longer means green; it means the mauve-clay secondary.
+**Regalia** — deep plum on parchment, with muted gold for what has been
+certified. Academic regalia purple is genuinely education-coded (doctoral
+hoods, old university crests) and is rare in software, so it does not read as
+a stock dashboard. No green, no terracotta, no navy.
 
-**The supplied swatches could not carry text or solid buttons.** Measured on
-cream, the best of the nine reached only 3.87:1, and none reached 4.5:1 with
-white on top. So the mid-tones are used where they excel — as fills, chart
-series, and light cuts on dark ground — and the text/action values are darker
-cuts derived from them. That split is the whole structure of this palette.
+### Role tokens
 
-### Used directly from the supplied set
+Named by what they do, not by hue — so the next palette change edits values in
+one place. The legacy `--terracotta` / `--ivy` / `--brass` names are aliases
+onto these; ~150 rules and 183 remapped variables still reference them, which
+is why they were aliased rather than renamed.
 
-| Swatch | Hex | Where |
-|---|---|---|
-| Pale Terracotta | `#e3a680` | `--terracotta-light` — action on dark ground (6.7:1 on the sidebar) |
-| Mauve, deepened | `#6d3a2e` | `--rail-rule` — the hairline that defines the clay blocks |
-| **Mauve Terracotta** | `#b16b5e` | `--rail` — the navigation rail ground |
-| **Canyon Clay** | `#d3927c` | `--rail-panel` — raised blocks on the rail: active item, status card, avatar |
-| Terracotta Pot | `#e27b34` | `--brass-light` — the seal on dark |
-| Terracotta / Brick / Dusty | `#d87348` `#d7704c` `#d2886a` | ordered chart ramp |
+| Role | Token | Value | On parchment |
+|---|---|---|---|
+| Action, voice | `--accent` | `#5b3a7a` | 8.2:1 |
+| Action pressed | `--accent-deep` | `#4a2d66` | 10.3:1 |
+| Action on dark | `--accent-on-dark` | `#b79ed0` | 6.2:1 on the rail |
+| Certified / seal | `--seal` | `#7d6216` | 5.3:1 |
+| Seal on dark | `--seal-on-dark` | `#d9be74` | 8.2:1 on the rail |
 
-### The rail runs on almost no headroom — treat it as fragile
-
-The rail is Mauve Terracotta with Canyon Clay blocks. Two constraints govern
-everything on it, and both are tight:
-
-**One ink, no fades.** Mauve is a dead-zone mid-tone. Only near-black clears
-4.5:1 on it — `--rail-ink` measures **4.66:1**, which is the ceiling, not a
-comfortable margin. There is therefore no second text colour on the rail, and
-**no `opacity` on rail text**: a 0.7 fade measured 3.2:1 and a 0.82 fade also
-failed. Secondary text is distinguished by weight and size alone.
-
-**Clay blocks need hairlines.** Canyon Clay sits at 1.59:1 against mauve —
-nowhere near the 3:1 a UI component needs to read as raised. Every clay block
-is defined by a `--rail-rule` hairline, not by tonal contrast.
-
-Consequence: any future change to the rail — a lighter ink, a fade, a slightly
-lighter mauve, a coloured accent — will break AA. Re-measure before touching it.
-Coloured accents are already ruled out: terracotta is 2.9:1 on clay.
-
-Hero panels stay deep sienna so the composition keeps a dark anchor rather than
-sitting entirely in the mid-tones.
-
-### Derived, because the set has no dark end
+### Grounds and ink
 
 | Role | Token | Value | Ratio |
 |---|---|---|---|
-| Page ground | `--paper` | `#fbf6f2` | — |
-| Panel | `--surface` | `#fffcf9` | — |
-| Text | `--ink` | `#2b1a14` | 15.5:1 |
-| Secondary text | `--ink-soft` | `#6e4d40` | 7.0:1 |
-| Tertiary text | `--ink-faint` | `#7a5648` | 6.0:1 on paper, 5.3:1 on the tightest tint |
-| Hairline | `--rule` | `#ecd8cb` | — |
-| Emphasis rule | `--rule-strong` | `#d5b5a2` | — |
-| **Action / brand** | `--terracotta` | `#a8402f` | 5.7:1; 6.0:1 with cream on it |
-| Action pressed | `--terracotta-deep` | `#8f3a2c` | 7.0:1 |
-| Hero panel ground | `--ivy-deep` | `#43241e` | 11.5:1 with cream text |
-| Rail ink | `--rail-ink` | `#2b1a14` | 6.5:1 on clay |
-| Rail ink, soft | `--rail-ink-soft` | `#42291f` | 5.2:1 on clay |
-| Secondary brand | `--ivy` | `#8a4636` | 6.5:1 |
-| Certified / seal | `--brass` | `#a34a1a` | 5.5:1 |
-| Critical | `--claret` | `#8f2f28` | — |
-| Informational | `--info` | `#8a4636` | mauve, not blue — nothing foreign to the palette |
+| Page | `--paper` | `#f7f4ef` | — |
+| Panel | `--surface` | `#fdfbf8` | — |
+| Text | `--ink` | `#221a26` | 15.4:1 |
+| Secondary | `--ink-soft` | `#514758` | 8.0:1 |
+| Tertiary | `--ink-faint` | `#6b5f74` | 5.5:1 |
+| Hairline | `--rule` | `#e0d9d0` | — |
+| Rail ground | `--rail` | `#2f2140` | 12.5:1 with parchment text |
+| Rail secondary | `--ink-soft-on-ivy` | `#c9bfd4` | 8.4:1 on the rail |
+| Critical | `--claret` | `#8f2f4a` | 7.2:1 |
+| Informational | `--info` | `#41497f` | 7.7:1 |
 
-Severity runs claret → terracotta → brass, all warm. Since brand and severity
-share the family, **status must never be encoded by colour alone**; every chip
-carries its word. Treatments differ too: a solid fill is an action, a tinted
-pill is a state.
+Buttons measure 8.7:1 with parchment on plum. **Lowest ratio anywhere in the
+product is 5.0:1** — the palette has real headroom, unlike the terracotta pass
+it replaces, where the rail sat at 4.66:1 and forbade any fade at all.
 
-### Dark panels
+Severity is claret → plum → seal. Status must still never be encoded by colour
+alone; every chip carries its word.
 
-`.ask-card`, `.analyst-context`, `.ipeds-banner`, `.memory-search` and
-`.scenario-hero` sit on `--ivy-deep`. They **re-base the palette tokens on
-themselves**, so descendants that already say `var(--ink-soft)` resolve to the
-light equivalent.
+### Why a dark rail
 
-One trap: the legacy `--color-*` aliases are declared on `:root`, and a custom
-property substitutes its `var()` references **where it is declared, not where
-it is used**. Those aliases froze to the root values and never see the
-re-basing, so descendant text inside dark panels is also set directly (and at
-raised specificity, since existing descendant rules would otherwise win).
+The previous rail used mid-tone swatches and had no room: only near-black
+cleared AA on them, secondary text could not recede, and raised blocks sat at
+1.59:1 against the ground. A dark plum ground restores the full range —
+parchment at 12.5:1, a faint tier at 5.8:1 — so secondary text can fade
+properly and blocks can lift. Prefer a dark anchor over a mid-tone one.
 
 ## Typography
 
@@ -114,8 +81,8 @@ fallback.
 
 | Variable | Face | Used for |
 |---|---|---|
-| `--font-serif` | **Alegreya** | Anything that speaks: headings, answer headlines |
-| `--font-sans` | **Alegreya Sans** | Anything read in bulk: body, UI, dense tables |
+| `--font-serif` | **Spectral** | Anything that speaks: headings, answer headlines |
+| `--font-sans` | **Source Sans 3** | Anything read in bulk: body, UI, dense tables |
 | `--font-mono` | **IBM Plex Mono** | Identifiers: rule codes, survey codes, query plans |
 
 Scale: `--text-display` `clamp(2.5rem, 1.4rem + 3.6vw, 4rem)` · `--text-h1`
@@ -139,7 +106,7 @@ Rules carry structure; shadows are for things that genuinely float (the audit
 drawer, modals). Radii are small: `--radius-sm` 3px, `--radius` 5px,
 `--radius-lg` 8px.
 
-**Navigation is a 268px Mauve Terracotta rail with Canyon Clay blocks**, treated as a designed object rather
+**Navigation is a 268px deep-plum rail**, treated as a designed object rather
 than a slab: pressed-paper grain (inlined `feTurbulence`, no request), the
 engraved seal as the brand mark, and a colonnade along its foot. The active
 section is marked by a brass rule at the leading edge, the way a ledger marks

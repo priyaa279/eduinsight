@@ -17,8 +17,8 @@
      vinext (emits @font-face with no src). Newsreader is an editorial serif
      with real voice; Public Sans holds up in dense tables; Plex Mono carries
      identifiers where 0/O and 1/l must not be confused. */
-  --font-serif: "Alegreya", Georgia, serif;
-  --font-sans: "Alegreya Sans", system-ui, -apple-system, sans-serif;
+  --font-serif: "Spectral", Georgia, serif;
+  --font-sans: "Source Sans 3", system-ui, -apple-system, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
 
   /* Type scale. The display size is spent once per screen — on the answer. */
@@ -32,49 +32,61 @@
   --font-size-xs: 0.75rem;
 
   /* Paper and ink */
-  --paper: #fbf6f2;
-  --paper-sunken: #f3e7de;
-  --surface: #fffcf9;
-  --surface-2: #f8efe8;
+  /* --- role tokens ------------------------------------------------------
+     Named by what they do, not by hue. The legacy --terracotta / --ivy /
+     --brass names below are aliases onto these; ~150 rules and 183 remapped
+     variables still reference them, so they cannot simply be renamed. Change
+     a role here and the whole system follows. */
+  --accent: #5b3a7a;
+  --accent-deep: #4a2d66;
+  --accent-soft: #efe9f3;
+  --accent-on-dark: #b79ed0;
+  --seal: #7d6216;
+  --seal-on-dark: #d9be74;
 
-  --ink: #2b1a14;
-  --ink-soft: #6e4d40;
-  --ink-faint: #7a5648;
+  --paper: #f7f4ef;
+  --paper-sunken: #ece7e0;
+  --surface: #fdfbf8;
+  --surface-2: #f3efe9;
 
-  --rule: #ecd8cb;
-  --rule-strong: #d5b5a2;
+  --ink: #221a26;
+  --ink-soft: #514758;
+  --ink-faint: #6b5f74;
+
+  --rule: #e0d9d0;
+  --rule-strong: #c3b9ae;
 
   /* Ivy — the institution itself: navigation, primary action, verified state */
-  --ivy: #8a4636;
-  --ivy-deep: #43241e;
-  --ivy-mid: #b16b5e;
-  --ivy-tint: #f5e6e1;
-  --on-ivy: #fffcf9;
+  --ivy: var(--accent-deep);
+  --ivy-deep: #2f2140;
+  --ivy-mid: #7d5a95;
+  --ivy-tint: var(--accent-soft);
+  --on-ivy: #fdfbf8;
 
   /* Brass — the seal. Certified sources, approved packages, the one number. */
-  --brass: #a34a1a;
-  --brass-deep: #873d14;
-  --brass-tint: #fceee2;
-  --brass-light: #e27b34;
+  --brass: var(--seal);
+  --brass-deep: #634d10;
+  --brass-tint: #f6efdb;
+  --brass-light: var(--seal-on-dark);
 
   /* Text tuned for the dark ivy panels. Held here so every raw colour in the
      system lives in one block (enforced by tests/ui-integrity.test.mjs). */
-  --ink-on-ivy: #f6e7de;
-  --ink-soft-on-ivy: #e0c3b2;
-  --ink-faint-on-ivy: #c9a695;
-  --ivy-mid-on-ivy: #d3927c;
+  --ink-on-ivy: #efe9f2;
+  --ink-soft-on-ivy: #c9bfd4;
+  --ink-faint-on-ivy: #a99cb8;
+  --ivy-mid-on-ivy: #b79ed0;
 
   /* States. Severity is a single warm ramp: claret, terracotta, brass. */
-  --claret: #8f2f28;
-  --claret-deep: #73241e;
-  --claret-tint: #f9e6e3;
-  --terracotta: #a8402f;
-  --terracotta-deep: #8f3a2c;
-  --terracotta-light: #e3a680;
-  --terracotta-tint: #fbe9e2;
-  --info: #8a4636;
-  --info-deep: #6d3729;
-  --info-tint: #f5e6e1;
+  --claret: #8f2f4a;
+  --claret-deep: #73243b;
+  --claret-tint: #f8e8ec;
+  --terracotta: var(--accent);
+  --terracotta-deep: var(--accent-deep);
+  --terracotta-light: var(--accent-on-dark);
+  --terracotta-tint: var(--accent-soft);
+  --info: #41497f;
+  --info-deep: #333963;
+  --info-tint: #eaebf4;
 
   /* Shape. Editorial means rules carry structure and shadows are rare. */
   --radius-sm: 3px;
@@ -279,22 +291,22 @@
   --color-fff4e4: var(--terracotta-tint); /* was #fff4e4 */
   --color-fff8ec: var(--terracotta-tint); /* was #fff8ec */
   --color-fff8ee: var(--terracotta-tint); /* was #fff8ee */
-  --chart-1: #a8402f;
-  --chart-2: #d7704c;
-  --chart-3: #d87348;
-  --chart-4: #d2886a;
-  --chart-5: #e3a680;
+  --chart-1: #4a2d66;
+  --chart-2: #5b3a7a;
+  --chart-3: #7d5a95;
+  --chart-4: #a184b6;
+  --chart-5: #c7b3d6;
 
   /* Canyon Clay carries the navigation rail. It is the one supplied swatch
      large enough to be a surface: deep ink on it measures 6.5:1. Coloured
      accents all fail on clay (terracotta is 2.9:1), so the rail carries its
      hierarchy in ink weight rather than hue. Hero panels stay deep sienna so
      the composition keeps a dark anchor. */
-  --rail: #b16b5e;
-  --rail-ink: #180d0a;
-  --rail-ink-soft: #180d0a;
-  --rail-rule: #6d3a2e;
-  --rail-panel: #d3927c;
+  --rail: #2f2140;
+  --rail-ink: #efe9f2;
+  --rail-ink-soft: #c9bfd4;
+  --rail-rule: #4d3a63;
+  --rail-panel: #3d2c52;
 
 }
 
@@ -4986,4 +4998,104 @@ select:focus-visible,
 .sidebar-arches {
   color: var(--rail-ink);
   opacity: 0.14;
+}
+
+/* ===========================================================================
+   Rail — deep plum
+   Replaces the mid-tone clay/mauve rail. A dark ground restores real tonal
+   range: parchment on plum measures 12.5:1 and the faint tier 5.8:1, so the
+   earlier "one ink, no fades" restriction is lifted and secondary text can
+   recede properly again. Gold marks what has been certified.
+   ========================================================================= */
+
+.sidebar {
+  background: var(--rail);
+  border-right: 1px solid var(--rail-rule);
+  color: var(--rail-ink);
+}
+
+.sidebar::before {
+  mix-blend-mode: overlay;
+  opacity: 0.4;
+}
+
+.brand strong,
+.sidebar nav button.active,
+.sidebar-status strong,
+.profile strong {
+  color: var(--rail-ink);
+}
+
+.brand small,
+.sidebar nav button,
+.sidebar-status small,
+.profile small {
+  color: var(--ink-soft-on-ivy);
+  font-weight: 400;
+}
+
+.sidebar nav > p {
+  color: var(--seal-on-dark);
+  opacity: 1;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.sidebar nav button:hover:not(.active) {
+  background: color-mix(in oklab, var(--rail-ink) 8%, transparent);
+  color: var(--rail-ink);
+}
+
+.sidebar nav button.active {
+  background: var(--rail-panel);
+  border: 1px solid var(--rail-rule);
+  border-radius: var(--radius);
+  font-weight: 600;
+}
+
+.sidebar nav button.active::before,
+.sidebar nav button.active .app-icon,
+.brand-seal,
+.sidebar-status > button {
+  color: var(--seal-on-dark);
+}
+
+.sidebar nav button.active::before {
+  background: var(--seal-on-dark);
+}
+
+.sidebar-status {
+  border: 1px solid var(--rail-rule);
+  border-radius: var(--radius);
+  background: color-mix(in oklab, var(--rail-ink) 5%, transparent);
+}
+
+.status-pip {
+  background: var(--accent-on-dark);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent-on-dark) 20%, transparent);
+}
+
+.profile {
+  border-top-color: var(--rail-rule);
+}
+
+.profile > span {
+  border: 1px solid var(--seal-on-dark);
+  border-radius: 50%;
+  background: color-mix(in oklab, var(--seal-on-dark) 14%, transparent);
+  color: var(--seal-on-dark);
+}
+
+.sidebar nav button em {
+  background: var(--claret);
+  color: var(--surface);
+}
+
+.sidebar-arches {
+  color: var(--seal-on-dark);
+  opacity: 0.2;
+}
+
+.card-watermark {
+  color: var(--accent-on-dark);
 }
