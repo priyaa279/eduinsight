@@ -36,24 +36,30 @@ cuts derived from them. That split is the whole structure of this palette.
 | Swatch | Hex | Where |
 |---|---|---|
 | Pale Terracotta | `#e3a680` | `--terracotta-light` — action on dark ground (6.7:1 on the sidebar) |
-| Mauve Terracotta | `#b16b5e` | `--ivy-mid`, and `--rail-rule` as a hairline |
-| **Canyon Clay** | `#d3927c` | `--rail` — the navigation rail itself. Deep ink on it is 6.5:1 |
+| Mauve, deepened | `#6d3a2e` | `--rail-rule` — the hairline that defines the clay blocks |
+| **Mauve Terracotta** | `#b16b5e` | `--rail` — the navigation rail ground |
+| **Canyon Clay** | `#d3927c` | `--rail-panel` — raised blocks on the rail: active item, status card, avatar |
 | Terracotta Pot | `#e27b34` | `--brass-light` — the seal on dark |
 | Terracotta / Brick / Dusty | `#d87348` `#d7704c` `#d2886a` | ordered chart ramp |
 
-### Why Canyon Clay is the rail and Mauve is not
+### The rail runs on almost no headroom — treat it as fragile
 
-Canyon Clay is the only supplied swatch large enough to be a *surface*: deep
-ink on it measures 6.5:1, soft ink 5.2:1. But **no coloured accent survives on
-it** — terracotta is 2.9:1, the seal colour 4.0:1 — so the rail carries its
-hierarchy in ink weight rather than hue. The active marker is an ink bar, the
-seal and colonnade are ink at low opacity. That restraint is the point, not a
-compromise.
+The rail is Mauve Terracotta with Canyon Clay blocks. Two constraints govern
+everything on it, and both are tight:
 
-Mauve Terracotta is a dead-zone mid-tone: 4.07:1 against ink, 3.81:1 on cream,
-3.40:1 on the deep ground. It cannot carry small text on anything in this
-system. It is used only as a hairline (`--rail-rule`) and in the chart ramp,
-where 4.5:1 does not apply.
+**One ink, no fades.** Mauve is a dead-zone mid-tone. Only near-black clears
+4.5:1 on it — `--rail-ink` measures **4.66:1**, which is the ceiling, not a
+comfortable margin. There is therefore no second text colour on the rail, and
+**no `opacity` on rail text**: a 0.7 fade measured 3.2:1 and a 0.82 fade also
+failed. Secondary text is distinguished by weight and size alone.
+
+**Clay blocks need hairlines.** Canyon Clay sits at 1.59:1 against mauve —
+nowhere near the 3:1 a UI component needs to read as raised. Every clay block
+is defined by a `--rail-rule` hairline, not by tonal contrast.
+
+Consequence: any future change to the rail — a lighter ink, a fade, a slightly
+lighter mauve, a coloured accent — will break AA. Re-measure before touching it.
+Coloured accents are already ruled out: terracotta is 2.9:1 on clay.
 
 Hero panels stay deep sienna so the composition keeps a dark anchor rather than
 sitting entirely in the mid-tones.
@@ -133,7 +139,7 @@ Rules carry structure; shadows are for things that genuinely float (the audit
 drawer, modals). Radii are small: `--radius-sm` 3px, `--radius` 5px,
 `--radius-lg` 8px.
 
-**Navigation is a 268px Canyon Clay rail**, treated as a designed object rather
+**Navigation is a 268px Mauve Terracotta rail with Canyon Clay blocks**, treated as a designed object rather
 than a slab: pressed-paper grain (inlined `feTurbulence`, no request), the
 engraved seal as the brand mark, and a colonnade along its foot. The active
 section is marked by a brass rule at the leading edge, the way a ledger marks

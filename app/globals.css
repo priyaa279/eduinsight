@@ -290,10 +290,11 @@
      accents all fail on clay (terracotta is 2.9:1), so the rail carries its
      hierarchy in ink weight rather than hue. Hero panels stay deep sienna so
      the composition keeps a dark anchor. */
-  --rail: #d3927c;
-  --rail-ink: #2b1a14;
-  --rail-ink-soft: #42291f;
-  --rail-rule: #b16b5e;
+  --rail: #b16b5e;
+  --rail-ink: #180d0a;
+  --rail-ink-soft: #180d0a;
+  --rail-rule: #6d3a2e;
+  --rail-panel: #d3927c;
 
 }
 
@@ -4884,4 +4885,105 @@ select:focus-visible,
 .sidebar-arches {
   color: var(--rail-ink);
   opacity: 0.16;
+}
+
+/* ===========================================================================
+   Rail: Mauve Terracotta ground with Canyon Clay blocks
+   Both supplied swatches, layered. Mauve is a dead-zone mid-tone — only
+   near-black clears 4.5:1 on it (--rail-ink measures 4.66) — so there is no second text
+   colour on the rail; hierarchy is weight and size alone. Canyon Clay blocks
+   sit at 1.59:1 against mauve, far too close to read as raised on their own,
+   so each is defined by a hairline rather than by tonal contrast.
+   ========================================================================= */
+
+.sidebar {
+  background: var(--rail);
+  border-right: 1px solid var(--rail-rule);
+}
+
+.sidebar::before {
+  mix-blend-mode: multiply;
+  opacity: 0.13;
+}
+
+/* One ink for everything on the rail. */
+.brand strong,
+.brand small,
+.sidebar nav > p,
+.sidebar nav button,
+.sidebar nav button.active,
+.sidebar-status strong,
+.sidebar-status small,
+.sidebar-status > button,
+.profile strong,
+.profile small,
+.brand-seal,
+.sidebar nav button.active .app-icon {
+  color: var(--rail-ink);
+}
+
+/* No opacity on rail text. Mauve leaves only 4.66:1 of headroom, so any
+   fade drops below AA — "Workspace" at 0.7 measured 3.2:1. Secondary text is
+   distinguished by weight and size instead. */
+.brand small,
+.profile small,
+.sidebar-status small {
+  font-weight: 500;
+}
+
+.sidebar nav > p {
+  opacity: 1;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+
+/* Clay blocks, each defined by a hairline because tone alone cannot carry it. */
+.sidebar nav button.active,
+.sidebar-status,
+.profile > span,
+.brand-seal-plate {
+  background: var(--rail-panel);
+  border: 1px solid var(--rail-rule);
+}
+
+.sidebar nav button.active {
+  border-radius: var(--radius);
+  font-weight: 700;
+}
+
+.sidebar nav button:hover:not(.active) {
+  background: color-mix(in oklab, var(--rail-panel) 55%, transparent);
+  color: var(--rail-ink);
+}
+
+.sidebar nav button.active::before {
+  background: var(--rail-ink);
+}
+
+.sidebar-status {
+  border-radius: var(--radius);
+}
+
+.status-pip {
+  background: var(--rail-ink);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--rail-ink) 16%, transparent);
+}
+
+.profile {
+  border-top-color: var(--rail-rule);
+}
+
+.profile > span {
+  border-radius: 50%;
+  color: var(--rail-ink);
+}
+
+.sidebar nav button em {
+  background: var(--claret);
+  color: var(--surface);
+}
+
+.sidebar-arches {
+  color: var(--rail-ink);
+  opacity: 0.14;
 }
