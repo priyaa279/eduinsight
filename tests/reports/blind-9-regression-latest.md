@@ -1,6 +1,6 @@
 # EduInsight Blind Set #9 — post-remediation adjudicated regression
 
-- Executed: 2026-07-31T04:34:21.750Z
+- Executed: 2026-07-31T04:45:01.324Z
 - Immutable untouched baseline: **154/220 (70%)**.
 - Untouched baseline report SHA-256: `41feb6c7e2fbc4d63b56e29d97028346e78a597cff19d1cd2175c91ca9e7d18b`.
 - Raw original-contract result after remediation: **195/220 (88.6%)**.

@@ -28,6 +28,7 @@ import ipedsSuite from "./data/ipeds-suite.generated.json";
 import institutionalMemory from "./data/institutional-memory.json";
 import institutionalMemoryExpanded from "./data/institutional-memory-expanded.json";
 import scenarioBaselines from "./data/scenario-baselines.generated.json";
+import { ArchColonnade, EmptyPlot, QuadPlan, SealMark } from "./artwork";
 
 type ViewId =
   | "overview"
@@ -491,6 +492,8 @@ function Overview({
 
       <section className="hero-grid">
         <article className="ask-card">
+          {/* Quadrangle drawn in plan, sunk into the panel as a watermark. */}
+          <QuadPlan className="card-watermark" />
           <div className="ask-orb"><AppIcon name="sparkles" /></div>
           <p className="eyebrow light">Ask your institution</p>
           <h2>Move from a question to evidence in minutes.</h2>
@@ -971,7 +974,7 @@ function Analyst({
           </>
         ) : (
           <div className="thinking-state analyst-ready">
-            <div className="thinking-mark"><AppIcon name="sparkles" /></div>
+            <EmptyPlot className="empty-plot" />
             <div>
               <strong>Ready to calculate from the current upload</strong>
               <span>
@@ -2880,6 +2883,7 @@ export default function EduInsightApp() {
   const [memoryTarget, setMemoryTarget] = useState<string>();
   const [auditOpen, setAuditOpen] = useState(false);
   const [toast, setToast] = useState("");
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [savedScenarios, setSavedScenarios] = useState<SavedScenario[]>(() =>
     typeof window === "undefined"
       ? []
@@ -2913,6 +2917,7 @@ export default function EduInsightApp() {
 
   function navigate(next: ViewId) {
     setView(next);
+    setMobileNavOpen(false);
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
@@ -2928,34 +2933,16 @@ export default function EduInsightApp() {
 
   return (
     <main className="app-shell">
-      {/* Masthead, not a sidebar. A publication's section rail: it returns the
-          full page width to the data, and the horizontal rail scrolls on
-          narrow screens instead of hiding behind a hamburger drawer. */}
-      <header className="masthead">
-        <div className="masthead-bar">
-          <div className="brand">
-            <span className="brand-mark">E</span>
-            <span>
-              <strong>EduInsight</strong>
-              <small>Institutional intelligence</small>
-            </span>
-          </div>
-          <div className="masthead-meta">
-            <span className="status-note">
-              <em aria-hidden="true" />
-              Agents online · synced 8 min ago
-            </span>
-            <button className="text-link" onClick={() => setAuditOpen(true)}>
-              System status
-              <AppIcon name="arrow-right" />
-            </button>
-            <span className="profile-chip">
-              <span aria-hidden="true">IR</span>
-              Institutional Research
-            </span>
-          </div>
+      <aside className={`sidebar ${mobileNavOpen ? "mobile-open" : ""}`}>
+        <div className="brand">
+          <SealMark className="brand-seal" />
+          <span>
+            <strong>EduInsight</strong>
+            <small>Institutional intelligence</small>
+          </span>
         </div>
-        <nav className="section-rail" aria-label="Primary navigation">
+        <nav aria-label="Primary navigation">
+          <p>Workspace</p>
           {navigation.map((item) => (
             <button
               className={view === item.id ? "active" : ""}
@@ -2969,7 +2956,39 @@ export default function EduInsightApp() {
             </button>
           ))}
         </nav>
-      </header>
+        <div className="sidebar-status">
+          <div>
+            <span className="status-pip" aria-hidden="true" />
+            <p>
+              <strong>Agents online</strong>
+              <small>Last sync 8 min ago</small>
+            </p>
+          </div>
+          <button onClick={() => setAuditOpen(true)}>
+            View system status <AppIcon name="arrow-right" />
+          </button>
+        </div>
+        <div className="profile">
+          <span>IR</span>
+          <p>
+            <strong>Institutional Research</strong>
+            <small>Administrator</small>
+          </p>
+        </div>
+        {/* Horizon line: the one piece of plainly architectural imagery. */}
+        <ArchColonnade className="sidebar-arches" />
+      </aside>
+
+      <button
+        className="mobile-menu"
+        aria-label="Toggle navigation"
+        aria-expanded={mobileNavOpen}
+        onClick={() => setMobileNavOpen(!mobileNavOpen)}
+      >
+        <span />
+        <span />
+        <span />
+      </button>
 
       <section className="main-canvas">
         {view === "overview" && (

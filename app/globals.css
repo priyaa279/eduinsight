@@ -17,8 +17,8 @@
      vinext (emits @font-face with no src). Newsreader is an editorial serif
      with real voice; Public Sans holds up in dense tables; Plex Mono carries
      identifiers where 0/O and 1/l must not be confused. */
-  --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
-  --font-sans: "Public Sans", system-ui, -apple-system, sans-serif;
+  --font-serif: "Fraunces", Georgia, serif;
+  --font-sans: "Karla", system-ui, -apple-system, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
 
   /* Type scale. The display size is spent once per screen — on the answer. */
@@ -32,44 +32,44 @@
   --font-size-xs: 0.75rem;
 
   /* Paper and ink */
-  --paper: #faf7f1;
-  --paper-sunken: #f1ece1;
-  --surface: #fffdf9;
-  --surface-2: #f6f2ea;
+  --paper: #faf6ee;
+  --paper-sunken: #f0e9dc;
+  --surface: #fffdf8;
+  --surface-2: #f6f1e6;
 
-  --ink: #1c1a17;
-  --ink-soft: #5b5449;
-  --ink-faint: #6e6559;
+  --ink: #221f1a;
+  --ink-soft: #5c5347;
+  --ink-faint: #6e6455;
 
-  --rule: #ddd5c6;
-  --rule-strong: #bcb2a0;
+  --rule: #e0d7c6;
+  --rule-strong: #c2b7a1;
 
   /* Ivy — the institution itself: navigation, primary action, verified state */
-  --ivy: #2a5245;
-  --ivy-deep: #1e3c33;
-  --ivy-mid: #4d7a68;
-  --ivy-tint: #e8efea;
-  --on-ivy: #fffdf9;
+  --ivy: #2c5a55;
+  --ivy-deep: #16302c;
+  --ivy-mid: #4d7f78;
+  --ivy-tint: #e6efec;
+  --on-ivy: #fffdf8;
 
   /* Brass — the seal. Certified sources, approved packages, the one number. */
-  --brass: #7d6229;
-  --brass-deep: #5d4819;
-  --brass-tint: #faf5e8;
-  --brass-light: #d8c99a;
+  --brass: #8a6a1c;
+  --brass-deep: #6a5010;
+  --brass-tint: #faf3e0;
+  --brass-light: #d9c07f;
 
   /* Text tuned for the dark ivy panels. Held here so every raw colour in the
      system lives in one block (enforced by tests/ui-integrity.test.mjs). */
-  --ink-on-ivy: #f4efe4;
-  --ink-soft-on-ivy: #d5cdbd;
-  --ink-faint-on-ivy: #bdb3a0;
-  --ivy-mid-on-ivy: #9fc0b0;
+  --ink-on-ivy: #e8e0cf;
+  --ink-soft-on-ivy: #cfc4ab;
+  --ink-faint-on-ivy: #b3a992;
+  --ivy-mid-on-ivy: #9fc4bc;
 
   /* States. Severity is a single warm ramp: claret, terracotta, brass. */
   --claret: #8c2f2f;
   --claret-deep: #6d2222;
   --claret-tint: #f9ecea;
-  --terracotta: #a8501f;
-  --terracotta-tint: #fceee5;
+  --terracotta: #a84a1c;
+  --terracotta-tint: #fbeee4;
   --info: #2f4f7a;
   --info-deep: #22395a;
   --info-tint: #eaeff6;
@@ -344,229 +344,315 @@ textarea:focus-visible {
 }
 
 /* ---------------------------------------------------------------------------
-   Shell — a masthead over a full-width canvas.
-   The previous layout was a fixed 264px dark sidebar. A publication's section
-   rail reads as editorial rather than admin-console, and returns the whole
-   page width to the data. On narrow screens the rail scrolls horizontally
-   instead of collapsing into a hamburger drawer.
+   Shell — pine sidebar over cream canvas.
+   The sidebar is a designed object, not a slab: pressed-paper grain, an
+   engraved seal, and a colonnade along its foot. Artwork is generated SVG
+   (app/artwork.tsx) so it themes from currentColor and costs no request.
    ------------------------------------------------------------------------- */
 .app-shell {
   min-height: 100vh;
   background: var(--paper);
 }
 
-.masthead {
-  position: sticky;
-  top: 0;
+.sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
   z-index: 30;
-  background: var(--paper);
-  border-bottom: 1px solid var(--rule-strong);
+  width: 268px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 26px 20px 0;
+  overflow: hidden;
+  background: var(--ivy-deep);
+  border-right: 1px solid rgba(255, 253, 248, 0.09);
+  color: var(--ink-on-ivy);
 }
 
-.masthead-bar {
-  width: min(1460px, 100%);
-  margin: 0 auto;
-  padding: 15px 42px 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
+/* Pressed-paper grain. Sits above the fill, below the content. */
+.sidebar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22160%22%20height%3D%22160%22%3E%3Cfilter%20id%3D%22g%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%220.85%22%20numOctaves%3D%223%22%20stitchTiles%3D%22stitch%22%2F%3E%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%22160%22%20height%3D%22160%22%20filter%3D%22url(%23g)%22%20opacity%3D%220.42%22%2F%3E%3C%2Fsvg%3E");
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.sidebar > * {
+  position: relative;
+  z-index: 1;
 }
 
 .brand {
   display: flex;
   align-items: center;
-  gap: 11px;
+  gap: 12px;
 }
 
-.brand-mark {
-  display: grid;
-  place-items: center;
-  width: 34px;
-  height: 34px;
-  border-radius: var(--radius-sm);
-  background: var(--ivy);
-  color: var(--on-ivy);
-  font-family: var(--font-serif);
-  font-size: 19px;
-  font-weight: 600;
+.brand-seal {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  color: var(--brass-light);
 }
 
 .brand strong {
   display: block;
   font-family: var(--font-serif);
-  font-size: 19px;
+  font-size: 21px;
   font-weight: 600;
+  font-variation-settings: "SOFT" 20, "WONK" 1;
   letter-spacing: -0.2px;
-  line-height: 1.15;
-  color: var(--ink);
+  line-height: 1.1;
+  color: var(--ink-on-ivy);
 }
 
 .brand small {
   display: block;
-  margin-top: 1px;
-  color: var(--ink-faint);
+  margin-top: 2px;
+  color: var(--ink-faint-on-ivy);
   font-size: 12px;
+  letter-spacing: 0.02em;
 }
 
-.masthead-meta {
+.sidebar nav {
   display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-shrink: 0;
+  flex-direction: column;
+  gap: 2px;
 }
 
-.status-note {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  color: var(--ink-soft);
-  font-size: 12px;
-}
-
-.status-note em {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--ivy-mid);
-}
-
-.masthead-meta .text-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 0;
-  border: 0;
-  background: none;
-  cursor: pointer;
-  color: var(--ivy);
-  font-family: var(--font-sans);
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.masthead-meta .text-link:hover {
-  color: var(--ivy-deep);
-  text-decoration: underline;
-}
-
-.masthead-meta .text-link .app-icon {
-  width: 13px;
-  height: 13px;
-}
-
-.profile-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding-left: 20px;
-  border-left: 1px solid var(--rule);
-  color: var(--ink-soft);
-  font-size: 12px;
-}
-
-.profile-chip > span {
-  display: grid;
-  place-items: center;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: var(--brass-tint);
-  border: 1px solid var(--brass);
-  color: var(--brass-deep);
+.sidebar nav > p {
+  margin: 0 0 8px;
+  padding-left: 11px;
+  color: var(--brass-light);
   font-size: 11px;
   font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 
-/* The contents line. Active section is marked by a rule, not a filled pill. */
-.section-rail {
-  width: min(1460px, 100%);
-  margin: 0 auto;
-  padding: 0 42px;
+.sidebar nav button {
+  position: relative;
   display: flex;
-  gap: 2px;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.section-rail::-webkit-scrollbar {
-  display: none;
-}
-
-.section-rail button {
-  display: inline-flex;
   align-items: center;
-  gap: 8px;
-  flex: 0 0 auto;
-  margin-bottom: -1px;
-  padding: 11px 14px 12px;
+  gap: 11px;
+  width: 100%;
+  padding: 10px 12px;
   border: 0;
-  border-bottom: 2px solid transparent;
+  border-radius: var(--radius);
   background: none;
   cursor: pointer;
-  color: var(--ink-soft);
+  color: var(--ink-soft-on-ivy);
   font-family: var(--font-sans);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
-  white-space: nowrap;
-  transition: color 140ms ease, border-color 140ms ease;
+  text-align: left;
+  transition: background 140ms ease, color 140ms ease;
 }
 
-.section-rail button:hover {
-  color: var(--ink);
+.sidebar nav button:hover {
+  background: rgba(255, 253, 248, 0.06);
+  color: var(--ink-on-ivy);
 }
 
-.section-rail button.active {
-  color: var(--ivy-deep);
-  border-bottom-color: var(--ivy);
+/* Active section is marked by a brass rule at the leading edge, the way a
+   ledger marks the open page. */
+.sidebar nav button.active {
+  background: rgba(255, 253, 248, 0.09);
+  color: var(--ink-on-ivy);
   font-weight: 600;
 }
 
-.section-rail button .app-icon {
-  width: 15px;
-  height: 15px;
-  opacity: 0.7;
+.sidebar nav button.active::before {
+  content: "";
+  position: absolute;
+  left: -20px;
+  top: 7px;
+  bottom: 7px;
+  width: 3px;
+  border-radius: 0 2px 2px 0;
+  background: var(--brass-light);
 }
 
-.section-rail button.active .app-icon {
+.sidebar nav button .app-icon {
+  width: 17px;
+  height: 17px;
+  opacity: 0.75;
+}
+
+.sidebar nav button.active .app-icon {
   opacity: 1;
+  color: var(--brass-light);
 }
 
-.section-rail button em {
+.sidebar nav button span:not(.app-icon) {
+  flex: 1 1 auto;
+}
+
+.sidebar nav button em {
   display: inline-grid;
   place-items: center;
-  min-width: 17px;
-  height: 17px;
-  padding: 0 4px;
-  border-radius: 9px;
+  min-width: 19px;
+  height: 19px;
+  padding: 0 5px;
+  border-radius: 10px;
   background: var(--terracotta);
-  color: var(--surface);
+  color: var(--on-ivy);
   font-size: 11px;
   font-weight: 700;
   font-style: normal;
 }
 
-.main-canvas {
-  min-height: 60vh;
+.sidebar-status {
+  margin-top: auto;
+  padding: 14px 12px;
+  border: 1px solid rgba(255, 253, 248, 0.12);
+  border-radius: var(--radius);
+  background: rgba(255, 253, 248, 0.04);
 }
 
-@media (max-width: 820px) {
-  .masthead-bar {
-    padding: 12px 20px 10px;
-    flex-wrap: wrap;
-    gap: 12px;
+.sidebar-status > div {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.status-pip {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--ivy-mid-on-ivy);
+  box-shadow: 0 0 0 3px rgba(159, 196, 188, 0.18);
+}
+
+.sidebar-status p,
+.profile p {
+  margin: 0;
+}
+
+.sidebar-status strong,
+.profile strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-on-ivy);
+}
+
+.sidebar-status small,
+.profile small {
+  display: block;
+  color: var(--ink-faint-on-ivy);
+  font-size: 12px;
+}
+
+.sidebar-status > button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  color: var(--brass-light);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.sidebar-status > button:hover {
+  text-decoration: underline;
+}
+
+.sidebar-status > button .app-icon {
+  width: 13px;
+  height: 13px;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 0 16px;
+  border-top: 1px solid rgba(255, 253, 248, 0.1);
+}
+
+.profile > span {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  border: 1px solid var(--brass-light);
+  background: rgba(217, 192, 127, 0.14);
+  color: var(--brass-light);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Colonnade along the foot of the rail. */
+.sidebar-arches {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 64px;
+  color: var(--brass-light);
+  opacity: 0.22;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.mobile-menu {
+  display: none;
+}
+
+.main-canvas {
+  min-height: 100vh;
+  margin-left: 268px;
+}
+
+@media (max-width: 1020px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 220ms ease;
+    box-shadow: var(--shadow-lift);
   }
 
-  .masthead-meta {
-    gap: 14px;
+  .sidebar.mobile-open {
+    transform: translateX(0);
   }
 
-  .status-note {
-    display: none;
+  .main-canvas {
+    margin-left: 0;
   }
 
-  .section-rail {
-    padding: 0 20px;
+  .mobile-menu {
+    position: fixed;
+    top: 14px;
+    left: 14px;
+    z-index: 40;
+    display: grid;
+    gap: 4px;
+    padding: 10px;
+    border: 1px solid var(--rule-strong);
+    border-radius: var(--radius);
+    background: var(--surface);
+    cursor: pointer;
+  }
+
+  .mobile-menu span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    border-radius: 1px;
+    background: var(--ink);
   }
 }
 
@@ -4550,4 +4636,55 @@ td {
 .issues-panel table {
   min-width: 0;
   table-layout: auto;
+}
+
+/* ---------------------------------------------------------------------------
+   Artwork placement. Generated SVG (app/artwork.tsx), themed from currentColor.
+   ------------------------------------------------------------------------- */
+
+/* Watermark sunk into hero panels — present, never competing with the text. */
+.card-watermark {
+  position: absolute;
+  right: -46px;
+  bottom: -64px;
+  width: 320px;
+  height: 320px;
+  color: var(--brass-light);
+  opacity: 0.14;
+  pointer-events: none;
+}
+
+.ask-card,
+.ipeds-banner,
+.scenario-hero,
+.memory-search {
+  position: relative;
+  overflow: hidden;
+}
+
+.ask-card > *:not(.card-watermark) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Empty and ready states get a drawn plot rather than another icon in a box. */
+.empty-plot {
+  width: 116px;
+  height: 62px;
+  flex: 0 0 auto;
+  color: var(--ink-faint);
+  opacity: 0.8;
+}
+
+/* Fraunces carries an optical-size and a WONK axis; let display sizes use the
+   larger optical cut and a touch of wonk, and keep small text plain. */
+.page-header h1,
+.section-heading h2,
+.ask-card h2 {
+  font-variation-settings: "opsz" 72, "SOFT" 18, "WONK" 1;
+}
+
+h3,
+.brand strong {
+  font-variation-settings: "opsz" 24, "SOFT" 12, "WONK" 0;
 }

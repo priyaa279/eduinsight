@@ -2,7 +2,7 @@
 
 The source of truth for every visual decision. Read this before building UI.
 
-**System: Academic Press.** Established 2026-07-31. Supersedes the earlier
+**System: Scriptorium.** Established 2026-07-31. Supersedes the earlier
 navy/ochre attempt, which was rejected for being a palette swap over unchanged
 structure — the lesson worth keeping is that **structure carries more of a
 design's identity than colour does**.
@@ -20,29 +20,31 @@ photography, no single school's colours.
 
 ## Colour
 
-Warm laid paper and warm ink. Ivy is the institution; brass is what has been
-certified.
+Warm cream paper and warm ink. Pine is the institution; gold is what has been
+certified; terracotta carries attention. Token *names* are historical (`--ivy`,
+`--brass`) and are kept because ~150 rules and 183 remapped aliases reference
+them — only the values moved.
 
 | Role | Token | Value |
 |---|---|---|
-| Page ground | `--paper` | `#faf7f1` |
-| Panel | `--surface` | `#fffdf9` |
-| Raised / alt row | `--surface-2` | `#f6f2ea` |
-| Well, track | `--paper-sunken` | `#f1ece1` |
-| Text | `--ink` | `#1c1a17` |
-| Secondary text | `--ink-soft` | `#5b5449` |
-| Tertiary text | `--ink-faint` | `#6e6559` |
-| Hairline | `--rule` | `#ddd5c6` |
-| Emphasis rule | `--rule-strong` | `#bcb2a0` |
-| Institution / primary | `--ivy` | `#2a5245` |
-| Pressed / dark panel | `--ivy-deep` | `#1e3c33` |
-| Mid ivy | `--ivy-mid` | `#4d7a68` |
-| Ivy tint | `--ivy-tint` | `#e8efea` |
-| Certified / seal | `--brass` | `#7d6229` |
-| Seal, on dark | `--brass-light` | `#d8c99a` |
-| Brass tint | `--brass-tint` | `#faf5e8` |
+| Page ground | `--paper` | `#faf6ee` |
+| Panel | `--surface` | `#fffdf8` |
+| Raised / alt row | `--surface-2` | `#f6f1e6` |
+| Well, track | `--paper-sunken` | `#f0e9dc` |
+| Text | `--ink` | `#221f1a` |
+| Secondary text | `--ink-soft` | `#5c5347` |
+| Tertiary text | `--ink-faint` | `#6e6455` |
+| Hairline | `--rule` | `#e0d7c6` |
+| Emphasis rule | `--rule-strong` | `#c2b7a1` |
+| Institution / primary (pine) | `--ivy` | `#2c5a55` |
+| Sidebar / dark panel | `--ivy-deep` | `#16302c` |
+| Mid pine | `--ivy-mid` | `#4d7f78` |
+| Pine tint | `--ivy-tint` | `#e6efec` |
+| Certified / seal (gold) | `--brass` | `#8a6a1c` |
+| Seal, on dark | `--brass-light` | `#d9c07f` |
+| Gold tint | `--brass-tint` | `#faf3e0` |
 | Critical | `--claret` | `#8c2f2f` |
-| High / warning | `--terracotta` | `#a8501f` |
+| Attention / high | `--terracotta` | `#a84a1c` |
 | Informational | `--info` | `#2f4f7a` |
 
 Severity is one warm ramp — claret → terracotta → brass. Because Medium shares
@@ -52,8 +54,8 @@ alone**; every chip carries its word.
 ### Verified contrast
 
 Every text/ground pair across all six views was measured in the browser with
-correct alpha compositing: **0 failures against WCAG AA**. `--ink-faint` is the
-floor at 4.86–5.63:1 depending on ground; do not introduce anything lighter for
+correct alpha compositing: **0 failures against WCAG AA**, sidebar included. `--ink-faint` is the
+floor at 5.41:1 on paper (lowest ratio anywhere: 4.95:1); do not introduce anything lighter for
 text. It is tuned against `--paper`, which is darker than `--surface` — check
 new colours against paper, not white.
 
@@ -81,8 +83,8 @@ fallback.
 
 | Variable | Face | Used for |
 |---|---|---|
-| `--font-serif` | **Newsreader** | Anything that speaks: headings, answer headlines |
-| `--font-sans` | **Public Sans** | Anything read in bulk: body, UI, dense tables |
+| `--font-serif` | **Fraunces** (variable `opsz`, `SOFT`, `WONK`) | Anything that speaks: headings, answer headlines |
+| `--font-sans` | **Karla** | Anything read in bulk: body, UI, dense tables |
 | `--font-mono` | **IBM Plex Mono** | Identifiers: rule codes, survey codes, query plans |
 
 Scale: `--text-display` `clamp(2.5rem, 1.4rem + 3.6vw, 4rem)` · `--text-h1`
@@ -102,12 +104,29 @@ Rules carry structure; shadows are for things that genuinely float (the audit
 drawer, modals). Radii are small: `--radius-sm` 3px, `--radius` 5px,
 `--radius-lg` 8px.
 
-**Navigation is a masthead, not a sidebar.** A two-tier header — brand and
-status above, a horizontal section rail below — replaced the fixed 264px dark
-sidebar. It reads editorial rather than admin-console and returns the whole
-page width to the data. The rail scrolls horizontally on narrow screens rather
-than collapsing into a hamburger drawer. The active section is marked by a
-2px ivy rule, not a filled pill.
+**Navigation is a 268px pine sidebar**, treated as a designed object rather
+than a slab: pressed-paper grain (inlined `feTurbulence`, no request), the
+engraved seal as the brand mark, and a colonnade along its foot. The active
+section is marked by a brass rule at the leading edge, the way a ledger marks
+the open page. Below 1020px it becomes a drawer behind a hamburger, and
+navigating closes it.
+
+## Imagery
+
+All artwork is generated SVG in `app/artwork.tsx` — it themes from
+`currentColor`, scales cleanly, adds no request, and raises no licensing
+question. Motifs are deliberately institution-agnostic:
+
+| Component | Where | What it is |
+|---|---|---|
+| `SealMark` | Sidebar brand | Engraved seal: ticked rim, concentric rules, an open ledger spread reduced to three strokes |
+| `ArchColonnade` | Sidebar foot | Receding arches as a horizon line — the one plainly architectural image |
+| `QuadPlan` | Hero panels | A quadrangle in plan, sunk to 14% as a watermark |
+| `EmptyPlot` | Empty / ready states | A dashed series that has not been calculated yet |
+| `PageRule` | Section ends | A ruled page-foot ornament |
+
+Imagery must never compete with data. Watermarks stay under 0.15 opacity;
+nothing decorative may sit inside a panel that is reporting a number.
 
 Grid and flex children need `min-width: 0`; the default `auto` lets a wide
 table push the page sideways (`.issue-detail` overhung 333px at 375px).
