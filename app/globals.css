@@ -743,19 +743,6 @@ textarea:focus-visible {
 }
 
 .agent-badge,
-.scenario-mode {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 9px 12px;
-  border: 1px solid var(--line);
-  border-radius: 9px;
-  color: var(--color-5d687c);
-  background: rgba(255,255,255,.66);
-  font-size: 12px;
-  font-weight: 700;
-  white-space: nowrap;
-}
 
 .button {
   min-height: 38px;
@@ -2837,11 +2824,6 @@ textarea:focus-visible {
   max-width: 650px;
 }
 
-.scenario-mode {
-  border-color: color-mix(in oklab, var(--terracotta-light) 25%, transparent);
-  color: var(--mint);
-  background: color-mix(in oklab, var(--terracotta-light) 8%, transparent);
-}
 
 .scenario-mode-tabs {
   display: grid;
@@ -5135,4 +5117,29 @@ select:focus-visible,
   place-items: center;
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
+}
+
+/* The topline is a two-item flex row; both items were shrinking, which broke
+   "Verified Jul 29, 2026" across two lines. Keep each item whole and let the
+   row itself wrap if the panel is ever too narrow for both. */
+.results-topline {
+  flex-wrap: wrap;
+  gap: 4px 16px;
+}
+
+.results-topline > span {
+  white-space: nowrap;
+}
+
+/* The memory row pinned its date column at 90px while "Verified Jul 29, 2026"
+   needs about 135px, so every one of the 85 rows broke the date across two
+   lines. Size the column to its content instead of guessing a width, and keep
+   the middle column at minmax(0, 1fr) so a long description still cannot push
+   the row sideways. */
+.memory-item {
+  grid-template-columns: 31px minmax(0, 1fr) auto;
+}
+
+.memory-item time {
+  white-space: nowrap;
 }

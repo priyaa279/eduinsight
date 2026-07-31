@@ -2094,7 +2094,6 @@ function Scenario({
             the governed baseline—not a forecast.
           </p>
         </div>
-        <span className="scenario-mode">Deterministic model</span>
       </section>
       <div className="scenario-mode-tabs" role="tablist" aria-label="Scenario type">
         {modes.map((item) => (
