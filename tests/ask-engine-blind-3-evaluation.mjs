@@ -159,6 +159,14 @@ function capacityPoints(measure = "utilization") {
   }));
 }
 
+function exactCapacityPoints() {
+  return dataset.capacity.map((row) => ({
+    label: row.programName,
+    programId: row.programId,
+    value: (row.filled / row.seats) * 100,
+  }));
+}
+
 function percent(numerator, denominator) {
   return round1((numerator / denominator) * 100);
 }
@@ -594,8 +602,9 @@ addBatch("leadership-operations", [
     "Which programs have crossed the 90% utilization threshold?",
     {
       ...plan({ metric: "capacity_utilization", groupBy: "program" }),
-      pointsExact: capacityPoints()
+      pointsExact: exactCapacityPoints()
         .filter((row) => row.value > 90)
+        .toSorted((left, right) => right.value - left.value)
         .map(({ label, value }) => ({ label, value })),
     },
   ],
@@ -1745,8 +1754,9 @@ addBatch("temporal-ranking-math", [
     "Which programs are strictly above 90 percent capacity?",
     {
       ...plan({ metric: "capacity_utilization", groupBy: "program" }),
-      pointsExact: capacityPoints()
+      pointsExact: exactCapacityPoints()
         .filter((row) => row.value > 90)
+        .toSorted((left, right) => right.value - left.value)
         .map(({ label, value }) => ({ label, value })),
     },
   ],
@@ -1754,8 +1764,9 @@ addBatch("temporal-ranking-math", [
     "Which programs are at least 90 percent full?",
     {
       ...plan({ metric: "capacity_utilization", groupBy: "program" }),
-      pointsExact: capacityPoints()
+      pointsExact: exactCapacityPoints()
         .filter((row) => row.value >= 90)
+        .toSorted((left, right) => right.value - left.value)
         .map(({ label, value }) => ({ label, value })),
     },
   ],
@@ -1799,7 +1810,9 @@ addBatch("provenance-confidence", [
     "Show Computer Science capacity utilization with its source tables.",
     {
       ...plan({ metric: "capacity_utilization", programId: "PCS" }),
-      topValue: 86,
+      topValue: exactCapacityPoints().find(
+        (row) => row.programId === "PCS",
+      ).value,
       sourcesInclude: ["sections.csv", "section_enrollments.csv", "programs.csv"],
       sourcesExclude: ["students.csv", "ipeds_validation_results.csv"],
     },

@@ -10,10 +10,11 @@
       "window": "Fall",
       "name": "Institutional Characteristics",
       "code": "IC",
-      "coverage": "unsupported",
-      "status": "Not supported",
-      "reason": "Requires an institution_profile domain for address, control, calendar, mission, and award-level metadata.",
-      "generator": false
+      "coverage": "questionnaire",
+      "status": "Questionnaire only",
+      "reason": "The governed institution profile supports review, but the official 2025-26 NCES public catalog exposes no IC import-file layout.",
+      "generator": false,
+      "officialImportLayout": false
     },
     {
       "window": "Fall",
@@ -24,70 +25,78 @@
       "status": "Buildable",
       "reason": "Governed completion, student demographic, program, CIP, and award-level data are available.",
       "generator": true,
-      "specId": "ipeds_spec.completions.v2025_26"
+      "specId": "ipeds_spec.completions.v2025_26",
+      "uploadLayoutId": 27
     },
     {
       "window": "Fall",
       "name": "12-Month Enrollment",
       "code": "E12",
-      "coverage": "partial",
-      "status": "Partially supported",
-      "reason": "Unduplicated headcount is derivable, but governed instructional contact-hour data are missing.",
-      "generator": false
+      "coverage": "full",
+      "status": "Buildable",
+      "reason": "The governed annual enrollment mart supplies unduplicated headcount, instructional activity, distance education, and dual-enrollment controls.",
+      "generator": true,
+      "uploadLayoutId": 21
     },
     {
-      "window": "Fall",
+      "window": "Fall/Winter",
       "name": "Cost",
       "code": "CST",
-      "coverage": "unsupported",
-      "status": "Not supported",
-      "reason": "Requires tuition, fee, cost-of-attendance, and net-price source domains.",
-      "generator": false
+      "coverage": "full",
+      "status": "Buildable",
+      "reason": "Applicable institution-level tuition, fees, and cost-of-attendance fields are generated. Official Part F is not applicable because the institution has no doctor's-professional-practice program.",
+      "generator": true,
+      "uploadLayoutId": 1
     },
     {
       "window": "Winter",
       "name": "Admissions",
       "code": "ADM",
-      "coverage": "unsupported",
-      "status": "Not supported",
-      "reason": "Requires applicant, admit, enrolled, and test-score funnel data.",
-      "generator": false
+      "coverage": "full",
+      "status": "Buildable",
+      "reason": "First-time and transfer admission sections are generated from an explicitly estimated admissions funnel derived from governed enrolled headcount.",
+      "generator": true,
+      "uploadLayoutId": 35
     },
     {
       "window": "Winter",
       "name": "Graduation Rates",
       "code": "GR",
-      "coverage": "partial",
-      "status": "Partially supported",
-      "reason": "Cohorts are derivable, but official exclusions and transfer-out rules are not implemented.",
-      "generator": false
+      "coverage": "full",
+      "status": "Buildable",
+      "reason": "The governed graduation-rate cohort mart models the official exclusion categories and 150%-time completion outcomes.",
+      "generator": true,
+      "uploadLayoutId": 11
     },
     {
       "window": "Winter",
       "name": "200% Graduation Rates",
       "code": "GR200",
-      "coverage": "partial",
-      "status": "Partially supported",
-      "reason": "Cohorts are derivable, but official 200%-time exclusions and transfer-out rules are not implemented.",
-      "generator": false
+      "coverage": "full",
+      "status": "Buildable",
+      "reason": "The same governed graduation-rate cohort mart supplies official exclusions and 200%-time outcomes.",
+      "generator": true,
+      "uploadLayoutId": 31
     },
     {
       "window": "Winter",
       "name": "Outcome Measures",
       "code": "OM",
-      "coverage": "unsupported",
-      "status": "Not supported",
-      "reason": "Requires governed 4-, 6-, and 8-year cohort tracking joined to Pell and loan status.",
-      "generator": false
+      "coverage": "partial",
+      "status": "Partial",
+      "reason": "Cohort, Pell/loan, award, and retained-at-institution outcomes are generated; transfer completion remains blocked on Clearinghouse data.",
+      "generator": true,
+      "uploadLayoutId": 36
     },
     {
       "window": "Winter",
       "name": "Student Financial Aid",
       "code": "SFA",
-      "coverage": "partial",
-      "status": "Partially supported",
-      "reason": "A Pell-recipient field is now modeled, but award amounts, aid categories, and reconciliation rules are not yet complete.",
-      "generator": false
+      "coverage": "full",
+      "status": "Buildable",
+      "reason": "The governed financial-aid mart supplies enrollment controls, Pell recipients, federal loans, amounts, percentages, and averages.",
+      "generator": true,
+      "uploadLayoutId": 17
     },
     {
       "window": "Spring",
@@ -95,28 +104,31 @@
       "code": "EF",
       "uploadCode": "EF1",
       "coverage": "full",
-      "status": "Buildable with blockers",
-      "reason": "Parts A, B, D, and H are generated from governed fall census data; Parts C, E, F, and G remain blocked on missing governed fields.",
+      "status": "Buildable",
+      "reason": "Parts A-H are generated from governed fall census and supplemental enrollment controls.",
       "generator": true,
-      "specId": "ipeds_spec.fall_enrollment.v2025_26"
+      "specId": "ipeds_spec.fall_enrollment.v2025_26",
+      "uploadLayoutId": 22
     },
     {
       "window": "Spring",
       "name": "Finance",
       "code": "F",
-      "coverage": "unsupported",
-      "status": "Not supported",
-      "reason": "Requires a governed general-ledger/chart-of-accounts source domain.",
-      "generator": false
+      "coverage": "partial",
+      "status": "Partial",
+      "reason": "A selected GASB control summary is generated; the complete official GASB statement and Census schedules remain blocked on audited general-ledger detail.",
+      "generator": true,
+      "uploadLayoutId": 25
     },
     {
       "window": "Spring",
       "name": "Human Resources",
       "code": "HR",
-      "coverage": "unsupported",
-      "status": "Not supported",
-      "reason": "Requires occupational category, tenure, salary, and employee demographic fields.",
-      "generator": false
+      "coverage": "full",
+      "status": "Buildable",
+      "reason": "Applicable employee census, occupation, tenure, demographic, graduate-assistant, salary, and new-hire sections are generated from the governed HR mart.",
+      "generator": true,
+      "uploadLayoutId": 7
     }
   ],
   "retired": [

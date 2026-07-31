@@ -1,0 +1,1386 @@
+﻿{
+    "title":  "Student Financial Aid for academic reporters",
+    "note":  "\u003ctable width=\"95%\"\u003e  \u003ctbody\u003e  \u003ctr\u003e  \u003ctd colspan=\"2\"\u003e\u003cb\u003eUndergraduate students (Academic Reporters)\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e  \u003ctr\u003e  \u003ctd width=\"5%\" align=\"right\" valign=\"top\"\u003e1 - \u003c/td\u003e  \u003ctd \u003eThe total number of students enrolled in Fall 2024 [Section 1: Part A - Establish Your Student Counts, Line 02/03/04]\u003cbr\u003eIf STYPE=1, then All undergraduate students, if STYPE=2, then All degree/certificate-seeking undergraduate students, if STYPE=3, then All non-degree/non-certificate-seeking undergraduate students.\u003c/td\u003e\u003c/tr\u003e  \u003ctr\u003e  \u003ctd width=\"5%\" align=\"right\" valign=\"top\"\u003e2 - \u003c/td\u003e  \u003ctd \u003eGrant or scholarship aid from the federal government, state/local government, the institution, and other sources known to the institution (Do NOT include student loans) [Section 1: Part B/C/D, Line 01]\u003c/td\u003e\u003c/tr\u003e  \u003ctr\u003e  \u003ctd width=\"5%\" align=\"right\" valign=\"top\"\u003e3 - \u003c/td\u003e  \u003ctd \u003eGrants or scholarships from the federal government, state/local government, or the institution (Do NOT include student loans) [Section 1: Part B/C/D, Line 01a]\u003c/td\u003e\u003c/tr\u003e  \u003ctr\u003e  \u003ctd width=\"5%\" align=\"right\" valign=\"top\"\u003e4 - \u003c/td\u003e  \u003ctd \u003eGrant or scholarship aid from other sources known to the institution (Do NOT include student loans) [Section 1: Part B/C/D, Line 01b]\u003c/td\u003e\u003c/tr\u003e  \u003ctr\u003e  \u003ctd width=\"5%\" align=\"right\" valign=\"top\"\u003e5 - \u003c/td\u003e  \u003ctd \u003eFederal grants and scholarship aid [Section 1: Part B/C/D, Line 02]\u003c/td\u003e\u003c/tr\u003e  \u003ctr\u003e  \u003ctd width=\"5%\" align=\"right\" valign=\"top\"\u003e6 - \u003c/td\u003e  \u003ctd \u003eFederal Pell Grants [Section 1: Part B/C/D, Line 02a]\u003c/td\u003e\u003c/tr\u003e  \u003ctr\u003e  \u003ctd width=\"5%\" align=\"right\" valign=\"top\"\u003e7 - \u003c/td\u003e  \u003ctd \u003eOther federal grants and scholarship aid [Section 1: Part B/C/D, Line 02b]\u003c/td\u003e\u003c/tr\u003e  \u003ctr\u003e  \u003ctd width=\"5%\" align=\"right\" valign=\"top\"\u003e8 - \u003c/td\u003e  \u003ctd \u003eState/local government grant or scholarship aid (includes fellowships, waivers, and employee exemptions) [Section 1: Part B/C/D, Line 03]\u003c/td\u003e\u003c/tr\u003e  \u003ctr\u003e  \u003ctd width=\"5%\" align=\"right\" valign=\"top\"\u003e9 - \u003c/td\u003e  \u003ctd \u003eInstitutional grant or scholarship aid (includes fellowships, waivers, and employee exemptions) [Section 1: Part B/C/D, Line 04]\u003c/td\u003e\u003c/tr\u003e  \u003ctr\u003e  \u003ctd width=\"5%\" align=\"right\" valign=\"top\"\u003e10 - \u003c/td\u003e  \u003ctd \u003eLoans to students [Section 1: Part B/C/D, Line 05]\u003c/td\u003e\u003c/tr\u003e  \u003ctr\u003e  \u003ctd width=\"5%\" align=\"right\" valign=\"top\"\u003e11 - \u003c/td\u003e  \u003ctd \u003eFederal loans to students [Section 1: Part B/C/D, Line 05a]\u003c/td\u003e\u003c/tr\u003e \u003ctr\u003e  \u003ctd width=\"5%\" align=\"right\" valign=\"top\"\u003e12 - \u003c/td\u003e  \u003ctd \u003eOther loans to students (including private loans) [Section 1: Part B/C/D, Line 05b]\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003cbr\u003e      \u003ctable width=\"95%\"\u003e  \u003ctbody\u003e  \u003ctr\u003e  \u003ctd colspan=\"2\"\u003e\u003cb\u003eFull-time, first-time degree/certificate-seeking undergraduate students\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e  \u003ctr\u003e  \u003ctd width=\"5%\" align=\"right\" valign=\"top\"\u003e1 - \u003c/td\u003e  \u003ctd \u003eNumber of full-time, first-time degree/certificate-seeking undergraduate students enrolled in Fall 2024 [Section 1: Part A - Establish Your Student Counts, Line 05]\u003c/td\u003e\u003c/tr\u003e  \u003ctr\u003e  \u003ctd width=\"5%\" align=\"right\" valign=\"top\"\u003e2 - \u003c/td\u003e  \u003ctd  style=\"color: gray;\"\u003eNot Applicable (For program reporters)\u003c/td\u003e\u003c/tr\u003e  \u003ctr\u003e  \u003ctd width=\"5%\" align=\"right\" valign=\"top\"\u003e3 - \u003c/td\u003e  \u003ctd \u003eNumber of full-time, first-time degree/certificate-seeking undergraduates who were awarded any Federal Work Study, loans to students, or grant or scholarship aid from the federal government, state/local government, the institution, or other sources known to the institution [Section 1: Part A - Establish Your Student Counts, Line 06]\u003c/td\u003e\u003c/tr\u003e  \u003ctr\u003e  \u003ctd width=\"5%\" align=\"right\" valign=\"top\"\u003e4 - \u003c/td\u003e  \u003ctd \u003eNumber of full-time, first-time degree/certificate-seeking undergraduates who were awarded any loans to students or grant or scholarship aid from the federal government, state/local government, or the institution [Section 1: Part A - Establish Your Student Counts, Line 07]\u003c/td\u003e\u003c/tr\u003e  \u003c/tbody\u003e\u003c/table\u003e\u003cbr\u003e      \r\n\r\n\u003ctable width=\"95%\"\u003e  \u003ctbody\u003e  \r\n\u003ctr\u003e  \u003ctd colspan=\"2\"\u003e\u003cb\u003eFull-time, first-time degree/certificate-seeking undergraduate students awarded aid\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e  \r\n\u003ctr\u003e  \u003ctd width=\"5%\" align=\"right\" valign=\"top\"\u003e1 - \u003c/td\u003e  \u003ctd\u003eFTFT students who were awarded grant or scholarship aid from the federal government, state/local government, the institution, and other sources known to the institution (Do NOT include student loans) [Section 1: Part E, Line 01]\u003c/td\u003e\u003c/tr\u003e  \r\n\u003ctr\u003e  \u003ctd width=\"5%\" align=\"right\" valign=\"top\"\u003e2 - \u003c/td\u003e  \u003ctd\u003eFTFT students who were awarded grants or scholarships from the federal government, state/local government, or the institution (Do NOT include student loans) [Section 1: Part E, Line 01a]\u003c/td\u003e\u003c/tr\u003e  \r\n\u003ctr\u003e  \u003ctd width=\"5%\" align=\"right\" valign=\"top\"\u003e3 - \u003c/td\u003e  \u003ctd\u003eFTFT students who were awarded grant or scholarship aid from other sources known to the institution (Do NOT include student loans) [Section 1: Part E, Line 01b]\u003c/td\u003e\u003c/tr\u003e  \r\n\u003ctr\u003e  \u003ctd width=\"5%\" align=\"right\" valign=\"top\"\u003e4 - \u003c/td\u003e  \u003ctd\u003eFTFT students who were awarded federal grants and scholarship aid [Section 1: Part E, Line 02]\u003c/td\u003e\u003c/tr\u003e  \r\n\u003ctr\u003e  \u003ctd width=\"5%\" align=\"right\" valign=\"top\"\u003e5 - \u003c/td\u003e  \u003ctd\u003eFTFT students who were awarded federal Pell Grants [Section 1: Part E, Line 02a]\u003c/td\u003e\u003c/tr\u003e  \r\n\u003ctr\u003e  \u003ctd width=\"5%\" align=\"right\" valign=\"top\"\u003e6 - \u003c/td\u003e  \u003ctd\u003eFTFT students who were awarded other federal grants and scholarship aid [Section 1: Part E, Line 02b]\u003c/td\u003e\u003c/tr\u003e  \r\n\u003ctr\u003e  \u003ctd width=\"5%\" align=\"right\" valign=\"top\"\u003e7 - \u003c/td\u003e  \u003ctd\u003eFTFT students who were awarded state/local government grant or scholarship aid (includes fellowships, waivers, and employee exemptions) [Section 1: Part E, Line 03]\u003c/td\u003e\u003c/tr\u003e  \r\n\u003ctr\u003e  \u003ctd width=\"5%\" align=\"right\" valign=\"top\"\u003e8 - \u003c/td\u003e  \u003ctd\u003eFTFT students who were awarded institutional grant or scholarship aid (includes fellowships, waivers, and employee exemptions) [Section 1: Part E, Line 04]\u003c/td\u003e\u003c/tr\u003e  \r\n\u003ctr\u003e  \u003ctd width=\"5%\" align=\"right\" valign=\"top\"\u003e9 - \u003c/td\u003e  \u003ctd\u003eFTFT students who were awarded and accepted loans to students [Section 1: Part E, Line 05]\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e  \u003ctd width=\"5%\" align=\"right\" valign=\"top\"\u003e10 - \u003c/td\u003e  \u003ctd\u003eFTFT students who were awarded and accepted federal loans to students [Section 1: Part E, Line 05a]\u003c/td\u003e\u003c/tr\u003e  \r\n\u003ctr\u003e  \u003ctd width=\"5%\" align=\"right\" valign=\"top\"\u003e11 - \u003c/td\u003e  \u003ctd\u003eFTFT students who were awarded and accepted other loans to students (including private loans) [Section 1: Part E, Line 05b]\u003c/td\u003e\u003c/tr\u003e\r\n\u003c/tbody\u003e\u003c/table\u003e   ",
+    "nameFl":  "\u003cdiv class=\"name-left\"\u003eIPEDS 2025-26 Import Specifications: Student Financial Aid\u003c/div\u003e\u003cdiv class=\"name-center\"\u003eFile type: Fixed Length/Positional (*.txt)\u003c/div\u003e\r\n",
+    "noteFL":  "\u003cp class=\"import_layout\"\u003eNotes: All numeric fields should be right-justified in \r\ntheir fields. Both leading zeros and spaces are permissible.\u003cbr\u003eCharacter data \r\nshould be left justified.\u003cbr\u003eSort Order: UNITID, SURVSECT, PART\u003c/p\u003e",
+    "nameKv":  "\u003cdiv class=\"name-left\"\u003eIPEDS 2025-26 Import Specifications: Student Financial Aid\u003c/div\u003e\u003cdiv class=\"name-center\"\u003eFile type: Key Value Pair File (*.Txt)\u003c/div\u003e",
+    "sampleKv":  "\u003cP\u003e\n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=SFA,PART=A,STYPE=1,LINETYPE=1,COUNT=nnnnnn\n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=SFA,PART=A,STYPE=1,LINETYPE=2,COUNT=nnnnnn,AMOUNT=nnnnnn\n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=SFA,PART=A,STYPE=2,LINETYPE=4,COUNT=nnnnnn,AMOUNT=nnnnnn\n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=SFA,PART=A,STYPE=1,LINETYPE=5,COUNT=nnnnnn\n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=SFA,PART=B,LINETYPE=1,COUNT=nnnnnn\n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=SFA,PART=B,LINETYPE=3,COUNT=nnnnnn\n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=SFA,PART=B,LINETYPE=4,COUNT=nnnnnn\n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=SFA,PART=C,LINETYPE=1,COUNT=nnnnnn\n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=SFA,PART=C,LINETYPE=2,COUNT=nnnnnn,AMOUNT=nnnnnn\n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=SFA,PART=C,LINETYPE=3,COUNT=nnnnnn,AMOUNT=nnnnnn\n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=SFA,PART=C,LINETYPE=4,COUNT=nnnnnn\n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=SFA,PART=C,LINETYPE=5,COUNT=nnnnnn,AMOUNT=nnnnnn\n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=SFA,PART=C,LINETYPE=6,COUNT=nnnnnn,AMOUNT=nnnnnn\n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=SFA,PART=C,LINETYPE=7,COUNT=nnnnnn,AMOUNT=nnnnnn\n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=SFA,PART=C,LINETYPE=8,COUNT=nnnnnn,AMOUNT=nnnnnn\n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=SFA,PART=C,LINETYPE=9,COUNT=nnnnnn\n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=SFA,PART=G,SLEVEL=1,GI_BEN_N=nnnnnn,GI_BEN_T=nnnnnnn,DOD_ASSIST_N=nnnnn,DOD_ASSIST_T=nnnnnn\n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=SFA,PART=G,SLEVEL=2,GI_BEN_N=nnnnnn,GI_BEN_T=nnnnnnn,DOD_ASSIST_N=nnnnn,DOD_ASSIST_T=nnnnnn\n\u003c/P\u003e\n",
+    "noteKv":  "Sort Order: UNITID,SURVSECT,PART",
+    "fixedLayoutParts":  [
+                             {
+                                 "partId":  91,
+                                 "title":  "Section 1: All undergraduate students",
+                                 "instruction":  "Please note that these specifications use the field name \"PART,\" which may not correspond to the survey parts in the SFA component screens. Where appropriate, corresponding sections in the SFA component screens have been indicated in brackets in the descriptions below. \u003cbr\u003e\u003cbr\u003eLines in gray are generated variables that are reserved for file export. Do NOT include them in the import file.",
+                                 "surveySection":  "\"SFA\"",
+                                 "part":  "\"A\" = Undergraduate students",
+                                 "description1":  "Fall 2024",
+                                 "description2":  "academic year 2024-25",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"SFA\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section - All undergraduate counts and financial aid",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"A\" = Undergraduate students",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "STYPE",
+                                                               "description":  "Student Category",
+                                                               "start":  11,
+                                                               "length":  1,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "1=All undergradute students, \u003cbr\u003e2=All degree/certificate-seeking undergraduate students, \u003cbr\u003e3=All non-degree/non-certificate-seeking undergraduate students. \u003cbr\u003eDo not include STYPE=3 in import file. It will be generated.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SCFA2",
+                                                               "description":  "The total number of students enrolled in Fall 2024\u003cBR\u003e[Section 1: Part A - Establish Your Student Counts, Line 02/03/04]\u003cbr\u003eIf STYPE=1, then All undergraduate students, if STYPE=2, then All degree/certificate-seeking undergraduate students, if STYPE=3, then All non-degree/non-certificate-seeking undergraduate students",
+                                                               "start":  12,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not-applicable \u003cbr\u003eWhen STYPE=3, do not include this. It will be generated.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "AGRNA_N",
+                                                               "description":  "Number of undergraduate students awarded aid - Grant or scholarship aid from the federal government, state/local government, the institution, and other sources known to the institution (Do NOT include student loans)\u003cBR\u003e[Section 1: Part B/C/D, Line 01, Column 1]",
+                                                               "start":  18,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999. \u003cbr\u003eWhen STYPE=3, do not include this. It will be generated.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "AGRNT_N",
+                                                               "description":  "Number of undergraduate students awarded aid - Grants or scholarships from the federal government, state/local government, or the institution (Do NOT include student loans)\u003cBR\u003e[Section 1: Part B/C/D, Line 01a, Column 1]",
+                                                               "start":  24,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999. \u003cbr\u003eWhen STYPE=3, do not include this. It will be generated.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "AGRNO_N",
+                                                               "description":  "Number of undergraduate students awarded aid - Grant or scholarship aid from other sources known to the institution (Do NOT include student loans)\u003cBR\u003e[Section 1: Part B/C/D, Line 01b, Column 1]",
+                                                               "start":  30,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999. \u003cbr\u003eWhen STYPE=3, do not include this. It will be generated.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FGRNT_N",
+                                                               "description":  "Number of undergraduate students awarded aid - Federal grants and scholarship aid\u003cBR\u003e[Section 1: Part B/C/D, Line 02, Column 1]",
+                                                               "start":  36,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999. \u003cbr\u003eWhen STYPE=3, do not include this. It will be generated.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PGRNT_N",
+                                                               "description":  "Number of undergraduate students awarded aid - Federal Pell Grants\u003cBR\u003e[Section 1: Part B/C/D, Line 02a, Column 1]",
+                                                               "start":  42,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999. \u003cbr\u003eWhen STYPE=3, do not include this. It will be generated.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "OFGRT_N",
+                                                               "description":  "Number of undergraduate students awarded aid - Other federal grants and scholarship aid\u003cBR\u003e[Section 1: Part B/C/D, Line 02b, Column 1]",
+                                                               "start":  48,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999. \u003cbr\u003eWhen STYPE=3, do not include this. It will be generated.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SGRNT_N",
+                                                               "description":  "Number of undergraduate students awarded aid - State/local government grant or scholarship aid (includes fellowships, waivers, and employee exemptions)\u003cBR\u003e[Section 1: Part B/C/D, Line 03, Column 1]",
+                                                               "start":  54,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999. \u003cbr\u003eWhen STYPE=3, do not include this. It will be generated.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "IGRNT_N",
+                                                               "description":  "Number of undergraduate students awarded aid - Institutional grant or scholarship aid (includes fellowships, waivers, and employee exemptions)\u003cBR\u003e[Section 1: Part B/C/D, Line 04, Column 1]",
+                                                               "start":  60,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999. \u003cbr\u003eWhen STYPE=3, do not include this. It will be generated.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "LOAN_N",
+                                                               "description":  "Number of undergraduate students awarded aid - Loans to students\u003cBR\u003e[Section 1: Part B/C/D, Line 05, Column 1]",
+                                                               "start":  66,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999. \u003cbr\u003eWhen STYPE=3, do not include this. It will be generated.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FLOAN_N",
+                                                               "description":  "Number of undergraduate students awarded aid - Federal loans to students\u003cBR\u003e[Section 1: Part B/C/D, Line 05a, Column 1]",
+                                                               "start":  72,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999. \u003cbr\u003eWhen STYPE=3, do not include this. It will be generated.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "OLOAN_N",
+                                                               "description":  "Number of undergraduate students awarded aid - Other loans to students (including private loans)\u003cBR\u003e[Section 1: Part B/C/D, Line 05b, Column 1]",
+                                                               "start":  78,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999. \u003cbr\u003eWhen STYPE=3, do not include this. It will be generated.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "AGRNA_T",
+                                                               "description":  "Total aid amount awarded to undergraduate students - Grant or scholarship aid from the federal government, state/local government, the institution, and other sources known to the institution (Do NOT include student loans)\u003cBR\u003e[Section 1: Part B/C/D, Line 01, Column 3]",
+                                                               "start":  84,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "AGRNT_T",
+                                                               "description":  "Total aid amount awarded to undergraduate students - Grants or scholarships from the federal government, state/local government, or the institution (Do NOT include student loans)\u003cBR\u003e[Section 1: Part B/C/D, Line 01a, Column 3]",
+                                                               "start":  96,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999. \u003cbr\u003eWhen STYPE=3, do not include this. It will be generated.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "AGRNO_T",
+                                                               "description":  "Total aid amount awarded to undergraduate students - Grant or scholarship aid from other sources known to the institution (Do NOT include student loans)\u003cBR\u003e[Section 1: Part B/C/D, Line 01b, Column 3]",
+                                                               "start":  108,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999. \u003cbr\u003eWhen STYPE=3, do not include this. It will be generated.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FGRNT_T",
+                                                               "description":  "Total aid amount awarded to undergraduate students - Federal grants and scholarship aid\u003cBR\u003e[Section 1: Part B/C/D, Line 02, Column 3]",
+                                                               "start":  120,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "PGRNT_T",
+                                                               "description":  "Total aid amount awarded to undergraduate students - Federal Pell Grants\u003cBR\u003e[Section 1: Part B/C/D, Line 02a, Column 3]",
+                                                               "start":  132,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999. \u003cbr\u003eWhen STYPE=3, do not include this. It will be generated.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "OFGRT_T",
+                                                               "description":  "Total aid amount awarded to undergraduate students - Other federal grants and scholarship aid\u003cBR\u003e[Section 1: Part B/C/D, Line 02b, Column 3]",
+                                                               "start":  144,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999. \u003cbr\u003eWhen STYPE=3, do not include this. It will be generated.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SGRNT_T",
+                                                               "description":  "Total aid amount awarded to undergraduate students - State/local government grant or scholarship aid (includes fellowships, waivers, and employee exemptions)\u003cBR\u003e[Section 1: Part B/C/D, Line 03, Column 3]",
+                                                               "start":  156,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999. \u003cbr\u003eWhen STYPE=3, do not include this. It will be generated.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "IGRNT_T",
+                                                               "description":  "Total aid amount awarded to undergraduate students - Institutional grant or scholarship aid (includes fellowships, waivers, and employee exemptions)\u003cBR\u003e[Section 1: Part B/C/D, Line 04, Column 3]",
+                                                               "start":  168,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999. \u003cbr\u003eWhen STYPE=3, do not include this. It will be generated.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "LOAN_T",
+                                                               "description":  "Total aid amount awarded to undergraduate students - Loans to students\u003cBR\u003e[Section 1: Part B/C/D, Line 05, Column 3]",
+                                                               "start":  180,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "FLOAN_T",
+                                                               "description":  "Total aid amount awarded to undergraduate students - Federal loans to students\u003cBR\u003e[Section 1: Part B/C/D, Line 05a, Column 3]",
+                                                               "start":  192,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999. \u003cbr\u003eWhen STYPE=3, do not include this. It will be generated.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "OLOAN_T",
+                                                               "description":  "Total aid amount awarded to undergraduate students - Other loans to students (including private loans)\u003cBR\u003e[Section 1: Part B/C/D, Line 05b, Column 3]",
+                                                               "start":  204,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999. \u003cbr\u003eWhen STYPE=3, do not include this. It will be generated.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "AGRNA_P",
+                                                               "description":  "Percentage of undergraduate students awarded aid - Grant or scholarship aid from the federal government, state/local government, the institution, and other sources known to the institution (Do NOT include student loans)\u003cBR\u003e[Section 1: Part B/C/D, Line 01, Column 2]",
+                                                               "start":  216,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "AGRNT_P",
+                                                               "description":  "Percentage of undergraduate students awarded aid - Grants or scholarships from the federal government, state/local government, or the institution (Do NOT include student loans)\u003cBR\u003e[Section 1: Part B/C/D, Line 01a, Column 2]",
+                                                               "start":  219,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "AGRNO_P",
+                                                               "description":  "Percentage of undergraduate students awarded aid - Grant or scholarship aid from other sources known to the institution (Do NOT include student loans)\u003cBR\u003e[Section 1: Part B/C/D, Line 01b, Column 2]",
+                                                               "start":  222,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "FGRNT_P",
+                                                               "description":  "Percentage of undergraduate students awarded aid - Federal grants and scholarship aid\u003cBR\u003e[Section 1: Part B/C/D, Line 02, Column 2]",
+                                                               "start":  225,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "PGRNT_P",
+                                                               "description":  "Percentage of undergraduate students awarded aid - Federal Pell Grants\u003cBR\u003e[Section 1: Part B/C/D, Line 02a, Column 2]",
+                                                               "start":  228,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "OFGRT_P",
+                                                               "description":  "Percentage of undergraduate students awarded aid - Other federal grants and scholarship aid\u003cBR\u003e[Section 1: Part B/C/D, Line 02b, Column 2]",
+                                                               "start":  231,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "SGRNT_P",
+                                                               "description":  "Percentage of undergraduate students awarded aid - State/local government grant or scholarship aid (includes fellowships, waivers, and employee exemptions)\u003cBR\u003e[Section 1: Part B/C/D, Line 03, Column 2]",
+                                                               "start":  234,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "IGRNT_P",
+                                                               "description":  "Percentage of undergraduate students awarded aid - Institutional grant or scholarship aid (includes fellowships, waivers, and employee exemptions)\u003cBR\u003e[Section 1: Part B/C/D, Line 04, Column 2]",
+                                                               "start":  237,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "LOAN_P",
+                                                               "description":  "Percentage of undergraduate students awarded aid - Loans to students\u003cBR\u003e[Section 1: Part B/C/D, Line 05, Column 2]",
+                                                               "start":  240,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "FLOAN_P",
+                                                               "description":  "Percentage of undergraduate students awarded aid - Federal loans to students\u003cBR\u003e[Section 1: Part B/C/D, Line 05a, Column 2]",
+                                                               "start":  243,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "OLOAN_P",
+                                                               "description":  "Percentage of undergraduate students awarded aid - Other loans to students (including private loans)\u003cBR\u003e[Section 1: Part B/C/D, Line 05b, Column 2]",
+                                                               "start":  246,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "AGRNA_A",
+                                                               "description":  "Average aid amount awarded to undergraduate students - Grant or scholarship aid from the federal government, state/local government, the institution, and other sources known to the institution (Do NOT include student loans)\u003cBR\u003e[Section 1: Part B/C/D, Line 01, Column 4]",
+                                                               "start":  249,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "AGRNT_A",
+                                                               "description":  "Average aid amount awarded to undergraduate students - Grants or scholarships from the federal government, state/local government, or the institution (Do NOT include student loans)\u003cBR\u003e[Section 1: Part B/C/D, Line 01a, Column 4]",
+                                                               "start":  255,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "AGRNO_A",
+                                                               "description":  "Average aid amount awarded to undergraduate students - Grant or scholarship aid from other sources known to the institution (Do NOT include student loans)\u003cBR\u003e[Section 1: Part B/C/D, Line 01b, Column 4]",
+                                                               "start":  261,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "FGRNT_A",
+                                                               "description":  "Average aid amount awarded to undergraduate students - Federal grants and scholarship aid\u003cBR\u003e[Section 1: Part B/C/D, Line 02, Column 4]",
+                                                               "start":  267,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "PGRNT_A",
+                                                               "description":  "Average aid amount awarded to undergraduate students - Federal Pell Grants\u003cBR\u003e[Section 1: Part B/C/D, Line 02a, Column 4]",
+                                                               "start":  273,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "OFGRT_A",
+                                                               "description":  "Average aid amount awarded to undergraduate students - Other federal grants and scholarship aid\u003cBR\u003e[Section 1: Part B/C/D, Line 02b, Column 4]",
+                                                               "start":  279,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "SGRNT_A",
+                                                               "description":  "Average aid amount awarded to undergraduate students - State/local government grant or scholarship aid (includes fellowships, waivers, and employee exemptions)\u003cBR\u003e[Section 1: Part B/C/D, Line 03, Column 4]",
+                                                               "start":  285,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "IGRNT_A",
+                                                               "description":  "Average aid amount awarded to undergraduate students - Institutional grant or scholarship aid (includes fellowships, waivers, and employee exemptions)\u003cBR\u003e[Section 1: Part B/C/D, Line 04, Column 4]",
+                                                               "start":  291,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "LOAN_A",
+                                                               "description":  "Average aid amount awarded to undergraduate students - Loans to students\u003cBR\u003e[Section 1: Part B/C/D, Line 05, Column 4]",
+                                                               "start":  297,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "FLOAN_A",
+                                                               "description":  "Average aid amount awarded to undergraduate students - Federal loans to students\u003cBR\u003e[Section 1: Part B/C/D, Line 05a, Column 4]",
+                                                               "start":  303,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "OLOAN_A",
+                                                               "description":  "Average aid amount awarded to undergraduate students - Other loans to students (including private loans)\u003cBR\u003e[Section 1: Part B/C/D, Line 05b, Column 4]",
+                                                               "start":  309,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  92,
+                                 "title":  "Section 1: Full-time, first-time degree/certificate-seeking undergraduate students",
+                                 "surveySection":  "\"SFA\"",
+                                 "part":  "\"B\" = Full-time, first-time degree/certificate-seeking undergraduate students",
+                                 "description1":  "Fall 2024",
+                                 "description2":  "academic year 2024-25",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"SFA\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section - Full-time, first-time student counts",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"B\" = Full-time, first-time degree/certificate-seeking undergraduate students",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SCFA1N",
+                                                               "description":  "Number of full-time, first-time degree/certificate-seeking undergraduate students enrolled in Fall 2024\u003cBR\u003e[Section 1: Part A - Establish Your Student Counts, Line 05]",
+                                                               "start":  11,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not-applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Filler",
+                                                               "description":  "Filler",
+                                                               "start":  17,
+                                                               "length":  24,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "\"blank\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "ANYAIDN",
+                                                               "description":  "Number of full-time, first-time degree/certificate-seeking undergraduates who were awarded any Federal Work Study, loans to students, or grant or scholarship aid from the federal government, state/local government, the institution, or other sources known to the institution[Section 1:Part A, Line 6]",
+                                                               "start":  41,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not-applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "ANYAIDNF",
+                                                               "description":  "Number of full-time, first-time degree/certificate-seeking undergraduates who were awarded any loans to students or grant or scholarship aid from the federal government, state/local government, or the institution\u003cBR\u003e[Section 1: Part A - Establish Your Student Counts, Line 07]",
+                                                               "start":  47,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not-applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Filler",
+                                                               "description":  "Filler",
+                                                               "start":  53,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "\"blank\"",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "SCFA1P",
+                                                               "description":  "Percentage of undergraduates who were full-time, first-time degree/certificate-seeking in Fall 2024",
+                                                               "start":  59,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "Filler",
+                                                               "description":  "Filler",
+                                                               "start":  62,
+                                                               "length":  20,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "\"blank\"",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "ANYAIDP",
+                                                               "description":  "Percentage of Number of full-time, first-time degree/certificate-seeking undergraduates who were awarded any Federal Work Study, loans to students, or grant or scholarship aid from the federal government, state/local government, the institution, or other sources known to the institution",
+                                                               "start":  82,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "ANYAIDNFP",
+                                                               "description":  "Percentage of number of full-time, first-time degree/certificate-seeking undergraduates who were awarded any loans to students or grant or scholarship aid from the federal government, state/local government, or the institution",
+                                                               "start":  85,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  238,
+                                 "title":  "Section 1: Full-time, first-time degree/certificate-seeking undergraduate students awarded aid",
+                                 "surveySection":  "\"SFA\"",
+                                 "part":  "\"C\" = Full-time, first-time degree/certificate-seeking undergraduate students who were awarded aid",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"SFA\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section - Full-time, first-time student counts",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"C\" = Full-time, first-time degree/certificate-seeking undergraduate students who were awarded aid",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "AGRNA_N",
+                                                               "description":  "Number of FTFT students awarded aid - Grant or scholarship aid from the federal government, state/local government, the institution, and other sources known to the institution (Do NOT include student loans)\u003cBR\u003e[Section 1: Part E, Line 01, Column 1]",
+                                                               "start":  11,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "AGRNT_N",
+                                                               "description":  "Number of FTFT students awarded aid - Grants or scholarships from the federal government, state/local government, or the institution (Do NOT include student loans)\u003cBR\u003e[Section 1: Part E, Line 01a, Column 1]",
+                                                               "start":  17,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "AGRNO_N",
+                                                               "description":  "Number of FTFT students awarded aid - Grant or scholarship aid from other sources known to the institution (Do NOT include student loans)\u003cBR\u003e[Section 1: Part E, Line 01b, Column 1]",
+                                                               "start":  23,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FGRNT_N",
+                                                               "description":  "Number of FTFT students awarded aid - Federal grants and scholarship aid\u003cBR\u003e[Section 1: Part E, Line 02, Column 1]",
+                                                               "start":  29,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PGRNT_N",
+                                                               "description":  "Number of FTFT students awarded aid - Federal Pell Grants\u003cBR\u003e[Section 1: Part E, Line 02a, Column 1]",
+                                                               "start":  35,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "OFGRT_N",
+                                                               "description":  "Number of FTFT students awarded aid - Other federal grants and scholarship aid\u003cBR\u003e[Section 1: Part E, Line 02b, Column 1]",
+                                                               "start":  41,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SGRNT_N",
+                                                               "description":  "Number of FTFT students awarded aid - State/local government grant or scholarship aid (includes fellowships, waivers, and employee exemptions)\u003cBR\u003e[Section 1: Part E, Line 03, Column 1]",
+                                                               "start":  47,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "IGRNT_N",
+                                                               "description":  "Number of FTFT students awarded aid - Institutional grant or scholarship aid (includes fellowships, waivers, and employee exemptions)\u003cBR\u003e[Section 1: Part E, Line 04, Column 1]",
+                                                               "start":  53,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "LOAN_N",
+                                                               "description":  "Number of FTFT students awarded aid - Loans to students\u003cBR\u003e[Section 1: Part E, Line 05, Column 1]",
+                                                               "start":  59,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FLOAN_N",
+                                                               "description":  "Number of FTFT students awarded aid - Federal loans to students\u003cBR\u003e[Section 1: Part E, Line 05a, Column 1]",
+                                                               "start":  65,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "OLOAN_N",
+                                                               "description":  "Number of FTFT students awarded aid - Other loans to students (including private loans)\u003cBR\u003e[Section 1: Part E, Line 05b, Column 1]",
+                                                               "start":  71,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "AGRNA_T",
+                                                               "description":  "Total aid amount awarded to FTFT students - Grant or scholarship aid from the federal government, state/local government, the institution, and other sources known to the institution (Do NOT include student loans)\u003cBR\u003e[Section 1: Part E, Line 01, Column 3]",
+                                                               "start":  77,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "AGRNT_T",
+                                                               "description":  "Total aid amount awarded to FTFT students - Grants or scholarships from the federal government, state/local government, or the institution (Do NOT include student loans)\u003cBR\u003e[Section 1: Part E, Line 01a, Column 3]",
+                                                               "start":  89,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "AGRNO_T",
+                                                               "description":  "Total aid amount awarded to FTFT students - Grant or scholarship aid from other sources known to the institution (Do NOT include student loans)\u003cBR\u003e[Section 1: Part E, Line 01b, Column 3]",
+                                                               "start":  101,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FGRNT_T",
+                                                               "description":  "Total aid amount awarded to FTFT students - Federal grants and scholarship aid\u003cBR\u003e[Section 1: Part E, Line 02, Column 3]",
+                                                               "start":  113,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "PGRNT_T",
+                                                               "description":  "Total aid amount awarded to FTFT students - Federal Pell Grants\u003cBR\u003e[Section 1: Part E, Line 02a, Column 3]",
+                                                               "start":  125,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "OFGRT_T",
+                                                               "description":  "Total aid amount awarded to FTFT students - Other federal grants and scholarship aid\u003cBR\u003e[Section 1: Part E, Line 02b, Column 3]",
+                                                               "start":  137,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SGRNT_T",
+                                                               "description":  "Total aid amount awarded to FTFT students - State/local government grant or scholarship aid (includes fellowships, waivers, and employee exemptions)\u003cBR\u003e[Section 1: Part E, Line 03, Column 3]",
+                                                               "start":  149,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "IGRNT_T",
+                                                               "description":  "Total aid amount awarded to FTFT students - Institutional grant or scholarship aid (includes fellowships, waivers, and employee exemptions)\u003cBR\u003e[Section 1: Part E, Line 04, Column 3]",
+                                                               "start":  161,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "LOAN_T",
+                                                               "description":  "Total aid amount awarded to FTFT students - Loans to students\u003cBR\u003e[Section 1: Part E, Line 05, Column 3]",
+                                                               "start":  173,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "FLOAN_T",
+                                                               "description":  "Total aid amount awarded to FTFT students - Federal loans to students\u003cBR\u003e[Section 1: Part E, Line 05a, Column 3]",
+                                                               "start":  185,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "OLOAN_T",
+                                                               "description":  "Total aid amount awarded to FTFT students - Other loans to students (including private loans)\u003cBR\u003e[Section 1: Part E, Line 05b, Column 3]",
+                                                               "start":  197,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "AGRNA_P",
+                                                               "description":  "Percentage of FTFT students awarded aid - Grant or scholarship aid from the federal government, state/local government, the institution, and other sources known to the institution (Do NOT include student loans)\u003cBR\u003e[Section 1: Part E, Line 01, Column 2]",
+                                                               "start":  209,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "AGRNT_P",
+                                                               "description":  "Percentage of FTFT students awarded aid - Grants or scholarships from the federal government, state/local government, or the institution (Do NOT include student loans)\u003cBR\u003e[Section 1: Part E, Line 01a, Column 2]",
+                                                               "start":  212,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "AGRNO_P",
+                                                               "description":  "Percentage of FTFT students awarded aid - Grant or scholarship aid from other sources known to the institution (Do NOT include student loans)\u003cBR\u003e[Section 1: Part E, Line 01b, Column 2]",
+                                                               "start":  215,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "FGRNT_P",
+                                                               "description":  "Percentage of FTFT students awarded aid - Federal grants and scholarship aid\u003cBR\u003e[Section 1: Part E, Line 02, Column 2]",
+                                                               "start":  218,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "PGRNT_P",
+                                                               "description":  "Percentage of FTFT students awarded aid - Federal Pell Grants\u003cBR\u003e[Section 1: Part E, Line 02a, Column 2]",
+                                                               "start":  221,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "OFGRT_P",
+                                                               "description":  "Percentage of FTFT students awarded aid - Other federal grants and scholarship aid\u003cBR\u003e[Section 1: Part E, Line 02b, Column 2]",
+                                                               "start":  224,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "SGRNT_P",
+                                                               "description":  "Percentage of FTFT students awarded aid - State/local government grant or scholarship aid (includes fellowships, waivers, and employee exemptions)\u003cBR\u003e[Section 1: Part E, Line 03, Column 2]",
+                                                               "start":  227,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "IGRNT_P",
+                                                               "description":  "Percentage of FTFT students awarded aid - Institutional grant or scholarship aid (includes fellowships, waivers, and employee exemptions)\u003cBR\u003e[Section 1: Part E, Line 04, Column 2]",
+                                                               "start":  230,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "LOAN_P",
+                                                               "description":  "Percentage of FTFT students awarded aid - Loans to students\u003cBR\u003e[Section 1: Part E, Line 05, Column 2]",
+                                                               "start":  233,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "FLOAN_P",
+                                                               "description":  "Percentage of FTFT students awarded aid - Federal loans to students\u003cBR\u003e[Section 1: Part E, Line 05a, Column 2]",
+                                                               "start":  236,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "OLOAN_P",
+                                                               "description":  "Percentage of FTFT students awarded aid - Other loans to students (including private loans)\u003cBR\u003e[Section 1: Part E, Line 05b, Column 2]",
+                                                               "start":  239,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "AGRNA_A",
+                                                               "description":  "Average aid amount awarded to FTFT students - Grant or scholarship aid from the federal government, state/local government, the institution, and other sources known to the institution (Do NOT include student loans)\u003cBR\u003e[Section 1: Part E, Line 01, Column 4]",
+                                                               "start":  242,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "AGRNT_A",
+                                                               "description":  "Average aid amount awarded to FTFT students - Grants or scholarships from the federal government, state/local government, or the institution (Do NOT include student loans)\u003cBR\u003e[Section 1: Part E, Line 01a, Column 4]",
+                                                               "start":  248,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "AGRNO_A",
+                                                               "description":  "Average aid amount awarded to FTFT students - Grant or scholarship aid from other sources known to the institution (Do NOT include student loans)\u003cBR\u003e[Section 1: Part E, Line 01b, Column 4]",
+                                                               "start":  254,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "FGRNT_A",
+                                                               "description":  "Average aid amount awarded to FTFT students - Federal grants and scholarship aid\u003cBR\u003e[Section 1: Part E, Line 02, Column 4]",
+                                                               "start":  260,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "PGRNT_A",
+                                                               "description":  "Average aid amount awarded to FTFT students - Federal Pell Grants\u003cBR\u003e[Section 1: Part E, Line 02a, Column 4]",
+                                                               "start":  266,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "OFGRT_A",
+                                                               "description":  "Average aid amount awarded to FTFT students - Other federal grants and scholarship aid\u003cBR\u003e[Section 1: Part E, Line 02b, Column 4]",
+                                                               "start":  272,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "SGRNT_A",
+                                                               "description":  "Average aid amount awarded to FTFT students - State/local government grant or scholarship aid (includes fellowships, waivers, and employee exemptions)\u003cBR\u003e[Section 1: Part E, Line 03, Column 4]",
+                                                               "start":  278,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "IGRNT_A",
+                                                               "description":  "Average aid amount awarded to FTFT students - Institutional grant or scholarship aid (includes fellowships, waivers, and employee exemptions)\u003cBR\u003e[Section 1: Part E, Line 04, Column 4]",
+                                                               "start":  284,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "LOAN_A",
+                                                               "description":  "Average aid amount awarded to FTFT students - Loans to students\u003cBR\u003e[Section 1: Part E, Line 05, Column 4]",
+                                                               "start":  290,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "FLOAN_A",
+                                                               "description":  "Average aid amount awarded to FTFT students - Federal loans to students\u003cBR\u003e[Section 1: Part E, Line 05a, Column 4]",
+                                                               "start":  296,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "OLOAN_A",
+                                                               "description":  "Average aid amount awarded to FTFT students - Other loans to students (including private loans)\u003cBR\u003e[Section 1: Part E, Line 05b, Column 4]",
+                                                               "start":  302,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  235,
+                                 "title":  "Section 2: Veteran\u0027s Benefits",
+                                 "instruction":  "",
+                                 "surveySection":  "\"SFA\"",
+                                 "part":  "\"G\" = Section 2: Veteran\u0027s Benefits",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"SFA\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"G\" = Section 2: Veteran\u0027s Benefits",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SLEVEL",
+                                                               "description":  "Student level",
+                                                               "start":  11,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "1=Undergraduate, 2=Graduate, 3=Total (Total will be generated)",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GI_BEN_N",
+                                                               "description":  "Post-9/11 GI Bill Benefits - Number of students receiving benefits/assistance",
+                                                               "start":  12,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not-participate",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GI_BEN_T",
+                                                               "description":  "Post-9/11 GI Bill Benefits - Total dollar amount of benefits/assistance disbursed through the institution",
+                                                               "start":  18,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999, -2 or blank = not-participate",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DOD_ASSIST_N",
+                                                               "description":  "Department of Defense Tuition Assistance Program - Number of students receiving benefits/assistance",
+                                                               "start":  30,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not-participate",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DOD_ASSIST_T",
+                                                               "description":  "Department of Defense Tuition Assistance Program - Total dollar amount of benefits/assistance disbursed through the institution",
+                                                               "start":  36,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999, -2 or blank = not-participate",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GI_BEN_A",
+                                                               "description":  "Post-9/11 GI Bill Benefits - Average dollar amount of\r\nbenefits/assistance disbursed\r\nknown to institution",
+                                                               "start":  48,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "DOD_ASSIST_A",
+                                                               "description":  "Department of Defense Tuition Assistance Program - Average dollar amount of\r\nbenefits/assistance received\r\nand disbursed through the institution",
+                                                               "start":  60,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           }
+                                                       ]
+                             }
+                         ],
+    "keyValueParts":  [
+                          {
+                              "partId":  241,
+                              "title":  "Section 1: All undergraduate students",
+                              "surveySection":  "\"SFA\"",
+                              "part":  "\"A\" = Undergraduate students",
+                              "a1":  "i = 1 to 12, refer to appendix A (Undergraduate students)",
+                              "a2":  "0-999999999999, Not applicable for LINETYPE 1. AMOUNT of LINETYPEs 2, 5, and 10 will be generated. ",
+                              "a3":  "0-100, Not applicable for linetype 1.",
+                              "description1":  " - Undergraduate counts and aid",
+                              "a4":  "0-999999, Not applicable for linetype 1.",
+                              "keyValueFields":  [
+                                                     {
+                                                         "name":  "UNITID",
+                                                         "description":  "UNITID",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Valid UnitID",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SURVSECT",
+                                                         "description":  "Survey Section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"SFA\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PART",
+                                                         "description":  "Part of survey section - Undergraduate counts and aid",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"A\" = Undergraduate students",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "STYPE",
+                                                         "description":  "Student Category",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1=All undergradute students, \u003cbr\u003e2=All degree/certificate-seeking undergraduate students, \u003cbr\u003e3=All non-degree/non-certificate-seeking undergraduate students. \u003cbr\u003eDo not include STYPE=3 in import file. It will be generated.",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "LINETYPE",
+                                                         "description":  "Type of data in this line",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "i = 1 to 12, refer to appendix A (Undergraduate students)",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "COUNT",
+                                                         "description":  "Number of students counted",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0-999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "AMOUNT",
+                                                         "description":  "Total amount of aid awarded.",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0-999999999999, Not applicable for LINETYPE 1. AMOUNT of LINETYPEs 2, 5, and 10 will be generated. ",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PERCENT",
+                                                         "description":  "Percent of students who were awarded this aid. \u003cb\u003eDo not include in file. It will be generated.\u003c/b\u003e",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0-100, Not applicable for linetype 1.",
+                                                         "isGrayedOut":  true
+                                                     },
+                                                     {
+                                                         "name":  "AVERAGE",
+                                                         "description":  "Average amount of aid awarded. \u003cb\u003eDo not include in file. It will be generated.\u003c/b\u003e",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0-999999, Not applicable for linetype 1.",
+                                                         "isGrayedOut":  true
+                                                     }
+                                                 ]
+                          },
+                          {
+                              "partId":  243,
+                              "title":  "Section 1: Full-time, first-time degree/certificate-seeking undergraduate students",
+                              "surveySection":  "\"SFA\"",
+                              "part":  "\"B\" = Full-time, first-time degree/certificate-seeking undergraduate students",
+                              "keyValueFields":  [
+                                                     {
+                                                         "name":  "UNITID",
+                                                         "description":  "UNITID",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Valid UnitID",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SURVSECT",
+                                                         "description":  "Survey Section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"SFA\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PART",
+                                                         "description":  "Part of survey section - Full-time, first-time student counts",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"B\" = Full-time, first-time degree/certificate-seeking undergraduate students",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "LINETYPE",
+                                                         "description":  "Type of data in this line",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "i = 1,3, and 4, refer to appendix A (Full-time, first-time degree/certificate-seeking undergraduate students)",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "COUNT",
+                                                         "description":  "Number of students counted",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0-999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PERCENT",
+                                                         "description":  "Percent of students who were awarded this aid. \u003cb\u003eDo not include in file. It will be generated.\u003c/b\u003e",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0-100, Not applicable for linetypes 1 and 2",
+                                                         "isGrayedOut":  true
+                                                     }
+                                                 ]
+                          },
+                          {
+                              "partId":  242,
+                              "title":  "Section 1: Full-time, first-time degree/certificate-seeking undergraduate students awarded aid",
+                              "surveySection":  "\"SFA\"",
+                              "part":  "\"C\" = Full-time, first-time degree/certificate-seeking undergraduate students who were awarded aid",
+                              "a1":  "i = 1 to 11, refer to appendix A (Full-time, first-time degree/certificate-seeking undergraduate students awarded aid)",
+                              "a2":  "0-999999999999, Not applicable for LINETYPEs 1, 4, and 9. They will be generated.",
+                              "a3":  "0-100",
+                              "description1":  " - Full-time, first-time student counts",
+                              "a4":  "0-999999",
+                              "keyValueFields":  [
+                                                     {
+                                                         "name":  "UNITID",
+                                                         "description":  "UNITID",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Valid UnitID",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SURVSECT",
+                                                         "description":  "Survey Section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"SFA\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PART",
+                                                         "description":  "Part of survey section - Full-time, first-time student counts",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"C\" = Full-time, first-time degree/certificate-seeking undergraduate students who were awarded aid",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "LINETYPE",
+                                                         "description":  "Type of data in this line",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "i = 1 to 11, refer to appendix A (Full-time, first-time degree/certificate-seeking undergraduate students awarded aid)",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "COUNT",
+                                                         "description":  "Number of students counted",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0-999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "AMOUNT",
+                                                         "description":  "Total amount of aid awarded",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0-999999999999, Not applicable for LINETYPEs 1, 4, and 9. They will be generated.",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PERCENT",
+                                                         "description":  "Percent of students who were awarded this aid. \u003cb\u003eDo not include in file. It will be generated.\u003c/b\u003e",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0-100",
+                                                         "isGrayedOut":  true
+                                                     },
+                                                     {
+                                                         "name":  "AVERAGE",
+                                                         "description":  "Average amount of aid awarded. \u003cb\u003eDo not include in file. It will be generated.\u003c/b\u003e",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0-999999",
+                                                         "isGrayedOut":  true
+                                                     }
+                                                 ]
+                          },
+                          {
+                              "partId":  248,
+                              "title":  "Section 2: Veteran\u0027s Benefits",
+                              "surveySection":  "\"SFA\"",
+                              "part":  "\"G\" = Section 2: Veteran\u0027s Benefits",
+                              "keyValueFields":  [
+                                                     {
+                                                         "name":  "UNITID",
+                                                         "description":  "UNITID",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Valid UnitID",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SURVSECT",
+                                                         "description":  "Survey Section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"SFA\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PART",
+                                                         "description":  "Part of survey section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"G\" = Section 2: Veteran\u0027s Benefits",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SLEVEL",
+                                                         "description":  "Student level",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1=Undergraduate, 2=Graduate, 3=Total (Total will be generated)",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "GI_BEN_N",
+                                                         "description":  "Post-9/11 GI Bill Benefits - Number of students receiving benefits/assistance",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "GI_BEN_T",
+                                                         "description":  "Post-9/11 GI Bill Benefits - Total dollar amount of benefits/assistance disbursed through the institution",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DOD_ASSIST_N",
+                                                         "description":  "Department of Defense Tuition Assistance Program - Number of students receiving benefits/assistance",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DOD_ASSIST_T",
+                                                         "description":  "Department of Defense Tuition Assistance Program - Total dollar amount of benefits/assistance disbursed through the institution",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "GI_BEN_A",
+                                                         "description":  "Post-9/11 GI Bill Benefits - Average dollar amount of\r\nbenefits/assistance disbursed\r\nknown to institution. \u003cb\u003eDo not include in file. It will be generated.\u003c/b\u003e",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999999999",
+                                                         "isGrayedOut":  true
+                                                     },
+                                                     {
+                                                         "name":  "DOD_ASSIST_A",
+                                                         "description":  "Department of Defense Tuition Assistance Program - Average dollar amount of\r\nbenefits/assistance received\r\nand disbursed through the institution. \u003cb\u003eDo not include in file. It will be generated.\u003c/b\u003e",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999999999",
+                                                         "isGrayedOut":  true
+                                                     }
+                                                 ]
+                          }
+                      ]
+}

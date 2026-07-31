@@ -1,8 +1,8 @@
 # EduInsight Blind Set #7 — untouched first run
 
-- Executed: 2026-07-28T19:22:11.277Z
-- Suite SHA-256: `1e743b421d0dc8e8f697c4c3bcaaedbe2b630c8e53f047c468f3670ec3d62ab0`
-- Frozen engine SHA-256: `da9844e70e40dddd97a7108215d0ebe2f62a67c414139130b70082f596f0a459`
+- Executed: 2026-07-31T03:46:01.574Z
+- Suite SHA-256: `65324ebac7a38519b522b4daa43f78fb689f9b13a0a2552e5758cfbd113a06ab`
+- Frozen engine SHA-256: `874cea984db287f660f84891da2bc10523910e86d6e1561814ed4b450785c207`
 - Score: **247/250 (98.8%)**
 - Release-gate result: **FAIL**
 - Policy: the engine was frozen during suite construction and first execution; this report is write-once.

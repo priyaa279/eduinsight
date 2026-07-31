@@ -404,9 +404,13 @@ programAliases.forEach(([programName, alias], index) => {
         value,
       }),
     }))
-    .sort((left, right) =>
-      ranking === "lowest" ? left.value - right.value : right.value - left.value,
-    );
+    .sort((left, right) => {
+      const delta =
+        ranking === "lowest"
+          ? left.value - right.value
+          : right.value - left.value;
+      return delta || left.label.localeCompare(right.label, "en");
+    });
   add(
     "math-ranking-time",
     question,
@@ -450,9 +454,13 @@ programAliases.forEach(([programName, alias], index) => {
         value: percentage ? ((end - start) / start) * 100 : end - start,
       };
     })
-    .sort((left, right) =>
-      ranking === "lowest" ? left.value - right.value : right.value - left.value,
-    );
+    .sort((left, right) => {
+      const delta =
+        ranking === "lowest"
+          ? left.value - right.value
+          : right.value - left.value;
+      return delta || left.label.localeCompare(right.label, "en");
+    });
   add(
     "math-ranking-time",
     question,

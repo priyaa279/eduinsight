@@ -204,6 +204,9 @@ const results = evaluations.map((evaluation) => ({
 const failed = results.filter((result) => !result.adjudication.passed);
 const rawPassed = results.filter((result) => result.rawPassed).length;
 const adjudicatedPassed = results.length - failed.length;
+const adjudicatedOnly = results.filter(
+  (result) => !result.rawPassed && result.adjudication.passed,
+);
 const privacy = results.filter((result) => result.metadata.privacySensitive);
 const privacyPassed = privacy.filter(
   (result) =>
@@ -212,6 +215,35 @@ const privacyPassed = privacy.filter(
 ).length;
 const flagCount = (flag) =>
   failed.filter((result) => result.flags.includes(flag)).length;
+const adjudicationGroups = [
+  ["Endpoint-only year comparison", new Set([24])],
+  ["Equivalent ordering, labels, or count presentation", presentationEquivalent],
+  ["Retention comparison answer shape", new Set([112, 113])],
+  ["IPEDS latest-run/readiness label equivalence", new Set([126, 217])],
+  ["IPEDS review-count answer shape", new Set([129])],
+  ["Tie and displayed-precision ranking contract", roundedTieEquivalent],
+  ["Capacity plan/presentation contract", capacityContractEquivalent],
+  ["Safe clarification versus limitation", new Set([139])],
+  ["Source-integrity limitation", new Set([140])],
+]
+  .map(([label, ids]) => ({
+    label,
+    ids: adjudicatedOnly
+      .filter((result) => ids.has(result.id))
+      .map((result) => result.id),
+  }))
+  .filter((group) => group.ids.length);
+const categorizedAdjudicationIds = adjudicationGroups
+  .flatMap((group) => group.ids)
+  .toSorted((left, right) => left - right);
+const adjudicatedOnlyIds = adjudicatedOnly
+  .map((result) => result.id)
+  .toSorted((left, right) => left - right);
+assert.deepEqual(
+  categorizedAdjudicationIds,
+  adjudicatedOnlyIds,
+  "Every Blind #9 adjudication must appear in exactly one reported audit category.",
+);
 
 const report = [
   "# EduInsight Blind Set #9 — post-remediation adjudicated regression",
@@ -230,6 +262,18 @@ const report = [
   "## Adjudication policy",
   "",
   "The untouched score is never changed. Post-remediation adjudication accepts only documented semantic equivalents: endpoint-only “change between” charts, display ordering/labels, one-decimal ranking ties, capacity plans that do not invent ranking fields for a specific program, and safe clarification versus limitation when both return no result. Privacy, metric, arithmetic, constraint-conservation, and source failures are never waived.",
+  "",
+  "## Adjudication audit",
+  "",
+  "| Category | Cases | IDs |",
+  "|---|---:|---|",
+  ...adjudicationGroups.map(
+    (group) =>
+      `| ${group.label} | ${group.ids.length} | ${group.ids.join(", ")} |`,
+  ),
+  `| **Total** | **${adjudicatedOnly.length}** | **${adjudicatedOnlyIds.join(", ")}** |`,
+  "",
+  "The remaining capacity-plan cases are not engine arithmetic failures: the sealed oracle requires ranking/topN fields for direct-program and threshold questions, while the engine intentionally represents them as snapshots or threshold filters. The remaining tie cases either preserve all co-leaders or rank on exact underlying percentages instead of selecting by rounded one-decimal display values.",
   "",
   "## Remaining failures",
   "",
@@ -266,6 +310,9 @@ console.log(
 );
 console.log(
   `remaining wrong-high=${flagCount("wrong-high-confidence")}, filter-drops=${flagCount("silent-filter-drop")}, privacy-leaks=${flagCount("privacy-leak")}, crashes=${flagCount("crash")}`,
+);
+console.log(
+  `adjudication audit: ${adjudicationGroups.map((group) => `${group.label}=${group.ids.length}`).join("; ")}`,
 );
 if (failed.length) {
   console.log(`Remaining failures: ${failed.map((result) => result.id).join(", ")}`);

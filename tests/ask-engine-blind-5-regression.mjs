@@ -95,6 +95,13 @@ assert.deepEqual(
   ],
 );
 
+const exactNinetyTwo = analyzeQuestion(
+  "Which graduate schedule lands exactly at 92 percent utilization?",
+  dataset,
+);
+assert.equal(exactNinetyTwo.answer.points.length, 0);
+assert.match(exactNinetyTwo.answer.headline, /\bno programs\b/i);
+
 function enrollmentCubeTotal(dimension, year, value, programId = null) {
   return (dataset.enrollmentCubes[dimension] ?? [])
     .filter(

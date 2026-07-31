@@ -8,6 +8,20 @@ const dataset = JSON.parse(
     "utf8",
   ),
 );
+const capacityRows = dataset.capacity.map((row) => ({
+  ...row,
+  utilizationPercent: (row.filled / row.seats) * 100,
+  availableSeats: row.seats - row.filled,
+}));
+const capacityByUtilization = capacityRows.toSorted(
+  (left, right) => right.utilizationPercent - left.utilizationPercent,
+);
+const capacityByAvailableSeats = capacityRows.toSorted(
+  (left, right) => right.availableSeats - left.availableSeats,
+);
+const computerScienceCapacity = capacityRows.find(
+  (row) => row.programId === "PCS",
+);
 
 const cases = [];
 const add = (category, question, expected) =>
@@ -325,42 +339,48 @@ add("retention-multiple", "Which student group improved retention the most since
 // Capacity and DFW
 add("capacity", "Which graduate programs use the most capacity?", {
   metric: "capacity_utilization",
-  labels: [
-    "MS Business Analytics",
-    "MS Computer Science",
-    "MS Nursing",
-    "Master of Public Administration",
-  ],
-  values: [92, 86, 78, 53],
+  labels: capacityByUtilization.map((row) => row.programName),
+  values: capacityByUtilization.map((row) => row.utilizationPercent),
 });
 add("capacity", "Which programs have the most available seats?", {
   measure: "available_seats",
-  topLabel: "Master of Public Administration",
-  topValue: 470,
+  topLabel: capacityByAvailableSeats[0].programName,
+  topValue: capacityByAvailableSeats[0].availableSeats,
 });
 add("capacity", "Which programs are above 90% capacity?", {
-  labels: ["MS Business Analytics"],
-  values: [92],
+  labels: capacityByUtilization
+    .filter((row) => row.utilizationPercent > 90)
+    .map((row) => row.programName),
+  values: capacityByUtilization
+    .filter((row) => row.utilizationPercent > 90)
+    .map((row) => row.utilizationPercent),
 });
 add("capacity", "Is Computer Science close to capacity?", {
   programId: "PCS",
-  textIncludes: ["86%", "140"],
+  textIncludes: [
+    `${Math.round(computerScienceCapacity.utilizationPercent)}%`,
+    computerScienceCapacity.availableSeats.toLocaleString(),
+  ],
 });
 add("capacity", "What is Computer Science capacity utilization?", {
   programId: "PCS",
-  values: [86],
+  values: [computerScienceCapacity.utilizationPercent],
 });
 add("capacity", "How many seats remain in Computer Science?", {
   programId: "PCS",
   measure: "available_seats",
-  values: [140],
+  values: [computerScienceCapacity.availableSeats],
 });
 add("capacity", "Which programs have utilization below 50%?", {
   pointCount: 0,
   headlineAny: ["none", "no programs"],
 });
 add("capacity", "Compare enrollment and capacity for Computer Science.", {
-  textIncludes: ["678", "860", "1,000"],
+  textIncludes: [
+    "678",
+    computerScienceCapacity.filled.toLocaleString(),
+    computerScienceCapacity.seats.toLocaleString(),
+  ],
 });
 
 for (const question of [
@@ -624,13 +644,13 @@ for (const question of [
 // semantic cases elsewhere in the suite.
 add("attachment-verbatim", "Which programs have the highest capacity utilization?", {
   metric: "capacity_utilization",
-  topLabel: "MS Business Analytics",
-  topValue: 92,
+  topLabel: capacityByUtilization[0].programName,
+  topValue: capacityByUtilization[0].utilizationPercent,
 });
 add("attachment-verbatim", "Which five programs are closest to full capacity?", {
   metric: "capacity_utilization",
   pointCount: 4,
-  topLabel: "MS Business Analytics",
+  topLabel: capacityByUtilization[0].programName,
 });
 add("attachment-verbatim", "Explain the largest IPEDS validation problem.", {
   metric: "ipeds_readiness",
@@ -658,8 +678,8 @@ add("attachment-verbatim", "Which program had the highest percentage growth sinc
 });
 add("attachment-verbatim", "Which program has the highest capacity utilization?", {
   metric: "capacity_utilization",
-  topLabel: "MS Business Analytics",
-  topValue: 92,
+  topLabel: capacityByUtilization[0].programName,
+  topValue: capacityByUtilization[0].utilizationPercent,
 });
 for (const question of [
   "Which course has the highest DFW rate?",

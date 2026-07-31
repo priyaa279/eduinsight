@@ -269,6 +269,22 @@ test("ties are disclosed in enrollment rankings", () => {
   );
 });
 
+test("equal ranking values use an alphabetical secondary order", () => {
+  const result = analyzeQuestion(
+    "Which three programs enrolled the most students in Fall 2025?",
+    dataset,
+  );
+  assert.deepEqual(
+    result.answer.points.map((point) => point.label),
+    ["BA English", "BA Psychology", "BBA Business Administration"],
+  );
+  assert.ok(
+    result.answer.points.every(
+      (point) => point.value === result.answer.points[0].value,
+    ),
+  );
+});
+
 test("top five returns exactly five chart points", () => {
   const result = analyzeQuestion(
     "Give me the top 5 programs by enrollment",

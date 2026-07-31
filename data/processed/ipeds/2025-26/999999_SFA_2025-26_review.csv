@@ -1,0 +1,8 @@
+UNITID,SURVSECT,PART,STYPE,LINETYPE,COUNT,ReviewStatus,AMOUNT,PERCENT,AVERAGE,SLEVEL,GI_BEN_N,GI_BEN_T,DOD_ASSIST_N,DOD_ASSIST_T,GI_BEN_A,DOD_ASSIST_A
+999999,SFA,A,1,1,16143,Generated from governed source mart,,,,,,,,,,
+999999,SFA,A,1,2,4569,Generated from governed source mart,33787755,,,,,,,,,
+999999,SFA,B,,1,7060,Generated from governed source mart,,100,,,,,,,,
+999999,SFA,C,,2,1997,Generated from governed source mart,14767815,28,7395,,,,,,,
+999999,SFA,C,,5,2342,Generated from governed source mart,12881000,33,5500,,,,,,,
+999999,SFA,G,,,,Generated from governed source mart,,,,1,0,0,0,0,0,0
+999999,SFA,G,,,,Generated from governed source mart,,,,2,0,0,0,0,0,0

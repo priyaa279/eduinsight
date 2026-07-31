@@ -1,0 +1,109 @@
+{
+  "version": "scenario-baselines.v2025_26",
+  "generatedAt": "2026-07-31T03:43:13.570Z",
+  "institution": {
+    "id": "AVU001",
+    "name": "Atlas Valley University",
+    "currentTerm": "2025FA",
+    "currentTermLabel": "Fall 2025",
+    "censusDate": "2025-09-15"
+  },
+  "enrollment": {
+    "undergraduateHeadcount": 16143,
+    "graduateHeadcount": 2283,
+    "studentsPerSection": 24,
+    "sectionsPerFacultyFte": 8,
+    "sources": [
+      "student_terms.csv",
+      "terms.csv"
+    ]
+  },
+  "retention": {
+    "cohortYear": 2024,
+    "cohortSize": 3000,
+    "retained": 2352,
+    "rate": 0.784,
+    "horizonYears": 4,
+    "sources": [
+      "students.csv",
+      "student_terms.csv",
+      "terms.csv"
+    ]
+  },
+  "pricing": {
+    "undergraduateTuitionAndFees": 14800,
+    "graduateTuitionAndFees": 16530,
+    "basis": "Published in-state tuition and required fees",
+    "sources": [
+      "ipeds_marts.json — governed Cost contract"
+    ]
+  },
+  "aid": {
+    "pellEligibleStudents": 6088,
+    "sources": [
+      "financial_aid.csv"
+    ],
+    "limitation": "The current upload identifies Pell eligibility but does not contain a governed institutional-grant award amount."
+  },
+  "programs": [
+    {
+      "programId": "PBA",
+      "name": "MS Business Analytics",
+      "currentHeadcount": 585,
+      "filledCourseSeats": 1989,
+      "courseSeatCapacity": 2160,
+      "sectionCount": 72,
+      "averageSectionCapacity": 30,
+      "tuitionAndFees": 16530,
+      "memoryRecordId": null
+    },
+    {
+      "programId": "PCS",
+      "name": "MS Computer Science",
+      "currentHeadcount": 678,
+      "filledCourseSeats": 2441,
+      "courseSeatCapacity": 2520,
+      "sectionCount": 72,
+      "averageSectionCapacity": 35,
+      "tuitionAndFees": 16530,
+      "memoryRecordId": "analysis-cs-capacity"
+    },
+    {
+      "programId": "PNUR",
+      "name": "MS Nursing",
+      "currentHeadcount": 540,
+      "filledCourseSeats": 1728,
+      "courseSeatCapacity": 1920,
+      "sectionCount": 64,
+      "averageSectionCapacity": 30,
+      "tuitionAndFees": 16530,
+      "memoryRecordId": null
+    },
+    {
+      "programId": "PPA",
+      "name": "Master of Public Administration",
+      "currentHeadcount": 480,
+      "filledCourseSeats": 1344,
+      "courseSeatCapacity": 1680,
+      "sectionCount": 56,
+      "averageSectionCapacity": 30,
+      "tuitionAndFees": 16530,
+      "memoryRecordId": null
+    }
+  ],
+  "faculty": {
+    "fullTimeInstructionalCount": 248,
+    "tenureCounts": {
+      "tenured": 62,
+      "tenureTrack": 62,
+      "other": 124
+    },
+    "hireYearAvailable": false,
+    "sectionsPerFacultyFteAssumption": 8,
+    "seatsPerSectionAssumption": 24,
+    "sources": [
+      "ipeds_marts.json — governed HR contract"
+    ],
+    "limitation": "The current HR source does not include hire_year, so retirement eligibility and timing cannot be modeled."
+  }
+}

@@ -52,7 +52,17 @@ const regressionMarkdown = await fs.readFile(regressionReport, "utf8");
 const actualFailureIds = [
   ...regressionMarkdown.matchAll(/^### (\d+)\./gm),
 ].map((match) => Number(match[1]));
-const adjudicatedFailureIds = [91, 131, 154, 160, 164, 199, 205, 258, 272];
+const adjudicatedFailureIds = [
+  91,
+  131,
+  154,
+  160,
+  164,
+  199,
+  205,
+  258,
+  272,
+];
 assert.ok(
   actualFailureIds.every((id) => adjudicatedFailureIds.includes(id)),
   `Blind #4 has failures outside the documented oracle/contract conflicts: ${actualFailureIds.filter((id) => !adjudicatedFailureIds.includes(id)).join(", ")}`,
@@ -96,19 +106,40 @@ const fullestProgram = analyzeQuestion(
   dataset,
 );
 assert.equal(fullestProgram.answer.points.length, 1);
-assert.equal(fullestProgram.answer.points[0].label, "MS Business Analytics");
-assert.equal(fullestProgram.answer.points[0].value, 92);
+const fullestCapacityRow = [...dataset.capacity].sort(
+  (left, right) =>
+    right.filled / right.seats - left.filled / left.seats,
+)[0];
+assert.equal(fullestProgram.answer.points[0].label, fullestCapacityRow.programName);
+assert.equal(
+  fullestProgram.answer.points[0].value,
+  (fullestCapacityRow.filled / fullestCapacityRow.seats) * 100,
+);
 
 const mostOpenSeats = analyzeQuestion(
   "Which program has the largest number of unfilled scheduled seats?",
   dataset,
 );
 assert.equal(mostOpenSeats.answer.points.length, 1);
+const mostOpenCapacityRow = [...dataset.capacity].sort(
+  (left, right) =>
+    right.seats - right.filled - (left.seats - left.filled),
+)[0];
 assert.equal(
   mostOpenSeats.answer.points[0].label,
-  "Master of Public Administration",
+  mostOpenCapacityRow.programName,
 );
-assert.equal(mostOpenSeats.answer.points[0].value, 470);
+assert.equal(
+  mostOpenSeats.answer.points[0].value,
+  mostOpenCapacityRow.seats - mostOpenCapacityRow.filled,
+);
+
+const exactlyNinetyTwo = analyzeQuestion(
+  "Which schedule is exactly 92 percent utilized?",
+  dataset,
+);
+assert.equal(exactlyNinetyTwo.answer.points.length, 0);
+assert.match(exactlyNinetyTwo.answer.headline, /\bno programs\b/i);
 
 const sourceImpact = analyzeQuestion(
   "Group open quality-record impact by source system.",

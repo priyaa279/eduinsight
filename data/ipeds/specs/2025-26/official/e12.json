@@ -1,0 +1,1205 @@
+﻿{
+    "title":  "12-Month Enrollment for 4-year Institutions",
+    "note":  "\u003cb\u003eStudent level table (Part A)\u003c/b\u003e\u003cbr\u003e1 - Full-time, first-time degree/certificate-seeking undergraduate \u003cbr\u003e2 - Full-time, transfer-in degree/certificate-seeking undergraduate \u003cbr\u003e3 - Full-time, continuing degree/certificate-seeking undergraduate \u003cbr\u003e6 - \u003cem\u003eTotal full-time degree/certificate-seeking undergraduate will be generated on export file. Do not include in import file. \u003cbr\u003e\u003c/em\u003e7 - Full-time, non-degree/non-certificate-seeking undergraduate \u003cbr\u003e8 - \u003cem\u003eTotal full-time undergraduate will be generated on export file. Do not include in import file. \u003cbr\u003e\u003c/em\u003e11 - Full-time, Graduate \u003cbr\u003e15 - Part-time, first-time degree/certificate-seeking undergraduate \u003cbr\u003e16 - Part-time, transfer-in degree/certificate-seeking undergraduate \u003cbr\u003e17 - Part-time, continuing degree/certificate-seeking undergraduate \u003cbr\u003e20 - \u003cem\u003eTotal part-time degree/certificate-seeking undergraduate will be generated on export file. Do not include in import file.\u003c/em\u003e \u003cbr\u003e21 - Part-time, non-degree/non-certificate-seeking undergraduate \u003cbr\u003e22 - \u003cem\u003eTotal part-time undergraduate will be generated on export file. Do not include in import file. \u003cbr\u003e\u003c/em\u003e25 - Part-time, Graduate \u003cbr\u003e99 - \u003cem\u003eTotal graduate will be generated on export file. Do not include in import file.\u003cbr\u003e\u003c/em\u003e29 - \u003cem\u003eGrand total will be generated on export file. Do not include in import file.\u003c/em\u003e\u003cbr\u003e\u003cbr\u003e\u003cb\u003eRace/ethnicity table (Part A)\u003c/b\u003e \u003cbr\u003e1 -\u0026nbsp;U.S. Nonresident  \u003cbr\u003e2 - Hispanic/Latino \u003cbr\u003e3 - American Indian or Alaska Native \u003cbr\u003e4 - Asian \u003cbr\u003e5 - Black or African American \u003cbr\u003e6 - Native Hawaiian or Other Pacific Islander \u003cbr\u003e7 - White \u003cbr\u003e8 - Two or more races \u003cbr\u003e9 - Race and ethnicity unknown \u003cbr\u003e10 - \u003ci\u003eTotal will be generated. Do not include in import file.\u003c/i\u003e\u003cbr\u003e11 - \u003ci\u003eGrand total will be generated. Do not include in import file.\u003c/i\u003e\u003cbr\u003e\u003cbr\u003e\u003cb\u003eStudent level table (Part C)\u003c/b\u003e \u003cbr\u003e1 - Degree/Certificate seeking undergraduate students\u003cbr\u003e2 - non-degree/non-certificate seeking undergraduate Students\u003cbr\u003e3 - Graduate students \u003cbr\u003e",
+    "nameFl":  "\u003cdiv class=\"name-left\"\u003eIPEDS 2025-26 Import Specifications: 12-month Enrollment for July 1, 2024 - June 30, 2025\u003cbr\u003eApplies to: 4-year degree-granting institutions\u003c/div\u003e\u003cdiv class=\"name-center\"\u003eFile type: Fixed Length/Positional (*.txt)\u003c/div\u003e",
+    "noteFL":  "Formatting Guidelines:\u003cbr\u003eNumeric fields should be right-justified using either leading zeros or spaces.\u003cbr\u003eCharacter fields should be left-justified. \u003cbr\u003e\u003cbr\u003eIf a level (undergraduate or graduate) is not applicable to the institution, do not include it in the import file. For example, if graduate programs are not offered at the institution, do not include a record for graduate level data in the import file.",
+    "nameKv":  "\u003cdiv class=\"name-left\"\u003eIPEDS 2025-26 Import Specifications: 12-month Enrollment for July 1, 2024 - June 30, 2025\u003cbr\u003eApplies to: 4-year degree-granting institutions\u003c/div\u003e\u003cdiv class=\"name-center\"\u003eFile type: Key Value Pair File (*.TXT)\u003c/div\u003e",
+    "sampleKv":  "UNITID=nnnnnn,SURVSECT=E1D,PART=A,LINE=1,RACE=1,SEX=1,COUNT=nnnn\u003cbr\u003eUNITID=nnnnnn,SURVSECT=E1D,PART=A,LINE=1,RACE=1,SEX=2,COUNT=nnnn\u003cbr\u003eUNITID=nnnnnn,SURVSECT=E1D,PART=A,LINE=1,RACE=2,SEX=1,COUNT=nnnn\u003cbr\u003eUNITID=nnnnnn,SURVSECT=E1D,PART=A,LINE=1,RACE=2,SEX=2,COUNT=nnnn\u003cbr\u003eUNITID=nnnnnn,SURVSECT=E1D,PART=A,LINE=2,RACE=j,SEX=k,COUNT=nnnn\u003cbr\u003eUNITID=nnnnnn,SURVSECT=E1D,PART=C,LINE=1,ENROLL_EXCLUSIVE=nnnnnn,ENROLL_SOME=nnnnnn\u003cbr\u003eUNITID=nnnnnn,SURVSECT=E1D,PART=C,LINE=2,ENROLL_EXCLUSIVE=nnnnnn,ENROLL_SOME=nnnnnn\u003cbr\u003e…… \u003cbr\u003e……\u003cbr\u003eUNITID=nnnnnn,SURVSECT=E1D,PART=A,LINE=i,RACE=j,SEX=k,COUNT=nnnn\u003cbr\u003eUNITID=nnnnnn,SURVSECT=E1D,PART=C,LINE=i,ENROLL_EXCLUSIVE=nnnnnn,ENROLL_SOME=nnnnnn\u003cbr\u003eUNITID=nnnnnn,SURVSECT=E1D,PART=B,CREDHRSU=nnnn,CONTHRS=nnnn,CREDHRSG=nnnn\u003cbr\u003eUNITID=nnnnnn,SURVSECT=E1D,PART=D,FYSEXUG=nnnnn,FYSEXG=nnnnn\u003cbr\u003eUNITID=nnnnnn,SURVSECT=E1D,PART=E,RACE=1,SEX=1,COUNT=nnnn,...",
+    "noteKv":  "\u003cb\u003e \u003c/b\u003e\u003cspan id=\"ctl00_cntContent_ctlViewImp_lblNoteFL\" style=\"font-weight: bold;\"\u003eNote: If there is zero enrollment for any category, the line does not have to be included in the import file.\u003cbr\u003e\u003c/span\u003e",
+    "fixedLayoutParts":  [
+                             {
+                                 "partId":  151,
+                                 "title":  "Unduplicated Count",
+                                 "surveySection":  "\"E1D\"",
+                                 "part":  "\"A\" = Unduplicated headcount",
+                                 "a1":  "1,2,3,7,11,15,16,17,21, and 25 (refer to student level table (Part A) in appendix) (6,8,20,22,29 and 99 are for export only.)",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"E1D\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"A\" = Unduplicated headcount",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "LINE",
+                                                               "description":  " Student level ",
+                                                               "start":  11,
+                                                               "length":  2,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "1,2,3,7,11,15,16,17,21, and 25 (refer to student level table (Part A) in appendix) (6,8,20,22,29 and 99 are for export only.)",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FILLER",
+                                                               "description":  "Filler",
+                                                               "start":  13,
+                                                               "length":  7,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "Blanks",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE01",
+                                                               "description":  "U.S. Nonresident - Male (1)",
+                                                               "start":  20,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE02",
+                                                               "description":  "U.S. Nonresident - Female (2)",
+                                                               "start":  26,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE25",
+                                                               "description":  "Hispanic/Latino - Male (25)",
+                                                               "start":  32,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE26",
+                                                               "description":  "Hispanic/Latino - Female (26)",
+                                                               "start":  38,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE27",
+                                                               "description":  "American Indian or Alaska Native - Male (27)",
+                                                               "start":  44,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE28",
+                                                               "description":  "American Indian or Alaska Native - Female (28)",
+                                                               "start":  50,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE29",
+                                                               "description":  "Asian - Male (29)",
+                                                               "start":  56,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE30",
+                                                               "description":  "Asian - Female (30)",
+                                                               "start":  62,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE31",
+                                                               "description":  "Black or African American - Male (31)",
+                                                               "start":  68,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE32",
+                                                               "description":  "Black or African American - Female (32)",
+                                                               "start":  74,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE33",
+                                                               "description":  "Native Hawaiian or Other Pacific Islander - Male (33)",
+                                                               "start":  80,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE34",
+                                                               "description":  "Native Hawaiian or Other Pacific Islander - Female (34)",
+                                                               "start":  86,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE35",
+                                                               "description":  "White - Male (35)",
+                                                               "start":  92,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE36",
+                                                               "description":  "White - Female (36)",
+                                                               "start":  98,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE37",
+                                                               "description":  "Two or more races - Male (37)",
+                                                               "start":  104,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE38",
+                                                               "description":  "Two or more races - Female (38)",
+                                                               "start":  110,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE13",
+                                                               "description":  "Race and ethnicity unknown - Male (13)",
+                                                               "start":  116,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE14",
+                                                               "description":  "Race and ethnicity unknown - Female (14)",
+                                                               "start":  122,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE15",
+                                                               "description":  "Grand total - Male (15)",
+                                                               "start":  128,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Totals will be generated.  Do not include in import file. Columns 128-146 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE16",
+                                                               "description":  "Grand total - Female (16)",
+                                                               "start":  134,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Totals will be generated.  Do not include in import file. Columns 128-146 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE24",
+                                                               "description":  "Grand Total (24)",
+                                                               "start":  140,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Totals will be generated.  Do not include in import file. Columns 128-146 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  262,
+                                 "title":  "Unduplicated Count - Sex Unknown",
+                                 "instruction":  "Instructions:\u003cbr\u003eIf institution does not offer graduate level awards, FYSEXG is not applicable.\u003cbr\u003eIf institution does not offer undergraduate level awards, FYSEXUG is not applicable.",
+                                 "surveySection":  "\"E1D\"",
+                                 "part":  "\"D\" = Sex Unknown",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID ",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"E1D\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"D\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYSEXUG",
+                                                               "description":  "Undergraduate students: Sex unknown (i.e., sex information is not known or not collected)",
+                                                               "start":  11,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYSEXG",
+                                                               "description":  "Graduate students: Sex unknown (i.e., sex information is not known or not collected)",
+                                                               "start":  17,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  370,
+                                 "title":  "Distance Education Status",
+                                 "surveySection":  "\"E1D\"",
+                                 "part":  "\"C\" = Distance Education Status",
+                                 "a1":  "1,2 and 3 (refer to student level table (Part C) in appendix) ",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"E1D\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"C\" = Distance Education Status",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "LINE",
+                                                               "description":  "Student level",
+                                                               "start":  11,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "1,2 and 3 (refer to student level table (Part C) in appendix) ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "ENROLL_EXCLUSIVE",
+                                                               "description":  "Enrolled exclusively in distance education courses",
+                                                               "start":  12,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "ENROLL_SOME",
+                                                               "description":  "Enrolled in at least one but not all distance education courses",
+                                                               "start":  18,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "NOTENROLL",
+                                                               "description":  "Not enrolled in any distance education courses",
+                                                               "start":  24,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Totals will be generated.  Do not include in import file. Columns 24-29 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "TOTAL",
+                                                               "description":  "Total (all distance education statuses)",
+                                                               "start":  30,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Totals will be generated. Do not include in import file. Columns 30-35 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  152,
+                                 "title":  "Instructional Activity and Full-Time Equivalent (FTE) Enrollment",
+                                 "surveySection":  "\"E1D\"",
+                                 "part":  "\"B\" = instructional activity",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"E1D\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"B\" = instructional activity",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Filler",
+                                                               "description":  "Filler",
+                                                               "start":  11,
+                                                               "length":  9,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "Blanks",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CREDHRSU",
+                                                               "description":  "Credit hour instructional activity at the undergraduate level",
+                                                               "start":  20,
+                                                               "length":  8,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 99999999, blank = not applicable, if no undergraduate level programs are measured in credit hours.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CONTHRS",
+                                                               "description":  "Clock hour instructional activity (undergraduate level only)",
+                                                               "start":  28,
+                                                               "length":  8,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 9999999, blank = not applicable, if no undergraduate programs are measured in clock hours.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CREDHRSG",
+                                                               "description":  "Credit hour instructional activity at the graduate level",
+                                                               "start":  36,
+                                                               "length":  8,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 99999999, blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "RDOCFTE",
+                                                               "description":  "Reported Doctor\u0027s degree-professional practice student FTE",
+                                                               "start":  44,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "ETOTFTE",
+                                                               "description":  "Estimated Total FTE students",
+                                                               "start":  50,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Total FTE will be generated. Do not include in import file.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "RTOTFTE",
+                                                               "description":  "Reported Total FTE students",
+                                                               "start":  56,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Total FTE will be generated. Do not include in import file.",
+                                                               "isGrayedOut":  true
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  393,
+                                 "title":  "Unduplicated Count of Dual Enrolled Students",
+                                 "instruction":  "Instructions:\u003cbr\u003eIf the institution does not enroll high school students in college courses for credit, this is not applicable.",
+                                 "surveySection":  "\"E1D\"",
+                                 "part":  "\"E\" = Dual Enrolled Students",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"E1D\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"E\" = Dual Enrolled Students",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FILLER",
+                                                               "description":  "Filler",
+                                                               "start":  11,
+                                                               "length":  9,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "Blanks",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE01",
+                                                               "description":  "U.S. Nonresident - Male (1)",
+                                                               "start":  20,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE02",
+                                                               "description":  "U.S. Nonresident - Female (2)",
+                                                               "start":  26,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE25",
+                                                               "description":  "Hispanic/Latino - Male (25)",
+                                                               "start":  32,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE26",
+                                                               "description":  "Hispanic/Latino - Female (26)",
+                                                               "start":  38,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE27",
+                                                               "description":  "American Indian or Alaska Native - Male (27)",
+                                                               "start":  44,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE28",
+                                                               "description":  "American Indian or Alaska Native - Female (28)",
+                                                               "start":  50,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE29",
+                                                               "description":  "Asian - Male (29)",
+                                                               "start":  56,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE30",
+                                                               "description":  "Asian - Female (30)",
+                                                               "start":  62,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE31",
+                                                               "description":  "Black or African American - Male (31)",
+                                                               "start":  68,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE32",
+                                                               "description":  "Black or African American - Female (32)",
+                                                               "start":  74,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE33",
+                                                               "description":  "Native Hawaiian or Other Pacific Islander - Male (33)",
+                                                               "start":  80,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE34",
+                                                               "description":  "Native Hawaiian or Other Pacific Islander - Female (34)",
+                                                               "start":  86,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE35",
+                                                               "description":  "White - Male (35)",
+                                                               "start":  92,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE36",
+                                                               "description":  "White - Female (36)",
+                                                               "start":  98,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE37",
+                                                               "description":  "Two or more races - Male (37)",
+                                                               "start":  104,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE38",
+                                                               "description":  "Two or more races - Female (38)",
+                                                               "start":  110,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE13",
+                                                               "description":  "Race and ethnicity unknown - Male (13)",
+                                                               "start":  116,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE14",
+                                                               "description":  "Race and ethnicity unknown - Female (14)",
+                                                               "start":  122,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE15",
+                                                               "description":  "Grand total - Male (15)",
+                                                               "start":  128,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Totals will be generated.  Do not include in import file. Columns 128-200 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE16",
+                                                               "description":  "Grand total - Female (16)",
+                                                               "start":  134,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Totals will be generated.  Do not include in import file. Columns 128-200 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE24",
+                                                               "description":  "Grand Total (24)",
+                                                               "start":  140,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Totals will be generated.  Do not include in import file. Columns 128-200 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE17",
+                                                               "description":  "U.S. Nonresident - Male + Female Total (17)",
+                                                               "start":  146,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Male + Female Total will be generated.  Do not include in import file. Columns 128-200 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE41",
+                                                               "description":  "Hispanic/Latino - Male + Female Total (41)",
+                                                               "start":  152,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Male + Female Total will be generated.  Do not include in import file. Columns 128-200 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE42",
+                                                               "description":  "American Indian or Alaska Native - Male + Female Total (42)",
+                                                               "start":  158,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Male + Female Total will be generated.  Do not include in import file. Columns 128-200 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE43",
+                                                               "description":  "Asian - Male + Female Total (43)",
+                                                               "start":  164,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Male + Female Total will be generated.  Do not include in import file. Columns 128-200 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE44",
+                                                               "description":  "Black or African American - Male + Female Total (44)",
+                                                               "start":  170,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Male + Female Total will be generated.  Do not include in import file. Columns 128-200 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE45",
+                                                               "description":  "Native Hawaiian or Other Pacific Islander - Male + Female Total (45)",
+                                                               "start":  176,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Male + Female Total will be generated.  Do not include in import file. Columns 128-200 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE46",
+                                                               "description":  "White - Male + Female Total (46)",
+                                                               "start":  182,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Male + Female Total will be generated.  Do not include in import file. Columns 128-200 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE47",
+                                                               "description":  "Two or more races - Male + Female Total (47)",
+                                                               "start":  188,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Male + Female Total will be generated.  Do not include in import file. Columns 128-200 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "FYRACE23",
+                                                               "description":  "Race and ethnicity unknown - Male + Female Total (23)",
+                                                               "start":  194,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Male + Female Total will be generated.  Do not include in import file. Columns 128-200 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  395,
+                                 "title":  "Enroll high school students in college courses for credit",
+                                 "surveySection":  "\"E1D\"",
+                                 "part":  "\"F\" = Enroll high school students in college courses for credit",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"E1D\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"F\" = Enroll high school students in college courses for credit",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "ENROLLHS",
+                                                               "description":  "Did your institution enroll high school students in college courses for credit during the 12-month Enrollment (E12) reporting period of July 1, 2024 - June 30, 2025?",
+                                                               "start":  11,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "01-Yes, 02-No.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "ENROLLHS_WITHIN",
+                                                               "description":  "High school students are enrolled within a dual enrollment program.",
+                                                               "start":  13,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "If ENROLLHS=01 (Yes), then 01 = Yes, 02 = No.\r\nIf ENROLLHS=02 (No), then -2 or blank (not applicable), any entered value will be ignored.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "ENROLLHS_OUTSIDE",
+                                                               "description":  "High school students are enrolled outside a dual enrollment program. ",
+                                                               "start":  15,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "If ENROLLHS=01 (Yes), then 01 = Yes, 02 = No.\r\nIf ENROLLHS=02 (No), then -2 or blank (not applicable), any entered value will be ignored.",
+                                                               "isGrayedOut":  false
+                                                           }
+                                                       ]
+                             }
+                         ],
+    "keyValueParts":  [
+                          {
+                              "partId":  153,
+                              "title":  "Unduplicated Count",
+                              "surveySection":  "\"E1D\"",
+                              "part":  "\"A\" = Unduplicated headcount",
+                              "a1":  "i = 1,2,3,7,11,15,16,17,21,25, and 99 (refer to student level table (Part A) in appendix).",
+                              "keyValueFields":  [
+                                                     {
+                                                         "name":  "UNITID",
+                                                         "description":  "UNITID",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Valid UnitID",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SURVSECT",
+                                                         "description":  "Survey Section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"E1D\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PART",
+                                                         "description":  "Part of survey section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"A\" = Unduplicated headcount",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "LINE",
+                                                         "description":  "Student level",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "i = 1,2,3,7,11,15,16,17,21,25, and 99 (refer to student level table (Part A) in appendix).",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "RACE",
+                                                         "description":  "Race/ethnicity",
+                                                         "dataType":  "N",
+                                                         "validEntry":  " j = 1 to 11, (refer to race/ethnicity table (Part A) table in appendix).",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SEX",
+                                                         "description":  "Sex",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "k=  1-Male, 2-Female, 3-Grand Total. Do not include SEX=3 in import file. It will be generated.",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "COUNT",
+                                                         "description":  "Unduplicated count",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1 to 999999, for zero value see note below.",
+                                                         "isGrayedOut":  false
+                                                     }
+                                                 ]
+                          },
+                          {
+                              "partId":  263,
+                              "title":  "Unduplicated Count - Sex Unknown",
+                              "instruction":  "Instructions:\u003cbr\u003eIf institution does not offer graduate level awards, FYSEXG is not applicable.\u003cbr\u003eIf institution does not offer undergraduate level awards, FYSEXUG is not applicable.",
+                              "surveySection":  "\"E1D\"",
+                              "part":  "\"D\" = Sex Unknown",
+                              "keyValueFields":  [
+                                                     {
+                                                         "name":  "UNITID",
+                                                         "description":  "UNITID ",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Valid UnitID",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SURVSECT",
+                                                         "description":  "Survey Section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"E1D\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PART",
+                                                         "description":  "Part of survey section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"D\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "FYSEXUG",
+                                                         "description":  "Undergraduate students: Sex unknown (i.e., sex information is not known or not collected)",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "FYSEXG",
+                                                         "description":  "Graduate students: Sex unknown (i.e., sex information is not known or not collected)",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999",
+                                                         "isGrayedOut":  false
+                                                     }
+                                                 ]
+                          },
+                          {
+                              "partId":  161,
+                              "title":  "Distance Education Status",
+                              "surveySection":  "\"E1D\"",
+                              "part":  "\"C\"",
+                              "a1":  "i = 1,2 and 3 (refer to student level table (Part C) in appendix).",
+                              "keyValueFields":  [
+                                                     {
+                                                         "name":  "UNITID",
+                                                         "description":  "UNITID",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Valid UnitID",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SURVSECT",
+                                                         "description":  "Survey Section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"E1D\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PART",
+                                                         "description":  "Part of survey section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"C\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "LINE",
+                                                         "description":  "Student level",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "i = 1,2 and 3 (refer to student level table (Part C) in appendix).",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "ENROLL_EXCLUSIVE",
+                                                         "description":  "Enrolled exclusively in distance education courses",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "ENROLL_SOME",
+                                                         "description":  "Enrolled in at least one but not all distance education courses",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "NOTENROLL",
+                                                         "description":  "Not enrolled in any distance education courses",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Not enrolled will be generated. Do not include in import file.",
+                                                         "isGrayedOut":  true
+                                                     },
+                                                     {
+                                                         "name":  "DISTANCE_TOTAL",
+                                                         "description":  "Total (all distance education statuses)",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Distance total will be generated. Do not include in import file.",
+                                                         "isGrayedOut":  true
+                                                     }
+                                                 ]
+                          },
+                          {
+                              "partId":  149,
+                              "title":  "Instructional Activity and Full-Time Equivalent (FTE) Enrollment",
+                              "surveySection":  "\"E1D\"",
+                              "part":  "\"B\" = instructional activity",
+                              "keyValueFields":  [
+                                                     {
+                                                         "name":  "UNITID",
+                                                         "description":  "UNITID",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Valid UnitID",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SURVSECT",
+                                                         "description":  "Survey Section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"E1D\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PART",
+                                                         "description":  "Part of survey section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"B\" = instructional activity",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "CREDHRSU",
+                                                         "description":  "Credit hour instructional activity at the undergraduate level",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 99999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "CONTHRS",
+                                                         "description":  "Clock hour instructional activity (undergraduate level only)",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 99999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "CREDHRSG",
+                                                         "description":  "Credit hour instructional activity at the graduate level",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 99999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "RDOCFTE",
+                                                         "description":  "Reported Doctor\u0027s degree-professional practice student FTE",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "ETOTFTE",
+                                                         "description":  "Estimated Total FTE students",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, Total FTE will be generated. Do not include in import file.",
+                                                         "isGrayedOut":  true
+                                                     },
+                                                     {
+                                                         "name":  "RTOTFTE",
+                                                         "description":  "Reported Total FTE students",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, Total FTE will be generated. Do not include in import file.",
+                                                         "isGrayedOut":  true
+                                                     }
+                                                 ]
+                          },
+                          {
+                              "partId":  394,
+                              "title":  "Unduplicated Count of Dual Enrolled Students",
+                              "instruction":  "Instructions:\u003cbr\u003eIf the institution does not enroll high school students in college courses for credit, this is not applicable.",
+                              "surveySection":  "\"E1D\"",
+                              "part":  "\"E\" = Dual Enrolled Students",
+                              "keyValueFields":  [
+                                                     {
+                                                         "name":  "UNITID",
+                                                         "description":  "UNITID",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Valid UnitID",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SURVSECT",
+                                                         "description":  "Survey Section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"E1D\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PART",
+                                                         "description":  "Part of survey section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"E\" = Dual Enrolled Students",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "RACE",
+                                                         "description":  "Race/ethnicity",
+                                                         "dataType":  "N",
+                                                         "validEntry":  " j = 1 to 11, (refer to race/ethnicity table (Part A) table in appendix).",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SEX",
+                                                         "description":  "Sex",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "k=  1-Male, 2-Female, 3-Grand Total. Do not include SEX=3 in import file. It will be generated.",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "COUNT",
+                                                         "description":  "Unduplicated count",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1 to 999999, for zero value see note below.",
+                                                         "isGrayedOut":  false
+                                                     }
+                                                 ]
+                          },
+                          {
+                              "partId":  396,
+                              "title":  "Enroll high school students in college courses for credit",
+                              "surveySection":  "\"E1D\"",
+                              "part":  "\"F\" = Enroll high school students in college courses for credit",
+                              "keyValueFields":  [
+                                                     {
+                                                         "name":  "UNITID",
+                                                         "description":  "UNITID",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Valid UnitID",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SURVSECT",
+                                                         "description":  "Survey Section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"E1D\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PART",
+                                                         "description":  "Part of survey section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"F\" = Enroll high school students in college courses for credit",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "ENROLLHS",
+                                                         "description":  "Did your institution enroll high school students in college courses for credit during the 12-month Enrollment (E12) reporting period of July 1, 2024 - June 30, 2025?",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "01-Yes, 02-No.",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "ENROLLHS_WITHIN",
+                                                         "description":  "High school students are enrolled within a dual enrollment program.",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "If ENROLLHS=01 (Yes), then 01 = Yes, 02 = No.\r\nIf ENROLLHS=02 (No), then -2 or blank (not applicable), any entered value will be ignored.",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "ENROLLHS_OUTSIDE",
+                                                         "description":  "High school students are enrolled outside a dual enrollment program. ",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "If ENROLLHS=01 (Yes), then 01 = Yes, 02 = No.\r\nIf ENROLLHS=02 (No), then -2 or blank (not applicable), any entered value will be ignored.",
+                                                         "isGrayedOut":  false
+                                                     }
+                                                 ]
+                          }
+                      ]
+}

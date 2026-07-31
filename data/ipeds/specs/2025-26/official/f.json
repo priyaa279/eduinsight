@@ -1,0 +1,1460 @@
+﻿{
+    "title":  "Finance for degree-granting public institutions using GASB Reporting Standards",
+    "note":  "\u003ctable width=\"592\"\u003e\r\n\u003ctbody\u003e\r\n\u003ctr\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cb\u003ePart A - Statement of Net Assets\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e\u003cb\u003eLine\u003c/b\u003e\u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cb\u003eCategory\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e1 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eTotal current assets\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e31 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eDepreciable capital assets, net of depreciation.\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e4 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cem\u003eOther noncurrent assets (Do not include in import file. Will be generated)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e5 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eTotal noncurrent assets\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e6 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cem\u003eTotal assets (Do not include in import file. Will be generated)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e19 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eDeferred outflows of resources\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e7 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eLong-term debt, current portion\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e8 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cem\u003eOther current liabilities (Do not include in import file. Will be generated)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e9 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eTotal current liabilities\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e10 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eLong-term debt \u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e11 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cem\u003eOther non-current liabilities (Do not include in import file. Will be generated as follows: Line 12 minus line 10.)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e12 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eTotal noncurrent liabilities\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e13 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cem\u003eTotal liabilities (Do not include in import file. Will be generated as the sum of lines 9 and 12.)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e20 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eDeferred inflows of resources\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e14 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eNet assets invested in capital assets, net of related debt\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e15 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eRestricted expendable net assets\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e16 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eRestricted non-expendable net assets\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e17 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cem\u003eUnrestricted net assets (Do not include in import file. Will be generated as follows: Line 18 minus the sum of (lines 14, 15, and 16))\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e18 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cem\u003eNet position (Do not include in import file. Will be generated as follows: (Line 6 plus Line 19) minus (line 13 plus Line 20))\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003cbr\u003e\r\n\u003ctable width=\"592\"\u003e\r\n\u003ctbody\u003e\r\n\u003ctr\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cb\u003ePart P - Capital Assets (This part represents page 2 of Part A.)\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"center\"\u003e\u003cb\u003eLine\u003c/b\u003e\u003c/td\u003e\r\n\u003ctd width=\"502\"\u003e\u003cb\u003eProperty activity\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e21 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eLand and land improvements\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e22 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eInfrastructure\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e23 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eBuildings\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e32 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eEquipment, including art and library collections\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e27 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eConstruction in progress\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e99 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003e\u003cem\u003eTotal for Plant, Property and Equipment (Do not include in import file. Will be generated)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e28 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eAccumulated depreciation\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e33 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eIntangible assets, net of accumulated amortization\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e34 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eOther capital assets\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003cbr\u003e\r\n\u003ctable width=\"592\"\u003e\r\n\u003ctbody\u003e\r\n\u003ctr\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cb\u003ePart D - Summary of Changes in Net Position\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"center\"\u003e\u003cb\u003eLine\u003c/b\u003e\u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cb\u003eBalances and transactions\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e1\u003cem\u003e -\u003c/em\u003e \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eTotal revenues and other additions\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e2\u003cem\u003e -\u003c/em\u003e \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eTotal expenses and deductions\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e3\u003cem\u003e -\u003c/em\u003e \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cem\u003eChange in net position (Do not include in import file. Will be generated as follows: Line 1 minus line 2)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e4 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eNet position beginning of year\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e5\u003cem\u003e - \u003c/em\u003e\u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cem\u003eAdjustments to beginning net position (Do not include in import file. Will be generated as follows: Line 6 minus sum of lines 3 and 4)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e6\u003cem\u003e -\u003c/em\u003e \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cem\u003eNet position end of year (Do not include in import file. Will be generated from Part A line 18)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003cbr\u003e\r\n\u003ctable width=\"592\"\u003e\r\n\u003ctbody\u003e\r\n\u003ctr\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cb\u003ePart E - Scholarships and Fellowships\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"center\"\u003e\u003cb\u003eLine\u003c/b\u003e\u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cb\u003eActivity\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e1 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003ePell grants\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e2 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eOther federal grants\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e3 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eGrants by state government\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e4 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eGrants by local government\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e5 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eInstitutional grants from restricted resources\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e6\u003cem\u003e - \u003c/em\u003e\u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cem\u003eInstitutional grants from unrestricted resources (Do not include in import file. Will be generated as follows: Line 7 minus sum of (lines 1 through 5))\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e7 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eTotal revenue that funds scholarships and fellowships\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e8 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eDiscounts and allowances applied to tuition and fees\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e9 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cem\u003eDiscounts and allowances applied to sales and services of auxiliary enterprises\u0026nbsp;\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e10 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cem\u003eTotal Discounts and allowances (Do not include in import file. Will be generated as follows: line 08 plus line 09)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e11 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cem\u003eNet scholarships and fellowships expenses after deducting discounts and allowances (Do not include in import file. Will be generated)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003c/tbody\u003e\u003c/table\u003e\u003cbr\u003e\r\n\u003ctable width=\"592\"\u003e\r\n\u003ctbody\u003e\r\n\u003ctr\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cb\u003ePart Q - Sources of Discounts and Allowances\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cb\u003eFile type: Fixed Length/Positional\u003c/b\u003e\u003cbr\u003eLine 12-16 are allowed for F101 and F102.\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e12 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003ePell grants (federal)\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e13 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eOther federal grants (Do NOT include FDSL amounts)\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e14 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eGrants by state government\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e15 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eGrants by local government\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e16 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eEndowments and gifts\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e17 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cem\u003eOther institutional sources (Do not include in import file. Will be generated)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e18 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cem\u003eTotal (Do not include in import file. Will be generated)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003c/tbody\u003e\u003c/table\u003e\u003cbr\u003e\r\n\u003ctable width=\"592\"\u003e\r\n\u003ctbody\u003e\r\n\u003ctr\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cb\u003eFile type: Key Value Pair\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"30\" align=\"right\"\u003e\u0026nbsp;\u003c/td\u003e\r\n\u003ctd\u003e\r\n\u003ctable\u003e\r\n\u003ctbody\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e\u003cb\u003e(Line,\u0026nbsp;column)\u003c/b\u003e\u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"90%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e\u003cb\u003eSource of Discounts and Allowances\u003c/b\u003e\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cfont style=\"font-weight: bold;\" size=\"2\" face=\"Verdana\"\u003ePell grants (federal)\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(12,1) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eTuition and fees discounts \u0026amp; allowances\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(12,2) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eAuxiliary enterprises discounts \u0026amp; allowances\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(12,3) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e\u003cem\u003eTotal discounts \u0026amp; allowances (Do not include in import file. Will be generated)\u003c/em\u003e\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cfont style=\"font-weight: bold;\" size=\"2\" face=\"Verdana\"\u003eOther federal grants (Do NOT include FDSL amounts)\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(13,1) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eTuition and fees discounts \u0026amp; allowances\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(13,2) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eAuxiliary enterprises discounts \u0026amp; allowances\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(13,3) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e\u003cem\u003eTotal discounts \u0026amp; allowances (Do not include in import file. Will be generated)\u003c/em\u003e\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cfont style=\"font-weight: bold;\" size=\"2\" face=\"Verdana\"\u003eGrants by state government\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(14,1) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eTuition and fees discounts \u0026amp; allowances\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(14,2) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eAuxiliary enterprises discounts \u0026amp; allowances\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(14,3) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e\u003cem\u003eTotal discounts \u0026amp; allowances (Do not include in import file. Will be generated)\u003c/em\u003e\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cfont style=\"font-weight: bold;\" size=\"2\" face=\"Verdana\"\u003eGrants by local government\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(15,1) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eTuition and fees discounts \u0026amp; allowances\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(15,2) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eAuxiliary enterprises discounts \u0026amp; allowances\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(15,3) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e\u003cem\u003eTotal discounts \u0026amp; allowances (Do not include in import file. Will be generated)\u003c/em\u003e\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cfont style=\"font-weight: bold;\" size=\"2\" face=\"Verdana\"\u003eEndowments and gifts\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(16,1) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eTuition and fees discounts \u0026amp; allowances\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(16,2) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eAuxiliary enterprises discounts \u0026amp; allowances\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(16,3) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e\u003cem\u003eTotal discounts \u0026amp; allowances (Do not include in import file. Will be generated)\u003c/em\u003e\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cfont style=\"font-weight: bold;\" size=\"2\" face=\"Verdana\"\u003e\u003cem\u003eOther institutional sources (Do not include in import file. Will be generated)\u003c/em\u003e\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(17,1) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e\u003cem\u003eTuition and fees discounts \u0026amp; allowances (Do not include in import file. Will be generated)\u003c/em\u003e\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(17,2) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e\u003cem\u003eAuxiliary enterprises discounts \u0026amp; allowances (Do not include in import file. Will be generated)\u003c/em\u003e\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(17,3) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e\u003cem\u003eTotal discounts \u0026amp; allowances (Do not include in import file. Will be generated)\u003c/em\u003e\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cfont style=\"font-weight: bold;\" size=\"2\" face=\"Verdana\"\u003e\u003cem\u003eTotal (Do not include in import file. Will be generated)\u003c/em\u003e\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(18,1) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e\u003cem\u003eTuition and fees discounts \u0026amp; allowances (Do not include in import file. Will be generated)\u003c/em\u003e\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(18,2) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e\u003cem\u003eAuxiliary enterprises discounts \u0026amp; allowances (Do not include in import file. Will be generated)\u003c/em\u003e\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(18,3) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e\u003cem\u003eTotal discounts \u0026amp; allowances (Do not include in import file. Will be generated)\u003c/em\u003e\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003c/tbody\u003e\u003c/table\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003cbr\u003e\r\n\u003ctable width=\"592\"\u003e\r\n\u003ctbody\u003e\r\n\u003ctr\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cb\u003ePart B - Revenues and other additions\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e\u003cb\u003eLine\u003c/b\u003e\u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cb\u003eSource of funds\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e1 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eTuition and fees (after deducting discounts and allowances)\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e2 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eFederal operating grants and contracts\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e3 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eState operating grants and contracts\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e4 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cem\u003eLocal government/private operating grants and contracts (Do not include in import file. Will be generated)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e4a - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eLocal government operating grants and contracts\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e4b - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003ePrivate operating grants and contracts\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e5 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eSales and services of auxiliary enterprises (after deducting discounts and allowances)\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e6 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eSales and services of hospitals (after deducting patient contractual allowances)\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e26 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eSales \u0026amp; services of educational activities\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e7 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eIndependent operations\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e8 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cem\u003eOther sources - operating (Do not include in import file. Will be generated)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e9 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eTotal operating revenues\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e10 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eFederal appropriations\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e11 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eState appropriations\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e12 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eLocal appropriations, education district taxes, and similar support\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e13 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eFederal nonoperating grants\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e14 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eState nonoperating grants\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e15 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eLocal government nonoperating grants\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e16 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eGifts, including contributions from affiliated organizations\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e17 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eInvestment income\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e18 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cem\u003eOther nonoperating revenues (Do not include in import file. Will be generated as follows: Line 19 minus the sum of (lines 10 through 17))\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e19 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eTotal nonoperating revenues\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e20 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eCapital appropriations\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e21 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eCapital grants and gifts\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e22 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eAdditions to permanent endowments\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e23 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cem\u003eOther revenues and additions (Do not include in import file. Will be generated as follows: Line 24 minus the sum of (lines 20, 21, and 22))\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e24 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cem\u003eTotal other revenues and additions (Do not include in import file. Will be generated as follows: Line 25 minus the sum of (lines 9 and 19))\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e25 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eTotal all revenues and other additions\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e27 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cem\u003eTotal operating and nonoperating revenues (Do not include in import file. Will be generated as the sum of lines 9 and 19)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e28 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cem\u003e12-month Student FTE (Do not include in import file. Will be generated)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e29 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cem\u003eTotal operating and nonoperating revenues per student FTE (Do not include in import file. Will be generated as the ratio of lines 27 over 28)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003cbr\u003e\r\n\u003ctable width=\"592\"\u003e\r\n\u003ctbody\u003e\r\n\u003ctr\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cb\u003ePart C - Expenses and Other Deductions\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cb\u003eFile type: Fixed Length/Positional\u003c/b\u003e\u003cbr\u003eLine 1-7,11-13 are allowed for F101 and F102 only, Line 19 is allowed for F101 through F106\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"center\"\u003e\u003cb\u003eLine\u003c/b\u003e\u003c/td\u003e\r\n\u003ctd width=\"502\"\u003e\u003cb\u003eExpenditures by Functional Classification\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e1 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eInstruction\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e2 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eResearch\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e3 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003ePublic service\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e5 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eAcademic support\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e6 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eStudent services\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e7 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eInstitutional support\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e10 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003e\u003cem\u003eScholarships and fellowships expenses, net of discounts and allowances(Do not include in import file. Will be transferred from Part E, E11)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e11 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eAuxiliary enterprises\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e12 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eHospital services\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e13 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eIndependent operations\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e14 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003e\u003cem\u003eOther Functional Expenses and deductions (Do not include in import file. Will be generated as follows: line 19 minus sum of lines 1 through 13)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e19 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eTotal expenses and deductions\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e20 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003e\u003cem\u003e12-month Student FTE (Do not include in import file. Will be generated)\u003c/em\u003e\u003c/td\u003e\r\n\u003c/tr\u003e\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e21 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003e\u003cem\u003eTotal expenses and deductions per student FTE (Do not include in import file. Will be generated as the ratio of lines C19 over C20)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\u003ctd width=\"90\" align=\"right\"\u003e\u003c/td\u003e\u003ctd width=\"502\"\u003e\u003cbr\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\r\n\u003ctable width=\"592\"\u003e\r\n\u003ctbody\u003e\r\n\u003ctr\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cb\u003eFile type: Key Value Pair\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"30\" align=\"right\"\u003e\u0026nbsp;\u003c/td\u003e\r\n\u003ctd\u003e\r\n\u003ctable\u003e\r\n\u003ctbody\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e\u003cb\u003e(Line,\u0026nbsp;column)\u003c/b\u003e\u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"90%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e\u003cb\u003eExpense by Natural Classification\u003c/b\u003e\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cfont style=\"font-weight: bold;\" size=\"2\" face=\"Verdana\"\u003eInstruction\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(1,1) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eTotal amount\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(1,2) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eSalaries and wages\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cfont style=\"font-weight: bold;\" size=\"2\" face=\"Verdana\"\u003eResearch\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(2,1) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eTotal amount\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(2,2) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eSalaries and wages\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cfont style=\"font-weight: bold;\" size=\"2\" face=\"Verdana\"\u003ePublic service\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(3,1) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eTotal amount\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(3,2) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eSalaries and wages\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cfont style=\"font-weight: bold;\" size=\"2\" face=\"Verdana\"\u003eAcademic support\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(5,1) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eTotal amount\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(5,2) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eSalaries and wages\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cfont style=\"font-weight: bold;\" size=\"2\" face=\"Verdana\"\u003eStudent services\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(6,1) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eTotal amount\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(6,2) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eSalaries and wages\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cfont style=\"font-weight: bold;\" size=\"2\" face=\"Verdana\"\u003eInstitutional support\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(7,1) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eTotal amount\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(7,2) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eSalaries and wages\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cfont style=\"font-weight: bold;\" size=\"2\" face=\"Verdana\"\u003eScholarships and fellowships expenses, net of discounts and allowances\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(10,1) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e\u003cem\u003eTotal amount (Do not include in import file. Will be transferred from Part E, E11)\u003c/em\u003e\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cfont style=\"font-weight: bold;\" size=\"2\" face=\"Verdana\"\u003eAuxiliary enterprises\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(11,1) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eTotal amount\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(11,2) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eSalaries and wages\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cfont style=\"font-weight: bold;\" size=\"2\" face=\"Verdana\"\u003eHospital services (not to be reported by less-than-4-year institutions)\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(12,1) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eTotal amount\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(12,2) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eSalaries and wages\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cfont style=\"font-weight: bold;\" size=\"2\" face=\"Verdana\"\u003eIndependent operations (not to be reported by less-than-4-year institutions)\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(13,1) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eTotal amount\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(13,2) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eSalaries and wages\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cfont style=\"font-weight: bold;\" size=\"2\" face=\"Verdana\"\u003eOther Functional Expenses and deductions\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(14,1) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e\u003cem\u003eTotal amount (Do not include in import file. Will be generated as follows: Column 1 line 13 minus the sum of (lines 1 through 11))\u003c/em\u003e\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(14,2) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e\u003cem\u003eSalaries and wages (Do not include in import file. Will be generated as follows: Column 2 line 13 minus the sum of (lines 1 through 11))\u003c/em\u003e\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cfont style=\"font-weight: bold;\" size=\"2\" face=\"Verdana\"\u003eTotal expenses and Deductions\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(19,1) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eTotal amount\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(19,2) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eSalaries and wages\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(19,3) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eBenefits\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(19,4) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eOperation and Maintenance of Plant (as a natural expense)\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(19,5) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eDepreciation\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(19,6) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003eInterest\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(19,7) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"84%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e\u003cem\u003eOther Natural Expenses and Deductions(Do not include in import file. Will be generated as follows: Column 1 minus sum of lines 2 through 6.)\u003c/em\u003e\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cfont style=\"font-weight: bold;\" size=\"2\" face=\"Verdana\"\u003e12-month Student FTE from E12\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(20,1) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"85%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e\u003cem\u003eTotal amount\u0026nbsp;(Do not include in import file. Will be generated)\u003c/em\u003e\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cfont style=\"font-weight: bold;\" size=\"2\" face=\"Verdana\"\u003eTotal expenses\u0026nbsp;per student FTE\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr valign=\"top\"\u003e\r\n\u003ctd width=\"15%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e(21,1) - \u003c/font\u003e\u003c/td\u003e\r\n\u003ctd width=\"85%\"\u003e\u003cfont size=\"2\" face=\"Verdana\"\u003e\u003cem\u003eTotal amount\u0026nbsp;(Do not include in import file. Will be generated as the ratio of lines E13 over E14)\u003c/em\u003e\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003cbr\u003e\r\n\u003ctable width=\"592\"\u003e\r\n\u003ctbody\u003e\r\n\u003ctr\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cb\u003ePart M - Pension and Postemployment Benefits Other than Pension (OPEB) Information\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"center\"\u003e\u003cb\u003eLine\u003c/b\u003e\u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cb\u003eDescription\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e1 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003ePension expense\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e2 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eNet Pension liability\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e3 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eDeferred inflows related to pension\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e4 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eDeferred outflows related to pension\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\u003ctd width=\"70\" align=\"right\"\u003e5 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eOPEB expense\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e6 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eNet OPEB liability\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e7 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eDeferred inflows related to OPEB\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e8 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eDeferred outflows related to OPEB\u003c/td\u003e\u003c/tr\u003e\r\n\u003c/tbody\u003e\u003c/table\u003e\u003cbr\u003e\r\n\u003ctable width=\"592\"\u003e\r\n\u003ctbody\u003e\r\n\u003ctr\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cb\u003ePart H - Details of Endowment Assets\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"center\"\u003e\u003cb\u003eLine+Line150\u003c/b\u003e\u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cb\u003eValue of Endowment Assets\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e1 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eValue of endowment assets at the beginning of the fiscal year\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e2 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eValue of endowment assets at the end of the fiscal year\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e3 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cem\u003eChange in value of endowment net assets CV=[H02-H01] (Do not include in import file. Will be generated)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e3a - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eNew gifts and additions\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e3b - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eEndowment net investment return\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e3c - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eSpending distribution for current use\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e3d - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cem\u003eOther CV=[H03-(H03a+H03b+H03c)] (Do not include in import file. Will be generated)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003c/tbody\u003e\u003c/table\u003e\u003cbr\u003e\r\n\u003ctable width=\"592\"\u003e\r\n\u003ctbody\u003e\r\n\u003ctr\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cb\u003ePart N - Financial Health\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"center\"\u003e\u003cb\u003eLine\u003c/b\u003e\u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cb\u003eDescription\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e1 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eOperating income (Loss) + net nonoperating revenues (expenses)\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e2 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eOperating revenues + nonoperating revenues\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e3 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eChange in net position\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e4 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eNet position\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e5 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eExpendable net assets\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e6 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003ePlant-related debt\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e7 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eTotal expenses\u003c/td\u003e\u003c/tr\u003e\r\n\u003c/tbody\u003e\u003c/table\u003e\u003cbr\u003e\r\n\u003ctable width=\"592\"\u003e\r\n\u003ctbody\u003e\r\n\u003ctr\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cb\u003ePart J - Revenues for Bureau of Census\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"center\"\u003e\u003cb\u003e(Line,\u0026nbsp;column)\u003c/b\u003e\u003c/td\u003e\r\n\u003ctd width=\"502\"\u003e\u003cb\u003eRevenue by operation\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e1,1 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003e\u003cem\u003eTuition and fees - total all funds (Do not include in import file. Will be generated from part B line 1)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e1,2 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003e\u003cem\u003eTuition and fees - Educational and general/independent operations (Do not include in import file. Will be generated from column 1)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e2,1 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003e\u003cem\u003eSales and services - total all funds (Do not include in import file. Will be generated as sum of columns 2 through 5)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e2,2 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eSales and services - Education and general/independent operations\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e2,3 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003e\u003cem\u003eSales and services - Auxiliary enterprises (Do not include in import file. Will be generated from part B line 5)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e2,4 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003e\u003cem\u003eSales and services - Hospitals (Do not include in import file. Will be generated from part B line 6)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e2,5 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eSales and services - Agriculture extension/experiment services\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e3,1 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003e\u003cem\u003eFederal grants and contracts (excluding Pell) - Total all funds (Do not include in import file. Will be generated as sum of columns 2 through 5)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e3,2 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eFederal grants and contracts (excluding Pell) - Education and general/independent operations\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e3,3 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eFederal grants and contracts (excluding Pell) - Auxiliary enterprises\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e3,4 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eFederal grants and contracts (excluding Pell) - Hospitals\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e3,5 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eFederal grants and contracts (excluding Pell) - Agriculture extension/experiment services\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e4,1 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003e\u003cem\u003eState appropriations, current and capital - total all funds (Do not include in import file. Will be generated as sum of columns 2 through 5)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e4,2 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eState appropriations, current and capital - Education and general/independent operations\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e4,3 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eState appropriations, current and capital - Auxiliary enterprises\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e4,4 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eState appropriations, current and capital - Hospitals\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e4,5 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eState appropriations, current and capital - Agriculture extension/experiment services\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e5,1 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003e\u003cem\u003eState grants and contracts - total all funds (Do not include in import file. Will be generated as sum of columns 2 through 5)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e5,2 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eState grants and contracts - Education and general/independent operations\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e5,3 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eState grants and contracts - Auxiliary enterprises\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e5,4 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eState grants and contracts - Hospitals\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e5,5 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eState grants and contracts - Agriculture extension/experiment services\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e6,1 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003e\u003cem\u003eLocal appropriations, current and capital - total all funds (Do not include in import file. Will be generated as sum of columns 2 through 5)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e6,2 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eLocal appropriations, current and capital - Education and general/independent operations\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e6,3 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eLocal appropriations, current and capital - Auxiliary enterprises\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e6,4 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eLocal appropriations, current and capital - Hospitals\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e6,5 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eLocal appropriations, current and capital - Agriculture extension/experiment services\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e7,1 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003e\u003cem\u003eLocal grants and contracts - total all funds (Do not include in import file. Will be generated as sum of columns 2 through 5)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e7,2 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eLocal grants and contracts - Education and general/independent operations\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e7,3 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eLocal grants and contracts - Auxiliary enterprises\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\r\n\u003ctd width=\"90\" align=\"right\"\u003e7,4 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eLocal grants and contracts - Hospitals\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e7,5 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eLocal grants and contracts - Agriculture extension/experiment services\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e8,1 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eReceipts from property and non-property taxes - Total all funds\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e9,1 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eGifts and private grants, NOT including capital grants\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e10,1 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eInterest earnings\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e11,1 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eDividend earnings\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e12,1 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eRealized capital gains\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003cbr\u003e\r\n\u003ctable width=\"592\"\u003e\r\n\u003ctbody\u003e\r\n\u003ctr\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cb\u003ePart K - Expenses for Bureau of Census\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"center\"\u003e\u003cb\u003e(Line,\u0026nbsp;column)\u003c/b\u003e\u003c/td\u003e\r\n\u003ctd width=\"502\"\u003e\u003cb\u003eExpenses by operation\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e2,1 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003e\u003cem\u003eEmployee benefits, total - Total all funds (Do not include in import file. Will be generated as sum of columns 2 through 5)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e2,2 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eEmployee benefits, total - Educational and general/independent operations\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e2,3 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eEmployee benefits, total - Auxiliary enterprises\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e2,4 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eEmployee benefits, total - Hospitals\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e2,5 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eEmployee benefits total - Agriculture extension/experiment services\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e3,1 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003e\u003cem\u003ePayment to state retirement funds - Total all funds (Do not include in import file. Will be generated as sum of columns 2 through 5)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e3,2 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003ePayment to state retirement funds - Educational and general/independent operations\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e3,3 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003ePayment to state retirement funds - Auxiliary enterprises \u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e3,4 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003ePayment to state retirement funds - Hospitals \u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e3,5 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003ePayment to state retirement funds - Agriculture extension/experiment services\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e4,1 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003e\u003cem\u003eCurrent expenditures including salaries - total all funds (Do not include in import file. Will be generated as sum of columns 2 through 5)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e4,2 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eCurrent expenditures including salaries - Education and general/independent operations\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e4,3 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eCurrent expenditures including salaries - Auxiliary enterprises\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e4,4 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eCurrent expenditures including salaries - Hospitals\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e4,5 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eCurrent expenditures including salaries - Agriculture extension/experiment services\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e5,1 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003e\u003cem\u003eCapital outlay, construction - total all funds (Do not include in import file. Will be generated as sum of columns 2 through 5)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e5,2 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eCapital outlay, construction - Education and general/independent operations\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e5,3 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eCapital outlay, construction - Auxiliary enterprises\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e5,4 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eCapital outlay, construction - Hospitals\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e5,5 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eCapital outlay, construction - Agriculture extension/experiment services\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e6,1 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003e\u003cem\u003eCapital outlay, equipment purchases - total all funds (Do not include in import file. Will be generated as sum of columns 2 through 5)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e6,2 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eCapital outlay, equipment purchases - Education and general/independent operations\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e6,3 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eCapital outlay, equipment purchases - Auxiliary enterprises\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e6,4 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eCapital outlay, equipment purchases - Hospitals\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e6,5 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eCapital outlay, equipment purchases - Agriculture extension/experiment services\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e7,1 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003e\u003cem\u003eCapital outlay, land purchases - total all funds (Do not include in import file. Will be generated as sum of columns 2 through 5)\u003c/em\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e7,2 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eCapital outlay, land purchases - Education and general/independent operations\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e7,3 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eCapital outlay, land purchases - Auxiliary enterprises\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e7,4 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eCapital outlay, land purchases - Hospitals\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e7,5 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eCapital outlay, land purchases - Agriculture extension/experiment services\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"90\" align=\"right\"\u003e8,1 - \u003c/td\u003e\r\n\u003ctd width=\"502\"\u003eInterest on debt outstanding, all funds and activities\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003cbr\u003e\r\n\u003ctable width=\"592\"\u003e\r\n\u003ctbody\u003e\r\n\u003ctr\u003e\r\n\u003ctd colspan=\"2\"\u003e\u003cb\u003ePart L - Debt and Assets\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"center\"\u003e\u003cb\u003eLine\u003c/b\u003e\u003c/td\u003e\r\n\u003ctd width=\"522\"\u003e\u003cb\u003eBalance\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e1 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eLong-term debt outstanding at beginning of fiscal year\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e2 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eLong-term debt issued during fiscal year\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e3 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eLong-term debt retired during fiscal year\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e4 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eLong-term debt outstanding at end of fiscal year\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e5 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eShort-term debt outstanding at beginning of fiscal year\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e6 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eShort-term debt outstanding at end of fiscal year\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e7 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eTotal cash and security assets held at end of fiscal year in sinking or debt service funds\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e8 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eTotal cash and security assets held at end of fiscal year in bond funds\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\r\n\u003ctd width=\"70\" align=\"right\"\u003e9 - \u003c/td\u003e\r\n\u003ctd width=\"522\"\u003eTotal cash and security assets held at end of fiscal year in all other funds\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\r\n",
+    "nameFl":  "\u003cdiv class=\"name-left\"\u003eIPEDS 2025-26 Import Specifications: Finance for degree-granting public institutions using GASB Reporting Standards\u003cbr\u003eApplies to: Degree-granting institutions\u003c/div\u003e\u003cdiv class=\"name-center\"\u003eFile type: Fixed Length/Positional (*.txt)\u003c/div\u003e",
+    "noteFL":  "Note: All numeric fields should be right-justified. Both leading zeros and spaces are permissible. Character data should be left justified. \u003cBR\u003eIf there is a zero amount for any finance category, the line does not have to be included in the import file.",
+    "nameKv":  "\u003cdiv class=\"name-left\"\u003eIPEDS 2025-26 Import Specifications: Finance for degree-granting public institutions using GASB Reporting Standards\u003cbr\u003eApplies to: Degree-granting institutions\u003c/div\u003e\u003cdiv class=\"name-center\"\u003eFile type: File type: Key Value Pair File (*.TXT)\u003c/div\u003e",
+    "sampleKv":  "\u003cp\u003eSample record:\u003cbr\u003eUNITID=nnnnnn,SURVSECT=F1B,PART=9,FY_BEGIN_MONTH=10,FY_BEGIN_YEAR=2024,….. FY_END_MONTH=09,FY_END_YEAR=2025,GPFS=1,ALTMETH=1 UNITID=nnnnnn,SURVSECT=F1B,PART=A,LINE=1,AMOUNT=nnnnn UNITID=nnnnnn,SURVSECT=F1B,PART=A,LINE=2,AMOUNT=nnnnn UNITID=nnnnnn,SURVSECT=F1B,PART=A,LINE=i,AMOUNT=nnnnn UNITID=nnnnnn,SURVSECT=F1B,PART=P,LINE=21,AMOUNT=nnnnn UNITID=nnnnnn,SURVSECT=F1B,PART=P,LINE=21,AMOUNT=nnnnn UNITID=nnnnnn,SURVSECT=F1B,PART=P,LINE=21,AMOUNT=nnnnn UNITID=nnnnnn,SURVSECT=F1B,PART=B,LINE=1,AMOUNT=nnnnn UNITID=nnnnnn,SURVSECT=F1B,PART=B,LINE=2,AMOUNT=nnnnn UNITID=nnnnnn,SURVSECT=F1B,PART=B,LINE=i,AMOUNT=nnnnn UNITID=nnnnnn,SURVSECT=F1B,PART=C,LINE=1,COLUMN=1,AMOUNT=nnnnn UNITID=nnnnnn,SURVSECT=F1B,PART=C,LINE=1,COLUMN=2,AMOUNT=nnnnn UNITID=nnnnnn,SURVSECT=F1B,PART=C,LINE=2,COLUMN=1,AMOUNT=nnnnn UNITID=nnnnnn,SURVSECT=F1B,PART=C,LINE=2,COLUMN=2,AMOUNT=nnnnn UNITID=nnnnnn,SURVSECT=F1B,PART=C,LINE=i,COLUMN=j,AMOUNT=nnnnn UNITID=nnnnnn,SURVSECT=F1B,PART=D,LINE=4,AMOUNT=nnnn UNITID=nnnnnn,SURVSECT=F1B,PART=E,LINE=1,AMOUNT=nnnn UNITID=nnnnnn,SURVSECT=F1B,PART=E,LINE=2,AMOUNT=nnnn UNITID=nnnnnn,SURVSECT=F1B,PART=E,LINE=i,AMOUNT=nnnn UNITID=nnnnnn,SURVSECT=F1B,PART=H,LINE=1,AMOUNT=nnnnnn UNITID=nnnnnn,SURVSECT=F1B,PART=H,LINE=2,AMOUNT=nnnnnn UNITID=nnnnnn,SURVSECT=F1B,PART=J,LINE=2,COLUMN=2,AMOUNT=nnnnn UNITID=nnnnnn,SURVSECT=F1B,PART=J,LINE=2,COLUMN=5,AMOUNT=nnnnn UNITID=nnnnnn,SURVSECT=F1B,PART=J,LINE=3,COLUMN=2,AMOUNT=nnnnn UNITID=nnnnnn,SURVSECT=F1B,PART=J,LINE=3,COLUMN=3,AMOUNT=nnnnn UNITID=nnnnnn,SURVSECT=F1B,PART=J,LINE=3,COLUMN=j,AMOUNT=nnnnn UNITID=nnnnnn,SURVSECT=F1B,PART=J,LINE=i,COLUMN=j,AMOUNT=nnnnn UNITID=nnnnnn,SURVSECT=F1B,PART=K,LINE=1,COLUMN=2,AMOUNT=nnnnn UNITID=nnnnnn,SURVSECT=F1B,PART=K,LINE=1,COLUMN=5,AMOUNT=nnnnn UNITID=nnnnnn,SURVSECT=F1B,PART=K,LINE=i,COLUMN=j,AMOUNT=nnnnn UNITID=nnnnnn,SURVSECT=F1B,PART=L,LINE=2,AMOUNT=nnnnn UNITID=nnnnnn,SURVSECT=F1B,PART=L,LINE=3,AMOUNT=nnnnn \r\nUNITID=nnnnnn,SURVSECT=F1B,PART=L,LINE=i,AMOUNT=nnnnn\r\nUNITID=nnnnnn,SURVSECT=F1B,PART=M,LINE=1,AMOUNT=nnnnn\r\nUNITID=nnnnnn,SURVSECT=F1B,PART=M,LINE=2,AMOUNT=nnnnn\r\n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=F1B,PART=M,LINE=i,AMOUNT=nnnnn \u003cbr\u003e...\u003c/p\u003e",
+    "noteKv":  "Note: If there is a zero amount for any \nfinance category, the line does not have to be included in the import file.",
+    "fixedLayoutParts":  [
+                             {
+                                 "partId":  170,
+                                 "title":  "\u003cb\u003eGeneral information\u003c/b\u003e",
+                                 "surveySection":  "\"F1B\" = GASB form",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"F1B\" = GASB form",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section ",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"9\"=General information",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FY_BEGIN_MONTH",
+                                                               "description":  "Month of beginning date of fiscal year covered  ",
+                                                               "start":  11,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "2-digit month between 1 and 12",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FY_BEGIN_YEAR",
+                                                               "description":  "Year of beginning date of fiscal year covered",
+                                                               "start":  13,
+                                                               "length":  4,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "4-digit year between 2024 and 2025",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FY_END_MONTH",
+                                                               "description":  "Month of end date of fiscal year covered. Your fiscal year must end before October 1, 2025. If you do not report for a full 12-month period, please explain in the context boxes provided online. (Context boxes cannot be imported).",
+                                                               "start":  17,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "2-digit month between 1 and 12",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FY_END_YEAR",
+                                                               "description":  "Year of end date of fiscal year covered. Your fiscal year must end before October 1, 2025. If you do not report for a full 12-month period, please explain in the context boxes provided online. (Context boxes cannot be imported).",
+                                                               "start":  19,
+                                                               "length":  4,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "4-digit year between 2024 and 2025",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GPFS",
+                                                               "description":  "Audit Opinion: Did your institution receive an unqualified opinion on its General Purpose Financial Statements from your auditor for the fiscal year noted above?",
+                                                               "start":  23,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "1=Unqualified \u003cbr\u003e2=Qualified \u003cbr\u003e3=Don\u0027t know",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "ALTMETH",
+                                                               "description":  "Reporting Model: GASB Statement No. 34 offers three alternative reporting models for special-purpose governments like colleges and universities. Which model is used by your institution? (Select only one)",
+                                                               "start":  25,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "1=Business Type Activities \u003cbr\u003e2=Governmental Activities \u003cbr\u003e3=Governmental Activities with Business-Type Activities                      ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Filler",
+                                                               "description":  "Filler",
+                                                               "start":  27,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "blank spaces",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "ATH_REV_1",
+                                                               "description":  "Intercollegiate Athletics: b) If your institution participates in intercollegiate athletics and has intercollegiate athletics revenue, indicate the category where these \u003cb\u003erevenues\u003c/b\u003e are included: \u003cb\u003eSales and services of educational activities\u003c/b\u003e",
+                                                               "start":  29,
+                                                               "length":  1,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "1= Yes, 2=No or blank (not applicable).",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "ATH_REV_2",
+                                                               "description":  "Intercollegiate Athletics: b) If your institution participates in intercollegiate athletics and has intercollegiate athletics revenue, indicate the category where these \u003cb\u003erevenues\u003c/b\u003e are included: \u003cb\u003eSales and services of auxiliary enterprises\u003c/b\u003e",
+                                                               "start":  30,
+                                                               "length":  1,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "1= Yes, 2=No or blank (not applicable).",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Filler",
+                                                               "description":  "Filler",
+                                                               "start":  31,
+                                                               "length":  1,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "blank spaces",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "ATH_REV_4",
+                                                               "description":  "Intercollegiate Athletics: b) If your institution participates in intercollegiate athletics and has intercollegiate athletics revenue, indicate the category where these \u003cb\u003erevenues\u003c/b\u003e are included: \u003cb\u003eOther \u003c/b\u003e",
+                                                               "start":  32,
+                                                               "length":  1,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "1= Yes, 2=No or blank (not applicable).",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "ATH_EXP_1",
+                                                               "description":  "Intercollegiate Athletics: a) If your institution participates in intercollegiate athletics, indicate the category where intercollegiate athletics \u003cb\u003eexpenses\u003c/b\u003e are accounted for: \u003cb\u003eAuxiliary enterprises\u003c/b\u003e",
+                                                               "start":  33,
+                                                               "length":  1,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "1= Yes, 2=No or blank (not applicable).",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "ATH_EXP_2",
+                                                               "description":  "Intercollegiate Athletics: a) If your institution participates in intercollegiate athletics, indicate the category where intercollegiate athletics \u003cb\u003eexpenses\u003c/b\u003e are accounted for: \u003cb\u003eStudent services\u003c/b\u003e",
+                                                               "start":  34,
+                                                               "length":  1,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "1= Yes, 2=No or blank (not applicable).",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "ATH_EXP_4",
+                                                               "description":  "Intercollegiate Athletics: a) If your institution participates in intercollegiate athletics, indicate the category where intercollegiate athletics \u003cb\u003eexpenses\u003c/b\u003e are accounted for: \u003cb\u003eOther \u003c/b\u003e",
+                                                               "start":  35,
+                                                               "length":  1,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "1= Yes, 2=No or blank (not applicable).",
+                                                               "isGrayedOut":  false
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  85,
+                                 "title":  "\u003cb\u003ePart (A) Statement of Net Position (1)\u003c/b\u003e",
+                                 "surveySection":  "\"F1B\" = GASB form",
+                                 "part":  "\"A\"",
+                                 "a1":  "1,31,5,7,9,10,12,14-16,19,20, refer to appendix Part A.",
+                                 "a2":  "0 to 999999999999",
+                                 "description1":  "Description of Finance category",
+                                 "description2":  "Total amount",
+                                 "name1":  "F101",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"F1B\" = GASB form",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section ",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"A\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "LINE",
+                                                               "description":  "Description of Finance category",
+                                                               "start":  11,
+                                                               "length":  2,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "1,31,5,7,9,10,12,14-16,19,20, refer to appendix Part A.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Filler",
+                                                               "description":  "Filler",
+                                                               "start":  13,
+                                                               "length":  5,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "blank spaces",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "F101",
+                                                               "description":  "Total amount",
+                                                               "start":  18,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999",
+                                                               "isGrayedOut":  false
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  85,
+                                 "title":  "\u003cb\u003ePart (A) Statement of Net Position (2)\u003c/b\u003e",
+                                 "surveySection":  "\"F1B\" = GASB form",
+                                 "part":  "\"P\"",
+                                 "a1":  "21,22,23,32,27,28,33,34, refer to appendix Part P. ",
+                                 "a2":  "0 to 999999999999",
+                                 "description1":  "Property type",
+                                 "description2":  "balance",
+                                 "name1":  "F101",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"F1B\" = GASB form",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section ",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"P\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "LINE",
+                                                               "description":  "Property type",
+                                                               "start":  11,
+                                                               "length":  2,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "21,22,23,32,27,28,33,34, refer to appendix Part P. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Filler",
+                                                               "description":  "Filler",
+                                                               "start":  13,
+                                                               "length":  5,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "blank spaces",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "F101",
+                                                               "description":  "Total amount",
+                                                               "start":  18,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999",
+                                                               "isGrayedOut":  false
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  85,
+                                 "title":  "\u003cb\u003ePart (D) Summary of Changes in Net Position\u003c/b\u003e",
+                                 "surveySection":  "\"F1B\" = GASB form",
+                                 "part":  "\"D\"",
+                                 "a1":  "1,2,4, refer to appendix Part D.",
+                                 "a2":  "0 to 999999999999",
+                                 "description1":  "Description of Finance category",
+                                 "description2":  "Total amount",
+                                 "name1":  "F101",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"F1B\" = GASB form",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section ",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"D\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "LINE",
+                                                               "description":  "Description of Finance category",
+                                                               "start":  11,
+                                                               "length":  2,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "1,2,4, refer to appendix Part D.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Filler",
+                                                               "description":  "Filler",
+                                                               "start":  13,
+                                                               "length":  5,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "blank spaces",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "F101",
+                                                               "description":  "Total amount",
+                                                               "start":  18,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999",
+                                                               "isGrayedOut":  false
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  85,
+                                 "title":  "\u003cb\u003ePart (E1) Scholarships and Fellowships\u003c/b\u003e",
+                                 "surveySection":  "\"F1B\" = GASB form",
+                                 "part":  "\"E\"",
+                                 "a1":  "1-5, 7-9, refer to appendix Part E.",
+                                 "a2":  "0 to 999999999999",
+                                 "description1":  "Description of Finance category",
+                                 "description2":  "Total amount",
+                                 "name1":  "F101",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"F1B\" = GASB form",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section ",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"E\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "LINE",
+                                                               "description":  "Description of Finance category",
+                                                               "start":  11,
+                                                               "length":  2,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "1-5, 7-9, refer to appendix Part E.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Filler",
+                                                               "description":  "Filler",
+                                                               "start":  13,
+                                                               "length":  5,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "blank spaces",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "F101",
+                                                               "description":  "Total amount",
+                                                               "start":  18,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999",
+                                                               "isGrayedOut":  false
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  391,
+                                 "title":  "\u003cb\u003ePart (E2) Sources of Discounts and Allowances\u003c/b\u003e",
+                                 "surveySection":  "\"F1B\" = GASB form",
+                                 "part":  "\"Q\"",
+                                 "a1":  "12-16, refer to appendix Part Q.",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"F1B\" = GASB form",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section ",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"Q\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "LINE",
+                                                               "description":  "Source of Discounts and Allowances",
+                                                               "start":  11,
+                                                               "length":  2,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "12-16, refer to appendix Part Q.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Filler",
+                                                               "description":  "Filler",
+                                                               "start":  13,
+                                                               "length":  5,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "blank spaces",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "F101",
+                                                               "description":  "Tuition and fees \r\ndiscounts \u0026 \r\nallowances",
+                                                               "start":  18,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "F102",
+                                                               "description":  "Auxiliary \r\nenterprises\r\ndiscounts \u0026 \r\n allowances",
+                                                               "start":  30,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "F103",
+                                                               "description":  "Total \r\ndiscounts \u0026 \r\nallowances",
+                                                               "start":  42,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "For Export Only. Do not import.",
+                                                               "isGrayedOut":  false
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  85,
+                                 "title":  "\u003cb\u003ePart (B) Revenues and Other Additions\u003c/b\u003e",
+                                 "surveySection":  "\"F1B\" = GASB form",
+                                 "part":  "\"B\"",
+                                 "a1":  "1-6, 26,7-19 ,20-25 refer to appendix Part B.",
+                                 "a2":  "0 to 999999999999",
+                                 "description1":  "Description of Finance category",
+                                 "description2":  "Total amount",
+                                 "name1":  "F101",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"F1B\" = GASB form",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section ",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"B\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "LINE",
+                                                               "description":  "Description of Finance category",
+                                                               "start":  11,
+                                                               "length":  2,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "1-6, 26,7-19 ,20-25 refer to appendix Part B.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Filler",
+                                                               "description":  "Filler",
+                                                               "start":  13,
+                                                               "length":  5,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "blank spaces",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "F101",
+                                                               "description":  "Total amount",
+                                                               "start":  18,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999",
+                                                               "isGrayedOut":  false
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  174,
+                                 "title":  "\u003cb\u003ePart (C)  Expenses by Functional and Natural Classification\u003c/b\u003e",
+                                 "surveySection":  "\"F1B\" = GASB form",
+                                 "part":  "\"C\"",
+                                 "a1":  "1-7,11-13: F101 and F102 only, \u003cbr\u003e19: F101 through F106, refer to appendix Part C.",
+                                 "a2":  "0 to 999999999999",
+                                 "a3":  "0 to 999999999999",
+                                 "a4":  "0 to 999999999999",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"F1B\" = GASB form",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section ",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"C\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "LINE",
+                                                               "description":  "Description of Finance category",
+                                                               "start":  11,
+                                                               "length":  2,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "1-7,11-13: F101 and F102 only, \u003cbr\u003e19: F101 through F106, refer to appendix Part C.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Filler",
+                                                               "description":  "Filler",
+                                                               "start":  13,
+                                                               "length":  5,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "blank spaces",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "F101",
+                                                               "description":  "Total amount",
+                                                               "start":  18,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "F102",
+                                                               "description":  "Salaries and wages",
+                                                               "start":  30,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "F103",
+                                                               "description":  "Benefits",
+                                                               "start":  42,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "F104",
+                                                               "description":  "Operation and Maintenance of Plant (as a natural expense)",
+                                                               "start":  54,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "F105",
+                                                               "description":  "Depreciation",
+                                                               "start":  66,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "F106",
+                                                               "description":  "Interest",
+                                                               "start":  78,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "F107",
+                                                               "description":  "Other Natural Expenses and Deductions",
+                                                               "start":  90,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "For Export Only.  Do not import.",
+                                                               "isGrayedOut":  true
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  85,
+                                 "title":  "\u003cb\u003ePart (M) Pension and Postemployment Benefits Other than Pension (OPEB) Information\u003c/b\u003e",
+                                 "surveySection":  "\"F1B\" = GASB form",
+                                 "part":  "\"M\"",
+                                 "a1":  "1-8, refer to appendix Part M.",
+                                 "a2":  "-99999999999 to 999999999999 for lines for 1,2,5,6 else 0 to 999999999999.",
+                                 "description1":  "Description of Finance category",
+                                 "description2":  "Total amount",
+                                 "name1":  "F101",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"F1B\" = GASB form",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section ",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"M\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "LINE",
+                                                               "description":  "Description of Finance category",
+                                                               "start":  11,
+                                                               "length":  2,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "1-8, refer to appendix Part M.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Filler",
+                                                               "description":  "Filler",
+                                                               "start":  13,
+                                                               "length":  5,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "blank spaces",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "F101",
+                                                               "description":  "Total amount",
+                                                               "start":  18,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "-99999999999 to 999999999999 for lines for 1,2,5,6 else 0 to 999999999999.",
+                                                               "isGrayedOut":  false
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  191,
+                                 "title":  "\u003cb\u003ePart (H) Details of Endowment Assets\u003c/b\u003e",
+                                 "surveySection":  "\"F1B\" = GASB form",
+                                 "part":  "\"H\"",
+                                 "a1":  "1-3, refer to appendix Part H.",
+                                 "a2":  "a,b,c for line 03, refer to appendix Part H.",
+                                 "a3":  "-99999999999 to 999999999999",
+                                 "description1":  "Description of endowment category",
+                                 "description2":  "Line Qualifier",
+                                 "name1":  "LINE150",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"F1B\" = GASB form",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section ",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"H\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "LINE",
+                                                               "description":  "Description of endowment category",
+                                                               "start":  11,
+                                                               "length":  2,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "1-3, refer to appendix Part H.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "LINE150",
+                                                               "description":  "Line Qualifier",
+                                                               "start":  13,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "a,b,c for line 03, refer to appendix Part H.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Filler",
+                                                               "description":  "Filler",
+                                                               "start":  14,
+                                                               "length":  4,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "blank spaces",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "F101",
+                                                               "description":  "Total amount",
+                                                               "start":  18,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "-99999999999 to 999999999999",
+                                                               "isGrayedOut":  false
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  390,
+                                 "title":  "\u003cb\u003ePart (N) Financial Health\u003c/b\u003e",
+                                 "surveySection":  "\"F1B\" = GASB form",
+                                 "part":  "\"N\"",
+                                 "a1":  "1-7, refer to appendix Part N.",
+                                 "a2":  "0 to 999999999999",
+                                 "description1":  "Description of financial health category",
+                                 "name1":  "F101",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"F1B\" = GASB form",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section ",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"N\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "LINE",
+                                                               "description":  "Description of financial health category",
+                                                               "start":  11,
+                                                               "length":  2,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "1-7, refer to appendix Part N.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Filler",
+                                                               "description":  "Filler",
+                                                               "start":  13,
+                                                               "length":  5,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "blank spaces",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "F101",
+                                                               "description":  "Total amount",
+                                                               "start":  18,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999",
+                                                               "isGrayedOut":  false
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  179,
+                                 "title":  "\u003cb\u003ePart (J) Revenues for Bureau of Census\u003c/b\u003e",
+                                 "surveySection":  "\"F1B\" = GASB form",
+                                 "part":  "\"J\"",
+                                 "a1":  "2-12, refer to appendix Part J.",
+                                 "a2":  "0 to 999999999999",
+                                 "a3":  "0 to 999999999999",
+                                 "description1":  "Source and type",
+                                 "a4":  "0 to 999999999999",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"F1B\" = GASB form",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section ",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"J\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "LINE",
+                                                               "description":  "Source and type",
+                                                               "start":  11,
+                                                               "length":  2,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "2-12, refer to appendix Part J.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Filler",
+                                                               "description":  "Filler",
+                                                               "start":  13,
+                                                               "length":  5,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "blank spaces",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "F101",
+                                                               "description":  "Total amount ",
+                                                               "start":  18,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "F102",
+                                                               "description":  "Education and general/independent operations ",
+                                                               "start":  30,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "F103",
+                                                               "description":  "Auxiliary enterprises",
+                                                               "start":  42,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "F104",
+                                                               "description":  "Hospitals",
+                                                               "start":  54,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "F105",
+                                                               "description":  "Agriculture extension/experiment services",
+                                                               "start":  66,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999",
+                                                               "isGrayedOut":  false
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  179,
+                                 "title":  "\u003cb\u003ePart (K) Expenditures for Bureau of the Census\u003c/b\u003e",
+                                 "surveySection":  "\"F1B\" = GASB form",
+                                 "part":  "\"K\"",
+                                 "a1":  "2-8, refer to appendix Part K.",
+                                 "a2":  "0 to 999999999999",
+                                 "a3":  "0 to 999999999999",
+                                 "description1":  "Category",
+                                 "a4":  "0 to 999999999999",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"F1B\" = GASB form",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section ",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"K\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "LINE",
+                                                               "description":  "Category",
+                                                               "start":  11,
+                                                               "length":  2,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "2-8, refer to appendix Part K.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Filler",
+                                                               "description":  "Filler",
+                                                               "start":  13,
+                                                               "length":  5,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "blank spaces",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "F101",
+                                                               "description":  "Total amount ",
+                                                               "start":  18,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "F102",
+                                                               "description":  "Education and general/independent operations ",
+                                                               "start":  30,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "F103",
+                                                               "description":  "Auxiliary enterprises",
+                                                               "start":  42,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "F104",
+                                                               "description":  "Hospitals",
+                                                               "start":  54,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "F105",
+                                                               "description":  "Agriculture extension/experiment services",
+                                                               "start":  66,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999",
+                                                               "isGrayedOut":  false
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  85,
+                                 "title":  "\u003cb\u003ePart (L) Debt and Assets \u003c/b\u003e",
+                                 "surveySection":  "\"F1B\" = GASB form",
+                                 "part":  "\"L\"",
+                                 "a1":  "1-9 refer to appendix Part L.",
+                                 "a2":  "0 to 999999999999",
+                                 "description1":  "Description of Finance category",
+                                 "description2":  "Total Amount",
+                                 "name1":  "F101",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"F1B\" = GASB form",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section ",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"L\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "LINE",
+                                                               "description":  "Description of Finance category",
+                                                               "start":  11,
+                                                               "length":  2,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "1-9 refer to appendix Part L.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Filler",
+                                                               "description":  "Filler",
+                                                               "start":  13,
+                                                               "length":  5,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "blank spaces",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "F101",
+                                                               "description":  "Total amount",
+                                                               "start":  18,
+                                                               "length":  12,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999999999",
+                                                               "isGrayedOut":  false
+                                                           }
+                                                       ]
+                             }
+                         ],
+    "keyValueParts":  [
+                          {
+                              "partId":  184,
+                              "title":  "\u003cb\u003eGeneral information\u003c/b\u003e",
+                              "surveySection":  "\"F1B\" = GASB form",
+                              "keyValueFields":  [
+                                                     {
+                                                         "name":  "UNITID",
+                                                         "description":  "UNITID",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Valid UnitID",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SURVSECT",
+                                                         "description":  "Survey Section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"F1B\" = GASB form",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PART",
+                                                         "description":  "Part of survey section ",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "\"9\"=General information",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "FY_BEGIN_MONTH",
+                                                         "description":  "Month of beginning date of fiscal year covered  ",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "2-digit month between 1 and 12",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "FY_BEGIN_YEAR",
+                                                         "description":  "Year of beginning date of fiscal year covered  ",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "4-digit year between 2024 and 2025",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "FY_END_MONTH",
+                                                         "description":  "Month of end date of fiscal year covered. Your fiscal year must end before October 1, 2025. If you do not report for a full 12-month period, please explain in the context boxes provided online. (Context boxes cannot be imported).",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "2-digit month between 1 and 12",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "FY_END_YEAR",
+                                                         "description":  "Year of end date of fiscal year covered. Your fiscal year must end before October 1, 2025. If you do not report for a full 12-month period, please explain in the context boxes provided online. (Context boxes cannot be imported).",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "4-digit year between 2024 and 2025",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "GPFS",
+                                                         "description":  "Audit Opinion: Did your institution receive an unqualified opinion on its General Purpose Financial Statements from your auditor for the fiscal year noted above?",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1=Unqualified, 2=Qualified, 3=Don\u0027t know",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "ALTMETH",
+                                                         "description":  "Reporting Model: GASB Statement No. 34 offers three alternative reporting models for special-purpose governments like colleges and universities. Which model is used by your institution? (Select only one)",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1=Business Type Activities                 2=Governmental Activities                    3=Governmental Activities with Business-Type Activities                      ",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "ATH_REV_1",
+                                                         "description":  "Intercollegiate Athletics: b) If your institution participates in intercollegiate athletics and has intercollegiate athletics revenue, indicate the category where these \u003cb\u003erevenues\u003c/b\u003e are included: \u003cb\u003eSales and services of educational activities\u003c/b\u003e",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1= Yes, 2=No or blank (not applicable).",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "ATH_REV_2",
+                                                         "description":  "Intercollegiate Athletics: b) If your institution participates in intercollegiate athletics and has intercollegiate athletics revenue, indicate the category where these \u003cb\u003erevenues\u003c/b\u003e are included: \u003cb\u003eSales and services of auxiliary enterprises\u003c/b\u003e",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1= Yes, 2=No or blank (not applicable).",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "ATH_REV_4",
+                                                         "description":  "Intercollegiate Athletics: b) If your institution participates in intercollegiate athletics and has intercollegiate athletics revenue, indicate the category where these \u003cb\u003erevenues\u003c/b\u003e are included: \u003cb\u003eOther \u003c/b\u003e",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1= Yes, 2=No or blank (not applicable).",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "ATH_EXP_1",
+                                                         "description":  "Intercollegiate Athletics: a) If your institution participates in intercollegiate athletics, indicate the category where intercollegiate athletics \u003cb\u003eexpenses\u003c/b\u003e are accounted for: \u003cb\u003eAuxiliary enterprises\u003c/b\u003e",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1= Yes, 2=No or blank (not applicable).",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "ATH_EXP_2",
+                                                         "description":  "Intercollegiate Athletics: a) If your institution participates in intercollegiate athletics, indicate the category where intercollegiate athletics \u003cb\u003eexpenses\u003c/b\u003e are accounted for: \u003cb\u003eStudent services\u003c/b\u003e",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1= Yes, 2=No or blank (not applicable).",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "ATH_EXP_4",
+                                                         "description":  "Intercollegiate Athletics: a) If your institution participates in intercollegiate athletics, indicate the category where intercollegiate athletics \u003cb\u003eexpenses\u003c/b\u003e are accounted for: \u003cb\u003eOther \u003c/b\u003e",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1= Yes, 2=No or blank (not applicable).",
+                                                         "isGrayedOut":  false
+                                                     }
+                                                 ]
+                          },
+                          {
+                              "partId":  90,
+                              "title":  "\u003cb\u003eParts A, P, B, D, E, M, N, L\u003c/b\u003e",
+                              "surveySection":  "\"F1B\" = GASB form",
+                              "part":  "\"A\", \"P\", \"B\", \"D\", \"E\" for Part E1, \"M\", \"N\", \"L\"",
+                              "a1":  "i = 1 to 34, refer to appendix finance category tables",
+                              "a2":  "-99999999999 to 999999999999 for line 15 in Part A, for line 13 in Part B, for line 4 in Part D, for line 1,2,5,6 in Part M else 0 to 999999999999.",
+                              "keyValueFields":  [
+                                                     {
+                                                         "name":  "UNITID",
+                                                         "description":  "UNITID",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "nnnnnn=Valid UnitID",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SURVSECT",
+                                                         "description":  "Survey Section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"F1B\" = GASB form",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PART",
+                                                         "description":  "Part of survey section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"A\", \"P\", \"B\", \"D\", \"E\" for Part E1, \"M\", \"N\", \"L\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "LINE",
+                                                         "description":  "Finance category",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "i = 1 to 34, refer to appendix finance category tables",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "AMOUNT",
+                                                         "description":  "Amount in whole dollars",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "-99999999999 to 999999999999 for line 15 in Part A, for line 13 in Part B, for line 4 in Part D, for line 1,2,5,6 in Part M else 0 to 999999999999.",
+                                                         "isGrayedOut":  false
+                                                     }
+                                                 ]
+                          },
+                          {
+                              "partId":  186,
+                              "title":  "\u003cb\u003eParts Q, C, J, K\u003c/b\u003e",
+                              "surveySection":  "\"F1B\" = GASB form",
+                              "part":  "\"Q\" for Part E2, \"C\", \"J\", \"K\"",
+                              "a1":  "i = 1 to 19, refer to appendix finance category tables",
+                              "a2":  "j = 1 to 2 for lines 12 to 16 for part Q,\u003cbr\u003ej = 1 to 2 for lines 1 to 13 and j = 1 to 6 for line 19 for part C,\u003cbr\u003ej = 2 to 5 for lines 1 to 7 and j=1 for lines 8 to 12 for part J,\u003cbr\u003ej=2 to 5 lines 2 to 7 and j=1 for line 8 for part K,\u003cbr\u003erefer to finance category tables",
+                              "a3":  "-99999999999 to 999999999999 for line 12 else 0 to 999999999999",
+                              "description1":  "Finance Subcategory",
+                              "name1":  "Column",
+                              "keyValueFields":  [
+                                                     {
+                                                         "name":  "UNITID",
+                                                         "description":  "UNITID",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "nnnnnn=Valid UnitID",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SURVSECT",
+                                                         "description":  "Survey Section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"F1B\" = GASB form",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PART",
+                                                         "description":  "Part of survey section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"Q\" for Part E2, \"C\", \"J\", \"K\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "LINE",
+                                                         "description":  "Finance category",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "i = 1 to 19, refer to appendix finance category tables",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "Column",
+                                                         "description":  "Finance Subcategory",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "j = 1 to 2 for lines 12 to 16 for part Q,\u003cbr\u003ej = 1 to 2 for lines 1 to 13 and j = 1 to 6 for line 19 for part C,\u003cbr\u003ej = 2 to 5 for lines 1 to 7 and j=1 for lines 8 to 12 for part J,\u003cbr\u003ej=2 to 5 lines 2 to 7 and j=1 for line 8 for part K,\u003cbr\u003erefer to finance category tables",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "AMOUNT",
+                                                         "description":  "Amount in whole dollars",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "-99999999999 to 999999999999 for line 12 else 0 to 999999999999",
+                                                         "isGrayedOut":  false
+                                                     }
+                                                 ]
+                          },
+                          {
+                              "partId":  186,
+                              "title":  "\u003cb\u003ePart H\u003c/b\u003e",
+                              "instruction":  "",
+                              "surveySection":  "\"F1B\" = GASB form",
+                              "part":  "\"H\"",
+                              "a1":  "1-3, refer to appendix Part H.",
+                              "a2":  "a,b,c for line 03, refer to appendix Part H.",
+                              "a3":  "-99999999999 to 999999999999",
+                              "description1":  "Line Qualifier",
+                              "name1":  "LINE150",
+                              "keyValueFields":  [
+                                                     {
+                                                         "name":  "UNITID",
+                                                         "description":  "UNITID",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "nnnnnn=Valid UnitID",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SURVSECT",
+                                                         "description":  "Survey Section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"F1B\" = GASB form",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PART",
+                                                         "description":  "Part of survey section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"H\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "LINE",
+                                                         "description":  "Finance category",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1-3, refer to appendix Part H.",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "LINE150",
+                                                         "description":  "Line Qualifier",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "a,b,c for line 03, refer to appendix Part H.",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "AMOUNT",
+                                                         "description":  "Amount in whole dollars",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "-99999999999 to 999999999999",
+                                                         "isGrayedOut":  false
+                                                     }
+                                                 ]
+                          }
+                      ]
+}

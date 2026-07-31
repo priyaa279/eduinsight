@@ -1,5 +1,5 @@
 import { env } from "cloudflare:workers";
-import generatedCom from "../../../data/ipeds-com.generated.json";
+import generatedSuite from "../../../data/ipeds-suite.generated.json";
 
 export const runtime = "edge";
 
@@ -40,6 +40,22 @@ function hex(bytes: ArrayBuffer) {
     .join("");
 }
 
+function parseExplanations(value: unknown) {
+  if (typeof value !== "string") return {};
+  try {
+    const parsed = JSON.parse(value);
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) return {};
+    return Object.fromEntries(
+      Object.entries(parsed).filter(
+        ([, explanation]) =>
+          typeof explanation === "string" && explanation.trim(),
+      ),
+    );
+  } catch {
+    return {};
+  }
+}
+
 export async function GET() {
   try {
     await ensureSchema();
@@ -47,13 +63,18 @@ export async function GET() {
       `SELECT id, survey_code AS surveyCode, collection_year AS collectionYear,
         spec_id AS specId, file_name AS fileName, sha256, approver,
         approved_at AS approvedAt, validation_summary AS validationSummary,
-        status
+        explanations_json AS explanationsJson, status
        FROM ipeds_package_approvals
        ORDER BY created_at_epoch DESC
        LIMIT 25`,
     ).all();
+    const approvals = result.results.map((row) => ({
+      ...row,
+      explanations: parseExplanations(row.explanationsJson),
+      explanationsJson: undefined,
+    }));
     return Response.json(
-      { approvals: result.results },
+      { approvals },
       { headers: { "Cache-Control": "no-store" } },
     );
   } catch {
@@ -103,26 +124,39 @@ export async function POST(request: Request) {
         { status: 409 },
       );
     }
-    if (body.surveyCode !== "C") {
+    const governedPackage = (
+      generatedSuite.packages as Record<
+        string,
+        {
+          specId: string;
+          collectionYear: string;
+          uploadText: string;
+          structuralFailureCount: number;
+          reconciliationFailureCount: number;
+          completeSurveyPackage?: boolean;
+        }
+      >
+    )[body.surveyCode as string];
+    if (!governedPackage) {
       return Response.json(
         {
-          error:
-            "Only the complete Completions package can currently be marked ready. EF remains a partial package.",
+          error: "This survey does not have an NCES import-file package.",
         },
         { status: 409 },
       );
     }
     if (
-      body.specId !== generatedCom.specId ||
-      body.collectionYear !== generatedCom.collectionYear ||
-      body.uploadText !== generatedCom.uploadText ||
-      generatedCom.structuralFailureCount !== 0 ||
-      generatedCom.reconciliationFailureCount !== 0
+      governedPackage.completeSurveyPackage === false ||
+      body.specId !== governedPackage.specId ||
+      body.collectionYear !== governedPackage.collectionYear ||
+      body.uploadText !== governedPackage.uploadText ||
+      governedPackage.structuralFailureCount !== 0 ||
+      governedPackage.reconciliationFailureCount !== 0
     ) {
       return Response.json(
         {
           error:
-            "The submitted artifact does not match the current governed, validated Completions package.",
+            "The submitted artifact does not match the current governed, complete, validated survey package.",
         },
         { status: 409 },
       );
@@ -200,6 +234,7 @@ export async function POST(request: Request) {
           approver: body.approver,
           approvedAt,
           status: "Ready for keyholder upload to NCES DCS",
+          explanations,
         },
       },
       { status: 201, headers: { "Cache-Control": "no-store" } },

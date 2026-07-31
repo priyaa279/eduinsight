@@ -5,15 +5,18 @@ import { DATA_QUALITY_RULES } from "../lib/data-quality-catalog.mjs";
 import { buildComPackage } from "../lib/ipeds-com.mjs";
 import { buildEfPackage } from "../lib/ipeds-ef.mjs";
 import { loadIpedsSpecs } from "../lib/ipeds-specs.mjs";
+import { buildIpedsSuite } from "../lib/ipeds-suite.mjs";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const uploadDir = path.join(projectRoot, "data", "sample-university-upload");
 const processedDir = path.join(projectRoot, "data", "processed");
 const appDataDir = path.join(projectRoot, "app", "data");
+const ipedsPackageDir = path.join(processedDir, "ipeds", "2025-26");
 
 await Promise.all([
   fs.mkdir(processedDir, { recursive: true }),
   fs.mkdir(appDataDir, { recursive: true }),
+  fs.mkdir(ipedsPackageDir, { recursive: true }),
 ]);
 
 function parseCsv(text) {
@@ -847,6 +850,17 @@ const ipedsEfPackage = buildEfPackage({
   unitId: Number(institutions[0].ipeds_unitid) || 999999,
   reportingTerm: "2025FA",
 });
+const ipedsMarts = JSON.parse(
+  await fs.readFile(path.join(uploadDir, "ipeds_marts.json"), "utf8"),
+);
+const ipedsSuite = buildIpedsSuite({
+  marts: ipedsMarts,
+  studentTerms,
+  students,
+  financialAid,
+  comPackage: ipedsComPackage,
+  efPackage: ipedsEfPackage,
+});
 const ipedsSpecs = loadIpedsSpecs();
 
 const askEduInsightDataset = {
@@ -910,11 +924,9 @@ const askEduInsightDataset = {
       degreeLevel: program.degree_level,
       seats: capacityByProgram.get(program.program_id),
       filled: filledByProgram.get(program.program_id) ?? 0,
-      utilization: round(
+      utilization:
         (filledByProgram.get(program.program_id) ?? 0) /
-          capacityByProgram.get(program.program_id),
-        4,
-      ),
+        capacityByProgram.get(program.program_id),
     })),
   sections: sectionFacts,
   sourceFiles: [
@@ -978,6 +990,7 @@ const commandCenter = {
   qualityRuleCatalog,
   ipedsComPackage,
   ipedsEfPackage,
+  ipedsSuite,
   ipedsSpecs,
   kpis: {
     fallHeadcount: {
@@ -1107,6 +1120,18 @@ const validationReport = {
 };
 
 await Promise.all([
+  ...Object.values(ipedsSuite.packages).flatMap((surveyPackage) => [
+    fs.writeFile(
+      path.join(ipedsPackageDir, `${surveyPackage.fileStem}.txt`),
+      surveyPackage.uploadText,
+      "utf8",
+    ),
+    fs.writeFile(
+      path.join(ipedsPackageDir, `${surveyPackage.fileStem}_review.csv`),
+      surveyPackage.reviewCsv,
+      "utf8",
+    ),
+  ]),
   fs.writeFile(
     path.join(processedDir, "command-center.json"),
     `${JSON.stringify(commandCenter, null, 2)}\n`,
@@ -1130,6 +1155,11 @@ await Promise.all([
   fs.writeFile(
     path.join(appDataDir, "ipeds-ef.generated.json"),
     `${JSON.stringify(ipedsEfPackage, null, 2)}\n`,
+    "utf8",
+  ),
+  fs.writeFile(
+    path.join(appDataDir, "ipeds-suite.generated.json"),
+    `${JSON.stringify(ipedsSuite, null, 2)}\n`,
     "utf8",
   ),
   fs.writeFile(

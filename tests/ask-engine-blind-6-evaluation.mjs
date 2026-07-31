@@ -411,9 +411,13 @@ function add(category, question, expected, metadata = {}) {
         value,
       }),
     }))
-    .toSorted((left, right) =>
-      ranking === "lowest" ? left.value - right.value : right.value - left.value,
-    )
+    .toSorted((left, right) => {
+      const delta =
+        ranking === "lowest"
+          ? left.value - right.value
+          : right.value - left.value;
+      return delta || left.label.localeCompare(right.label, "en");
+    })
     .slice(0, topN);
   add(
     "math-time-ranking",
@@ -496,9 +500,13 @@ function add(category, question, expected, metadata = {}) {
     if (condition === "nonpositive") {
       points = points.filter((point) => point.value <= 0);
     }
-    points.sort((left, right) =>
-      ranking === "lowest" ? left.value - right.value : right.value - left.value,
-    );
+    points.sort((left, right) => {
+      const delta =
+        ranking === "lowest"
+          ? left.value - right.value
+          : right.value - left.value;
+      return delta || left.label.localeCompare(right.label, "en");
+    });
     add(
       "math-time-ranking",
       question,

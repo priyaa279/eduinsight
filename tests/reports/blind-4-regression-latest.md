@@ -1,8 +1,8 @@
 # EduInsight Blind Set #4 — untouched first run
 
-- Executed: 2026-07-28T19:22:08.605Z
-- Suite SHA-256: `8d41440d7d2c67b46b078da74f5acb7d5e6c7d1f7ef74b6b9c578e309f529dff`
-- Frozen engine SHA-256: `da9844e70e40dddd97a7108215d0ebe2f62a67c414139130b70082f596f0a459`
+- Executed: 2026-07-31T03:45:59.423Z
+- Suite SHA-256: `cea655b751f64b3c3ec1328335c78aba4823564551c81a4422d675d49eea17ba`
+- Frozen engine SHA-256: `874cea984db287f660f84891da2bc10523910e86d6e1561814ed4b450785c207`
 - Dataset: `app/data/ask-eduinsight.generated.json`
 - Score: **276/285 (96.8%)**
 - Release-gate result: **FAIL**
@@ -59,7 +59,7 @@ Question: Which single academic program carried the largest Fall 2025 census loa
 
 Risk: `wrong-high-confidence`
 
-- points [{"label":"BA English","value":2018,"display":"2,018"},{"label":"BS Biology","value":2018,"display":"2,018"},{"label":"BBA Business Administration","value":2018,"display":"2,018"},{"label":"BS Mathematics","value":2018,"display":"2,018"},{"label":"BS Education","value":2018,"display":"2,018"},{"label":"BS Criminal Justice","value":2018,"display":"2,018"},{"label":"BA Psychology","value":2018,"display":"2,018"}]; expected [{"label":"BA English","value":2018}]
+- points [{"label":"BA English","value":2018,"display":"2,018"},{"label":"BA Psychology","value":2018,"display":"2,018"},{"label":"BBA Business Administration","value":2018,"display":"2,018"},{"label":"BS Biology","value":2018,"display":"2,018"},{"label":"BS Criminal Justice","value":2018,"display":"2,018"},{"label":"BS Education","value":2018,"display":"2,018"},{"label":"BS Mathematics","value":2018,"display":"2,018"}]; expected [{"label":"BA English","value":2018}]
 - Actual headline: BA English has the largest matched enrollment at 2,018 students; 7 programs tie at that value.
 - Actual confidence: High
 - Actual disposition: answer
@@ -95,8 +95,8 @@ Question: Which program consumes the greatest percentage of its scheduled seats?
 
 Risk: `wrong-high-confidence`
 
-- points [{"label":"MS Business Analytics","value":92,"display":"92%"}]; expected [{"label":"MS Business Analytics","value":92},{"label":"MS Computer Science","value":86},{"label":"MS Nursing","value":78},{"label":"Master of Public Administration","value":53}]
-- Actual headline: MS Business Analytics has the highest matched utilization at 92%.
+- points [{"label":"MS Computer Science","value":96.86507936507937,"display":"97%"}]; expected [{"label":"MS Computer Science","value":96.9},{"label":"MS Business Analytics","value":92.1},{"label":"MS Nursing","value":90},{"label":"Master of Public Administration","value":80}]
+- Actual headline: MS Computer Science has the highest matched utilization at 97%.
 - Actual confidence: High
 - Actual disposition: answer
 - Applied filters: Group by: program | Time: 2025-2025
@@ -107,8 +107,8 @@ Question: Which program has the largest number of unfilled scheduled seats?
 
 Risk: `wrong-high-confidence`
 
-- points [{"label":"Master of Public Administration","value":470,"display":"470"}]; expected [{"label":"Master of Public Administration","value":470},{"label":"MS Nursing","value":220},{"label":"MS Computer Science","value":140},{"label":"MS Business Analytics","value":80}]
-- Actual headline: Master of Public Administration has the highest matched available seats at 470.
+- points [{"label":"Master of Public Administration","value":336,"display":"336"}]; expected [{"label":"Master of Public Administration","value":336},{"label":"MS Nursing","value":192},{"label":"MS Business Analytics","value":171},{"label":"MS Computer Science","value":79}]
+- Actual headline: Master of Public Administration has the highest matched available seats at 336.
 - Actual confidence: High
 - Actual disposition: answer
 - Applied filters: Group by: program | Time: 2025-2025

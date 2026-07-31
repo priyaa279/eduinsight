@@ -32,12 +32,12 @@
     {
       "file": "sections.csv",
       "system": "SIS course schedule",
-      "rows": 40
+      "rows": 264
     },
     {
       "file": "section_enrollments.csv",
       "system": "SIS registration",
-      "rows": 3090
+      "rows": 7502
     },
     {
       "file": "ipeds_validation_results.csv",
@@ -58,6 +58,11 @@
       "file": "financial_aid.csv",
       "system": "Financial aid system",
       "rows": 18426
+    },
+    {
+      "file": "ipeds_marts.json",
+      "system": "IPEDS governed source marts",
+      "rows": 7740
     }
   ]
 }

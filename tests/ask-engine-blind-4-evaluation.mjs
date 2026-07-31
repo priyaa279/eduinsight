@@ -321,11 +321,13 @@ function rankingExpected({
   limit = 10,
 }) {
   const points = programCounts({ year, dimension, value, degreeLevel })
-    .toSorted((left, right) =>
-      ranking === "lowest"
-        ? left.value - right.value
-        : right.value - left.value,
-    )
+    .toSorted((left, right) => {
+      const delta =
+        ranking === "lowest"
+          ? left.value - right.value
+          : right.value - left.value;
+      return delta || left.label.localeCompare(right.label, "en");
+    })
     .slice(0, limit)
     .map(({ label, value: pointValue }) => ({ label, value: pointValue }));
   return answerExpected({
@@ -395,10 +397,13 @@ function changeRankingExpected({
     points = points.filter((point) => point.value <= 0);
   }
   points.sort((left, right) => {
+    let delta;
     if (condition === "negative" || condition === "nonpositive") {
-      return left.value - right.value;
+      delta = left.value - right.value;
+    } else {
+      delta = right.value - left.value;
     }
-    return right.value - left.value;
+    return delta || left.label.localeCompare(right.label, "en");
   });
   const operation = percentageGrowth
     ? "program_change_percent"
@@ -1781,9 +1786,14 @@ function capacityThresholdExpected(operator, threshold) {
     gte: (value) => value >= threshold,
     lt: (value) => value < threshold,
     lte: (value) => value <= threshold,
-    eq: (value) => closeEnough(value, threshold),
+    eq: (value) => Math.abs(value - threshold) < Number.EPSILON,
   }[operator];
-  const points = capacityPoints()
+  const thresholdPoints = dataset.capacity.map((row) => ({
+    label: row.programName,
+    programId: row.programId,
+    value: (row.filled / row.seats) * 100,
+  }));
+  const points = thresholdPoints
     .filter((point) => predicate(point.value))
     .toSorted((a, b) => b.value - a.value)
     .map(({ label, value }) => ({ label, value }));

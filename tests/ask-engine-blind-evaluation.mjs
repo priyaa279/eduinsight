@@ -12,6 +12,13 @@ const dataset = JSON.parse(
     "utf8",
   ),
 );
+const capacityRows = dataset.capacity.map((row) => ({
+  ...row,
+  utilizationPercent: (row.filled / row.seats) * 100,
+}));
+const capacityByUtilization = capacityRows.toSorted(
+  (left, right) => right.utilizationPercent - left.utilizationPercent,
+);
 
 const cases = [];
 const add = (category, question, expected) =>
@@ -176,11 +183,9 @@ add("negation", "Programs that did not grow since 2021.", {
 });
 add("negation", "Which programs are not above 90% capacity?", {
   metric: "capacity_utilization",
-  labels: [
-    "MS Computer Science",
-    "MS Nursing",
-    "Master of Public Administration",
-  ],
+  labels: capacityByUtilization
+    .filter((row) => row.utilizationPercent <= 90)
+    .map((row) => row.programName),
 });
 add("negation", "Retention for students who are not Pell eligible.", {
   metric: "retention",
@@ -194,7 +199,7 @@ add("negation", "Enrollment excluding international students in 2025", {
 });
 add("negation", "Show programs below or equal to 90% capacity", {
   metric: "capacity_utilization",
-  pointCount: 3,
+  pointCount: capacityRows.filter((row) => row.utilizationPercent <= 90).length,
 });
 add("negation", "Do not include graduate students: enrollment 2025", {
   metric: "enrollment",
@@ -220,19 +225,25 @@ add("negation", "Data quality issues that are not resolved", {
 // 41-50: thresholds, limits, ties, and date boundaries.
 add("boundary", "Which programs are exactly 92% utilized?", {
   metric: "capacity_utilization",
-  labels: ["MS Business Analytics"],
+  labels: capacityByUtilization
+    .filter((row) => row.utilizationPercent === 92)
+    .map((row) => row.programName),
 });
 add("boundary", "Which programs are above 92% capacity?", {
   metric: "capacity_utilization",
-  pointCount: 0,
+  pointCount: capacityRows.filter((row) => row.utilizationPercent > 92).length,
 });
 add("boundary", "Which programs are at least 86% utilized?", {
   metric: "capacity_utilization",
-  labels: ["MS Business Analytics", "MS Computer Science"],
+  labels: capacityByUtilization
+    .filter((row) => row.utilizationPercent >= 86)
+    .map((row) => row.programName),
 });
 add("boundary", "Which programs are at most 53% utilized?", {
   metric: "capacity_utilization",
-  labels: ["Master of Public Administration"],
+  labels: capacityByUtilization
+    .filter((row) => row.utilizationPercent <= 53)
+    .map((row) => row.programName),
 });
 add("boundary", "Which programs tie for highest enrollment?", {
   metric: "enrollment",
@@ -362,13 +373,8 @@ add("presentation", "Put Pell and non-Pell 2024 retention side by side", {
   values: [79.2, 78],
 });
 add("presentation", "Rank capacity utilization from highest to lowest", {
-  labels: [
-    "MS Business Analytics",
-    "MS Computer Science",
-    "MS Nursing",
-    "Master of Public Administration",
-  ],
-  values: [92, 86, 78, 53],
+  labels: capacityByUtilization.map((row) => row.programName),
+  values: capacityByUtilization.map((row) => row.utilizationPercent),
 });
 add("presentation", "Rank the bottom 5 programs by enrollment", {
   pointCount: 5,

@@ -13,6 +13,18 @@ const dataset = JSON.parse(
   ),
 );
 
+const capacityRows = dataset.capacity.map((row) => ({
+  ...row,
+  utilizationPercent: row.utilization * 100,
+  availableSeats: row.seats - row.filled,
+}));
+const capacityByUtilization = [...capacityRows].sort(
+  (left, right) => right.utilizationPercent - left.utilizationPercent,
+);
+const capacityById = new Map(
+  capacityRows.map((row) => [row.programId, row]),
+);
+
 const cases = [];
 const add = (category, question, expected) =>
   cases.push({ id: cases.length + 1, category, question, expected });
@@ -40,7 +52,7 @@ add("messy-language", "did enrollment drop anywhere last yr", {
 add("messy-language", "which degrees r almost full", {
   metric: "capacity_utilization",
   groupBy: "program",
-  topLabel: "MS Business Analytics",
+  topLabel: capacityByUtilization[0].programName,
 });
 add("messy-language", "retention pell vs nonpell", {
   metric: "retention",
@@ -84,13 +96,13 @@ add("messy-language", "MPA seats left?", {
   metric: "capacity_utilization",
   programId: "PPA",
   measure: "available_seats",
-  values: [470],
+  values: [capacityById.get("PPA").availableSeats],
 });
 add("messy-language", "biz analytics seats left", {
   metric: "capacity_utilization",
   programId: "PBA",
   measure: "available_seats",
-  values: [80],
+  values: [capacityById.get("PBA").availableSeats],
 });
 add("messy-language", "comp sci intl share last fall", {
   metric: "enrollment",
@@ -372,15 +384,15 @@ add("temporal-ranking", "list programs with no enrollment growth after 2021", {
 });
 add("temporal-ranking", "programs utilizing 78 percent or more", {
   metric: "capacity_utilization",
-  labels: ["MS Business Analytics", "MS Computer Science", "MS Nursing"],
+  labels: capacityByUtilization
+    .filter((row) => row.utilizationPercent >= 78)
+    .map((row) => row.programName),
 });
 add("temporal-ranking", "program utilization no greater than 86 percent", {
   metric: "capacity_utilization",
-  labels: [
-    "MS Computer Science",
-    "MS Nursing",
-    "Master of Public Administration",
-  ],
+  labels: capacityByUtilization
+    .filter((row) => row.utilizationPercent <= 86)
+    .map((row) => row.programName),
 });
 
 // 111-130: unsupported metrics, impossible filters, and row-level governance.
@@ -433,13 +445,10 @@ add("narrative-chart", "put 2024 Pell and non-Pell retention next to each other"
   values: [79.2, 78],
 });
 add("narrative-chart", "order graduate capacity utilization high to low", {
-  labels: [
-    "MS Business Analytics",
-    "MS Computer Science",
-    "MS Nursing",
-    "Master of Public Administration",
-  ],
-  values: [92, 86, 78, 53],
+  labels: capacityByUtilization.map((row) => row.programName),
+  values: capacityByUtilization.map((row) =>
+    Number(row.utilizationPercent.toFixed(1)),
+  ),
 });
 add("narrative-chart", "how did CS change from 2024 through 2025?", {
   values: [600, 678],
@@ -484,8 +493,8 @@ add("narrative-chart", "Pell retention series starting in 2021", {
   values: [71.7, 72.1, 76.8, 79.2],
 });
 add("narrative-chart", "programs at exactly 92 percent utilization", {
-  labels: ["MS Business Analytics"],
-  values: [92],
+  pointCount: 0,
+  headlineAny: ["no programs", "none"],
 });
 add("narrative-chart", "programs above 100 percent capacity", {
   pointCount: 0,
@@ -509,7 +518,7 @@ add("provenance-confidence", "international percentage of fall 2025 enrollment",
   sourcesInclude: ["student_terms.csv", "students.csv"],
 });
 add("provenance-confidence", "certified CS utilization", {
-  values: [86],
+  values: [Number(capacityById.get("PCS").utilizationPercent.toFixed(1))],
   confidence: "High",
   sourcesInclude: ["sections.csv", "section_enrollments.csv", "programs.csv"],
   sourcesExclude: ["students.csv", "ipeds_validation_results.csv"],

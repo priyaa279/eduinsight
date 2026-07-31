@@ -1,13 +1,13 @@
 # Atlas Valley University sample upload
 
-This folder is a complete synthetic batch upload for the EduInsight Command Center. It models the files a university would export from its SIS, catalog, schedule, IPEDS validation workflow, and data-quality process.
+This folder is a complete synthetic batch upload for the EduInsight Command Center and IPEDS Center. It models the files a university would export from its SIS, catalog, schedule, financial-aid, HR, finance, admissions, IPEDS validation, and data-quality processes.
 
 No real student data is included. Student identifiers and all records are deterministic synthetic examples.
 
 ## How the data reaches the Command Center
 
 ```text
-Nine CSV source files
+Governed CSV source files plus IPEDS source marts
   -> required-file and required-column validation
   -> unique-key and referential-integrity validation
   -> cross-source reconciliation
@@ -46,7 +46,10 @@ For a real institution, keep the file names and headers described in the upload-
 | `ipeds_validation_results.csv` | IPEDS validation workflow | Submission-readiness score and validation brief |
 | `data_quality_issue_log.csv` | Data-quality platform | Open issues, severity, week-over-week movement |
 | `completions.csv` | SIS degree history | Governed completer population used to prepare the IPEDS COM upload |
+| `ipeds_marts.json` | Governed extracts from admissions, HR, finance, cost, and cohort systems | Deterministic source contracts for the 2025-26 IPEDS import-file suite |
 | `manifest.json` | EduInsight package manifest | Row counts, provenance, and synthetic-data declaration |
+
+The IPEDS Center generates a structurally validated key-value `.txt` file and a human-readable review CSV for every official 2025-26 NCES import layout. A generated file can remain a governed draft: surveys with missing source coverage are visibly blocked from approval until the named source fields are supplied. Institutional Characteristics has no public 2025-26 import layout, so it remains questionnaire/review only; Academic Libraries is retired for this collection year.
 
 ## Current reconciled results
 

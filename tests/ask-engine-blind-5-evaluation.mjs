@@ -417,9 +417,13 @@ function add(category, question, expected, metadata = {}) {
   ["Which four programs enrolled the most Pell-eligible students in 2024?", 2024, 4, "highest", null, "pell_eligible", "Pell-eligible"],
 ].forEach(([question, year, limit, direction, degreeLevel, dimension, value]) => {
   let points = programCounts({ year, degreeLevel, dimension, value });
-  points.sort((left, right) =>
-    direction === "lowest" ? left.value - right.value : right.value - left.value,
-  );
+  points.sort((left, right) => {
+    const delta =
+      direction === "lowest"
+        ? left.value - right.value
+        : right.value - left.value;
+    return delta || left.label.localeCompare(right.label, "en");
+  });
   add(
     "ranking-math-dates",
     question,
@@ -462,9 +466,13 @@ function add(category, question, expected, metadata = {}) {
     if (condition === "nonpositive") {
       points = points.filter((point) => point.value <= 0);
     }
-    points.sort((left, right) =>
-      direction === "lowest" ? left.value - right.value : right.value - left.value,
-    );
+    points.sort((left, right) => {
+      const delta =
+        direction === "lowest"
+          ? left.value - right.value
+          : right.value - left.value;
+      return delta || left.label.localeCompare(right.label, "en");
+    });
     add(
       "ranking-math-dates",
       question,
@@ -708,12 +716,12 @@ function add(category, question, expected, metadata = {}) {
     gte: (value) => value >= threshold,
     lt: (value) => value < threshold,
     lte: (value) => value <= threshold,
-    eq: (value) => closeEnough(value, threshold),
+    eq: (value) => Math.abs(value - threshold) < Number.EPSILON,
   }[operator];
   const expected = dataset.capacity
     .map((row) => ({
       label: row.programName,
-      value: round1(row.utilization * 100),
+      value: (row.filled / row.seats) * 100,
     }))
     .filter((point) => compare(point.value))
     .toSorted((left, right) => right.value - left.value);

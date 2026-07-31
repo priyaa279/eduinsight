@@ -1,0 +1,1136 @@
+﻿{
+    "title":  "Graduation Rates for 4-year institutions",
+    "note":  "\u003cp\u003e\u003cb\u003eSection table (defines cohort)\u003c/b\u003e \u003cbr\u003e1 - Establishing cohorts, cohort year 2020\u003cbr\u003e2 - Subcohort of full-time, first-time students seeking a bachelor\u0027s or equivalent degree, cohort year 2020\u003cbr\u003e3 - Subcohort of full-time, first-time students seeking other than a bachelor\u0027s degree, cohort year 2020\u003cbr\u003e\u003cbr\u003e\u003cb\u003eEstablishing cohort table (section 1)\u003c/b\u003e \u003cbr\u003e1 - Revised cohort of all full-time, first-time degree or certificate seeking undergraduates, cohort year 2020\u003cbr\u003e2 - Subcohort of full-time, first-time students seeking a bachelor\u0027s or equivalent degree, cohort year 2020\u003cbr\u003e\u003cb\u003e3 - Subcohort of full-time, first-time students seeking other than a bachelor\u0027s degree, cohort year 2020. Do not include in import file, will be generated.\u003c/b\u003e \u003cbr\u003e\u003cbr\u003e\u003cb\u003eCohort status table (sections 2 and 3) \u003c/b\u003e\u003cbr\u003e11 - Completers of programs of less than 2 years within 150% of normal time \u003cbr\u003e12 - Completers of programs of at least 2 but less than 4 years within 150% of normal time \u003cbr\u003e18 - Completers of bachelor\u0027s or equivalent degree programs within 150% of normal time \u003cbr\u003e19 - Completers of bachelor\u0027s or equivalent degree programs in 4 years or less \u003cbr\u003e20 - Completers of bachelor\u0027s or equivalent degree programs in 5 years \u003cbr\u003e\u003cb\u003e21 - Completers of bachelor\u0027s or equivalent degree programs in 6 years Do not include in import file, will be generated. \u003cbr\u003e29 - Total completers within 150% of normal time. Do not include in import file, will be generated.\u003c/b\u003e \u003cbr\u003e30 - Total transfer-out students (non-completers) \u003cbr\u003e45 - Total exclusions\u0026nbsp;\u003cbr\u003e51 - Still enrolled\u0026nbsp;\u003cbr\u003e\u003cb\u003e52\u0026nbsp;- No longer\u0026nbsp;enrolled. Do not include in import file, will be generated. \u003c/b\u003e\u003cbr\u003e\u003cbr\u003e\u003c/p\u003e\u003cb\u003eRace/ethnicity table\u003c/b\u003e \u003cbr\u003e1 - U.S. Nonresident  \u003cbr\u003e2 - Hispanic/Latino \u003cbr\u003e3 - American Indian or Alaska Native \u003cbr\u003e4 - Asian \u003cbr\u003e5 - Black or African American \u003cbr\u003e6 - Native Hawaiian or Other Pacific Islander \u003cbr\u003e7 - White \u003cbr\u003e8 - Two or more race \u003cbr\u003e9 - Race and ethnicity unknown \u003cbr\u003e\u003cb\u003e10 - Total will be generated on the export file. Do not include in import file.\u003c/b\u003e \u003cbr\u003e\u003cb\u003e11 - Grand total will be generated on the export file. Do not include in import file.\u003c/b\u003e \u003cbr\u003e\u003cbr\u003e\u003cb\u003ePell recipients and recipients of a Direct Subsidized\u0026nbsp;Loan who did not receive a Pell Grant table (sections 2 and 3) \u003c/b\u003e \u003cbr\u003e10. Number of students in cohort\u003cbr\u003e18. Completed bachelor\u0027s degree or equivalent within 150%\u003cbr\u003e29. Total completers within 150%\u003cbr\u003e45. Total exclusions\u003cbr\u003e\u003cbr\u003e",
+    "nameFl":  "\u003cdiv class=\"name-left\"\u003eIPEDS 2025-26 Import Specifications: Graduation Rates\u003cbr\u003eApplies to: 4-Year Institutions\u003c/div\u003e\u003cdiv class=\"name-center\"\u003eFile type: Fixed Length/Positional (*.txt)\u003c/div\u003e",
+    "noteFL":  "Note: All numeric fields should be right-justified. Both leading zeros and spaces are permissible. Character data should be left-justified.",
+    "nameKv":  "\u003cdiv class=\"name-left\"\u003eIPEDS 2025-26 Import Specifications: Graduation Rates\u003cbr\u003eApplies to: 4-Year Institutions\u003c/div\u003e\u003cdiv class=\"name-center\"\u003eFile type: File type: Key Value Pair File (*.TXT)\u003c/div\u003e",
+    "sampleKv":  "\u003cp\u003eSample 4-year institution nnnnnn\u003cbr\u003e\n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=GR1,PART=B,SECTION=1,LINE=1,RACE=j,SEX=k,COUNT=nnnnn \n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=GR1,PART=B,SECTION=1,LINE=2,RACE=j,SEX=k,COUNT=nnnnn \n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=GR1,PART=B,SECTION=2,LINE=10,RACE=j,SEX=k,COUNT=nnnnn \n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=GR1,PART=B,SECTION=2,LINE=11,RACE=j,SEX=k,COUNT=nnnnn \n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=GR1,PART=B,SECTION=2,LINE=12,RACE=j,SEX=k,COUNT=nnnnn \n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=GR1,PART=B,SECTION=2,LINE=18,RACE=j,SEX=k,COUNT=nnnnn \n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=GR1,PART=B,SECTION=2,LINE=19,RACE=j,SEX=k,COUNT=nnnnn \n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=GR1,PART=B,SECTION=2,LINE=20,RACE=j,SEX=k,COUNT=nnnnn \n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=GR1,PART=B,SECTION=3,LINE=10,RACE=j,SEX=k,COUNT=nnnnn \n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=GR1,PART=B,SECTION=3,LINE=11,RACE=j,SEX=k,COUNT=nnnnn \n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=GR1,PART=B,SECTION=3,LINE=12,RACE=j,SEX=k,COUNT=nnnnn \n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=GR1,PART=B,SECTION=3,LINE=18,RACE=j,SEX=k,COUNT=nnnnn \n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=GR1,PART=C,SECTION=2,LINE=10,PELLGRANT_RCPT=nnnnn,\u0026nbsp;\u0026nbsp;\u0026nbsp;\u0026nbsp; DIRECTLOAN_RCPT=nnnnn\n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=GR1,PART=C,SECTION=2,LINE=18,PELLGRANT_RCPT=nnnnn,\u0026nbsp;\u0026nbsp;\u0026nbsp;\u0026nbsp; DIRECTLOAN_RCPT=nnnnn\n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=GR1,PART=C,SECTION=2,LINE=45,PELLGRANT_RCPT=nnnnn,\u0026nbsp;\u0026nbsp;\u0026nbsp;\u0026nbsp; DIRECTLOAN_RCPT=nnnnn\n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=GR1,PART=C,SECTION=2,LINE=29,PELLGRANT_RCPT=nnnnn,\u0026nbsp;\u0026nbsp;\u0026nbsp;\u0026nbsp; DIRECTLOAN_RCPT=nnnnn\n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=GR1,PART=C,SECTION=3,LINE=10,PELLGRANT_RCPT=nnnnn,\u0026nbsp;\u0026nbsp;\u0026nbsp;\u0026nbsp; DIRECTLOAN_RCPT=nnnnn\n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=GR1,PART=C,SECTION=3,LINE=18,PELLGRANT_RCPT=nnnnn,\u0026nbsp;\u0026nbsp;\u0026nbsp;\u0026nbsp; DIRECTLOAN_RCPT=nnnnn\n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=GR1,PART=C,SECTION=3,LINE=45,PELLGRANT_RCPT=nnnnn,\u0026nbsp;\u0026nbsp;\u0026nbsp;\u0026nbsp; DIRECTLOAN_RCPT=nnnnn\n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=GR1,PART=C,SECTION=3,LINE=29,PELLGRANT_RCPT=nnnnn,\u0026nbsp;\u0026nbsp;\u0026nbsp;\u0026nbsp; DIRECTLOAN_RCPT=nnnnn\n\u003c/p\u003e\n",
+    "noteKv":  "Sort Order: UNITID,SURVSECT,PART\u003cbr/\u003e\u003cb\u003eNote: \u003c/b\u003e\u003cspan\u003eIf there are zero students in a cohort for any category, the line does not need to be included in the import file.\u003c/span\u003e",
+    "fixedLayoutParts":  [
+                             {
+                                 "partId":  37,
+                                 "title":  "Section I, Establishing Cohorts Cohort Year 2019",
+                                 "instruction":  "",
+                                 "surveySection":  "\"GR1\"",
+                                 "part":  "\"B\" includes sections 1, 2 and 3 of survey",
+                                 "a1":  "1 - Establishing cohorts, cohort year 2019",
+                                 "a2":  "1 or 2 (refer to Appendix A, establishing cohort table)",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"GR1\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Part",
+                                                               "description":  "Part of survey section",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"B\" includes sections 1, 2 and 3 of survey",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Section",
+                                                               "description":  "Section of survey form",
+                                                               "start":  11,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "1 - Establishing cohorts, cohort year 2019",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Filler",
+                                                               "description":  "Filler",
+                                                               "start":  12,
+                                                               "length":  5,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"blank\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "LINE",
+                                                               "description":  "Status of students in cohort",
+                                                               "start":  17,
+                                                               "length":  2,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "1 or 2 (refer to Appendix A, establishing cohort table)",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Filler",
+                                                               "description":  "Filler",
+                                                               "start":  19,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"blank\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE01",
+                                                               "description":  "U.S. Nonresident - Male (1)",
+                                                               "start":  20,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE02",
+                                                               "description":  "U.S. Nonresident - Female (2)",
+                                                               "start":  26,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE25",
+                                                               "description":  "Hispanic/Latino - Male (25)",
+                                                               "start":  32,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE26",
+                                                               "description":  "Hispanic/Latino - Female (26)",
+                                                               "start":  38,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE27",
+                                                               "description":  "American Indian or Alaska Native - Male (27)",
+                                                               "start":  44,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE28",
+                                                               "description":  "American Indian or Alaska Native - Female (28)",
+                                                               "start":  50,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE29",
+                                                               "description":  "Asian - Male (29)",
+                                                               "start":  56,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE30",
+                                                               "description":  "Asian - Female (30)",
+                                                               "start":  62,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE31",
+                                                               "description":  "Black or African American - Male (31)",
+                                                               "start":  68,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE32",
+                                                               "description":  "Black or African American - Female (32)",
+                                                               "start":  74,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE33",
+                                                               "description":  "Native Hawaiian or Other Pacific Islander - Male (33)",
+                                                               "start":  80,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE34",
+                                                               "description":  "Native Hawaiian or Other Pacific Islander - Female (34)",
+                                                               "start":  86,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE35",
+                                                               "description":  "White - Male (35)",
+                                                               "start":  92,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE36",
+                                                               "description":  "White - Female (36)",
+                                                               "start":  98,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE37",
+                                                               "description":  "Two or more races - Male (37)",
+                                                               "start":  104,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE38",
+                                                               "description":  "Two or more races - Female (38)",
+                                                               "start":  110,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE13",
+                                                               "description":  "Race and ethnicity unknown - Male (13)",
+                                                               "start":  116,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE14",
+                                                               "description":  "Race and ethnicity unknown - Female (14)",
+                                                               "start":  122,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE15",
+                                                               "description":  "Total Male (15)",
+                                                               "start":  128,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Totals will be generated.  Do not include import file. Columns 128-145 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE16",
+                                                               "description":  "Total Female (16)",
+                                                               "start":  134,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Totals will be generated.  Do not include import file. Columns 128-145 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE24",
+                                                               "description":  "Grand Total (24)",
+                                                               "start":  140,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Grand totals will be generated.  Do not include import file. Columns 128-145 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  37,
+                                 "title":  "Section II, Cohort of Full-time, First-time Students Seeking a Bachelor\u0027s or Equivalent Degree Cohort Year 2019",
+                                 "instruction":  "",
+                                 "surveySection":  "\"GR1\"",
+                                 "part":  "\"B\" includes sections 1, 2 and 3 of survey",
+                                 "a1":  "2 - Cohort of full-time, first-time students seeking a bachelor\u0027s or equivalent degree, cohort year 2019",
+                                 "a2":  "11,12,18,19,20,21,29,30,45, 51, and 52 (refer to Appendix A, cohort status table, section 2). Do not include lines 21, 29, or 52 in import file. They will be generated and will be included on export file.",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"GR1\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Part",
+                                                               "description":  "Part of survey section",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"B\" includes sections 1, 2 and 3 of survey",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Section",
+                                                               "description":  "Section of survey form",
+                                                               "start":  11,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "2 - Cohort of full-time, first-time students seeking a bachelor\u0027s or equivalent degree, cohort year 2019",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Filler",
+                                                               "description":  "Filler",
+                                                               "start":  12,
+                                                               "length":  5,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"blank\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "LINE",
+                                                               "description":  "Status of students in cohort",
+                                                               "start":  17,
+                                                               "length":  2,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "11,12,18,19,20,21,29,30,45, 51, and 52 (refer to Appendix A, cohort status table, section 2). Do not include lines 21, 29, or 52 in import file. They will be generated and will be included on export file.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Filler",
+                                                               "description":  "Filler",
+                                                               "start":  19,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"blank\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE01",
+                                                               "description":  "U.S. Nonresident - Male (1)",
+                                                               "start":  20,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE02",
+                                                               "description":  "U.S. Nonresident - Female (2)",
+                                                               "start":  26,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE25",
+                                                               "description":  "Hispanic/Latino - Male (25)",
+                                                               "start":  32,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE26",
+                                                               "description":  "Hispanic/Latino - Female (26)",
+                                                               "start":  38,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE27",
+                                                               "description":  "American Indian or Alaska Native - Male (27)",
+                                                               "start":  44,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE28",
+                                                               "description":  "American Indian or Alaska Native - Female (28)",
+                                                               "start":  50,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE29",
+                                                               "description":  "Asian - Male (29)",
+                                                               "start":  56,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE30",
+                                                               "description":  "Asian - Female (30)",
+                                                               "start":  62,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE31",
+                                                               "description":  "Black or African American - Male (31)",
+                                                               "start":  68,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE32",
+                                                               "description":  "Black or African American - Female (32)",
+                                                               "start":  74,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE33",
+                                                               "description":  "Native Hawaiian or Other Pacific Islander - Male (33)",
+                                                               "start":  80,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE34",
+                                                               "description":  "Native Hawaiian or Other Pacific Islander - Female (34)",
+                                                               "start":  86,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE35",
+                                                               "description":  "White - Male (35)",
+                                                               "start":  92,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE36",
+                                                               "description":  "White - Female (36)",
+                                                               "start":  98,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE37",
+                                                               "description":  "Two or more races - Male (37)",
+                                                               "start":  104,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE38",
+                                                               "description":  "Two or more races - Female (38)",
+                                                               "start":  110,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE13",
+                                                               "description":  "Race and ethnicity unknown - Male (13)",
+                                                               "start":  116,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE14",
+                                                               "description":  "Race and ethnicity unknown - Female (14)",
+                                                               "start":  122,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE15",
+                                                               "description":  "Total Male (15)",
+                                                               "start":  128,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Totals will be generated.  Do not include import file. Columns 128-145 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE16",
+                                                               "description":  "Total Female (16)",
+                                                               "start":  134,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Totals will be generated.  Do not include import file. Columns 128-145 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE24",
+                                                               "description":  "Grand Total (24)",
+                                                               "start":  140,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Grand totals will be generated.  Do not include import file. Columns 128-145 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  256,
+                                 "title":  "Section II - Bachelor’s or equivalent degree-seeking cohort - Pell recipients and recipients of a subsidized Direct Loan who did not receive a Pell Grant ",
+                                 "surveySection":  "\"GR1\"",
+                                 "part":  "\"C\" includes sections 2 and 3 of survey",
+                                 "a1":  "2 - Cohort of full-time, first-time students seeking a bachelor\u0027s or equivalent degree, cohort year 2019",
+                                 "a2":  "10, 18, 29, and 45 (refer to Appendix A, Pell recipients and recipients of a Direct Subsidized Loan who did not receive a Pell Grant table)",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"GR1\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Part",
+                                                               "description":  "Part of survey section",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"C\" includes sections 2 and 3 of survey",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Section",
+                                                               "description":  "Section of survey form",
+                                                               "start":  11,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "2 - Cohort of full-time, first-time students seeking a bachelor\u0027s or equivalent degree, cohort year 2019",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Filler",
+                                                               "description":  "Filler",
+                                                               "start":  12,
+                                                               "length":  5,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"blank\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "LINE",
+                                                               "description":  "Status of students in cohort",
+                                                               "start":  17,
+                                                               "length":  2,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "10, 18, 29, and 45 (refer to Appendix A, Pell recipients and recipients of a Direct Subsidized Loan who did not receive a Pell Grant table)",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Filler",
+                                                               "description":  "Filler",
+                                                               "start":  19,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"blank\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PELLGRANT_RCPT",
+                                                               "description":  "Recipients of a Pell Grant (within entering year)",
+                                                               "start":  20,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DIRECTLOAN_RCPT",
+                                                               "description":  "Recipients of a Direct Subsidized Loan (within entering year) that did not receive a Pell Grant",
+                                                               "start":  26,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "NON_RCPT",
+                                                               "description":  "Did not receive either a Pell Grant or Direct Subsidized Loan (within entering year)",
+                                                               "start":  32,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "It will be generated. Do not include import file. Columns 32-37 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  37,
+                                 "title":  "Section III, Cohort of Full-time, First-time Students Seeking Other than a Bachelor\u0027s Degree Cohort Year 2019",
+                                 "instruction":  "",
+                                 "surveySection":  "\"GR1\"",
+                                 "part":  "\"B\" includes sections 1, 2 and 3 of survey",
+                                 "a1":  "3 - Cohort of full-time, first-time students seeking other than a bachelor\u0027s degree, cohort year 2019",
+                                 "a2":  "11,12,18,29,30,45,51, and 52 (refer to Appendix A, cohort status table, section 3). Do not include lines 29, or 52 in import file. They will be generated and will be included on export file.",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"GR1\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Part",
+                                                               "description":  "Part of survey section",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"B\" includes sections 1, 2 and 3 of survey",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Section",
+                                                               "description":  "Section of survey form",
+                                                               "start":  11,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "3 - Cohort of full-time, first-time students seeking other than a bachelor\u0027s degree, cohort year 2019",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Filler",
+                                                               "description":  "Filler",
+                                                               "start":  12,
+                                                               "length":  5,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"blank\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "LINE",
+                                                               "description":  "Status of students in cohort",
+                                                               "start":  17,
+                                                               "length":  2,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "11,12,18,29,30,45,51, and 52 (refer to Appendix A, cohort status table, section 3). Do not include lines 29, or 52 in import file. They will be generated and will be included on export file.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Filler",
+                                                               "description":  "Filler",
+                                                               "start":  19,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"blank\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE01",
+                                                               "description":  "U.S. Nonresident - Male (1)",
+                                                               "start":  20,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE02",
+                                                               "description":  "U.S. Nonresident - Female (2)",
+                                                               "start":  26,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE25",
+                                                               "description":  "Hispanic/Latino - Male (25)",
+                                                               "start":  32,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE26",
+                                                               "description":  "Hispanic/Latino - Female (26)",
+                                                               "start":  38,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE27",
+                                                               "description":  "American Indian or Alaska Native - Male (27)",
+                                                               "start":  44,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE28",
+                                                               "description":  "American Indian or Alaska Native - Female (28)",
+                                                               "start":  50,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE29",
+                                                               "description":  "Asian - Male (29)",
+                                                               "start":  56,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE30",
+                                                               "description":  "Asian - Female (30)",
+                                                               "start":  62,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE31",
+                                                               "description":  "Black or African American - Male (31)",
+                                                               "start":  68,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE32",
+                                                               "description":  "Black or African American - Female (32)",
+                                                               "start":  74,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE33",
+                                                               "description":  "Native Hawaiian or Other Pacific Islander - Male (33)",
+                                                               "start":  80,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE34",
+                                                               "description":  "Native Hawaiian or Other Pacific Islander - Female (34)",
+                                                               "start":  86,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE35",
+                                                               "description":  "White - Male (35)",
+                                                               "start":  92,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE36",
+                                                               "description":  "White - Female (36)",
+                                                               "start":  98,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE37",
+                                                               "description":  "Two or more races - Male (37)",
+                                                               "start":  104,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE38",
+                                                               "description":  "Two or more races - Female (38)",
+                                                               "start":  110,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE13",
+                                                               "description":  "Race and ethnicity unknown - Male (13)",
+                                                               "start":  116,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE14",
+                                                               "description":  "Race and ethnicity unknown - Female (14)",
+                                                               "start":  122,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE15",
+                                                               "description":  "Total Male (15)",
+                                                               "start":  128,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Totals will be generated.  Do not include import file. Columns 128-145 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE16",
+                                                               "description":  "Total Female (16)",
+                                                               "start":  134,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Totals will be generated.  Do not include import file. Columns 128-145 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "GRRACE24",
+                                                               "description":  "Grand Total (24)",
+                                                               "start":  140,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Grand totals will be generated.  Do not include import file. Columns 128-145 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  256,
+                                 "title":  "Section III - Other degree/certificate-seeking subcohort - Pell recipients and recipients of a subsidized Direct Loan who did not receive a Pell Grant ",
+                                 "surveySection":  "\"GR1\"",
+                                 "part":  "\"C\" includes sections 2 and 3 of survey",
+                                 "a1":  "3 - Cohort of full-time, first-time students seeking other than a bachelor\u0027s degree, cohort year 2019",
+                                 "a2":  "10, 18, 29, and 45 (refer to Appendix A, Pell recipients and recipients of a Direct Subsidized Loan who did not receive a Pell Grant table)",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"GR1\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Part",
+                                                               "description":  "Part of survey section",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"C\" includes sections 2 and 3 of survey",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Section",
+                                                               "description":  "Section of survey form",
+                                                               "start":  11,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "3 - Cohort of full-time, first-time students seeking other than a bachelor\u0027s degree, cohort year 2019",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Filler",
+                                                               "description":  "Filler",
+                                                               "start":  12,
+                                                               "length":  5,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"blank\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "LINE",
+                                                               "description":  "Status of students in cohort",
+                                                               "start":  17,
+                                                               "length":  2,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "10, 18, 29, and 45 (refer to Appendix A, Pell recipients and recipients of a Direct Subsidized Loan who did not receive a Pell Grant table)",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Filler",
+                                                               "description":  "Filler",
+                                                               "start":  19,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"blank\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PELLGRANT_RCPT",
+                                                               "description":  "Recipients of a Pell Grant (within entering year)",
+                                                               "start":  20,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DIRECTLOAN_RCPT",
+                                                               "description":  "Recipients of a Direct Subsidized Loan (within entering year) that did not receive a Pell Grant",
+                                                               "start":  26,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "NON_RCPT",
+                                                               "description":  "Did not receive either a Pell Grant or Direct Subsidized Loan (within entering year)",
+                                                               "start":  32,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "It will be generated. Do not include import file. Columns 32-37 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           }
+                                                       ]
+                             }
+                         ],
+    "keyValueParts":  [
+                          {
+                              "partId":  41,
+                              "title":  "Student Data\u003cBR\u003e",
+                              "instruction":  "",
+                              "surveySection":  "\"GR1\"",
+                              "part":  "\"B\" = student data",
+                              "a1":  "g=1-3 (refer to Appendix A, section table)",
+                              "a2":  "i = 1-3 (section 1); 11,12,18,29,30,45,51,52 (sections 2 and 3); 19, 20, 21 (section 2 only) - (refer to Appendix A, cohort status table)",
+                              "keyValueFields":  [
+                                                     {
+                                                         "name":  "UNITID",
+                                                         "description":  "UNITID",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "nnnnnn=Valid UnitID",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SURVSECT",
+                                                         "description":  "Survey Section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"GR1\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PART",
+                                                         "description":  "Part of survey section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"B\" = student data",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SECTION",
+                                                         "description":  "Sub-survey section - identifies cohort",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "g=1-3 (refer to Appendix A, section table)",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "LINE",
+                                                         "description":  "Status of students in cohort",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "i = 1-3 (section 1); 11,12,18,29,30,45,51,52 (sections 2 and 3); 19, 20, 21 (section 2 only) - (refer to Appendix A, cohort status table)",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "RACE",
+                                                         "description":  "Race",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "j = 1 to 11 (refer to Appendix A, race/ethnicity table)",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SEX",
+                                                         "description":  "Sex",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "k=  1-Male, 2-Female, 3-Grand Total. Do not include SEX=3 in import file. It will be generated.",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "COUNT",
+                                                         "description":  "Number of students",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1 to 999999, for zero value see note below.",
+                                                         "isGrayedOut":  false
+                                                     }
+                                                 ]
+                          },
+                          {
+                              "partId":  257,
+                              "title":  "Pell recipients and recipients of a subsidized Direct Loan who did not receive a Pell Grant",
+                              "instruction":  "",
+                              "surveySection":  "\"GR1\"",
+                              "part":  "\"C\" includes sections 2 and 3 of survey",
+                              "a1":  "g=2-3 (refer to Appendix A, section table)",
+                              "a2":  "i= 10, 18, 29, and 45 (Section 2 and 3, refer to Appendix A, Pell recipients and recipients of a Direct Subsidized Loan who did not receive a Pell Grant table)",
+                              "keyValueFields":  [
+                                                     {
+                                                         "name":  "UNITID",
+                                                         "description":  "UNITID",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "nnnnnn=Valid UnitID",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SURVSECT",
+                                                         "description":  "Survey Section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"GR1\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PART",
+                                                         "description":  "Part of survey section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"C\" includes sections 2 and 3 of survey",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SECTION",
+                                                         "description":  "Sub-survey section - identifies cohort",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "g=2-3 (refer to Appendix A, section table)",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "LINE",
+                                                         "description":  "Status of students in cohort",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "i= 10, 18, 29, and 45 (Section 2 and 3, refer to Appendix A, Pell recipients and recipients of a Direct Subsidized Loan who did not receive a Pell Grant table)",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PELLGRANT_RCPT",
+                                                         "description":  "Recipients of a Pell Grant (within entering year)",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DIRECTLOAN_RCPT",
+                                                         "description":  "Recipients of a Direct Subsidized Loan (within entering year) that did not receive a Pell Grant",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "NON_RCPT",
+                                                         "description":  "Did not receive either a Pell Grant or Direct Subsidized Loan (within entering year)",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "It will be generated. Do not include import file.",
+                                                         "isGrayedOut":  true
+                                                     }
+                                                 ]
+                          }
+                      ]
+}

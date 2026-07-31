@@ -53,7 +53,14 @@ const regressionMarkdown = await fs.readFile(regressionReport, "utf8");
 const actualFailureIds = [
   ...regressionMarkdown.matchAll(/^### (\d+)\./gm),
 ].map((match) => Number(match[1]));
-const adjudicatedFailureIds = [32, 70, 246, 247, 248, 249];
+const adjudicatedFailureIds = [
+  32,
+  70,
+  246,
+  247,
+  248,
+  249,
+];
 assert.deepEqual(
   actualFailureIds,
   adjudicatedFailureIds,
@@ -71,13 +78,53 @@ const capacity = analyzeQuestion(
   dataset,
 );
 assert.equal(capacity.answer.points[0].label, "Computer Science");
-assert.equal(capacity.answer.points[0].value, 140);
+assert.equal(
+  capacity.answer.points[0].value,
+  dataset.capacity.find((row) => row.programId === "PCS").seats -
+    dataset.capacity.find((row) => row.programId === "PCS").filled,
+);
 
 const pellGap = analyzeQuestion(
   "How many percentage points separated Pell and non-Pell retention in 2024?",
   dataset,
 );
 assert.match(pellGap.answer.headline, /\b1\.1 percentage points?\b/);
+
+for (const [question, expectedProgramIds] of [
+  [
+    "Which programs have crossed the 90% utilization threshold?",
+    ["PCS", "PBA"],
+  ],
+  [
+    "Which programs are strictly above 90 percent capacity?",
+    ["PCS", "PBA"],
+  ],
+  [
+    "Which programs are at least 90 percent full?",
+    ["PCS", "PBA", "PNUR"],
+  ],
+]) {
+  const result = analyzeQuestion(question, dataset);
+  const expectedLabels = expectedProgramIds.map(
+    (programId) =>
+      dataset.capacity.find((row) => row.programId === programId).programName,
+  );
+  assert.deepEqual(
+    result.answer.points.map((point) => point.label),
+    expectedLabels,
+  );
+}
+
+const utilization = analyzeQuestion(
+  "Show Computer Science capacity utilization with its source tables.",
+  dataset,
+);
+assert.equal(
+  utilization.answer.points[0].value,
+  (dataset.capacity.find((row) => row.programId === "PCS").filled /
+    dataset.capacity.find((row) => row.programId === "PCS").seats) *
+    100,
+);
 
 for (const question of [
   "Show undergraduate MS enrollment.",

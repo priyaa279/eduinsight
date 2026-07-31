@@ -1,0 +1,175 @@
+﻿{
+    "title":  "Graduation rates at 200% of normal  time 4yr",
+    "nameFl":  "\u003cdiv class=\"name-left\"\u003eIPEDS 2025-26 Import Specifications: Graduation Rates 200\u003cbr\u003eApplies to: 4-Year Institutions\u003c/div\u003e\u003cdiv class=\"name-center\"\u003eFile type: Fixed Length/Positional (*.txt)\u003c/div\u003e",
+    "noteFL":  "Note: All numeric fields should be right-justified. Both leading zeros and spaces are permissible. Character data should be left-justified.",
+    "nameKv":  "\u003cdiv class=\"name-left\"\u003eIPEDS 2025-26 Import Specifications: Graduation Rates 200\u003cbr\u003eApplies to: 4-Year Institutions\u003c/div\u003e\u003cdiv class=\"name-center\"\u003eFile type: File type: Key Value Pair File (*.TXT)\u003c/div\u003e",
+    "sampleKv":  "Sample records: Institution (UNITID=nnnnnn) UNITID=nnnnnn,SURVSECT=G21,PART=A,ADEXCL=nnnnnn,COMPY7-8=nnnnnn, STILLENROLLED=nnnnnn",
+    "noteKv":  "Sort Order: UNITID,SURVSECT,PART",
+    "fixedLayoutParts":  [
+                             {
+                                 "partId":  251,
+                                 "title":  "Cohort of Full-time, First-time Bachelor Degree-Seeking Students Cohort Year 2017",
+                                 "surveySection":  "\"G21\"",
+                                 "part":  "\"A\" All data",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Graduation rates within 200% of the time - 4-year schools",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"G21\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Part",
+                                                               "description":  "Part of survey ",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"A\" All data",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "ADEXCL",
+                                                               "description":  "Additional Exclusions",
+                                                               "start":  11,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "COMPY7-8",
+                                                               "description":  "Completers in years 7 and years 8 \u003cbr/\u003e (completed a bachelor\u0027s degree between 151% and 200% of normal time to completion)",
+                                                               "start":  17,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "STILLENROLLED",
+                                                               "description":  "Still enrolled as of 200% of normal time",
+                                                               "start":  23,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "ADJ200",
+                                                               "description":  "Adjusted cohort 200%",
+                                                               "start":  29,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Will be generated, do not include in file",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "COMP200",
+                                                               "description":  "Completers within 200% of the time",
+                                                               "start":  35,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Will be generated, do not include in file",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "GRATE200",
+                                                               "description":  "Graduation Rate within 200% of the time",
+                                                               "start":  41,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Will be generated, do not include in file",
+                                                               "isGrayedOut":  true
+                                                           }
+                                                       ]
+                             }
+                         ],
+    "keyValueParts":  [
+                          {
+                              "partId":  250,
+                              "title":  "\u003cb\u003eCohort of Full-time, First-time Bachelor Degree-Seeking Students Cohort Year 2017\u003c/b\u003e",
+                              "surveySection":  "\"G21\"",
+                              "part":  "\"A\" All data",
+                              "description1":  "Completers in years 7 and years 8 \u003cbr/\u003e (completed a bachelor\u0027s degree  between 151% and 200% of normal time to completion)",
+                              "description2":  "Graduation rates within 200% of the time - 4-year schools",
+                              "name1":  "COMPY7-8",
+                              "keyValueFields":  [
+                                                     {
+                                                         "name":  "UNITID",
+                                                         "description":  "UNITID",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "nnnnnn=Valid UnitID",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SURVSECT",
+                                                         "description":  "Graduation rates within 200% of the time - 4-year schools",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"G21\" ",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PART",
+                                                         "description":  "PART",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"A\" All data",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "ADEXCL",
+                                                         "description":  "Additional Exclusions",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "COMPY7-8",
+                                                         "description":  "Completers in years 7 and years 8 \u003cbr/\u003e (completed a bachelor\u0027s degree  between 151% and 200% of normal time to completion)",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "STILLENROLLED",
+                                                         "description":  "Still enrolled students",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "ADJ200",
+                                                         "description":  "Adjusted cohort 200%",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Will be generated, do not include in file",
+                                                         "isGrayedOut":  true
+                                                     },
+                                                     {
+                                                         "name":  "COMP200",
+                                                         "description":  "Completers within 200% of the time",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Will be generated, do not include in file",
+                                                         "isGrayedOut":  true
+                                                     },
+                                                     {
+                                                         "name":  "GRATE200",
+                                                         "description":  "Graduation Rate within 200% of the time",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Will be generated, do not include in file",
+                                                         "isGrayedOut":  true
+                                                     }
+                                                 ]
+                          }
+                      ]
+}

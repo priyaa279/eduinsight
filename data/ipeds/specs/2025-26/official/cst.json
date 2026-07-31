@@ -1,0 +1,1920 @@
+﻿{
+    "title":  "Cost I for academic year tuition reporters",
+    "note":  "\u003cB\u003eNumeric fields should be right-justified in their fields. Both leading zeros and spaces are permissible.\u003cbr /\u003e\u003cbr /\u003eCharacter data should be left justified.\u003cbr /\u003e\u003cbr /\u003eDoctor\u0027s-professional table\u003c/b\u003e\u003cbr /\u003e\u003col\u003e\u003cbr /\u003e\u003cli\u003eChiropractic (D.C. or D.C.M.)\u003cbr /\u003e\u003cli\u003eDentistry (D.D.S. or D.M.D.)\u003cbr /\u003e\u003cli\u003eMedicine (M.D.)\u003cbr /\u003e\u003cli\u003eOptometry (O.D.)\u003cbr /\u003e\u003cli\u003eOsteopathic Medicine (D.O.)\u003cbr /\u003e\u003cli\u003ePharmacy (Pharm. D.)\u003cbr /\u003e\u003cli\u003ePodiatry (Pod.D., D.P., or D.P.M.) \u003cbr /\u003e\u003cli\u003eVeterinary Medicine (D.V.M.)\u003cbr /\u003e\u003cli\u003eLaw ( J.D.)\u003cbr /\u003e\u003c/ol\u003e\u003ctable width=\"592\"\u003e \u003ctbody\u003e \u003ctr\u003e \u003ctd colspan=\"2\"\u003e\u003cb\u003eFull-time, first-time degree/certificate-seeking undergraduate students\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e \u003ctr\u003e \u003ctd width=\"70\" align=\"right\" valign=\"top\"\u003e1 - \u003c/td\u003e \u003ctd width=\"522\"\u003eNumber of full-time, first-time degree/certificate-seeking undergraduate students enrolled in Fall 2024 [Section 2: Part A - Establish Your Student Counts, Line 01]\u003c/td\u003e\u003c/tr\u003e \u003ctr\u003e \u003ctd width=\"70\" align=\"right\" valign=\"top\"\u003e2 - \u003c/td\u003e \u003ctd width=\"522\"\u003eNumber of full-time first-time degree/certificate-seeking undergraduate students paying in-district tuition rates. [Section 2: Part B, Line 02]\u003c/td\u003e\u003c/tr\u003e \u003ctr\u003e \u003ctd width=\"70\" align=\"right\" valign=\"top\"\u003e3 - \u003c/td\u003e \u003ctd width=\"522\"\u003eNumber of first-time degree/certificate-seeking undergraduate students paying in-state tuition rates. [Section 2: Part B, Line 03]\u003c/td\u003e\u003c/tr\u003e \u003ctr\u003e \u003ctd width=\"70\" align=\"right\" valign=\"top\"\u003e4 - \u003c/td\u003e \u003ctd width=\"522\"\u003eNumber full-time first-time degree/certificate-seeking undergraduate students paying out-of-state tuition rates. [Section 2: Part B, Line 04]\u003c/td\u003e\u003c/tr\u003e \u003ctr\u003e \u003ctd width=\"70\" align=\"right\" valign=\"top\"\u003e5 - \u003c/td\u003e \u003ctd width=\"522\"\u003eNumber of full-time, first-time degree/certificate-seeking undergraduate students paying unknown tuition rates. [Section 2: Part B, Line 05]\u003cb\u003e (Do not include in import file. It will be generated.)\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003cbr\u003e \r\n\r\n\u003ctable width=\"592\"\u003e \u003ctbody\u003e \u003ctr\u003e \u003ctd colspan=\"2\"\u003e\u003cb\u003eFull-time, first-time degree/certificate-seeking undergraduate students paying the lower of in-state or in-district tuition rate who were awarded grant or scholarship aid from the following sources: the federal government, state/local government, or the institution\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e \u003ctr\u003e \u003ctd width=\"70\" align=\"right\" valign=\"top\"\u003e1 - \u003c/td\u003e \u003ctd width=\"522\"\u003eNumber of full-time, first-time degree/certificate-seeking undergraduate students paying the lower of in-state or in-district tuition rate who were awarded grant or scholarship aid from the following sources: the federal government, state/local government, or the institution. [Section 2: Part A - Establish Your Student Counts, Line 02]\u003c/td\u003e\u003c/tr\u003e \u003ctr\u003e \u003ctd width=\"70\" align=\"right\" valign=\"top\"\u003e2 - \u003c/td\u003e \u003ctd width=\"522\"\u003eNumber of full-time, first-time degree/certificate-seeking undergraduates who were awarded grant or scholarship aid living on-campus.\u003cbr\u003e\u003cb\u003eInclude only the students paying the lower of in-state or in-district tuition rate.\u003c/b\u003e [Section 2: Part C, Line 02]\u003c/td\u003e\u003c/tr\u003e \u003ctr\u003e \u003ctd width=\"70\" align=\"right\" valign=\"top\"\u003e3 - \u003c/td\u003e \u003ctd width=\"522\"\u003eNumber of full-time, first-time degree/certificate-seeking undergraduates who were awarded grant or scholarship aid living off-campus with family.\u003cbr\u003e\u003cb\u003eInclude only the students paying the lower of in-state or in-district tuition rate.\u003c/b\u003e [Section 2: Part C, Line 03]\u003c/td\u003e\u003c/tr\u003e \u003ctr\u003e \u003ctd width=\"70\" align=\"right\" valign=\"top\"\u003e4 - \u003c/td\u003e \u003ctd width=\"522\"\u003eNumber of full-time, first-time degree/certificate-seeking undergraduates who were awarded grant or scholarship aid living off-campus not with family.\u003cbr\u003e\u003cb\u003eInclude only the students paying the lower of in-state or in-district tuition rate.\u003c/b\u003e [Section 2: Part C, Line 04]\u003c/td\u003e\u003c/tr\u003e \u003ctr\u003e \u003ctd width=\"70\" align=\"right\" valign=\"top\"\u003e5 - \u003c/td\u003e \u003ctd width=\"522\"\u003eTotal grant or scholarship aid from the federal government, state/local government, or the institution\u0026nbsp;awarded to\u0026nbsp;students.\u003cbr\u003e\u003cb\u003eInclude only the students paying the lower of in-state or in-district tuition rate.\u003c/b\u003e [Section 2: Part C, Line 06]\u003c/td\u003e\u003c/tr\u003e \u003ctr\u003e \u003ctd width=\"70\" align=\"right\" valign=\"top\"\u003e6 - \u003c/td\u003e \u003ctd width=\"522\"\u003eNumber of full-time, first-time degree/certificate-seeking undergraduates who were awarded grant or scholarship aid with unknown living arrangement.\u003cbr\u003e\u003cb\u003eDo not include in import file. It will be generated.\u003c/b\u003e [Section 2: Part C, Line 05]\u003c/td\u003e\u003c/tr\u003e \u003ctr\u003e \u003ctd width=\"70\" align=\"right\" valign=\"top\"\u003e7 - \u003c/td\u003e \u003ctd width=\"522\"\u003eAverage amount of grant or scholarship aid from the federal government, state/local government, or the institution.\u003cbr\u003e\u003cb\u003eDo not include in import file. It will be generated.\u003c/b\u003e [Section 2: Part C, Line 07]\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003cbr\u003e \r\n\r\n\u003ctable width=\"592\"\u003e \u003ctbody\u003e \u003ctr\u003e \u003ctd colspan=\"2\"\u003e \u003cp\u003e\u003cb\u003eAid Year Code\u003c/b\u003e\u003c/p\u003e\u003c/td\u003e\u003c/tr\u003e \u003ctr\u003e \u003ctd width=\"70\" align=\"right\" valign=\"top\"\u003e1 - \u003c/td\u003e \u003ctd width=\"522\"\u003eFall 2024, academic year 2024-25\u003c/td\u003e\u003c/tr\u003e \u003ctr\u003e \u003ctd width=\"70\" align=\"right\" valign=\"top\"\u003e2 - \u003c/td\u003e \u003ctd width=\"522\"\u003eFall 2023, academic year 2023-24 (If you have reported to IPEDS previously, do not include in import file. It will be generated.)\u003c/td\u003e\u003c/tr\u003e \u003ctr\u003e \u003ctd width=\"70\" align=\"right\" valign=\"top\"\u003e3 - \u003c/td\u003e \u003ctd width=\"522\"\u003eFall 2022, academic year 2022-23 (If you have reported\u0026nbsp;\u003cspan style=\"font-size: 13.33px;\"\u003eto IPEDS\u003c/span\u003e\u0026nbsp;previously, do not include in import file. It will\u0026nbsp;be generated.)\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003cbr\u003e \r\n\r\n\u003ctable width=\"592\"\u003e \u003ctbody\u003e \u003ctr\u003e \u003ctd colspan=\"2\"\u003e\u003cb\u003eFull-time, first-time degree/certificate-seeking undergraduate students Awarded Title IV Aid\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e \u003ctr\u003e \u003ctd width=\"70\" align=\"right\" valign=\"top\"\u003e1 - \u003c/td\u003e \u003ctd width=\"522\"\u003eNumber of full-time, first-time degree/certificate-seeking undergraduate students paying the lower of in-state or in-district tuition rate who were awarded any Title IV federal student aid.\u003cbr\u003eWhen YEAR=1, [Section 2: Part A - Establish Your Student Counts, Line 03]. When Year=2,3, [Section 2: Part D, Line 01]\u003c/td\u003e\u003c/tr\u003e \u003ctr\u003e \u003ctd width=\"70\" align=\"right\" valign=\"top\"\u003e2 - \u003c/td\u003e \u003ctd width=\"522\"\u003eNumber of full-time, first-time degree/certificate-seeking undergraduates who were awarded any Title IV aid living on-campus.\u003cbr\u003e\u003cb\u003eInclude only the students paying the lower of in-state or in-district tuition rate.\u003c/b\u003e [Section 2: Part D, Line 02]\u003c/td\u003e\u003c/tr\u003e \u003ctr\u003e \u003ctd width=\"70\" align=\"right\" valign=\"top\"\u003e3 - \u003c/td\u003e \u003ctd width=\"522\"\u003eNumber of full-time, first-time degree/certificate-seeking undergraduates who were awarded any Title IV aid living off-campus with family.\u003cbr\u003e\u003cb\u003eInclude only the students paying the lower of in-state or in-district tuition rate.\u003c/b\u003e [Section 2: Part D, Line 03]\u003c/td\u003e\u003c/tr\u003e \u003ctr\u003e \u003ctd width=\"70\" align=\"right\" valign=\"top\"\u003e4 - \u003c/td\u003e \u003ctd width=\"522\"\u003eNumber of full-time, first-time degree/certificate-seeking undergraduates who were awarded any Title IV aid living off-campus not with family.\u003cbr\u003e\u003cb\u003eInclude only the students paying the lower of in-state or in-district tuition rate.\u003c/b\u003e [Section 2: Part D, Line 04]\u003c/td\u003e\u003c/tr\u003e \u003ctr\u003e \u003ctd width=\"70\" align=\"right\" valign=\"top\"\u003e5 - \u003c/td\u003e \u003ctd width=\"522\"\u003eNumber of full-time, first-time degree/certificate-seeking undergraduates who were awarded any Title IV aid with unknown living arrangement.\u003cbr\u003e\u003cb\u003eDo not include in import file. It will be generated.\u003c/b\u003e [Section 2: Part D, Line 05]\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003cbr\u003e \r\n\r\n\u003ctable width=\"592\"\u003e \u003ctbody\u003e \u003ctr\u003e \u003ctd colspan=\"2\"\u003e\u003cb\u003eFull-time, first-time degree/certificate-seeking undergraduate students who were awarded any Title IV federal student aid by income \u003cbr\u003e\u003cbr\u003e\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e \u003ctr\u003e \u003ctd width=\"70\" align=\"right\" valign=\"top\"\u003e1 - \u003c/td\u003e \u003ctd width=\"522\"\u003e$0-$30,000. Include only the students paying the lower of in-state or in-district tuition rate.\u003c/td\u003e\u003c/tr\u003e \u003ctr\u003e \u003ctd width=\"70\" align=\"right\" valign=\"top\"\u003e2 - \u003c/td\u003e \u003ctd width=\"522\"\u003e$30,001-$48,000. Include only the students paying the lower of in-state or in-district tuition rate.\u003c/td\u003e\u003c/tr\u003e \u003ctr\u003e \u003ctd width=\"70\" align=\"right\" valign=\"top\"\u003e3 - \u003c/td\u003e \u003ctd width=\"522\"\u003e$48,001-$75,000. Include only the students paying the lower of in-state or in-district tuition rate.\u003c/td\u003e\u003c/tr\u003e \u003ctr\u003e \u003ctd width=\"70\" align=\"right\" valign=\"top\"\u003e4 - \u003c/td\u003e \u003ctd width=\"522\"\u003e$75,001-$110,000. Include only the students paying the lower of in-state or in-district tuition rate.\u003c/td\u003e\u003c/tr\u003e \u003ctr\u003e \u003ctd width=\"70\" align=\"right\" valign=\"top\"\u003e5 - \u003c/td\u003e \u003ctd width=\"522\"\u003e$110,001 and more. Include only the students paying the lower of in-state or in-district tuition rate.\u003c/td\u003e\u003c/tr\u003e \u003ctr\u003e \u003ctd width=\"70\" align=\"right\" valign=\"top\"\u003e6 - \u003c/td\u003e \u003ctd width=\"522\"\u003eTotal all income levels. \u003cb\u003eDo not include in import file. It will be generated.\u003c/b\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e ",
+    "nameFl":  "\u003cdiv class=\"name-left\"\u003eIPEDS 2025-26 Import Specifications: Cost I, Academic Year Student Charges\u003cbr\u003eApplies to: Academic Reporters\u003c/div\u003e\u003cdiv class=\"name-center\"\u003eFile type: Fixed Length/Positional (*.txt)\u003c/div\u003e",
+    "noteFL":  "",
+    "nameKv":  "\u003cdiv class=\"name-left\"\u003eIPEDS 2025-26 Import Specifications: Cost I, Academic Year Students Charges\u003cbr\u003eApplies to: Academic Reporters\u003c/div\u003e\u003cdiv class=\"name-center\"\u003eFile type: Key Value Pair (*.txt)\u003c/div\u003e",
+    "sampleKv":  "UNITID=nnnnnn,SURVSECT=CT1,PART=A,DA03=nn,……………DA16=1,DA161=1,...\r\n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=CT1,PART=E,DE01=nnnn,DE02=nnnn,………………DE13=nnnn\r\n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=CT1,PART=B,DB01=nnnn,DB02=nnnn,………………DB15=nnnn \u003cbr\u003eUNITID=nnnnnn,SURVSECT=CT1,PART=C,DC01=nnnn,DC02=nnnn,………………DC15=nnnn \r\n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=CT1,PART=F,DF01=n,DF02=nnnn,DF03=nnnn \r\n\u003cbr\u003eUNITID=nnnnnn,SURVSECT=CT1,PART=D,DD01=nnnn,DD02=nnnn,DD03=nnnn \r\n\u003cbr\u003e...\r\n\u003cbr\u003e\u003cspan\u003eNote: If a variable is not applicable, do not include in import file.\u003c/span\u003e\r\n\r\n",
+    "noteKv":  "\u003cbr\u003e",
+    "fixedLayoutParts":  [
+                             {
+                                 "partId":  1,
+                                 "title":  "General information and application fees",
+                                 "instruction":  "",
+                                 "surveySection":  "\"CT1\"",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID ",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"CT1\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"A\" = General information record",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Filler",
+                                                               "description":  "Filler",
+                                                               "start":  11,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "\"blank\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DA03",
+                                                               "description":  "Undergraduate application fee",
+                                                               "start":  13,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank if no full-time undergraduates, or no undergraduate award levels offered, or no undergraduate application fee for admission required. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DA04",
+                                                               "description":  "Graduate application fee",
+                                                               "start":  19,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank if no full-time graduates, or no graduate award levels offered, or no graduate application fee for admission required. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DA07",
+                                                               "description":  "#3. Does your institution charge different tuition for in-district, in-state, or out-of-state students?",
+                                                               "start":  25,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "01 = Yes, 02 = No",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DA08",
+                                                               "description":  "#1. Does your institution offer institutionally-controlled housing (on-campus and/or off-campus)?",
+                                                               "start":  27,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "01 = Yes, 02 = No",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DA09",
+                                                               "description":  "Housing capacity ",
+                                                               "start":  29,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "If DA08=01 (Yes), then 1 to 999999.\u003cbr\u003eIf DA08=02 (No), then -2 or blank (not applicable). ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DA10",
+                                                               "description":  "#4. Does your institution provide food or meal plans for students? ",
+                                                               "start":  35,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "01 = Yes, Number of meals per week in the maximum meal plan offered. 02 = Yes, Number of meals per week can vary 03 = No",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DA11",
+                                                               "description":  "Number of meals per week ",
+                                                               "start":  37,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "If DA10=01 (Yes), then 2 to 99. If unlimited, then 99.\u003cbr\u003eIf DA10=02 (meals vary) or 03 (No), then -2 or blank (not applicable).",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DA06",
+                                                               "description":  "#2. Are all full-time, first-time degree/certificate-seeking students required to live on-campus or in institutionally-controlled housing?  ",
+                                                               "start":  39,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "01 = Yes and we do not allow any exceptions, 02 = No,  -2 or blank (not applicable).",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DA071",
+                                                               "description":  "In-district tuition rates",
+                                                               "start":  41,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "If DA07=01 (Yes), then 01 = Yes, 02 = No.\u003cbr\u003eIf DA07=02 (No), then -2 or blank (not applicable), any entered value will be ignored. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DA072",
+                                                               "description":  "In-state tuition rates",
+                                                               "start":  43,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "If DA07=01 (Yes), then 01 = Yes, 02 = No.\u003cbr\u003eIf DA07=02 (No), then -2 or blank (not applicable), any entered value will be ignored. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DA073",
+                                                               "description":  "Out-of-state tuition rates",
+                                                               "start":  45,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "If DA07=01 (Yes), then 01 = Yes, 02 = No.\u003cbr\u003eIf DA07=02 (No), then -2 or blank (not applicable), any entered value will be ignored. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DA12",
+                                                               "description":  "#5. Does your institution charge an application fee?",
+                                                               "start":  47,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "01 = Yes, 02 = No",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DA121",
+                                                               "description":  "Undergraduate programs   ",
+                                                               "start":  49,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "If DA12=01 (Yes), then 01 = Yes, 02 = No.\u003cbr\u003eIf DA12=02 (No), then -2 or blank (not applicable), any entered value will be ignored. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DA122",
+                                                               "description":  "Graduate programs (not including Doctor\u0027s-Professional practice)  ",
+                                                               "start":  51,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "If DA12=01 (Yes), then 01 = Yes, 02 = No.\u003cbr\u003eIf DA12=02 (No), then -2 or blank (not applicable), any entered value will be ignored. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DA123",
+                                                               "description":  "Doctor’s-Professional Practice programs",
+                                                               "start":  53,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "If DA12=01 (Yes), then 01 = Yes, 02 = No.\u003cbr\u003eIf DA12=02 (No), then -2 or blank (not applicable), any entered value will be ignored. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DA13",
+                                                               "description":  "Doctor’s-Professional Practice programs application fee",
+                                                               "start":  55,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank if no full-time doctor’s-professional practice programs students, or no doctor’s-professional practice programs award levels offered, or no doctor’s-professional practice programs application fee for admission required. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DA14",
+                                                               "description":  "#6. For institutions that charge an application fee, can the application fee be waived for applicants that demonstrate financial need?",
+                                                               "start":  61,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "01 = Yes, 02 = No",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DA141",
+                                                               "description":  "Undergraduate programs   ",
+                                                               "start":  63,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "If DA14=01 (Yes), then 01 = Yes, 02 = No.\u003cbr\u003eIf DA14=02 (No), then -2 or blank (not applicable), any entered value will be ignored. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DA142",
+                                                               "description":  "Graduate programs (not including Doctor\u0027s-Professional practice)  ",
+                                                               "start":  65,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "If DA14=01 (Yes), then 01 = Yes, 02 = No.\u003cbr\u003eIf DA14=02 (No), then -2 or blank (not applicable), any entered value will be ignored. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DA143",
+                                                               "description":  "Doctor’s-Professional Practice programs",
+                                                               "start":  67,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "If DA14=01 (Yes), then 01 = Yes, 02 = No.\u003cbr\u003eIf DA14=02 (No), then -2 or blank (not applicable), any entered value will be ignored. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DA15",
+                                                               "description":  "#7.  Indicate whether or not your institution participates in a Promise program.",
+                                                               "start":  69,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "01 = Yes, 02 = No",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DA16",
+                                                               "description":  "#8. Indicate whether or not any of the following alternative tuition plans (Tuition guarantee, Prepaid tuition plan, Tuition payment plan, Other) are offered by your institution.",
+                                                               "start":  71,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "01 = Yes, 02 = No",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DA161",
+                                                               "description":  "Tuition guarantee",
+                                                               "start":  73,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "If DA16=01 (Yes), then 01 = Yes, 02 = No.\u003cbr\u003eIf DA16=02 (No), then -2 or blank (not applicable), any entered value will be ignored. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DA162",
+                                                               "description":  "Prepaid tuition plan",
+                                                               "start":  75,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "If DA16=01 (Yes), then 01 = Yes, 02 = No.\u003cbr\u003eIf DA16=02 (No), then -2 or blank (not applicable), any entered value will be ignored. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DA163",
+                                                               "description":  "Tuition payment plan",
+                                                               "start":  77,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "If DA16=01 (Yes), then 01 = Yes, 02 = No.\u003cbr\u003eIf DA16=02 (No), then -2 or blank (not applicable), any entered value will be ignored. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DA164",
+                                                               "description":  "Other",
+                                                               "start":  79,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "If DA16=01 (Yes), then 01 = Yes, 02 = No.\u003cbr\u003eIf DA16=02 (No), then -2 or blank (not applicable), any entered value will be ignored. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DA17",
+                                                               "description":  "#9. For the purposes of awarding institutional financial aid, does your institution require asset information from students who qualify for the exemption from asset reporting on the FAFSA form?",
+                                                               "start":  81,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "01 = Yes, 02 = No",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DA18",
+                                                               "description":  "#10. For the purpose of awarding institutional financial aid, does your institution require additional financial information separate from the FAFSA form?",
+                                                               "start":  83,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "01 = Yes, 02 = No",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DA181",
+                                                               "description":  "Link URL - Additional financial information url protocol (http:// or https://)",
+                                                               "start":  85,
+                                                               "length":  2,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "If DA18=01 (Yes), then 01 = http://, 02 = https://.\u003cbr\u003eIf DA18=02 (No), then -2 or blank (not applicable), any entered value will be ignored. ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DA182",
+                                                               "description":  "Link URL - Additional financial information url (do not include http:// or https://)",
+                                                               "start":  87,
+                                                               "length":  290,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "If DA18=01 (Yes), then Additional financial information url.\u003cbr\u003eIf DA18=02 (No), then -2 or blank (not applicable), any entered value will be ignored. ",
+                                                               "isGrayedOut":  false
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  4,
+                                 "title":  "Section 1 - Cost of attendance for full-time, first-time degree/certificate-seeking undergraduate students",
+                                 "instruction":  "Cost of attendance for full-time, first-time degree/certificate-seeking undergraduate students for academic year 2025-26\u003cbr\u003e\u003cbr\u003eInstructions:\u003cbr\u003eThese are the data that will be available to the public on the College Navigator website. If institution does not offer undergraduate level awards or does not have any first-time full-time students, DE011 through DE13 are not applicable, and no Part \"E\" record should be included on the file. Out-of-state amount DE03 and DE06 should be consistent with DA07(DA071, DA072, DA073) above.  If institution only charges one tuition rate for all students, then report these amounts using the in-district variables. If institution does not provide on-campus housing and food or meal plans, then DE08 should be -2 or blank (not applicable). If you want to change data reported for academic year 2023-24 or 2024-25, you must do it on the Cost II component in the Winter collection. If you would like to enter a caveat for these data, you must also enter the caveat in the data collection system.",
+                                 "surveySection":  "\"CT1\"",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"CT1\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"E\" = Full-time, first-time undergraduate record",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DE011",
+                                                               "description":  "Published tuition In-district",
+                                                               "start":  11,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "TUITGQ01",
+                                                               "description":  "Do you have tuition guarantee  In-district",
+                                                               "start":  17,
+                                                               "length":  1,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0=No, 1=Yes",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "TUITGP01",
+                                                               "description":  "Guaranteed tuition increase In-district",
+                                                               "start":  18,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 100",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DE012",
+                                                               "description":  "Published fees In-district",
+                                                               "start":  21,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FEEGQ01",
+                                                               "description":  "Do you have fee guarantee  In-district",
+                                                               "start":  27,
+                                                               "length":  1,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0=No, 1=Yes",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FEEGP01",
+                                                               "description":  "Guaranteed fee increase In-district",
+                                                               "start":  28,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 100 ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DE021",
+                                                               "description":  "Published tuition In-state",
+                                                               "start":  31,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "TUITGQ02",
+                                                               "description":  "Do you have tuition guarantee  In-state",
+                                                               "start":  37,
+                                                               "length":  1,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0=No, 1=Yes",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "TUITGP02",
+                                                               "description":  "Guaranteed tuition increase In-state",
+                                                               "start":  38,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 100 ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DE022",
+                                                               "description":  "Published fees In-state",
+                                                               "start":  41,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FEEGQ02",
+                                                               "description":  "Do you have fee guarantee  In-state",
+                                                               "start":  47,
+                                                               "length":  1,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0=No, 1=Yes",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FEEGP02",
+                                                               "description":  "Guaranteed fee increase In-state",
+                                                               "start":  48,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 100 ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DE031",
+                                                               "description":  "Published tuition Out-of-state",
+                                                               "start":  51,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "TUITGQ03",
+                                                               "description":  "Do you have tuition guarantee Out-of-state",
+                                                               "start":  57,
+                                                               "length":  1,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0=No, 1=Yes",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "TUITGP03",
+                                                               "description":  "Guaranteed tuition increase Out-of-state",
+                                                               "start":  58,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 100 ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DE032",
+                                                               "description":  "Published fees Out-of-state",
+                                                               "start":  61,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FEEGQ03",
+                                                               "description":  "Do you have fee guarantee Out-of-state",
+                                                               "start":  67,
+                                                               "length":  1,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0=No, 1=Yes",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "FEEGP03",
+                                                               "description":  "Guaranteed fee increase Out-of-state",
+                                                               "start":  68,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 100 ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Filler",
+                                                               "description":  "Filler",
+                                                               "start":  71,
+                                                               "length":  30,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "\"blank\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DE07",
+                                                               "description":  "Books and supplies",
+                                                               "start":  101,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DE08",
+                                                               "description":  "On campus Food and Housing",
+                                                               "start":  107,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DE09",
+                                                               "description":  "On campus Other expenses",
+                                                               "start":  113,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DE10",
+                                                               "description":  "Off campus (not with family) Food and Housing",
+                                                               "start":  119,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DE11",
+                                                               "description":  "Off campus (not with family) Other expenses",
+                                                               "start":  125,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DE12",
+                                                               "description":  "Off campus (with family) Other expenses",
+                                                               "start":  131,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DE01_T",
+                                                               "description":  "Tuition + fees total In-district",
+                                                               "start":  137,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "DE02_T",
+                                                               "description":  "Tuition + fees total In-state",
+                                                               "start":  143,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "DE03_T",
+                                                               "description":  "Tuition + fees total Out-of-state",
+                                                               "start":  149,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "DE08_09_T",
+                                                               "description":  "On campus Food and Housing and other expenses",
+                                                               "start":  155,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "DE10_11_T",
+                                                               "description":  "Off campus (not with family)  Food and Housing and other expenses",
+                                                               "start":  161,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "DE13",
+                                                               "description":  "Off campus (with family) Food and Housing",
+                                                               "start":  167,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DE12_13_T",
+                                                               "description":  "Off campus (with family)  Food and Housing and other expenses",
+                                                               "start":  173,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Do not include in import file. It will be generated.",
+                                                               "isGrayedOut":  true
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  2,
+                                 "title":  "Section 1 - Undergraduate student charges (Tuition and Required Fees)",
+                                 "instruction":  "Charges to full-time and part-time undergraduate students for the full academic year 2025-26\u003cbr\u003e\u003cbr\u003eInstructions:\u003cbr\u003eIf institution does not offer undergraduate level awards, DB01-DB15 are not applicable, and no Part \"B\" record should be included on the file. If institution offers undergraduate level awards, but has only part-time students, then only DB07, DB08, DB09, DB13, DB14, and DB15 are applicable; all other variables should be blank or -2. Out-of-state amounts DB03, DB06, DB09, DB12, and DB15 should be consistent with DA07(DA071, DA072, DA073) above.  If institution only charges one tuition rate for all students, then report these amounts using the in-district variables. ",
+                                 "surveySection":  "\"CT1\"",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"CT1\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"B\" = Undergraduate tuition record",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DB01",
+                                                               "description":  "Full-time, Average tuition, In-district amount",
+                                                               "start":  11,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DB02",
+                                                               "description":  "Full-time, Average tuition, In-state amount",
+                                                               "start":  17,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DB03",
+                                                               "description":  "Full-time, Average tuition, Out-of-state amount",
+                                                               "start":  23,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DB04",
+                                                               "description":  "Full-time, Required fees, In-district amount",
+                                                               "start":  29,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DB05",
+                                                               "description":  "Full-time, Required fees, In-state amount",
+                                                               "start":  35,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DB06",
+                                                               "description":  "Full-time, Required fees Out-of-state amount",
+                                                               "start":  41,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DB07",
+                                                               "description":  "Part-time (per credit hour charges), Average tuition, In-district amount",
+                                                               "start":  47,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DB08",
+                                                               "description":  "Part-time (per credit hour charges), Average tuition, In-state amount",
+                                                               "start":  53,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DB09",
+                                                               "description":  "Part-time (per credit hour charges), Average tuition, Out-of-state amount",
+                                                               "start":  59,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Filler",
+                                                               "description":  "Filler",
+                                                               "start":  65,
+                                                               "length":  18,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "\"blank\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DB13",
+                                                               "description":  "Part-time (per credit hour charges), Required fees, In-district amount",
+                                                               "start":  83,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DB14",
+                                                               "description":  "Part-time (per credit hour charges), Required fees, In-state amount",
+                                                               "start":  89,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DB15",
+                                                               "description":  "Part-time (per credit hour charges), Required fees, Out-of-state amount",
+                                                               "start":  95,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  3,
+                                 "title":  "Section 1 - Graduate student charges (Tuition and Required Fees)",
+                                 "instruction":  "Charges to full-time and part-time graduate students for the full academic year 2025-26\u003cbr\u003e\u003cbr\u003eInstructions:\u003cbr\u003eIf institution does not offer graduate level awards, DC01-DC15 are not applicable, and no Part \"C\" record should be included on the file. If institution offers graduate level awards, but has only part-time students, then only DC07, DC08, DC09, DC13, DC14, and DC15 are applicable; all other variables should be -2 or blank. Out-of-state amounts DC03, DC06, DC09, and DC15 should be consistent with DA07(DA071, DA072, DA073) above.  If institution only charges one tuition rate for all students, then report these amounts using the in-district variables.\u003cbr\u003e\u003cbr\u003e\u003cb\u003e\u003ci\u003e\u003cspan style=\"color: red;\"\u003ePlease, do not include tuition for Doctor\u0027s Degree - Professional Practice programs.\u003c/span\u003e\u003c/i\u003e\u003c/b\u003e",
+                                 "surveySection":  "\"CT1\"",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"CT1\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"C\" = Graduate tuition record",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DC01",
+                                                               "description":  "Full-time, Average tuition, In-district amount",
+                                                               "start":  11,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DC02",
+                                                               "description":  "Full-time, Average tuition, In-state amount",
+                                                               "start":  17,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DC03",
+                                                               "description":  "Full-time, Average tuition, Out-of-state amount",
+                                                               "start":  23,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DC04",
+                                                               "description":  "Full-time, Required fees, In-district amount",
+                                                               "start":  29,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DC05",
+                                                               "description":  "Full-time, Required fees, In-state amount",
+                                                               "start":  35,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DC06",
+                                                               "description":  "Full-time, Required fees, Out-of-states amount",
+                                                               "start":  41,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DC07",
+                                                               "description":  "Part-time (per credit hour charges), Average tuition, In-district amount",
+                                                               "start":  47,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DC08",
+                                                               "description":  "Part-time (per credit hour charges), Average tuition, In-state amount",
+                                                               "start":  53,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DC09",
+                                                               "description":  "Part-time (per credit hour charges), Average tuition, Out-of-state amount",
+                                                               "start":  59,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "Filler",
+                                                               "description":  "Filler",
+                                                               "start":  65,
+                                                               "length":  18,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "\"blank\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DC13",
+                                                               "description":  "Part-time (per credit hour charges), Required fees, In-district amount",
+                                                               "start":  83,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DC14",
+                                                               "description":  "Part-time (per credit hour charges), Required fees, In-state amount",
+                                                               "start":  89,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DC15",
+                                                               "description":  "Part-time (per credit hour charges), Required fees, Out-of-state amount",
+                                                               "start":  95,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  5,
+                                 "title":  "Section 1 - Doctor\u0027s-Professional Practice student charges (Tuition and Required Fees)",
+                                 "instruction":  "Charges to full-time Doctor\u0027s-Professional Practice students for the full academic year 2025-26\u003cbr\u003e\u003cbr\u003eInstructions: \u003cbr\u003eThis section is applicable only to 4-year schools that offer Doctor\u0027s-Professional Practice degrees. If your institution does not offer this level of award, do not include any Part \"F\" records in the file. If institution does not charge different tuition for out-of-state students, then valid amounts for DF04 and DF05 are -2 or blank (not applicable).",
+                                 "surveySection":  "\"CT1\"",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNIT ID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"CT1\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"F\" = Doctor\u0027s-professional record",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DF01",
+                                                               "description":  "Doctor\u0027s-professional program code",
+                                                               "start":  11,
+                                                               "length":  4,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid Doctor\u0027s-professional codes, refer to Doctor\u0027s-professional table",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DF02",
+                                                               "description":  "Average tuition, In-state amount ",
+                                                               "start":  15,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999  ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DF03",
+                                                               "description":  "Required fees, In-state amount ",
+                                                               "start":  21,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999 ",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DF04",
+                                                               "description":  "Average tuition, Out-of-state amount ",
+                                                               "start":  27,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DF05",
+                                                               "description":  "Required fees, Out-of-state amount ",
+                                                               "start":  33,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  11,
+                                 "title":  "Section 1 - Food and Housing charges",
+                                 "instruction":  "Typical food and housing charges for the full academic year 2025-26\u003cbr\u003e\u003cbr\u003eInstructions:\u003cbr\u003eFood and housing charges should be consistent with DA08 and DA10 above. If institution does not provide on-campus housing or food or meal plans, no Part \"D\" record should be included on the file. If institution does provide food and housing, but does not separate food and housing charges, provide combined charge in DD03, and leave DD01 and DD02 as -2 or blank (not applicable).\u003cbr\u003e\u003cbr\u003eThis section is not required from non-degree-granting institutions.",
+                                 "surveySection":  "\"CT1\"",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"CT1\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"D\" = Food and Housing",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DD01",
+                                                               "description":  "Housing Charge",
+                                                               "start":  11,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DD02",
+                                                               "description":  "Food charge",
+                                                               "start":  17,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DD03",
+                                                               "description":  "Combined food and housing charge",
+                                                               "start":  23,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                               "isGrayedOut":  false
+                                                           }
+                                                       ]
+                             }
+                         ],
+    "keyValueParts":  [
+                          {
+                              "partId":  6,
+                              "title":  "General information and application fees",
+                              "surveySection":  "\"CT1\"",
+                              "keyValueFields":  [
+                                                     {
+                                                         "name":  "UNITID",
+                                                         "description":  "UNITID",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Valid UnitID",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SURVSECT",
+                                                         "description":  "Survey Section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"CT1\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PART",
+                                                         "description":  "Part of survey section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"A\" = General information record",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DA03",
+                                                         "description":  "Undergraduate application fee",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank if no full-time undergraduates, or no undergraduate award levels offered, or no undergraduate application fee for admission required. ",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DA04",
+                                                         "description":  "Graduate application fee",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank if no full-time graduates, or no graduate award levels offered, or no graduate application fee for admission required. ",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DA06",
+                                                         "description":  "#2. Are all full-time, first-time degree/certificate-seeking students required to live on-campus or in institutionally-controlled housing?  ",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "01 = Yes, 02 = No ",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DA07",
+                                                         "description":  "#3. Does your institution charge different tuition for in-district, in-state, or out-of-state students?",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "01 = Yes, 02 = No",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DA071",
+                                                         "description":  "In-district tuition rates",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "If DA07=01 (Yes), then 01 = Yes, 02 = No.\u003cbr\u003eIf DA07=02 (No), then -2 or blank (not applicable), any entered value will be ignored. ",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DA072",
+                                                         "description":  "In-state tuition rates",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "If DA07=01 (Yes), then 01 = Yes, 02 = No.\u003cbr\u003eIf DA07=02 (No), then -2 or blank (not applicable), any entered value will be ignored. ",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DA073",
+                                                         "description":  "Out-of-state tuition rates",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "If DA07=01 (Yes), then 01 = Yes, 02 = No.\u003cbr\u003eIf DA07=02 (No), then -2 or blank (not applicable), any entered value will be ignored. ",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DA08",
+                                                         "description":  "#1. Does your institution offer institutionally-controlled housing (on-campus and/or off-campus)?",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "01 = Yes, 02 = No",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DA09",
+                                                         "description":  "Housing capacity ",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "If DA08=01 (Yes), then 1 to 999999. If DA08=02 (No), then -2 or blank (not applicable). ",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DA10",
+                                                         "description":  "#4. Does your institution provide food or meal plans for students ",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "01 = Yes, Number of meals per week in the maximum meal plan offered. 02 = Yes, Number of meals per week can vary 03 = No",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DA11",
+                                                         "description":  "Number of meals per week ",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "If DA10=01 (Yes), then 2 to 99. If unlimited, then 99. If DA10=02 (meals vary) or 03 (No), then -2 or blank (not applicable).",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DA12",
+                                                         "description":  "#5. Does your institution charge an application fee?",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "01 = Yes, 02 = No",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DA121",
+                                                         "description":  "Undergraduate programs   ",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "If DA12=01 (Yes), then 01 = Yes, 02 = No.\u003cbr\u003eIf DA12=02 (No), then -2 or blank (not applicable), any entered value will be ignored. ",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DA122",
+                                                         "description":  "Graduate programs (not including Doctor\u0027s-Professional practice)  ",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "If DA12=01 (Yes), then 01 = Yes, 02 = No.\u003cbr\u003eIf DA12=02 (No), then -2 or blank (not applicable), any entered value will be ignored. ",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DA123",
+                                                         "description":  "Doctor’s-Professional Practice programs",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "If DA12=01 (Yes), then 01 = Yes, 02 = No.\u003cbr\u003eIf DA12=02 (No), then -2 or blank (not applicable), any entered value will be ignored. ",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DA13",
+                                                         "description":  "Doctor’s-Professional Practice programs application fee",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank if no full-time doctor’s-professional practice programs students, or no doctor’s-professional practice programs award levels offered, or no doctor’s-professional practice programs application fee for admission required. ",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DA14",
+                                                         "description":  "#6. For institutions that charge an application fee, can the application fee be waived for applicants that demonstrate financial need?",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "01 = Yes, 02 = No",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DA141",
+                                                         "description":  "Undergraduate programs   ",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "If DA14=01 (Yes), then 01 = Yes, 02 = No.\u003cbr\u003eIf DA14=02 (No), then -2 or blank (not applicable), any entered value will be ignored. ",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DA142",
+                                                         "description":  "Graduate programs (not including Doctor\u0027s-Professional practice)  ",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "If DA14=01 (Yes), then 01 = Yes, 02 = No.\u003cbr\u003eIf DA14=02 (No), then -2 or blank (not applicable), any entered value will be ignored. ",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DA143",
+                                                         "description":  "Doctor’s-Professional Practice programs",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "If DA14=01 (Yes), then 01 = Yes, 02 = No.\u003cbr\u003eIf DA14=02 (No), then -2 or blank (not applicable), any entered value will be ignored. ",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DA15",
+                                                         "description":  "#7.  Indicate whether or not your institution participates in a Promise program.",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "01 = Yes, 02 = No",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DA16",
+                                                         "description":  "#8. Indicate whether or not any of the following alternative tuition plans (Tuition guarantee, Prepaid tuition plan, Tuition payment plan, Other) are offered by your institution.",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "01 = Yes, 02 = No",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DA161",
+                                                         "description":  "Tuition guarantee",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "If DA16=01 (Yes), then 01 = Yes, 02 = No.\u003cbr\u003eIf DA16=02 (No), then -2 or blank (not applicable), any entered value will be ignored. ",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DA162",
+                                                         "description":  "Prepaid tuition plan",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "If DA16=01 (Yes), then 01 = Yes, 02 = No.\u003cbr\u003eIf DA16=02 (No), then -2 or blank (not applicable), any entered value will be ignored. ",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DA163",
+                                                         "description":  "Tuition payment plan",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "If DA16=01 (Yes), then 01 = Yes, 02 = No.\u003cbr\u003eIf DA16=02 (No), then -2 or blank (not applicable), any entered value will be ignored. ",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DA164",
+                                                         "description":  "Other",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "If DA16=01 (Yes), then 01 = Yes, 02 = No.\u003cbr\u003eIf DA16=02 (No), then -2 or blank (not applicable), any entered value will be ignored. ",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DA17",
+                                                         "description":  "#9. For the purposes of awarding institutional financial aid, does your institution require asset information from students who qualify for the exemption from asset reporting on the FAFSA form?",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "01 = Yes, 02 = No",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DA18",
+                                                         "description":  "#10. For the purpose of awarding institutional financial aid, does your institution require additional financial information separate from the FAFSA form?",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "01 = Yes, 02 = No",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DA181",
+                                                         "description":  "Link URL - Additional financial information url protocol (http:// or https://)",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "If DA18=01 (Yes), then 01 = http://, 02 = https://.\u003cbr\u003eIf DA18=02 (No), then -2 or blank (not applicable), any entered value will be ignored. ",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DA182",
+                                                         "description":  "Link URL - Additional financial information url (do not include http:// or https://)",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "If DA18=01 (Yes), then Additional financial information url.\u003cbr\u003eIf DA18=02 (No), then -2 or blank (not applicable), any entered value will be ignored. ",
+                                                         "isGrayedOut":  false
+                                                     }
+                                                 ]
+                          },
+                          {
+                              "partId":  9,
+                              "title":  "Section 1 - Cost of attendance for full-time, first-time degree/certificate-seeking undergraduate students",
+                              "instruction":  "Cost of attendance for full-time, first-time degree/certificate-seeking undergraduate students for academic year 2025-26\u003cbr\u003e\u003cbr\u003eInstructions:\u003cbr\u003eThese are the data that will be available to the public on the College Navigator website. If institution does not offer undergraduate level awards or does not have any first-time full-time students, DE011 through DE13 are not applicable, and no Part \"E\" record should be included on the file. Out-of-state amount DE03 and DE06 should be consistent with DA07(DA071, DA072, DA073) above.  If institution only charges one tuition rate for all students, then report these amounts using the in-district variables. If institution does not provide on-campus housing and food or meal plans, then DE08 should be -2 or blank (not applicable). If you want to change data reported for academic year 2023-24 or 2024-25, you must do it on the Cost II component during the Winter collection. If you would like to enter a caveat for these data, you must also enter the caveat in the data collection system.",
+                              "surveySection":  "\"CT1\"",
+                              "keyValueFields":  [
+                                                     {
+                                                         "name":  "UNITID",
+                                                         "description":  "UNITID",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Valid UnitID",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SURVSECT",
+                                                         "description":  "Survey Section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"CT1\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PART",
+                                                         "description":  "Part of survey section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"E\" = Full-time, first-time undergraduate record",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DE011",
+                                                         "description":  "Published tuition In-district",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "TUITGQ01",
+                                                         "description":  "Do you have tuition guarantee  In-district",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0=No, 1=Yes",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "TUITGP01",
+                                                         "description":  "Guaranteed tuition increase In-district",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 100 ",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DE012",
+                                                         "description":  "Published fees In-district",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "FEEGQ01",
+                                                         "description":  "Do you have fee guarantee  In-district",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0=No, 1=Yes",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "FEEGP01",
+                                                         "description":  "Guaranteed fee increase In-district",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 100 ",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DE021",
+                                                         "description":  "Published tuition In-state",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "TUITGQ02",
+                                                         "description":  "Do you have tuition guarantee  In-state",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0=No, 1=Yes",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "TUITGP02",
+                                                         "description":  "Guaranteed tuition increase In-state",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 100 ",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DE022",
+                                                         "description":  "Published fees In-state",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "FEEGQ02",
+                                                         "description":  "Do you have fee guarantee  In-state",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0=No, 1=Yes",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "FEEGP02",
+                                                         "description":  "Guaranteed fee increase In-state",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 100 ",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DE031",
+                                                         "description":  "Published tuition Out-of-state",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "TUITGQ03",
+                                                         "description":  "Do you have tuition guarantee Out-of-state",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0=No, 1=Yes",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "TUITGP03",
+                                                         "description":  "Guaranteed tuition increase Out-of-state",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 100 ",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DE032",
+                                                         "description":  "Published fees Out-of-state",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "FEEGQ03",
+                                                         "description":  "Do you have fee guarantee Out-of-state",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0=No, 1=Yes",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "FEEGP03",
+                                                         "description":  "Guaranteed fee increase Out-of-state",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 100 ",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DE07",
+                                                         "description":  "Books and supplies",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DE08",
+                                                         "description":  "On campus Food and Housing",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DE09",
+                                                         "description":  "On campus Other expenses",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DE10",
+                                                         "description":  "Off campus (not with family) Food and Housing",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DE11",
+                                                         "description":  "Off campus (not with family) Other expenses",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DE12",
+                                                         "description":  "Off campus (with family) Other expenses",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DE01_T",
+                                                         "description":  "Tuition + fees total In-district",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Do not include in import file. It will be generated.",
+                                                         "isGrayedOut":  true
+                                                     },
+                                                     {
+                                                         "name":  "DE02_T",
+                                                         "description":  "Tuition + fees total In-state",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Do not include in import file. It will be generated.",
+                                                         "isGrayedOut":  true
+                                                     },
+                                                     {
+                                                         "name":  "DE03_T",
+                                                         "description":  "Tuition + fees total Out-of-state",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Do not include in import file. It will be generated.",
+                                                         "isGrayedOut":  true
+                                                     },
+                                                     {
+                                                         "name":  "DE08_09_T",
+                                                         "description":  "On campus Food and Housing and other expenses",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Do not include in import file. It will be generated.",
+                                                         "isGrayedOut":  true
+                                                     },
+                                                     {
+                                                         "name":  "DE10_11_T",
+                                                         "description":  "Off campus (not with family)  Food and Housing and other expenses",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Do not include in import file. It will be generated.",
+                                                         "isGrayedOut":  true
+                                                     },
+                                                     {
+                                                         "name":  "DE13",
+                                                         "description":  "Off campus (with family) Food and Housing",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DE12_13_T",
+                                                         "description":  "Off campus (with family)  Food and Housing and other expenses",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Do not include in import file. It will be generated.",
+                                                         "isGrayedOut":  true
+                                                     }
+                                                 ]
+                          },
+                          {
+                              "partId":  7,
+                              "title":  "Section 1 - Undergraduate student charges (Tuition and Required Fees)",
+                              "instruction":  "Charges to full-time and part-time undergraduate students for the full academic year 2025-26\u003cbr\u003e\u003cbr\u003eInstructions:\u003cbr\u003eIf institution does not offer undergraduate level awards, DB01-DB12 are not applicable, and no Part \"B\" record should be included on the file. If a variable is not applicable, do not include in import file. If institution offers undergraduate level awards, but has only part-time students, then only DB07, DB08, DB09, DB13, DB14, and DB15 are applicable. Out-of-state amounts DB03, DB06, DB09, DB12, and DB15 should be consistent with DA07(DA071, DA072, DA073) above.  If institution only charges one tuition rate for all students, then report these amounts using the in-district variables. ",
+                              "surveySection":  "\"CT1\"",
+                              "keyValueFields":  [
+                                                     {
+                                                         "name":  "UNITID",
+                                                         "description":  "UNITID",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Valid UnitID",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SURVSECT",
+                                                         "description":  "Survey Section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"CT1\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PART",
+                                                         "description":  "Part of survey section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"B\" = Undergraduate tuition record",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DB01",
+                                                         "description":  "Full-time, Average tuition, In-district amount",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DB02",
+                                                         "description":  "Full-time, Average tuition, In-state amount",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DB03",
+                                                         "description":  "Full-time, Average tuition, Out-of-state amount",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DB04",
+                                                         "description":  "Full-time, Required fees, In-district amount",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DB05",
+                                                         "description":  "Full-time, Required fees, In-state amount",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DB06",
+                                                         "description":  "Full-time, Required fees Out-of-state amount",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DB07",
+                                                         "description":  "Part-time (per credit hour charges), Average tuition, In-district amount",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DB08",
+                                                         "description":  "Part-time (per credit hour charges), Average tuition, In-state amount",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DB09",
+                                                         "description":  "Part-time (per credit hour charges), Average tuition, Out-of-state amount",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DB13",
+                                                         "description":  "Part-time (per credit hour charges), Required fees, In-district amount",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DB14",
+                                                         "description":  "Part-time (per credit hour charges), Required fees, In-state amount",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DB15",
+                                                         "description":  "Part-time (per credit hour charges), Required fees, Out-of-state amount",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     }
+                                                 ]
+                          },
+                          {
+                              "partId":  8,
+                              "title":  "Section 1 - Graduate student charges (Tuition and Required Fees)",
+                              "instruction":  "Charges to full-time and part-time graduate students for the full academic year 2025-26\u003cbr\u003e\u003cbr\u003eInstructions:\u003cbr\u003eIf institution does not offer graduate level awards, DC01-DC15 are not applicable, and no Part \"C\" record should be included on the file. If institution offers graduate level awards, but has only part-time students, then only DC07, DC08, DC09, DC13, DC14, and DC15 are applicable; all other variables should be -2 or blank. Out-of-state amounts DC03, DC06, DC09, and DC15 should be consistent with DA07(DA071, DA072, DA073) above.  If institution only charges one tuition rate for all students, then report these amounts using the in-district variables.\u003cbr\u003e\u003cbr\u003e\u003cb\u003e\u003ci\u003e\u003cspan style=\"color: red;\"\u003ePlease, do not include tuition for Doctor\u0027s Degree - Professional Practice programs.\u003c/span\u003e\u003c/i\u003e\u003c/b\u003e",
+                              "surveySection":  "\"CT1\"",
+                              "keyValueFields":  [
+                                                     {
+                                                         "name":  "UNITID",
+                                                         "description":  "UNITID",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Valid UnitID",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SURVSECT",
+                                                         "description":  "Survey Section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"CT1\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PART",
+                                                         "description":  "Part of survey section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"C\" = Graduate tuition record",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DC01",
+                                                         "description":  "Full-time, Average tuition, In-district amount",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DC02",
+                                                         "description":  "Full-time, Average tuition, In-state amount",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DC03",
+                                                         "description":  "Full-time, Average tuition, Out-of-state amount",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DC04",
+                                                         "description":  "Full-time, Required fees, In-district amount",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DC05",
+                                                         "description":  "Full-time, Required fees, In-district amount",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DC06",
+                                                         "description":  "Full-time, Required fees, Out-of-states amount",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DC07",
+                                                         "description":  "Part-time (per credit hour charges), Average tuition, In-district amount",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DC08",
+                                                         "description":  "Part-time (per credit hour charges), Average tuition, In-state amount",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DC09",
+                                                         "description":  "Part-time (per credit hour charges), Average tuition, Out-of-state amount",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DC13",
+                                                         "description":  "Part-time (per credit hour charges), Required fees, In-district amount",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DC14",
+                                                         "description":  "Part-time (per credit hour charges), Required fees, In-state amount",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DC15",
+                                                         "description":  "Part-time (per credit hour charges), Required fees, Out-of-state amount",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     }
+                                                 ]
+                          },
+                          {
+                              "partId":  20,
+                              "title":  "Section 1 - Doctor\u0027s-Professional Practice student charges (Tuition and Required Fees)",
+                              "instruction":  "Charges to full-time Doctor\u0027s-Professional Practice students for the full academic year 2025-26\u003cbr\u003e\u003cbr\u003eInstructions:\u003cbr\u003eThis section is applicable only to 4-year schools that offer Doctor\u0027s-Professional Practice degrees. If your institution does not offer this level of award, do not include any Part \"F\" records in the file. If institution does not charge different tuition for out-of-state students, then valid amounts for DF04 and DF05 are -2 or blank (not applicable).",
+                              "surveySection":  "\"CT1\"",
+                              "keyValueFields":  [
+                                                     {
+                                                         "name":  "UNITID",
+                                                         "description":  "UNIT ID",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Valid UnitID",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SURVSECT",
+                                                         "description":  "TYPE",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"CT1\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PART",
+                                                         "description":  "Part of survey section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"F\" = Doctor\u0027s-professional record",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DF01",
+                                                         "description":  "Doctor\u0027s-professional program code",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Valid Doctor\u0027s-professional codes, refer to Doctor\u0027s-professional table",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DF02",
+                                                         "description":  "Average tuition, In-state amount ",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999  ",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DF03",
+                                                         "description":  "Required fees, In-state amount ",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999 ",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DF04",
+                                                         "description":  "Average tuition, Out-of-state amount ",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DF05",
+                                                         "description":  "Required fees, Out-of-state amount ",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     }
+                                                 ]
+                          },
+                          {
+                              "partId":  12,
+                              "title":  "Section 1 - Food and Housing charges",
+                              "instruction":  "Typical food and housing charges for the full academic year 2025-26\u003cbr\u003e\u003cbr\u003eInstructions:\u003cbr\u003eFood and housing charges should be consistent with DA08 and DA10 above. If institution does not provide on-campus housing or food or meal plans, no Part \"D\" record should be included on the file. If institution does provide food and housing, but does not separate food and housing charges, provide combined charge in DD03, and leave DD01 and DD02 as -2 or blank (not applicable).\u003cbr\u003e\u003cbr\u003eThis section is not required from non-degree-granting institutions.",
+                              "surveySection":  "\"CT1\"",
+                              "keyValueFields":  [
+                                                     {
+                                                         "name":  "UNITID",
+                                                         "description":  "UNITID",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Valid UnitID",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SURVSECT",
+                                                         "description":  "Survey Section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"CT1\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PART",
+                                                         "description":  "Part of survey section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"D\" = Food and Housing",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DD01",
+                                                         "description":  "Housing Charge",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DD02",
+                                                         "description":  "Food charge",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DD03",
+                                                         "description":  "Combined food and housing charge",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999, -2 or blank = not applicable",
+                                                         "isGrayedOut":  false
+                                                     }
+                                                 ]
+                          }
+                      ]
+}

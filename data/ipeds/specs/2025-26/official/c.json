@@ -1,0 +1,1215 @@
+﻿{
+    "title":  "Completions",
+    "note":  "\u003cbr\u003e\u003cfont size=\"2\" face=\"Arial, Helvetica, sans-serif\"\u003e\u003cb\u003eCIP Code Table \u003c/b\u003e\u003c/font\u003e\u003cbr\u003e\u003cfont size=\"2\" face=\"Arial, Helvetica,sans-serif\"\u003eValid CIP codes are listed in the 2020 Classification of Instructional Programs (CIP), which is available at \u003ca href=\"https://nces.ed.gov/ipeds/cipcode/Default.aspx?y=56\" target=\"_blank\"\u003ethis web site\u003c/a\u003e.\u003c/font\u003e\r\n\u003cbr\u003e\u003cbr\u003e\u003cfont size=\"2\" face=\"Arial, Helvetica, sans-serif\"\u003e\u003cb\u003eAward Level Table \u003c/b\u003e\u003c/font\u003e\r\n\u003cfont size=\"2\" face=\"Arial, Helvetica, sans-serif\"\u003e\r\n\u003cbr\u003e\u0026nbsp;1a -\u0026nbsp;Postsecondary award, certificate, or diploma of \r\n\u003cdiv style=\"padding-left: 30px;\"\u003e\r\n\u003cli\u003eless than 300 clock hours, or\u003c/li\u003e\r\n\u003cli\u003eless than 9 semester or trimester credit hours, or\u003c/li\u003e\r\n\u003cli\u003eless than 13 quarter credit hours\u003c/li\u003e\r\n\u003c/div\u003e\r\n\u003c/font\u003e\r\n\u003cfont size=\"2\" face=\"Arial, Helvetica, sans-serif\"\u003e\r\n\u0026nbsp;1b -\u0026nbsp;Postsecondary award, certificate, or diploma of \r\n\u003cdiv style=\"padding-left: 30px;\"\u003e\r\n\u003cli\u003e300-899 clock hours, or\u003c/li\u003e\r\n\u003cli\u003e9-29 semester or trimester credit hours, or\u003c/li\u003e\r\n\u003cli\u003e13-44 quarter credit hours\u003c/li\u003e\r\n\u003c/div\u003e\r\n\u003c/font\u003e\r\n\u003cfont size=\"2\" face=\"Arial, Helvetica, sans-serif\"\u003e\u0026nbsp;2 -\u0026nbsp;Postsecondary award, certificate, or diploma of \r\n\u003cdiv style=\"padding-left: 30px;\"\u003e\r\n\u003cli\u003eat least 900 but less than 1,800 clock hours, or\u003c/li\u003e\r\n\u003cli\u003eat least 30 but less than 60 semester or trimester credit hours, or\u003c/li\u003e\r\n\u003cli\u003eat least 45 but less than 90 quarter credit hours\u003c/li\u003e\r\n\u003c/div\u003e\r\n\u003c/font\u003e\r\n\u003cfont size=\"2\" face=\"Arial, Helvetica, sans-serif\"\u003e\u0026nbsp;3 -\u0026nbsp;*Associate\u0027s Degree \u003cbr\u003e\u003c/font\u003e\r\n\u003cfont size=\"2\" face=\"Arial, Helvetica, sans-serif\"\u003e\u0026nbsp;4 -\u0026nbsp;Postsecondary award, certificate, or diploma of \r\n\u003cdiv style=\"padding-left: 30px;\"\u003e\r\n\u003cli\u003e1,800 or more clock hours, or\u003c/li\u003e\r\n\u003cli\u003e60 or more semester or trimester credit hours, or\u003c/li\u003e\r\n\u003cli\u003e90 or more quarter credit hours\u003c/li\u003e\r\n\u003c/div\u003e\r\n\u003c/font\u003e\r\n\u003cfont size=\"2\" face=\"Arial, Helvetica, sans-serif\"\u003e\u0026nbsp;5 -\u0026nbsp;*Bachelor\u0027s Degree or equivalent\u003cbr\u003e\u003c/font\u003e\r\n\u003cfont size=\"2\" face=\"Arial, Helvetica, sans-serif\"\u003e\u0026nbsp;6 -\u0026nbsp;Postbaccalaureate Certificate\u003cbr\u003e\u003c/font\u003e\r\n\u003cfont size=\"2\" face=\"Arial, Helvetica, sans-serif\"\u003e\u0026nbsp;7 -\u0026nbsp;*Master\u0027s Degree\u003cbr\u003e\u003c/font\u003e\r\n\u003cfont size=\"2\" face=\"Arial, Helvetica, sans-serif\"\u003e\u0026nbsp;8 -\u0026nbsp;Post-Master\u0027s Certificate\u003cbr\u003e\u003c/font\u003e\r\n\u003cfont size=\"2\" face=\"Arial, Helvetica, sans-serif\"\u003e17 -\u0026nbsp;*Doctor\u0027s degree - research/scholarship\u003cbr\u003e\u003c/font\u003e\r\n\u003cfont size=\"2\" face=\"Arial, Helvetica, sans-serif\"\u003e18 -\u0026nbsp;*Doctor\u0027s degree - professional practice\u003cbr\u003e\u003c/font\u003e\r\n\u003cfont size=\"2\" face=\"Arial, Helvetica, sans-serif\"\u003e19 -\u0026nbsp;*Doctor\u0027s degree - Other\u003cbr\u003e\u003c/font\u003e\r\n\u003cfont size=\"2\" face=\"Arial,Helvetica, sans-serif\"\u003e* Use only 3, 5, 7, 17, 18 and 19 when reporting second majors.\u003c/font\u003e\r\n\u003cbr\u003e\u003cbr\u003e\u003cb\u003eRace/ethnicity table\u003c/b\u003e \u003cbr\u003e1 -\u0026nbsp;U.S. Nonresident  \u003cbr\u003e2 - Hispanic/Latino \u003cbr\u003e3 - American Indian or Alaska Native \u003cbr\u003e4 - Asian \u003cbr\u003e5 - Black or African American \u003cbr\u003e6 - Native Hawaiian or Other Pacific Islander \u003cbr\u003e7 - White \u003cbr\u003e8 - Two or more races \u003cbr\u003e9 - Race and ethnicity unknown \u003cbr\u003e10 - Grand total will be generated on the export file. Do not include in import file. \r\n\u003cbr\u003e\u003cbr\u003e\u003cfont size=\"2\" face=\"Arial, Helvetica, sans-serif\"\u003e\u003cb\u003eCompleters by Level Table \u003c/b\u003e\u003c/font\u003e\r\n\u003cfont size=\"2\" face=\"Arial, Helvetica, sans-serif\"\u003e\r\n\u003cbr\u003e\u0026nbsp;8 -\u0026nbsp;Postsecondary award, certificate, or diploma of \r\n\u003cdiv style=\"padding-left: 30px;\"\u003e\r\n\u003cli\u003eless than 300 clock hours, or\u003c/li\u003e\r\n\u003cli\u003eless than 9 semester or trimester credit hours, or\u003c/li\u003e\r\n\u003cli\u003eless than 13 quarter credit hours\u003c/li\u003e\r\n\u003c/div\u003e\r\n\u003c/font\u003e\r\n\u003cfont size=\"2\" face=\"Arial, Helvetica, sans-serif\"\u003e\r\n\u0026nbsp;9 -\u0026nbsp;Postsecondary award, certificate, or diploma of \r\n\u003cdiv style=\"padding-left: 30px;\"\u003e\r\n\u003cli\u003e300-899 clock hours, or\u003c/li\u003e\r\n\u003cli\u003e9-29 semester or trimester credit hours, or\u003c/li\u003e\r\n\u003cli\u003e13-44 quarter credit hours\u003c/li\u003e\r\n\u003c/div\u003e\r\n\u003c/font\u003e\r\n\u003cfont size=\"2\" face=\"Arial, Helvetica, sans-serif\"\u003e\r\n\u0026nbsp;2 -\u0026nbsp;Postsecondary award, certificate, or diploma of \r\n\u003cdiv style=\"padding-left: 30px;\"\u003e\r\n\u003cli\u003e900 or more clock hours, or\u003c/li\u003e\r\n\u003cli\u003e30 or more SEMESTER or TRIMESTER credit hours, or\u003c/li\u003e\r\n\u003cli\u003e45 or more QUARTER credit hours\u003c/li\u003e\r\n\u003c/div\u003e\r\n\u003c/font\u003e\r\n\u003cfont size=\"2\" face=\"Arial, Helvetica, sans-serif\"\u003e3 -\u0026nbsp;Associate\u0027s degrees \u003cbr\u003e\u003c/font\u003e\r\n\u003cfont size=\"2\" face=\"Arial, Helvetica, sans-serif\"\u003e4 -\u0026nbsp;Bachelor\u0027s degrees\u003cbr\u003e\u003c/font\u003e\r\n\u003cfont size=\"2\" face=\"Arial, Helvetica, sans-serif\"\u003e5 -\u0026nbsp;Master\u0027s degrees\u003cbr\u003e\u003c/font\u003e\r\n\u003cfont size=\"2\" face=\"Arial, Helvetica, sans-serif\"\u003e6 -\u0026nbsp;Doctor\u0027s degrees\u003cbr\u003e\u003c/font\u003e\r\n\u003cfont size=\"2\" face=\"Arial, Helvetica, sans-serif\"\u003e7 -\u0026nbsp;Postbaccalaureate and post-master\u0027s certificates\u003cbr\u003e\u003c/font\u003e\r\n\u003cbr\u003e\r\n\r\n\u003cfont size=\"2\" face=\"Arial, Helvetica, sans-serif\"\u003e\u003cb\u003eCrosswalk between the IPEDS Award Levels (used on CIP data screens) and the Consolidated Award Levels (used on Completers by Level screens).\u003c/b\u003e\u003c/font\u003e\u003cbr\u003e\r\n\u003ctable border=\"1\" cellpadding=\"0\"\u003e\u003ctbody\u003e\u003ctr\u003e\u003ctd style=\"width: 425px; text-align: center; font-weight: bold;\"\u003e\u003cfont size=\"2\" face=\"Arial, Helvetica, sans-serif\"\u003eIPEDS Award Levels\u003cbr\u003e(used on CIP data screens)\u003c/font\u003e\u003c/td\u003e\u003ctd style=\"text-align: center; font-weight: bold;\"\u003e\u003cfont size=\"2\" face=\"Arial, Helvetica, sans-serif\"\u003eConsolidated Award Levels\u003cbr\u003e(used on Completers by Level screen)\u003c/font\u003e\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\u003ctd\u003e\r\n\u003cfont size=\"2\" face=\"Arial, Helvetica, sans-serif\"\u003e\r\n\u0026nbsp;1a -\u0026nbsp;Postsecondary award, certificate, or diploma of \r\n\u003cdiv style=\"padding-left: 30px;\"\u003e\r\n\u003cli\u003eless than 300 clock hours, or\u003c/li\u003e\r\n\u003cli\u003eless than 9 semester or trimester credit hours, or\u003c/li\u003e\r\n\u003cli\u003eless than 13 quarter credit hours\u003c/li\u003e\r\n\u003c/div\u003e\r\n\u003c/font\u003e\r\n\u003c/td\u003e\r\n\u003ctd\u003e\r\n\u003cfont size=\"2\" face=\"Arial, Helvetica, sans-serif\"\u003e\r\n\u0026nbsp;8 -\u0026nbsp;Postsecondary award, certificate, or diploma of \r\n\u003cdiv style=\"padding-left: 30px;\"\u003e\r\n\u003cli\u003eless than 300 clock hours, or\u003c/li\u003e\r\n\u003cli\u003eless than 9 semester or trimester credit hours, or\u003c/li\u003e\r\n\u003cli\u003eless than 13 quarter credit hours\u003c/li\u003e\r\n\u003c/div\u003e\r\n\u003c/font\u003e\r\n\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\u003ctd\u003e\r\n\u003cfont size=\"2\" face=\"Arial, Helvetica, sans-serif\"\u003e\r\n\u0026nbsp;1b -\u0026nbsp;Postsecondary award, certificate, or diploma of \r\n\u003cdiv style=\"padding-left: 30px;\"\u003e\r\n\u003cli\u003e300-899 clock hours, or\u003c/li\u003e\r\n\u003cli\u003e9-29 semester or trimester credit hours, or\u003c/li\u003e\r\n\u003cli\u003e13-44 quarter credit hours\u003c/li\u003e\r\n\u003c/div\u003e\r\n\u003c/font\u003e\r\n\u003c/td\u003e\r\n\u003ctd\u003e\r\n\u003cfont size=\"2\" face=\"Arial, Helvetica, sans-serif\"\u003e\r\n\u0026nbsp;9 -\u0026nbsp;Postsecondary award, certificate, or diploma of \r\n\u003cdiv style=\"padding-left: 30px;\"\u003e\r\n\u003cli\u003e300-899 clock hours, or\u003c/li\u003e\r\n\u003cli\u003e9-29 semester or trimester credit hours, or\u003c/li\u003e\r\n\u003cli\u003e13-44 quarter credit hours\u003c/li\u003e\r\n\u003c/div\u003e\r\n\u003c/font\u003e\r\n\u003c/td\u003e\u003c/tr\u003e\r\n\u003ctr\u003e\u003ctd\u003e\r\n\u003cfont size=\"2\" face=\"Arial, Helvetica, sans-serif\"\u003e\u0026nbsp;2 -\u0026nbsp;Postsecondary award, certificate, or diploma of \r\n\u003cdiv style=\"padding-left: 30px;\"\u003e\r\n\u003cli\u003eat least 900 but less than 1,800 clock hours, or\u003c/li\u003e\r\n\u003cli\u003eat least 30 but less than 60 semester or trimester credit hours, or\u003c/li\u003e\r\n\u003cli\u003eat least 45 but less than 90 quarter credit hours\u003c/li\u003e\r\n\u003c/div\u003e\r\n\u003c/font\u003e\r\n\u003cfont size=\"2\" face=\"Arial, Helvetica, sans-serif\"\u003e\u0026nbsp;4 -\u0026nbsp;Postsecondary award, certificate, or diploma of \r\n\u003cdiv style=\"padding-left: 30px;\"\u003e\r\n\u003cli\u003e1,800 or more clock hours, or\u003c/li\u003e\r\n\u003cli\u003e60 or more semester or trimester credit hours, or\u003c/li\u003e\r\n\u003cli\u003e90 or more quarter credit hours\u003c/li\u003e\r\n\u003c/div\u003e\r\n\u003c/font\u003e\r\n\u003c/td\u003e\r\n\u003ctd\u003e\r\n\u003cfont size=\"2\" face=\"Arial, Helvetica, sans-serif\"\u003e\r\n\u0026nbsp;2 -\u0026nbsp;Postsecondary award, certificate, or diploma of \r\n\u003cdiv style=\"padding-left: 30px;\"\u003e\r\n\u003cli\u003e900 or more clock hours, or\u003c/li\u003e\r\n\u003cli\u003e30 or more SEMESTER or TRIMESTER credit hours, or\u003c/li\u003e\r\n\u003cli\u003e45 or more QUARTER credit hours\u003c/li\u003e\r\n\u003c/div\u003e\r\n\u003c/font\u003e\r\n\u003c/td\u003e\r\n\u003c/tr\u003e\r\n\u003ctr\u003e\u003ctd\u003e3 - Associate\u0027s degree\u003c/td\u003e\u003ctd\u003e\u0026nbsp;3 -\u0026nbsp;Associate\u0027s degrees\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e\r\n5 - Bachelor\u0027s degree\u003c/td\u003e\u003ctd\u003e\u0026nbsp;4 -\u0026nbsp;Bachelor\u0027s degrees\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e\r\n7 - Master\u0027s degree\u003c/td\u003e\u003ctd\u003e\u0026nbsp;5 -\u0026nbsp;Master\u0027s degrees\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e\r\n17 - Doctor\u0027s degree - research/scholarship;\u003cbr\u003e\r\n18 - Doctor\u0027s degree - professional practice;\u003cbr\u003e\r\n19 - Doctor\u0027s degree - other\u003c/td\u003e\u003ctd\u003e\r\n\u0026nbsp;6 -\u0026nbsp;Doctor\u0027s degrees\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e\r\n6 - Postbaccalaureate certificate;\u003cbr\u003e\r\n8 - Post-master\u0027s certificate\u003c/td\u003e\u003ctd\u003e\r\n\u0026nbsp;7 -\u0026nbsp;Postbaccalaureate and post-master\u0027s certificates\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\r\n\u003cbr\u003eDefinitions of the award levels listed above in the left column can be found in the IPEDS Glossary .\r\n",
+    "nameFl":  "\u003cdiv class=\"name-left\"\u003eIPEDS 2025-26 Import Specifications: Completions (Academic Year 2024-25)\u003cbr\u003eApplies to: All Institutions\u003c/div\u003e\u003cdiv class=\"name-center\"\u003eFile type: Fixed Length/Positional (*.txt)\u003c/div\u003e",
+    "noteFL":  "\u003cb\u003eNote:\u003c/b\u003e If there were no awards conferred for a specific CIP code and award level during academic year 2024-25 but the institution still offers the program at that award level, submit a record (First major only) with the CIP code and award level with zeroes for CRACE01, CRACE02,\u0026nbsp;CRACE13, CRACE14 and CRACE25 through CRACE38. All numeric fields should be right-justified in its field. Both leading zeros and spaces are permissible. Character data should be left justified.\u003cbr\u003e\u003cb\u003eSort Order:\u003c/b\u003e UNITID,SURVSECT,PART,MAJORNUM",
+    "nameKv":  "\u003cdiv class=\"name-left\"\u003eIPEDS 2025-26 Import Specifications: Completions (Academic Year 2024-25)\u003cbr\u003eApplies to: All Institutions\u003c/div\u003e\u003cdiv class=\"name-center\"\u003eFile type: Key Value Pair (*.txt)\u003c/div\u003e",
+    "sampleKv":  "\u003cp\u003eSample record: UNITID=nnnnnn,SURVSECT=COM,PART=A,MAJORNUM=1,CIPCODE=01.0101,AWLEVEL=1a,RACE=1,SEX=1,COUNT=nnnnn UNITID=nnnnnn,SURVSECT=COM,PART=A,MAJORNUM=1,CIPCODE=01.0101,AWLEVEL=1b,RACE=1,SEX=2,COUNT=nnnnn UNITID=nnnnnn,SURVSECT=COM,PART=A,MAJORNUM=1,CIPCODE=01.0101,AWLEVEL=2,RACE=2,SEX=1,COUNT=nnnnn UNITID=nnnnnn,SURVSECT=COM,PART=A,MAJORNUM=1,CIPCODE=01.0101,AWLEVEL=3,RACE=3,SEX=2,COUNT=nnnnn UNITID=nnnnnn,SURVSECT=COM,PART=A,MAJORNUM=2,CIPCODE=01.0101,AWLEVEL=5,RACE=4,SEX=1,COUNT=nnnnn UNITID=nnnnnn,SURVSECT=COM,PART=A,MAJORNUM=1,CIPCODE=01.0101,AWLEVEL=i,RACE=j,SEX=k,COUNT=nnnnn UNITID=nnnnnn,SURVSECT=COM,PART=B,MAJORNUM=1,CIPCODE=01.0101,AWLEVEL=3,DistanceED=1  UNITID=nnnnnn,SURVSECT=COM,PART=B,MAJORNUM=1,CIPCODE=01.0101,AWLEVEL=5,DistanceED=2 UNITID=nnnnnn,SURVSECT=COM,PART=B,MAJORNUM=1,CIPCODE=01.0101,AWLEVEL=i,DistanceED=n UNITID=nnnnnn,SURVSECT=COM,PART=C,RACE=2,SEX=1,COUNT=nnnnn UNITID=nnnnnn,SURVSECT=COM,PART=C,RACE=2,SEX=2,COUNT=nnnnn UNITID=nnnnnn,SURVSECT=COM,PART=C,RACE=j,SEX=k,COUNT=nnnnn UNITID=nnnnnn,SURVSECT=COM,PART=D,CTLEVEL=3,CRACE15=nnnnn,CRACE16=nnnnn,CRACE41=nnnnn...\u003cbr/\u003eUNITID=nnnnnn,SURVSECT=COM,PART=E,CSEXUG=1,CSEXG=nnnnn,...\u003c/p\u003e",
+    "noteKv":  "\u003cB\u003e Sort Order: UNITID, SURVSECT, PART, MAJORNUM \u003cB\u003e\u003c/B\u003e\u003c/B\u003e",
+    "fixedLayoutParts":  [
+                             {
+                                 "partId":  187,
+                                 "title":  "Part A: Completions - CIP Data",
+                                 "instruction":  "",
+                                 "surveySection":  "\"COM\"",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"COM\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey - Completions",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"A\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "MAJORNUM",
+                                                               "description":  "First or second major identification",
+                                                               "start":  11,
+                                                               "length":  1,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "1 = First Major, 2 = Second Major",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CIPCODE",
+                                                               "description":  "Classification of instructional program code ",
+                                                               "start":  12,
+                                                               "length":  7,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "xx.xxxx, valid CIP codes, refer to CIP code table (must have leading zero if applicable)",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "AWLEVEL",
+                                                               "description":  "Award level",
+                                                               "start":  19,
+                                                               "length":  2,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "1a, 1b, 2 to 8 and 17 to 19 for MAJORNUM=1;\u003cbr\u003e3, 5, 7, 17, 18, 19 for MAJORNUM=2;\u003cbr\u003e(must have leading space if applicable)\u003cbr\u003eRefer to award level table.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE01",
+                                                               "description":  "U.S. Nonresident - Male (1)",
+                                                               "start":  21,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE02",
+                                                               "description":  "U.S. Nonresident - Female (2)",
+                                                               "start":  27,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE25",
+                                                               "description":  "Hispanic/Latino - Male (25)",
+                                                               "start":  33,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE26",
+                                                               "description":  "Hispanic/Latino - Female (26)",
+                                                               "start":  39,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE27",
+                                                               "description":  "American Indian or Alaska Native - Male (27)",
+                                                               "start":  45,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE28",
+                                                               "description":  "American Indian or Alaska Native - Female (28)",
+                                                               "start":  51,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE29",
+                                                               "description":  "Asian - Male (29)",
+                                                               "start":  57,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE30",
+                                                               "description":  "Asian - Female (30)",
+                                                               "start":  63,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE31",
+                                                               "description":  "Black or African American - Male (31)",
+                                                               "start":  69,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE32",
+                                                               "description":  "Black or African American - Female (32)",
+                                                               "start":  75,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE33",
+                                                               "description":  "Native Hawaiian or Other Pacific Islander - Male (33)",
+                                                               "start":  81,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE34",
+                                                               "description":  "Native Hawaiian or Other Pacific Islander - Female (34)",
+                                                               "start":  87,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE35",
+                                                               "description":  "White - Male (35)",
+                                                               "start":  93,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE36",
+                                                               "description":  "White - Female (36)",
+                                                               "start":  99,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE37",
+                                                               "description":  "Two or more races - Male (37)",
+                                                               "start":  105,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE38",
+                                                               "description":  "Two or more races - Female (38)",
+                                                               "start":  111,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE13",
+                                                               "description":  "Race and ethnicity unknown - Male (13)",
+                                                               "start":  117,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE14",
+                                                               "description":  "Race and ethnicity unknown - Female (14)",
+                                                               "start":  123,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE15",
+                                                               "description":  "Grand Total Male (15)",
+                                                               "start":  129,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Totals will be generated.  Do not include in import file. Columns 129-140 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "CRACE16",
+                                                               "description":  "Grand Total Female (16)",
+                                                               "start":  135,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Totals will be generated. Do not include in import file. Columns 129-140 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  189,
+                                 "title":  "Part B: Completions - Distance Education",
+                                 "instruction":  "",
+                                 "surveySection":  "\"COM\"",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"COM\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey - Completions",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"B\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "MAJORNUM",
+                                                               "description":  "First or second major identification",
+                                                               "start":  11,
+                                                               "length":  1,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "1 = First Major, 2 = Second Major",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CIPCODE",
+                                                               "description":  "Classification of instructional program code ",
+                                                               "start":  12,
+                                                               "length":  7,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "xx.xxxx, valid CIP codes, refer to CIP code table (must have leading zero if applicable)",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "AWLEVEL",
+                                                               "description":  "Award level",
+                                                               "start":  19,
+                                                               "length":  2,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "1a, 1b, 2 to 8 and 17 to 19 for MAJORNUM=1;\u003cbr\u003e3, 5, 7, 17, 18, 19 for MAJORNUM=2;\u003cbr\u003e(must have leading space if applicable)\u003cbr\u003eRefer to award level table.",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "DistanceED",
+                                                               "description":  "Is at least one program within this CIP code offered as a distance education program?",
+                                                               "start":  21,
+                                                               "length":  1,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "1= All programs in this CIP code in this award level can be completed entirely via distance education.\u003cbr\u003e3=Some programs in this CIP code in this award level can be completed entirely via distance education.\u003cbr\u003e2=None of the programs in this CIP code in this award level can be completed entirely via distance education.",
+                                                               "isGrayedOut":  false
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  180,
+                                 "title":  "Part C: All Completers",
+                                 "instruction":  "",
+                                 "surveySection":  "\"COM\"",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"COM\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section - All Completers",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"C\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE01",
+                                                               "description":  "U.S. Nonresident - Male (1)",
+                                                               "start":  11,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE02",
+                                                               "description":  "U.S. Nonresident - Female (2)",
+                                                               "start":  17,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE25",
+                                                               "description":  "Hispanic/Latino - Male (25)",
+                                                               "start":  23,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE26",
+                                                               "description":  "Hispanic/Latino - Female (26)",
+                                                               "start":  29,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE27",
+                                                               "description":  "American Indian or Alaska Native - Male (27)",
+                                                               "start":  35,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE28",
+                                                               "description":  "American Indian or Alaska Native - Female (28)",
+                                                               "start":  41,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE29",
+                                                               "description":  "Asian - Male (29)",
+                                                               "start":  47,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE30",
+                                                               "description":  "Asian - Female (30)",
+                                                               "start":  53,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE31",
+                                                               "description":  "Black or African American - Male (31)",
+                                                               "start":  59,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE32",
+                                                               "description":  "Black or African American - Female (32)",
+                                                               "start":  65,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE33",
+                                                               "description":  "Native Hawaiian or Other Pacific Islander - Male (33)",
+                                                               "start":  71,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE34",
+                                                               "description":  "Native Hawaiian or Other Pacific Islander - Female (34)",
+                                                               "start":  77,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE35",
+                                                               "description":  "White - Male (35)",
+                                                               "start":  83,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE36",
+                                                               "description":  "White - Female (36)",
+                                                               "start":  89,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE37",
+                                                               "description":  "Two or more races - Male (37)",
+                                                               "start":  95,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE38",
+                                                               "description":  "Two or more races - Female (38)",
+                                                               "start":  101,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE13",
+                                                               "description":  "Race and ethnicity unknown - Male (13)",
+                                                               "start":  107,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE14",
+                                                               "description":  "Race and ethnicity unknown - Female (14)",
+                                                               "start":  113,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE15",
+                                                               "description":  "Grand Total Male (15)",
+                                                               "start":  119,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Totals will be generated.  Do not include in import file. Columns 119-130 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "CRACE16",
+                                                               "description":  "Grand Total Female (16)",
+                                                               "start":  125,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Totals will be generated. Do not include in import file. Columns 119-130 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  260,
+                                 "title":  "Part E: All Completers - Sex Unknown",
+                                 "instruction":  "",
+                                 "surveySection":  "\"COM\"",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID ",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"COM\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "SUBTYPE",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"E\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CSEXUG",
+                                                               "description":  "Undergraduate students: Sex unknown (i.e., sex information is not known or not collected)",
+                                                               "start":  11,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CSEXG",
+                                                               "description":  "Graduate students: Sex unknown (i.e., sex information is not known or not collected)",
+                                                               "start":  17,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CSEXTOTAL",
+                                                               "description":  "Total: Sex unknown (i.e., sex information is not known or not collected)",
+                                                               "start":  23,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Totals will be generated.  Do not include in import file. Columns 23-29 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  181,
+                                 "title":  "Part D: Completers by Level",
+                                 "instruction":  "",
+                                 "surveySection":  "\"COM\"",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"COM\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey - Completers by Level",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"D\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CTLEVEL",
+                                                               "description":  "Completers Level",
+                                                               "start":  11,
+                                                               "length":  1,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "2 to 9. (refer to completers by level table)",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE15",
+                                                               "description":  "Male Total (By Sex)",
+                                                               "start":  12,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE16",
+                                                               "description":  "Female Total (By Sex)",
+                                                               "start":  18,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE24",
+                                                               "description":  "Total (By Sex)",
+                                                               "start":  24,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Totals will be generated.  Do not include import file. Columns 24-29 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "CRACE17",
+                                                               "description":  "U.S. Nonresident - male and female total (By Race/Ethnicity)",
+                                                               "start":  30,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE41",
+                                                               "description":  "Hispanic/Latino - male and female total  (By Race/Ethnicity)",
+                                                               "start":  36,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE42",
+                                                               "description":  "American Indian or Alaska Native - male and female total  (By Race/Ethnicity)",
+                                                               "start":  42,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE43",
+                                                               "description":  "Asian - male and female total  (By Race/Ethnicity)",
+                                                               "start":  48,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE44",
+                                                               "description":  "Black or African American - male and female total  (By Race/Ethnicity)",
+                                                               "start":  54,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE45",
+                                                               "description":  "Native Hawaiian or Other Pacific Islander - male and female total  (By Race/Ethnicity)",
+                                                               "start":  60,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE46",
+                                                               "description":  "White - male and female total  (By Race/Ethnicity)",
+                                                               "start":  66,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE47",
+                                                               "description":  "Two or more races - male and female total  (By Race/Ethnicity)",
+                                                               "start":  72,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE23",
+                                                               "description":  "Race and ethnicity unknown - male and female total  (By Race/Ethnicity)",
+                                                               "start":  78,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "CRACE48",
+                                                               "description":  "Total (By Race/Ethnicity)",
+                                                               "start":  84,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Totals will be generated.  Do not include in import file. Columns 84-89 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "AGE1",
+                                                               "description":  "Under 18 (By Age)",
+                                                               "start":  90,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "AGE2",
+                                                               "description":  "18-24 (By Age)",
+                                                               "start":  96,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "AGE3",
+                                                               "description":  "25-39 (By Age)",
+                                                               "start":  102,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "AGE4",
+                                                               "description":  "40 and Above (By Age)",
+                                                               "start":  108,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "AGE5",
+                                                               "description":  "Age Unknown (By Age)",
+                                                               "start":  114,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "AGETotal",
+                                                               "description":  "Total (By Age)",
+                                                               "start":  120,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Totals will be generated.  Do not include in import file. Columns 120-125 are reserved for File Export.",
+                                                               "isGrayedOut":  true
+                                                           }
+                                                       ]
+                             }
+                         ],
+    "keyValueParts":  [
+                          {
+                              "partId":  188,
+                              "title":  "Part A: Completions - CIP Data",
+                              "instruction":  "\u003cb\u003eNote:\u003c/b\u003e Records with a count of zero should not be submitted, EXCEPT for cases where there were no awards conferred for a specific CIP code and award level during academic year 2024-25 but the institution still offers the program at that award level. In such cases, submit a record as follows: UNITID=nnnnnn,SURVSECT=COM,PART=A,MAJORNUM=1,CIPCODE=xx.xxxx,AWLEVEL=i,RACE=1,SEX=1,COUNT=0.",
+                              "surveySection":  "\"COM\"",
+                              "keyValueFields":  [
+                                                     {
+                                                         "name":  "UNITID",
+                                                         "description":  "UNITID",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "nnnnnn=Valid UnitID",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SURVSECT",
+                                                         "description":  "Survey Section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"COM\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PART",
+                                                         "description":  "Part of survey section - Completions",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"A\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "MAJORNUM",
+                                                         "description":  "First or second major identification",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1 = First Major, 2 = Second Major",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "CIPCODE",
+                                                         "description":  "Classification of instructional program code",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "xx.xxxx, valid CIP codes, refer to CIP code table (must have leading zero if applicable)",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "AWLEVEL",
+                                                         "description":  "Award level ",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "1a, 1b, 2 to 8 and 17 to 19 for MAJORNUM=1;\u003cbr\u003e3, 5, 7, 17, 18, 19 for MAJORNUM=2;\u003cbr\u003eRefer to award level table.",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "RACE",
+                                                         "description":  "Race",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "j = 1 to 10, refer to race/ethnicity table",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SEX",
+                                                         "description":  "Sex",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "k= 1-Male, 2-Female",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "COUNT",
+                                                         "description":  "Number of awards",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1 to 999999, for zero value see note above.",
+                                                         "isGrayedOut":  false
+                                                     }
+                                                 ]
+                          },
+                          {
+                              "partId":  190,
+                              "title":  "Part B: Completions - Distance Education",
+                              "instruction":  "\u003cb\u003eNote:\u003c/b\u003e Submit a record as follows: UNITID=nnnnnn,SURVSECT=COM,PART=B,MAJORNUM=1,CIPCODE=xx.xxxx,AWLEVEL=i,DistanceED=1.",
+                              "surveySection":  "\"COM\"",
+                              "keyValueFields":  [
+                                                     {
+                                                         "name":  "UNITID",
+                                                         "description":  "UNITID",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "nnnnnn=Valid UnitID",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SURVSECT",
+                                                         "description":  "Survey Section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"COM\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PART",
+                                                         "description":  "Part of survey section - Completions",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"B\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "MAJORNUM",
+                                                         "description":  "First or second major identification",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1 = First Major, 2 = Second Major",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "CIPCODE",
+                                                         "description":  "Classification of instructional program code",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "xx.xxxx, valid CIP codes, refer to CIP code table (must have leading zero if applicable)",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "AWLEVEL",
+                                                         "description":  "Award level ",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "1a, 1b, 2 to 8 and 17 to 19 for MAJORNUM=1;\u003cbr\u003e3, 5, 7, 17, 18, 19 for MAJORNUM=2;\u003cbr\u003eRefer to award level table.",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "DistanceED",
+                                                         "description":  "Is at least one program within this CIP code offered as a distance education program?",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1= All programs in this CIP code in this award level can be completed entirely via distance education.\u003cbr\u003e3=Some programs in this CIP code in this award level can be completed entirely via distance education.\u003cbr\u003e2=None of the programs in this CIP code in this award level can be completed entirely via distance education.",
+                                                         "isGrayedOut":  false
+                                                     }
+                                                 ]
+                          },
+                          {
+                              "partId":  182,
+                              "title":  "Part C: All Completers",
+                              "instruction":  "\u003cB\u003eNote:\u003c/B\u003e\u0026nbsp;Submit a record as follows: UNITID=nnnnnn,SURVSECT=COM,PART=C,RACE=1,SEX=1,COUNT=0.",
+                              "surveySection":  "\"COM\"",
+                              "keyValueFields":  [
+                                                     {
+                                                         "name":  "UNITID",
+                                                         "description":  "UNITID",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "nnnnnn=Valid UnitID",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SURVSECT",
+                                                         "description":  "Survey Section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"COM\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PART",
+                                                         "description":  "Part of survey section - All Completers",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"C\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "RACE",
+                                                         "description":  "Race",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "j = 1 to 10, refer to race/ethnicity table",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SEX",
+                                                         "description":  "Sex",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "k= 1-Male, 2-Female",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "COUNT",
+                                                         "description":  "Number of Completers",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1 to 999999, for zero value see note above.",
+                                                         "isGrayedOut":  false
+                                                     }
+                                                 ]
+                          },
+                          {
+                              "partId":  261,
+                              "title":  "Part E: All Completers - Sex Unknown",
+                              "instruction":  "\u003cB\u003eNote:\u003c/B\u003e\u0026nbsp;Submit a record as follows: UNITID=nnnnnn,SURVSECT=COM,PART=E,CSEXUG=1,CSEXG=1.",
+                              "surveySection":  "\"COM\"",
+                              "keyValueFields":  [
+                                                     {
+                                                         "name":  "UNITID",
+                                                         "description":  "UNITID ",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Valid UnitID",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SURVSECT",
+                                                         "description":  "Survey Section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"COM\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PART",
+                                                         "description":  "SUBTYPE",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"E\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "CSEXUG",
+                                                         "description":  "Undergraduate students: Sex unknown (i.e., sex information is not known or not collected)",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "CSEXG",
+                                                         "description":  "Graduate students: Sex unknown (i.e., sex information is not known or not collected)",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "CSEXTOTAL",
+                                                         "description":  "Total: Sex unknown (i.e., sex information is not known or not collected)",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Totals will be generated.  Do not include in import file. ",
+                                                         "isGrayedOut":  true
+                                                     }
+                                                 ]
+                          },
+                          {
+                              "partId":  183,
+                              "title":  "Part D: Completers by Level",
+                              "instruction":  "\u003cb\u003eNote:\u003c/b\u003e Records with a count of zero should not be submitted, EXCEPT for cases where there were no awards conferred for a specific Completers level during academic year 2024-25 but the institution still offers the program at that completers\u0026nbsp;level. In such cases, submit a record as follows: UNITID=nnnnnn,SURVSECT=COM,PART=D,CTLEVEL=1,CRACE15=nnnnn....",
+                              "surveySection":  "\"COM\"",
+                              "keyValueFields":  [
+                                                     {
+                                                         "name":  "UNITID",
+                                                         "description":  "UNITID",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "nnnnnn=Valid UnitID",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SURVSECT",
+                                                         "description":  "Survey Section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"COM\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PART",
+                                                         "description":  "Part of survey section - Completers by Level",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"D\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "CTLEVEL",
+                                                         "description":  "Completers level ",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "2 to 9, refer to completers by level table",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "CRACE15",
+                                                         "description":  "Male Total (By Sex)",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "CRACE16",
+                                                         "description":  "Female Total (By Sex)",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "CRACE24",
+                                                         "description":  "Total (By Sex)",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Totals will be generated.  Do not include in import file.",
+                                                         "isGrayedOut":  true
+                                                     },
+                                                     {
+                                                         "name":  "CRACE17",
+                                                         "description":  "U.S. Nonresident - male and female total (By Race/Ethnicity)",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "CRACE41",
+                                                         "description":  "Hispanic/Latino - male and female total  (By Race/Ethnicity)",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "CRACE42",
+                                                         "description":  "American Indian or Alaska Native - male and female total  (By Race/Ethnicity)",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "CRACE43",
+                                                         "description":  "Asian - male and female total  (By Race/Ethnicity)",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "CRACE44",
+                                                         "description":  "Black or African American - male and female total  (By Race/Ethnicity)",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "CRACE45",
+                                                         "description":  "Native Hawaiian or Other Pacific Islander - male and female total  (By Race/Ethnicity)",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "CRACE46",
+                                                         "description":  "White - male and female total  (By Race/Ethnicity)",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "CRACE47",
+                                                         "description":  "Two or more races - male and female total  (By Race/Ethnicity)",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "CRACE23",
+                                                         "description":  "Race and ethnicity unknown - male and female total (By Race/Ethnicity)",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "CRACE48",
+                                                         "description":  "Total (By Race/Ethnicity)",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Totals will be generated.  Do not include in import file.",
+                                                         "isGrayedOut":  true
+                                                     },
+                                                     {
+                                                         "name":  "AGE1",
+                                                         "description":  "Under 18 (By Age)",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "AGE2",
+                                                         "description":  "18-24 (By Age)",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "AGE3",
+                                                         "description":  "25-39 (By Age)",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "AGE4",
+                                                         "description":  "40 and Above (By Age)",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "AGE5",
+                                                         "description":  "Age Unknown (By Age)",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "AGETotal",
+                                                         "description":  "Total (By Age)",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Totals will be generated.  Do not include in import file.",
+                                                         "isGrayedOut":  true
+                                                     }
+                                                 ]
+                          }
+                      ]
+}

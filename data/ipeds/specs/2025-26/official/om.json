@@ -1,0 +1,787 @@
+﻿{
+    "title":  "Outcome Measures",
+    "note":  "\u003cb\u003eCohort type table (degree/certificate-seeking student cohorts) \u003c/b\u003e \u003cbr\u003e\u0026nbsp;\u0026nbsp;\u0026nbsp;1 - First-time, full-time entering students (FTFT)\u0026nbsp;\u003cbr\u003e\u0026nbsp;\u0026nbsp;\u0026nbsp;2 - First-time, p\u003cspan style=\"font-size: 13.3333px;\"\u003eart-time\u003c/span\u003e\u0026nbsp;entering students (FTPT)\u003cbr\u003e\u0026nbsp;\u0026nbsp;\u0026nbsp;3 - Non-first-time, full-time entering students (NFTFT)\u003cbr\u003e\u0026nbsp;\u0026nbsp;\u0026nbsp;4 - Non-first-time, part-time entering students (NFTPT)\u003cbr\u003e\u0026nbsp;\u0026nbsp;\u0026nbsp;\u003cb\u003e9 - Total entering students. Do not include in import file, will be generated.\u003c/b\u003e \r\n\u003cbr\u003e\u003cbr\u003e\r\n\u003cb\u003eRecipient Type table\u003c/b\u003e \u003cbr\u003e\u0026nbsp;\u0026nbsp;\u0026nbsp;1 - Pell Grant recipients \u003cbr\u003e\u0026nbsp;\u0026nbsp;\u0026nbsp;2 - Non-Pell Grant recipients \u003cbr\u003e\u0026nbsp;\u0026nbsp;\u0026nbsp;\u003cb\u003e9 - Total recipients. Do not include in import file, will be generated.\u003c/b\u003e \r\n",
+    "nameFl":  "\u003cdiv class=\"name-left\"\u003eIPEDS 2025-26 Import Specifications: Outcome Measures\u003cbr\u003eApplies to: Degree-granting institutions\u003c/div\u003e\u003cdiv class=\"name-center\"\u003eFile type: Fixed Length/Positional (*.txt)\u003c/div\u003e",
+    "noteFL":  "\u003cp class=\"import_layout\"\u003eNotes: All numeric fields should be right-justified in \r\ntheir fields. Both leading zeros and spaces are permissible.\u003cbr\u003eCharacter data \r\nshould be left justified.\u003cbr\u003eSort Order: UNITID, SURVSECT, PART\u003c/p\u003e",
+    "nameKv":  "\u003cdiv class=\"name-left\"\u003eIPEDS 2025-26 Import Specifications: Outcome Measures\u003cbr\u003eApplies to: Degree-granting institutions\u003c/div\u003e\u003cdiv class=\"name-center\"\u003eFile type: File type: Key Value Pair File (*.TXT)\u003c/div\u003e",
+    "sampleKv":  "Sample record:\u003cbr\u003e\r\n\u003cspan style=\"FONT-SIZE: 10pt\"\u003eUNITID=nnnnnn,SURVSECT=OM1,PART=A,LINE=1,RECIPIENT_TYPE=1,COHORT=1500,EXCLUSION=15\u003c/span\u003e\u003cbr\u003e\r\n\u003cspan style=\"FONT-SIZE: 10pt\"\u003eUNITID=nnnnnn,SURVSECT=OM1,PART=A,LINE=1,RECIPIENT_TYPE=2,COHORT=2500,EXCLUSION=25\u003c/span\u003e\u003cbr\u003e\r\n\u003cspan style=\"FONT-SIZE: 10pt\"\u003eUNITID=nnnnnn,SURVSECT=OM1,PART=A,LINE=2,RECIPIENT_TYPE=1,COHORT=500,EXCLUSION=10\u003c/span\u003e\u003cbr\u003e\r\n\u003cspan style=\"FONT-SIZE: 10pt\"\u003eUNITID=nnnnnn,SURVSECT=OM1,PART=A,LINE=2,RECIPIENT_TYPE=2,COHORT=700,EXCLUSION=7\u003c/span\u003e\u003cbr\u003e\r\n\u003cspan style=\"FONT-SIZE: 10pt\"\u003eUNITID=nnnnnn,SURVSECT=OM1,PART=A,LINE=3,RECIPIENT_TYPE=1,COHORT=1500,EXCLUSION=15\u003c/span\u003e\u003cbr\u003e\r\n\u003cspan style=\"FONT-SIZE: 10pt\"\u003eUNITID=nnnnnn,SURVSECT=OM1,PART=A,LINE=3,RECIPIENT_TYPE=2,COHORT=2500,EXCLUSION=25\u003c/span\u003e\u003cbr\u003e\r\n\u003cspan style=\"FONT-SIZE: 10pt\"\u003eUNITID=nnnnnn,SURVSECT=OM1,PART=A,LINE=4,RECIPIENT_TYPE=1,COHORT=500,EXCLUSION=10\u003c/span\u003e\u003cbr\u003e\r\n\u003cspan style=\"FONT-SIZE: 10pt\"\u003eUNITID=nnnnnn,SURVSECT=OM1,PART=A,LINE=4,RECIPIENT_TYPE=2,COHORT=700,EXCLUSION=7\u003c/span\u003e\u003cbr\u003e\r\n\r\n\u003cspan style=\"FONT-SIZE: 10pt\"\u003eUNITID=nnnnnn,SURVSECT=OM1,PART=B,LINE=1,RECIPIENT_TYPE=1,AWARD_CERTIFICATES=400,\u003cbr\u003e\u0026nbsp;\u0026nbsp;\u0026nbsp;AWARD_ASSOCIATES=450,AWARD_BACHELORS=550\u003c/span\u003e\u003cbr\u003e\r\n\u003cspan style=\"FONT-SIZE: 10pt\"\u003eUNITID=nnnnnn,SURVSECT=OM1,PART=B,LINE=1,RECIPIENT_TYPE=2,AWARD_CERTIFICATES=600,\u003cbr\u003e\u0026nbsp;\u0026nbsp;\u0026nbsp;AWARD_ASSOCIATES=700,AWARD_BACHELORS=1150\u003c/span\u003e\u003cbr\u003e\r\n\u003cspan style=\"FONT-SIZE: 10pt\"\u003eUNITID=nnnnnn,SURVSECT=OM1,PART=B,LINE=2,RECIPIENT_TYPE=1,AWARD_CERTIFICATES=400,\u003cbr\u003e\u0026nbsp;\u0026nbsp;\u0026nbsp;AWARD_ASSOCIATES=450,AWARD_BACHELORS=550\u003c/span\u003e\u003cbr\u003e\r\n\u003cspan style=\"FONT-SIZE: 10pt\"\u003eUNITID=nnnnnn,SURVSECT=OM1,PART=B,LINE=2,RECIPIENT_TYPE=2,AWARD_CERTIFICATES=600,\u003cbr\u003e\u0026nbsp;\u0026nbsp;\u0026nbsp;AWARD_ASSOCIATES=700,AWARD_BACHELORS=1150\u003c/span\u003e\u003cbr\u003e\r\n\u003cspan style=\"FONT-SIZE: 10pt\"\u003e...\u003c/span\u003e\u003cbr\u003e\r\n\u003cspan style=\"FONT-SIZE: 10pt\"\u003eUNITID=nnnnnn,SURVSECT=OM1,PART=C,LINE=1,RECIPIENT_TYPE=1,AWARD_CERTIFICATES=400,\u003cbr\u003e\u0026nbsp;\u0026nbsp;\u0026nbsp;AWARD_ASSOCIATES=450,AWARD_BACHELORS=550\u003c/span\u003e\u003cbr\u003e\r\n\u003cspan style=\"FONT-SIZE: 10pt\"\u003eUNITID=nnnnnn,SURVSECT=OM1,PART=C,LINE=1,RECIPIENT_TYPE=2,AWARD_CERTIFICATES=600,\u003cbr\u003e\u0026nbsp;\u0026nbsp;\u0026nbsp;AWARD_ASSOCIATES=700,AWARD_BACHELORS=1150\u003c/span\u003e\u003cbr\u003e\r\n\u003cspan style=\"FONT-SIZE: 10pt\"\u003eUNITID=nnnnnn,SURVSECT=OM1,PART=C,LINE=2,RECIPIENT_TYPE=1,AWARD_CERTIFICATES=400,\u003cbr\u003e\u0026nbsp;\u0026nbsp;\u0026nbsp;AWARD_ASSOCIATES=450,AWARD_BACHELORS=550\u003c/span\u003e\u003cbr\u003e\r\n\u003cspan style=\"FONT-SIZE: 10pt\"\u003eUNITID=nnnnnn,SURVSECT=OM1,PART=C,LINE=2,RECIPIENT_TYPE=2,AWARD_CERTIFICATES=600,\u003cbr\u003e\u0026nbsp;\u0026nbsp;\u0026nbsp;AWARD_ASSOCIATES=700,AWARD_BACHELORS=1150\u003c/span\u003e\u003cbr\u003e\r\n\u003cspan style=\"FONT-SIZE: 10pt\"\u003e...\u003c/span\u003e\u003cbr\u003e\r\n\u003cspan style=\"FONT-SIZE: 10pt\"\u003eUNITID=nnnnnn,SURVSECT=OM1,PART=D,LINE=1,RECIPIENT_TYPE=1,AWARD_CERTIFICATES=450,\u003cbr\u003e\u0026nbsp;\u0026nbsp;\u0026nbsp;AWARD_ASSOCIATES=450,AWARD_BACHELORS=600,STILL_ENROLLED=25,ENROLLED_ANOTHER=20\u003c/span\u003e\u003cbr\u003e\r\n\u003cspan style=\"FONT-SIZE: 10pt\"\u003eUNITID=nnnnnn,SURVSECT=OM1,PART=D,LINE=1,RECIPIENT_TYPE=2,AWARD_CERTIFICATES=650,\u003cbr\u003e\u0026nbsp;\u0026nbsp;\u0026nbsp;AWARD_ASSOCIATES=750,AWARD_BACHELORS=1200,STILL_ENROLLED=50,ENROLLED_ANOTHER=40\u003c/span\u003e\u003cbr\u003e\r\n\u003cspan style=\"FONT-SIZE: 10pt\"\u003eUNITID=nnnnnn,SURVSECT=OM1,PART=D,LINE=2,RECIPIENT_TYPE=1,AWARD_CERTIFICATES=450,\u003cbr\u003e\u0026nbsp;\u0026nbsp;\u0026nbsp;AWARD_ASSOCIATES=450,AWARD_BACHELORS=600,STILL_ENROLLED=25,ENROLLED_ANOTHER=20\u003c/span\u003e\u003cbr\u003e\r\n\u003cspan style=\"FONT-SIZE: 10pt\"\u003eUNITID=nnnnnn,SURVSECT=OM1,PART=D,LINE=2,RECIPIENT_TYPE=2,AWARD_CERTIFICATES=650,\u003cbr\u003e\u0026nbsp;\u0026nbsp;\u0026nbsp;AWARD_ASSOCIATES=750,AWARD_BACHELORS=1200,STILL_ENROLLED=50,ENROLLED_ANOTHER=40\u003c/span\u003e\u003cbr\u003e\r\n\u003cspan style=\"FONT-SIZE: 10pt\"\u003e...\u003c/span\u003e\u003cspan style=\"FONT-SIZE: 10pt\"\u003e\u003cbr\u003e\u003c/span\u003e\r\n\u003cspan style=\"FONT-SIZE: 10pt\"\u003eUNITID=nnnnnn,SURVSECT=OM1,PART=A,LINE=n,RECIPIENT_TYPE=n,COHORT=nnnnnn,EXCLUSION=nnnnnn\u003c/span\u003e\u003cbr\u003e\r\n\u003cspan style=\"FONT-SIZE: 10pt\"\u003eUNITID=nnnnnn,SURVSECT=OM1,PART=B,LINE=n,RECIPIENT_TYPE=n,AWARD_CERTIFICATES=nnnnnn,\u003cbr\u003e\u0026nbsp;\u0026nbsp;\u0026nbsp;AWARD_ASSOCIATES=nnnnnn,AWARD_BACHELORS=nnnnnn\u003c/span\u003e\u003cbr\u003e\r\n\u003cspan style=\"FONT-SIZE: 10pt\"\u003eUNITID=nnnnnn,SURVSECT=OM1,PART=C,LINE=n,RECIPIENT_TYPE=n,AWARD_CERTIFICATES=nnnnnn,\u003cbr\u003e\u0026nbsp;\u0026nbsp;\u0026nbsp;AWARD_ASSOCIATES=nnnnnn,AWARD_BACHELORS=nnnnnn\u003c/span\u003e\u003cbr\u003e\r\n\u003cspan style=\"FONT-SIZE: 10pt\"\u003eUNITID=nnnnnn,SURVSECT=OM1,PART=D,LINE=n,RECIPIENT_TYPE=n,AWARD_CERTIFICATES=nnnnnn,\u003cbr\u003e\u0026nbsp;\u0026nbsp;\u0026nbsp;AWARD_ASSOCIATES=nnnnnn,AWARD_BACHELORS=nnnnnn,STILL_ENROLLED=nnnnnn,\u003cbr\u003e\u0026nbsp;\u0026nbsp;\u0026nbsp;ENROLLED_ANOTHER=nnnnnn\u003c/span\u003e\u003cbr\u003e\r\n\u003cspan style=\"FONT-SIZE: 10pt\"\u003e...\u003c/span\u003e",
+    "noteKv":  "Sort Order: UNITID,SURVSECT,PART",
+    "fixedLayoutParts":  [
+                             {
+                                 "partId":  381,
+                                 "title":  "Part A: Establishing Cohorts",
+                                 "instruction":  "",
+                                 "surveySection":  "\"OM1\"",
+                                 "part":  "\"A\"",
+                                 "description1":  "2017-18",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"OM1\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"A\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "LINE",
+                                                               "description":  "Cohort Type",
+                                                               "start":  11,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "1-4, 9 (Do not include LINE 9 in import file. It will be generated and will be included on export file. Refer to cohort type table in appendix)",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "RECIPIENT_TYPE",
+                                                               "description":  "Recipient Type\r\n",
+                                                               "start":  12,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "1-2, 9 (Do not include RECIPIENT_TYPE 9 in import file. It will be generated and will be included on export file. Refer to recipient type table in appendix)",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "COHORT",
+                                                               "description":  "2017-18 cohort",
+                                                               "start":  13,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "EXCLUSION",
+                                                               "description":  "Exclusions to 2017-18 cohort",
+                                                               "start":  19,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "ADJ_COHORT",
+                                                               "description":  "Adjusted 2017-18 \r\ncohort",
+                                                               "start":  25,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Will be generated. Do not include in import file.",
+                                                               "isGrayedOut":  true
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  382,
+                                 "title":  "Part B: Award Status at Four Years After Entry",
+                                 "instruction":  "",
+                                 "surveySection":  "\"OM1\"",
+                                 "part":  "\"B\"",
+                                 "description1":  "by",
+                                 "description2":  "2021",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"OM1\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"B\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "LINE",
+                                                               "description":  "Cohort Type",
+                                                               "start":  11,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "1-4, 9 (Do not include LINE 9 in import file. It will be generated and will be included on export file. Refer to cohort type table in appendix)",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "RECIPIENT_TYPE",
+                                                               "description":  "Recipient Type\r\n",
+                                                               "start":  12,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "1-2, 9 (Do not include RECIPIENT_TYPE 9 in import file. It will be generated and will be included on export file. Refer to recipient type table in appendix)",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "AWARD_CERTIFICATES",
+                                                               "description":  "Number of students conferred an award \r\nby your institution (Highest award by August 31, 2021)\r\n - Certificates",
+                                                               "start":  13,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "AWARD_ASSOCIATES",
+                                                               "description":  "Number of students conferred an award \r\nby your institution (Highest award by August 31, 2021)\r\n - Associate\u0027s",
+                                                               "start":  19,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "AWARD_BACHELORS",
+                                                               "description":  "Number of students conferred an award \r\nby your institution (Highest award by August 31, 2021)\r\n - Bachelor\u0027s",
+                                                               "start":  25,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "ADJ_COHORT_AWARD_TOT",
+                                                               "description":  "Total number of \r\nadjusted cohort\r\n that received an award \r\nfrom your institution",
+                                                               "start":  31,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Will be generated. Do not include in import file.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "PCT_ADJ_COHORT_AWARD",
+                                                               "description":  "Percent of adjusted \r\ncohort that received \r\nan award from your\r\ninstitution",
+                                                               "start":  37,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Will be generated. Do not include in import file.",
+                                                               "isGrayedOut":  true
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  382,
+                                 "title":  "Part C: Award Status at Six Years After Entry",
+                                 "instruction":  "",
+                                 "surveySection":  "\"OM1\"",
+                                 "part":  "\"C\"",
+                                 "description1":  "through",
+                                 "description2":  "2023",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"OM1\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"C\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "LINE",
+                                                               "description":  "Cohort Type",
+                                                               "start":  11,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "1-4, 9 (Do not include LINE 9 in import file. It will be generated and will be included on export file. Refer to cohort type table in appendix)",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "RECIPIENT_TYPE",
+                                                               "description":  "Recipient Type\r\n",
+                                                               "start":  12,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "1-2, 9 (Do not include RECIPIENT_TYPE 9 in import file. It will be generated and will be included on export file. Refer to recipient type table in appendix)",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "AWARD_CERTIFICATES",
+                                                               "description":  "Number of students conferred an award \r\nby your institution (Highest award through August 31, 2023)\r\n - Certificates",
+                                                               "start":  13,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "AWARD_ASSOCIATES",
+                                                               "description":  "Number of students conferred an award \r\nby your institution (Highest award through August 31, 2023)\r\n - Associate\u0027s",
+                                                               "start":  19,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "AWARD_BACHELORS",
+                                                               "description":  "Number of students conferred an award \r\nby your institution (Highest award through August 31, 2023)\r\n - Bachelor\u0027s",
+                                                               "start":  25,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "ADJ_COHORT_AWARD_TOT",
+                                                               "description":  "Total number of \r\nadjusted cohort\r\n that received an award \r\nfrom your institution",
+                                                               "start":  31,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Will be generated. Do not include in import file.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "PCT_ADJ_COHORT_AWARD",
+                                                               "description":  "Percent of adjusted \r\ncohort that received \r\nan award from your\r\ninstitution",
+                                                               "start":  37,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Will be generated. Do not include in import file.",
+                                                               "isGrayedOut":  true
+                                                           }
+                                                       ]
+                             },
+                             {
+                                 "partId":  383,
+                                 "title":  "Part D: Award and Enrollment Status at Eight Years After Entry",
+                                 "instruction":  "",
+                                 "surveySection":  "\"OM1\"",
+                                 "part":  "\"D\"",
+                                 "description1":  "8",
+                                 "description2":  "2025",
+                                 "fixedLayoutFields":  [
+                                                           {
+                                                               "name":  "UNITID",
+                                                               "description":  "UNITID",
+                                                               "start":  1,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Valid UnitID",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "SURVSECT",
+                                                               "description":  "Survey Section",
+                                                               "start":  7,
+                                                               "length":  3,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"OM1\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "PART",
+                                                               "description":  "Part of survey section",
+                                                               "start":  10,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "\"D\"",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "LINE",
+                                                               "description":  "Cohort Type",
+                                                               "start":  11,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "1-4, 9 (Do not include LINE 9 in import file. It will be generated and will be included on export file. Refer to cohort type table in appendix)",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "RECIPIENT_TYPE",
+                                                               "description":  "Recipient Type\r\n",
+                                                               "start":  12,
+                                                               "length":  1,
+                                                               "dataType":  "AN",
+                                                               "validEntry":  "1-2, 9 (Do not include RECIPIENT_TYPE 9 in import file. It will be generated and will be included on export file. Refer to recipient type table in appendix)",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "AWARD_CERTIFICATES",
+                                                               "description":  "Number of students conferred an award \r\nby your institution (From entry through August 31, 2025)\r\n - Certificates",
+                                                               "start":  13,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "AWARD_ASSOCIATES",
+                                                               "description":  "Number of students conferred an award \r\nby your institution (From entry through August 31, 2025) - Associate\u0027s",
+                                                               "start":  19,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "AWARD_BACHELORS",
+                                                               "description":  "Number of students conferred an award \r\nby your institution (From entry through August 31, 2025)\r\n - Bachelor\u0027s",
+                                                               "start":  25,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "ADJ_COHORT_AWARD_TOT",
+                                                               "description":  "Total number of adjusted cohort that received an award from your institution",
+                                                               "start":  31,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Will be generated. Do not include in import file.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "PCT_ADJ_COHORT_AWARD",
+                                                               "description":  "Percent of adjusted cohort that received an award from your institution",
+                                                               "start":  37,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Will be generated. Do not include in import file.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "STILL_ENROLLED",
+                                                               "description":  "Number of students who did not receive an award from your institution \r\n(From entry through August 31, \r\n2025) - Number still enrolled at your institution",
+                                                               "start":  40,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "ENROLLED_ANOTHER",
+                                                               "description":  "Number of students who did not receive an award from your institution \r\n(From entry through August 31, \r\n2025) - Number who enrolled at another institution after leaving your institution",
+                                                               "start":  46,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "0 to 999999",
+                                                               "isGrayedOut":  false
+                                                           },
+                                                           {
+                                                               "name":  "ENROLLED_UNKNOWN",
+                                                               "description":  "Number of students who did not receive an award from your institution \r\n(From entry through August 31, \r\n2025) - Number of students whose subsequent enrollment status is unknown",
+                                                               "start":  52,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Will be generated. Do not include in import file.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "NOT_AWARDED_TOTAL",
+                                                               "description":  "Number of students who did not receive an award from your institution \r\n(From entry through August 31, \r\n2025) - Total number who did not receive an award from your institution",
+                                                               "start":  58,
+                                                               "length":  6,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Will be generated. Do not include in import file.",
+                                                               "isGrayedOut":  true
+                                                           },
+                                                           {
+                                                               "name":  "PCT_ADJ_COHORT_ST_EN",
+                                                               "description":  "Percent of adjusted cohort that did not receive an award, but are still enrolled at your institution and enrolled at another institution after leaving your institution",
+                                                               "start":  64,
+                                                               "length":  3,
+                                                               "dataType":  "N",
+                                                               "validEntry":  "Will be generated. Do not include in import file.",
+                                                               "isGrayedOut":  true
+                                                           }
+                                                       ]
+                             }
+                         ],
+    "keyValueParts":  [
+                          {
+                              "partId":  385,
+                              "title":  "Part A: Establishing Cohorts",
+                              "instruction":  "",
+                              "surveySection":  "\"OM1\"",
+                              "part":  "\"A\"",
+                              "description1":  "2017-18",
+                              "keyValueFields":  [
+                                                     {
+                                                         "name":  "UNITID",
+                                                         "description":  "UNITID",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Valid UnitID",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SURVSECT",
+                                                         "description":  "Survey Section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"OM1\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PART",
+                                                         "description":  "Part of survey section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"A\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "LINE",
+                                                         "description":  "Cohort Type",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "1-4 (refer to cohort type table in appendix)",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "RECIPIENT_TYPE",
+                                                         "description":  "Recipient Type\r\n",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "1-2 (refer to recipient type table in appendix)",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "COHORT",
+                                                         "description":  "2017-18 cohort",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "EXCLUSION",
+                                                         "description":  "Exclusions to 2017-18 cohort",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "ADJ_COHORT",
+                                                         "description":  "Adjusted 2017-18 \r\ncohort",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Will be generated. Do not include in import file.",
+                                                         "isGrayedOut":  true
+                                                     }
+                                                 ]
+                          },
+                          {
+                              "partId":  386,
+                              "title":  "Part B: Award Status at Four Years After Entry",
+                              "instruction":  "",
+                              "surveySection":  "\"OM1\"",
+                              "part":  "\"B\"",
+                              "description1":  "by",
+                              "description2":  "2021",
+                              "keyValueFields":  [
+                                                     {
+                                                         "name":  "UNITID",
+                                                         "description":  "UNITID",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Valid UnitID",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SURVSECT",
+                                                         "description":  "Survey Section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"OM1\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PART",
+                                                         "description":  "Part of survey section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"B\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "LINE",
+                                                         "description":  "Cohort Type",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "1-4 (refer to cohort type table in appendix)",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "RECIPIENT_TYPE",
+                                                         "description":  "Recipient Type\r\n",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "1-2 (refer to recipient type table in appendix)",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "AWARD_CERTIFICATES",
+                                                         "description":  "Number of students conferred an award \r\nby your institution (Highest award by August 31, 2021)\r\n - Certificates",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "AWARD_ASSOCIATES",
+                                                         "description":  "Number of students conferred an award \r\nby your institution (Highest award by August 31, 2021)\r\n - Associate\u0027s",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "AWARD_BACHELORS",
+                                                         "description":  "Number of students conferred an award \r\nby your institution (Highest award by August 31, 2021)\r\n - Bachelor\u0027s",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "ADJ_COHORT_AWARD_TOT",
+                                                         "description":  "Total number of \r\nadjusted cohort\r\n that received an award \r\nfrom your institution",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Will be generated. Do not include in import file.",
+                                                         "isGrayedOut":  true
+                                                     },
+                                                     {
+                                                         "name":  "PCT_ADJ_COHORT_AWARD",
+                                                         "description":  "Percent of adjusted \r\ncohort that received \r\nan award from your\r\ninstitution",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Will be generated. Do not include in import file.",
+                                                         "isGrayedOut":  true
+                                                     }
+                                                 ]
+                          },
+                          {
+                              "partId":  386,
+                              "title":  "Part C: Award Status at Six Years After Entry",
+                              "instruction":  "",
+                              "surveySection":  "\"OM1\"",
+                              "part":  "\"C\"",
+                              "description1":  "through",
+                              "description2":  "2023",
+                              "keyValueFields":  [
+                                                     {
+                                                         "name":  "UNITID",
+                                                         "description":  "UNITID",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Valid UnitID",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SURVSECT",
+                                                         "description":  "Survey Section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"OM1\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PART",
+                                                         "description":  "Part of survey section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"C\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "LINE",
+                                                         "description":  "Cohort Type",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "1-4 (refer to cohort type table in appendix)",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "RECIPIENT_TYPE",
+                                                         "description":  "Recipient Type\r\n",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "1-2 (refer to recipient type table in appendix)",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "AWARD_CERTIFICATES",
+                                                         "description":  "Number of students conferred an award \r\nby your institution (Highest award through August 31, 2023)\r\n - Certificates",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "AWARD_ASSOCIATES",
+                                                         "description":  "Number of students conferred an award \r\nby your institution (Highest award through August 31, 2023)\r\n - Associate\u0027s",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "AWARD_BACHELORS",
+                                                         "description":  "Number of students conferred an award \r\nby your institution (Highest award through August 31, 2023)\r\n - Bachelor\u0027s",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "ADJ_COHORT_AWARD_TOT",
+                                                         "description":  "Total number of \r\nadjusted cohort\r\n that received an award \r\nfrom your institution",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Will be generated. Do not include in import file.",
+                                                         "isGrayedOut":  true
+                                                     },
+                                                     {
+                                                         "name":  "PCT_ADJ_COHORT_AWARD",
+                                                         "description":  "Percent of adjusted \r\ncohort that received \r\nan award from your\r\ninstitution",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Will be generated. Do not include in import file.",
+                                                         "isGrayedOut":  true
+                                                     }
+                                                 ]
+                          },
+                          {
+                              "partId":  387,
+                              "title":  "Part D: Award and Enrollment Status at Eight Years After Entry",
+                              "instruction":  "",
+                              "surveySection":  "\"OM1\"",
+                              "part":  "\"D\"",
+                              "description1":  "8",
+                              "description2":  "2025",
+                              "keyValueFields":  [
+                                                     {
+                                                         "name":  "UNITID",
+                                                         "description":  "UNITID",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Valid UnitID",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "SURVSECT",
+                                                         "description":  "Survey Section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"OM1\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "PART",
+                                                         "description":  "Part of survey section",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "\"D\"",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "LINE",
+                                                         "description":  "Cohort Type",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "1-4 (refer to cohort type table in appendix)",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "RECIPIENT_TYPE",
+                                                         "description":  "Recipient Type\r\n",
+                                                         "dataType":  "AN",
+                                                         "validEntry":  "1-2 (refer to recipient type table in appendix)",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "AWARD_CERTIFICATES",
+                                                         "description":  "Number of students conferred an award \r\nby your institution (From entry through August 31, 2025)\r\n - Certificates",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "AWARD_ASSOCIATES",
+                                                         "description":  "Number of students conferred an award \r\nby your institution (From entry through August 31, 2025) - Associate\u0027s",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "AWARD_BACHELORS",
+                                                         "description":  "Number of students conferred an award \r\nby your institution (From entry through August 31, 2025)\r\n - Bachelor\u0027s",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "ADJ_COHORT_AWARD_TOT",
+                                                         "description":  "Total number of adjusted cohort that received an award from your institution",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Will be generated. Do not include in import file.",
+                                                         "isGrayedOut":  true
+                                                     },
+                                                     {
+                                                         "name":  "PCT_ADJ_COHORT_AWARD",
+                                                         "description":  "Percent of adjusted cohort that received an award from your institution",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Will be generated. Do not include in import file.",
+                                                         "isGrayedOut":  true
+                                                     },
+                                                     {
+                                                         "name":  "STILL_ENROLLED",
+                                                         "description":  "Number of students who did not receive an award from your institution \r\n(From entry through August 31, \r\n2025) - Number still enrolled at your institution",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "ENROLLED_ANOTHER",
+                                                         "description":  "Number of students who did not receive an award from your institution \r\n(From entry through August 31, \r\n2025) - Number who enrolled at another institution after leaving your institution",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "0 to 999999",
+                                                         "isGrayedOut":  false
+                                                     },
+                                                     {
+                                                         "name":  "ENROLLED_UNKNOWN",
+                                                         "description":  "Number of students who did not receive an award from your institution \r\n(From entry through August 31, \r\n2025) - Number of students whose subsequent enrollment status is unknown",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Will be generated. Do not include in import file.",
+                                                         "isGrayedOut":  true
+                                                     },
+                                                     {
+                                                         "name":  "NOT_AWARDED_TOTAL",
+                                                         "description":  "Number of students who did not receive an award from your institution \r\n(From entry through August 31, \r\n2025) - Total number who did not receive an award from your institution",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Will be generated. Do not include in import file.",
+                                                         "isGrayedOut":  true
+                                                     },
+                                                     {
+                                                         "name":  "PCT_ADJ_COHORT_ST_EN",
+                                                         "description":  "Percent of adjusted cohort that did not receive an award, but are still enrolled at your institution and enrolled at another institution after leaving your institution",
+                                                         "dataType":  "N",
+                                                         "validEntry":  "Will be generated. Do not include in import file.",
+                                                         "isGrayedOut":  true
+                                                     }
+                                                 ]
+                          }
+                      ]
+}

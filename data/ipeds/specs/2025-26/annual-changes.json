@@ -11,8 +11,8 @@
     },
     {
       "component": "GR",
-      "type": "field-removed",
-      "summary": "Gender unknown and another-gender questions were removed for privacy."
+      "type": "terminology-and-field-change",
+      "summary": "The federal materials use sex, male, and female terminology; Another Gender is no longer collected."
     },
     {
       "component": "IC/ADM",
@@ -22,7 +22,22 @@
     {
       "component": "CST",
       "type": "component-change",
-      "summary": "Cost remains a separately versioned component after its 2024-25 introduction."
+      "summary": "Cost remains a separately versioned component spanning the Fall and Winter collection periods."
+    },
+    {
+      "component": "SFA",
+      "type": "section-redesign",
+      "summary": "Section 1 collects consistent aid types across undergraduate categories, and IASG awards are included with Federal Pell Grant counts and amounts."
+    },
+    {
+      "component": "ADM",
+      "type": "expanded-collection",
+      "summary": "Admissions adds transfer-in reporting, expanded race/ethnicity and attendance-status detail, and waitlist, Early Decision, and Early Action elements when applicable."
+    },
+    {
+      "component": "C/E12/OM/ADM/EF",
+      "type": "terminology-and-field-change",
+      "summary": "The applicable 2025-26 forms use sex, male, and female terminology; non-binary/Another Gender fields are no longer collected."
     }
   ]
 }

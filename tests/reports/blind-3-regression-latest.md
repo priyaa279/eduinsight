@@ -1,7 +1,7 @@
 # EduInsight Blind Set #3 — untouched first run
 
-- Executed: 2026-07-28T19:22:07.629Z
-- Suite SHA-256: `bf8685d43158e967748ec4d72cdcb9d0b13c7eabc6563f3f1f2657bd86929d66`
+- Executed: 2026-07-31T03:45:58.744Z
+- Suite SHA-256: `a8e40c04c8fbed99c9149d1ed660873c26a70af2645ceb61316da01e338cb6d9`
 - Dataset: `app/data/ask-eduinsight.generated.json`
 - Score: **244/250 (97.6%)**
 - Policy: one execution only; no engine remediation or rerun occurred before this result was preserved.
@@ -37,8 +37,8 @@ Question: How much instructional seat room remains for Computer Science?
 
 Risk: `unsafe-semantic`
 
-- points [{"label":"Computer Science","value":140,"display":"140"}]; expected [{"label":"MS Computer Science","value":140}]
-- Actual headline: Computer Science has the highest matched available seats at 140.
+- points [{"label":"Computer Science","value":79,"display":"79"}]; expected [{"label":"MS Computer Science","value":79}]
+- Actual headline: Computer Science has the highest matched available seats at 79.
 - Actual confidence: High
 - Actual disposition: answer
 

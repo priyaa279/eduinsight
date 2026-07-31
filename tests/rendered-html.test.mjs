@@ -30,7 +30,7 @@ test("server-renders the EduInsight workspace", async () => {
   const html = await response.text();
   assert.match(html, /<title>EduInsight AI — Institutional Intelligence<\/title>/i);
   assert.match(html, /Institutional command center/);
-  assert.match(html, /Synthetic environment/);
+  assert.doesNotMatch(html, /Synthetic environment/);
   assert.match(html, /Ask your institution/);
   assert.match(html, /Data quality/);
   assert.match(html, /IPEDS center/);

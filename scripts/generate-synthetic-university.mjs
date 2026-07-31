@@ -280,21 +280,40 @@ for (const row of studentTerms.filter((row) => row.term_id === "2025FA")) {
   currentActiveByProgram.get(row.program_id).push(row.student_id);
 }
 
-const targetFilledSeats = { PBA: 920, PCS: 860, PNUR: 780, PPA: 530 };
-for (const programId of Object.keys(targetFilledSeats)) {
-  const studentPool = currentActiveByProgram.get(programId);
+const graduateSectionPlans = {
+  PBA: { sectionCount: 72, sectionCapacity: 30, averageCourseLoad: 3.4 },
+  PCS: { sectionCount: 72, sectionCapacity: 35, averageCourseLoad: 3.6 },
+  PNUR: { sectionCount: 64, sectionCapacity: 30, averageCourseLoad: 3.2 },
+  PPA: { sectionCount: 56, sectionCapacity: 30, averageCourseLoad: 2.8 },
+};
+for (const [programId, plan] of Object.entries(graduateSectionPlans)) {
+  const studentPool = currentActiveByProgram.get(programId) ?? [];
   let enrollmentCursor = 0;
-  const totalFilled = targetFilledSeats[programId];
-  for (let sectionNumber = 1; sectionNumber <= 10; sectionNumber += 1) {
+  const totalFilled = Math.round(
+    studentPool.length * plan.averageCourseLoad,
+  );
+  const totalCapacity = plan.sectionCount * plan.sectionCapacity;
+  if (totalFilled > totalCapacity) {
+    throw new Error(
+      `${programId} generated course demand ${totalFilled} exceeds scheduled capacity ${totalCapacity}`,
+    );
+  }
+  for (
+    let sectionNumber = 1;
+    sectionNumber <= plan.sectionCount;
+    sectionNumber += 1
+  ) {
     const sectionId = `${programId}-2025FA-${String(sectionNumber).padStart(2, "0")}`;
-    const sectionFilled = Math.floor(totalFilled / 10) + (sectionNumber <= totalFilled % 10 ? 1 : 0);
+    const sectionFilled =
+      Math.floor(totalFilled / plan.sectionCount) +
+      (sectionNumber <= totalFilled % plan.sectionCount ? 1 : 0);
     sections.push({
       section_id: sectionId,
       term_id: "2025FA",
       program_id: programId,
       course_code: `${programId.slice(1)}-${500 + sectionNumber}`,
       modality: sectionNumber % 3 === 0 ? "Online" : "In person",
-      section_capacity: 100,
+      section_capacity: plan.sectionCapacity,
       instructor_type: sectionNumber % 4 === 0 ? "Adjunct" : "Full-time",
     });
     const usedInSection = new Set();
