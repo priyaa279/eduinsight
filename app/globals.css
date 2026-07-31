@@ -285,6 +285,16 @@
   --chart-4: #d2886a;
   --chart-5: #e3a680;
 
+  /* Canyon Clay carries the navigation rail. It is the one supplied swatch
+     large enough to be a surface: deep ink on it measures 6.5:1. Coloured
+     accents all fail on clay (terracotta is 2.9:1), so the rail carries its
+     hierarchy in ink weight rather than hue. Hero panels stay deep sienna so
+     the composition keeps a dark anchor. */
+  --rail: #d3927c;
+  --rail-ink: #2b1a14;
+  --rail-ink-soft: #42291f;
+  --rail-rule: #b16b5e;
+
 }
 
 * {
@@ -4783,4 +4793,95 @@ select:focus-visible,
 .queue-dot.ready,
 .status-pip {
   background: var(--ivy-mid-on-ivy);
+}
+
+/* ===========================================================================
+   Navigation rail in Canyon Clay
+   Retargets the sidebar from the deep sienna ground to the supplied swatch.
+   Mauve Terracotta serves as the rule colour — it is a dead-zone mid-tone for
+   text (4.07:1 on ink, 3.81:1 on cream) but reads correctly as a hairline.
+   ========================================================================= */
+
+.sidebar {
+  background: var(--rail);
+  border-right: 1px solid var(--rail-rule);
+  color: var(--rail-ink);
+}
+
+/* Grain reads as pressed clay rather than a wash on a dark ground. */
+.sidebar::before {
+  mix-blend-mode: multiply;
+  opacity: 0.16;
+}
+
+.brand strong,
+.sidebar nav button.active,
+.sidebar-status strong,
+.profile strong {
+  color: var(--rail-ink);
+}
+
+.brand small,
+.sidebar nav button,
+.sidebar-status small,
+.profile small {
+  color: var(--rail-ink-soft);
+}
+
+.sidebar nav button:hover {
+  background: color-mix(in oklab, var(--rail-ink) 8%, transparent);
+  color: var(--rail-ink);
+}
+
+.sidebar nav button.active {
+  background: color-mix(in oklab, var(--rail-ink) 12%, transparent);
+}
+
+/* Ink bar, not a coloured one — colour cannot hold its own against clay. */
+.sidebar nav button.active::before,
+.brand-seal,
+.sidebar nav > p,
+.sidebar-status > button,
+.sidebar nav button.active .app-icon {
+  color: var(--rail-ink);
+  background: none;
+}
+
+.sidebar nav button.active::before {
+  background: var(--rail-ink);
+}
+
+.sidebar nav > p {
+  opacity: 0.72;
+}
+
+.sidebar-status {
+  border-color: color-mix(in oklab, var(--rail-ink) 22%, transparent);
+  background: color-mix(in oklab, var(--rail-ink) 5%, transparent);
+}
+
+.status-pip {
+  background: var(--rail-ink);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--rail-ink) 14%, transparent);
+}
+
+.profile {
+  border-top-color: color-mix(in oklab, var(--rail-ink) 20%, transparent);
+}
+
+.profile > span {
+  border-color: var(--rail-ink);
+  background: color-mix(in oklab, var(--rail-ink) 10%, transparent);
+  color: var(--rail-ink);
+}
+
+.sidebar nav button em {
+  background: var(--claret);
+  color: var(--surface);
+}
+
+/* Colonnade in ink, at low opacity, so it stays a horizon and not a graphic. */
+.sidebar-arches {
+  color: var(--rail-ink);
+  opacity: 0.16;
 }

@@ -1,6 +1,6 @@
 # Ask EduInsight release summary
 
-Generated: 2026-07-31T05:12:43.691Z
+Generated: 2026-07-31T05:17:58.650Z
 
 | Suite | Raw contract | Adjudicated | Documented gap |
 |---|---:|---:|---:|

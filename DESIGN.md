@@ -36,10 +36,27 @@ cuts derived from them. That split is the whole structure of this palette.
 | Swatch | Hex | Where |
 |---|---|---|
 | Pale Terracotta | `#e3a680` | `--terracotta-light` — action on dark ground (6.7:1 on the sidebar) |
-| Mauve Terracotta | `#b16b5e` | `--ivy-mid` |
-| Canyon Clay | `#d3927c` | `--ivy-mid-on-ivy` — status pip, replaces the old green |
+| Mauve Terracotta | `#b16b5e` | `--ivy-mid`, and `--rail-rule` as a hairline |
+| **Canyon Clay** | `#d3927c` | `--rail` — the navigation rail itself. Deep ink on it is 6.5:1 |
 | Terracotta Pot | `#e27b34` | `--brass-light` — the seal on dark |
 | Terracotta / Brick / Dusty | `#d87348` `#d7704c` `#d2886a` | ordered chart ramp |
+
+### Why Canyon Clay is the rail and Mauve is not
+
+Canyon Clay is the only supplied swatch large enough to be a *surface*: deep
+ink on it measures 6.5:1, soft ink 5.2:1. But **no coloured accent survives on
+it** — terracotta is 2.9:1, the seal colour 4.0:1 — so the rail carries its
+hierarchy in ink weight rather than hue. The active marker is an ink bar, the
+seal and colonnade are ink at low opacity. That restraint is the point, not a
+compromise.
+
+Mauve Terracotta is a dead-zone mid-tone: 4.07:1 against ink, 3.81:1 on cream,
+3.40:1 on the deep ground. It cannot carry small text on anything in this
+system. It is used only as a hairline (`--rail-rule`) and in the chart ramp,
+where 4.5:1 does not apply.
+
+Hero panels stay deep sienna so the composition keeps a dark anchor rather than
+sitting entirely in the mid-tones.
 
 ### Derived, because the set has no dark end
 
@@ -54,7 +71,9 @@ cuts derived from them. That split is the whole structure of this palette.
 | Emphasis rule | `--rule-strong` | `#d5b5a2` | — |
 | **Action / brand** | `--terracotta` | `#a8402f` | 5.7:1; 6.0:1 with cream on it |
 | Action pressed | `--terracotta-deep` | `#8f3a2c` | 7.0:1 |
-| Sidebar / dark ground | `--ivy-deep` | `#43241e` | 11.5:1 with cream text |
+| Hero panel ground | `--ivy-deep` | `#43241e` | 11.5:1 with cream text |
+| Rail ink | `--rail-ink` | `#2b1a14` | 6.5:1 on clay |
+| Rail ink, soft | `--rail-ink-soft` | `#42291f` | 5.2:1 on clay |
 | Secondary brand | `--ivy` | `#8a4636` | 6.5:1 |
 | Certified / seal | `--brass` | `#a34a1a` | 5.5:1 |
 | Critical | `--claret` | `#8f2f28` | — |
@@ -114,7 +133,7 @@ Rules carry structure; shadows are for things that genuinely float (the audit
 drawer, modals). Radii are small: `--radius-sm` 3px, `--radius` 5px,
 `--radius-lg` 8px.
 
-**Navigation is a 268px deep-sienna sidebar**, treated as a designed object rather
+**Navigation is a 268px Canyon Clay rail**, treated as a designed object rather
 than a slab: pressed-paper grain (inlined `feTurbulence`, no request), the
 engraved seal as the brand mark, and a colonnade along its foot. The active
 section is marked by a brass rule at the leading edge, the way a ledger marks
