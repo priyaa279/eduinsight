@@ -2,7 +2,7 @@
 
 The source of truth for every visual decision. Read this before building UI.
 
-**System: Regalia.** Established 2026-07-31. Supersedes the earlier
+**System: Ledger.** Established 2026-07-31. Supersedes the earlier
 navy/ochre attempt, which was rejected for being a palette swap over unchanged
 structure — the lesson worth keeping is that **structure carries more of a
 design's identity than colour does**.
@@ -20,55 +20,53 @@ photography, no single school's colours.
 
 ## Colour
 
-**Regalia** — deep plum on parchment, with muted gold for what has been
-certified. Academic regalia purple is genuinely education-coded (doctoral
-hoods, old university crests) and is rare in software, so it does not read as
-a stock dashboard. No green, no terracotta, no navy.
+**Ledger** — near-midnight ink blue on warm bone, with antique brass for what
+has been certified. Ink on paper is the oldest scholarly signal there is; the
+blue is pushed deep enough to read institutional rather than corporate.
+
+Rejected on the way here, so do not re-propose them: institutional navy with
+ochre, ivy green, the terracotta family, and regalia plum.
 
 ### Role tokens
 
-Named by what they do, not by hue — so the next palette change edits values in
-one place. The legacy `--terracotta` / `--ivy` / `--brass` names are aliases
-onto these; ~150 rules and 183 remapped variables still reference them, which
-is why they were aliased rather than renamed.
+Named by what they do, not by hue, so a palette change edits values in one
+place. `--terracotta` / `--ivy` / `--brass` remain as aliases because ~150
+rules and 183 remapped variables reference them.
 
-| Role | Token | Value | On parchment |
+| Role | Token | Value | On bone |
 |---|---|---|---|
-| Action, voice | `--accent` | `#5b3a7a` | 8.2:1 |
-| Action pressed | `--accent-deep` | `#4a2d66` | 10.3:1 |
-| Action on dark | `--accent-on-dark` | `#b79ed0` | 6.2:1 on the rail |
-| Certified / seal | `--seal` | `#7d6216` | 5.3:1 |
-| Seal on dark | `--seal-on-dark` | `#d9be74` | 8.2:1 on the rail |
+| Action, voice | `--accent` | `#28477d` | 8.3:1 |
+| Action pressed | `--accent-deep` | `#1d3560` | 11.0:1 |
+| Action on dark | `--accent-on-dark` | `#8fb0e0` | 7.0:1 on the rail |
+| Certified / seal | `--seal` | `#7d6216` | 5.2:1 |
+| Seal on dark | `--seal-on-dark` | `#d9be74` | 8.6:1 on the rail |
 
 ### Grounds and ink
 
 | Role | Token | Value | Ratio |
 |---|---|---|---|
-| Page | `--paper` | `#f7f4ef` | — |
-| Panel | `--surface` | `#fdfbf8` | — |
-| Text | `--ink` | `#221a26` | 15.4:1 |
-| Secondary | `--ink-soft` | `#514758` | 8.0:1 |
-| Tertiary | `--ink-faint` | `#6b5f74` | 5.5:1 |
-| Hairline | `--rule` | `#e0d9d0` | — |
-| Rail ground | `--rail` | `#2f2140` | 12.5:1 with parchment text |
-| Rail secondary | `--ink-soft-on-ivy` | `#c9bfd4` | 8.4:1 on the rail |
-| Critical | `--claret` | `#8f2f4a` | 7.2:1 |
-| Informational | `--info` | `#41497f` | 7.7:1 |
+| Page | `--paper` | `#f6f3ec` | — |
+| Panel | `--surface` | `#fcfaf5` | — |
+| Text | `--ink` | `#141b2b` | 15.5:1 |
+| Secondary | `--ink-soft` | `#48536b` | 7.0:1 |
+| Tertiary | `--ink-faint` | `#56607a` | 5.6:1 |
+| Hairline | `--rule` | `#ded8cb` | — |
+| Rail ground | `--rail` | `#17233d` | 12.5:1 with bone text |
+| Rail secondary | `--ink-soft-on-ivy` | `#b9c2d4` | 8.7:1 on the rail |
+| Critical | `--claret` | `#96263c` | 7.2:1 |
 
-Buttons measure 8.7:1 with parchment on plum. **Lowest ratio anywhere in the
-product is 5.0:1** — the palette has real headroom, unlike the terracotta pass
-it replaces, where the rail sat at 4.66:1 and forbade any fade at all.
+Buttons measure 8.8:1. **Lowest ratio anywhere is 5.34:1** — the most headroom
+of any palette this project has carried.
 
-Severity is claret → plum → seal. Status must still never be encoded by colour
+Severity is claret → accent → seal. Status must never be encoded by colour
 alone; every chip carries its word.
 
-### Why a dark rail
+### Prefer a dark anchor
 
-The previous rail used mid-tone swatches and had no room: only near-black
-cleared AA on them, secondary text could not recede, and raised blocks sat at
-1.59:1 against the ground. A dark plum ground restores the full range —
-parchment at 12.5:1, a faint tier at 5.8:1 — so secondary text can fade
-properly and blocks can lift. Prefer a dark anchor over a mid-tone one.
+An earlier pass used mid-tone swatches for the rail and had no room: only
+near-black cleared AA on them, secondary text could not recede, and raised
+blocks sat at 1.59:1 against their ground. A dark rail restores the full range.
+Do not put the navigation on a mid-tone.
 
 ## Typography
 
@@ -81,8 +79,8 @@ fallback.
 
 | Variable | Face | Used for |
 |---|---|---|
-| `--font-serif` | **Spectral** | Anything that speaks: headings, answer headlines |
-| `--font-sans` | **Source Sans 3** | Anything read in bulk: body, UI, dense tables |
+| `--font-serif` | **Libre Baskerville** | Anything that speaks: headings, answer headlines |
+| `--font-sans` | **Archivo** | Anything read in bulk: body, UI, dense tables |
 | `--font-mono` | **IBM Plex Mono** | Identifiers: rule codes, survey codes, query plans |
 
 Scale: `--text-display` `clamp(2.5rem, 1.4rem + 3.6vw, 4rem)` · `--text-h1`
@@ -106,7 +104,7 @@ Rules carry structure; shadows are for things that genuinely float (the audit
 drawer, modals). Radii are small: `--radius-sm` 3px, `--radius` 5px,
 `--radius-lg` 8px.
 
-**Navigation is a 268px deep-plum rail**, treated as a designed object rather
+**Navigation is a 268px ink-blue rail**, treated as a designed object rather
 than a slab: pressed-paper grain (inlined `feTurbulence`, no request), the
 engraved seal as the brand mark, and a colonnade along its foot. The active
 section is marked by a brass rule at the leading edge, the way a ledger marks

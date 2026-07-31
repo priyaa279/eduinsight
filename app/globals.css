@@ -17,8 +17,8 @@
      vinext (emits @font-face with no src). Newsreader is an editorial serif
      with real voice; Public Sans holds up in dense tables; Plex Mono carries
      identifiers where 0/O and 1/l must not be confused. */
-  --font-serif: "Spectral", Georgia, serif;
-  --font-sans: "Source Sans 3", system-ui, -apple-system, sans-serif;
+  --font-serif: "Libre Baskerville", Georgia, serif;
+  --font-sans: "Archivo", system-ui, -apple-system, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
 
   /* Type scale. The display size is spent once per screen — on the answer. */
@@ -37,56 +37,56 @@
      --brass names below are aliases onto these; ~150 rules and 183 remapped
      variables still reference them, so they cannot simply be renamed. Change
      a role here and the whole system follows. */
-  --accent: #5b3a7a;
-  --accent-deep: #4a2d66;
-  --accent-soft: #efe9f3;
-  --accent-on-dark: #b79ed0;
+  --accent: #28477d;
+  --accent-deep: #1d3560;
+  --accent-soft: #e8edf6;
+  --accent-on-dark: #8fb0e0;
   --seal: #7d6216;
   --seal-on-dark: #d9be74;
 
-  --paper: #f7f4ef;
-  --paper-sunken: #ece7e0;
-  --surface: #fdfbf8;
-  --surface-2: #f3efe9;
+  --paper: #f6f3ec;
+  --paper-sunken: #eae5da;
+  --surface: #fcfaf5;
+  --surface-2: #f2eee5;
 
-  --ink: #221a26;
-  --ink-soft: #514758;
-  --ink-faint: #6b5f74;
+  --ink: #141b2b;
+  --ink-soft: #48536b;
+  --ink-faint: #56607a;
 
-  --rule: #e0d9d0;
-  --rule-strong: #c3b9ae;
+  --rule: #ded8cb;
+  --rule-strong: #c0b8a8;
 
   /* Ivy — the institution itself: navigation, primary action, verified state */
   --ivy: var(--accent-deep);
-  --ivy-deep: #2f2140;
-  --ivy-mid: #7d5a95;
+  --ivy-deep: #17233d;
+  --ivy-mid: #4a6698;
   --ivy-tint: var(--accent-soft);
-  --on-ivy: #fdfbf8;
+  --on-ivy: #fcfaf5;
 
   /* Brass — the seal. Certified sources, approved packages, the one number. */
   --brass: var(--seal);
   --brass-deep: #634d10;
-  --brass-tint: #f6efdb;
+  --brass-tint: #f7f0dc;
   --brass-light: var(--seal-on-dark);
 
   /* Text tuned for the dark ivy panels. Held here so every raw colour in the
      system lives in one block (enforced by tests/ui-integrity.test.mjs). */
-  --ink-on-ivy: #efe9f2;
-  --ink-soft-on-ivy: #c9bfd4;
-  --ink-faint-on-ivy: #a99cb8;
-  --ivy-mid-on-ivy: #b79ed0;
+  --ink-on-ivy: #eae6dc;
+  --ink-soft-on-ivy: #b9c2d4;
+  --ink-faint-on-ivy: #96a1b8;
+  --ivy-mid-on-ivy: #8fb0e0;
 
   /* States. Severity is a single warm ramp: claret, terracotta, brass. */
-  --claret: #8f2f4a;
-  --claret-deep: #73243b;
-  --claret-tint: #f8e8ec;
+  --claret: #96263c;
+  --claret-deep: #7a1e30;
+  --claret-tint: #fae9ec;
   --terracotta: var(--accent);
   --terracotta-deep: var(--accent-deep);
   --terracotta-light: var(--accent-on-dark);
   --terracotta-tint: var(--accent-soft);
-  --info: #41497f;
-  --info-deep: #333963;
-  --info-tint: #eaebf4;
+  --info: #28477d;
+  --info-deep: #1d3560;
+  --info-tint: #e8edf6;
 
   /* Shape. Editorial means rules carry structure and shadows are rare. */
   --radius-sm: 3px;
@@ -291,22 +291,22 @@
   --color-fff4e4: var(--terracotta-tint); /* was #fff4e4 */
   --color-fff8ec: var(--terracotta-tint); /* was #fff8ec */
   --color-fff8ee: var(--terracotta-tint); /* was #fff8ee */
-  --chart-1: #4a2d66;
-  --chart-2: #5b3a7a;
-  --chart-3: #7d5a95;
-  --chart-4: #a184b6;
-  --chart-5: #c7b3d6;
+  --chart-1: #1d3560;
+  --chart-2: #28477d;
+  --chart-3: #4a6698;
+  --chart-4: #7d94ba;
+  --chart-5: #b3c2d8;
 
   /* Canyon Clay carries the navigation rail. It is the one supplied swatch
      large enough to be a surface: deep ink on it measures 6.5:1. Coloured
      accents all fail on clay (terracotta is 2.9:1), so the rail carries its
      hierarchy in ink weight rather than hue. Hero panels stay deep sienna so
      the composition keeps a dark anchor. */
-  --rail: #2f2140;
-  --rail-ink: #efe9f2;
-  --rail-ink-soft: #c9bfd4;
-  --rail-rule: #4d3a63;
-  --rail-panel: #3d2c52;
+  --rail: #17233d;
+  --rail-ink: #eae6dc;
+  --rail-ink-soft: #b9c2d4;
+  --rail-rule: #2e3d5c;
+  --rail-panel: #22314f;
 
 }
 
@@ -4725,8 +4725,16 @@ h3,
 .section-heading h2,
 .brand strong {
   font-family: var(--font-serif);
-  font-weight: 600;
-  letter-spacing: -0.004em;
+  font-weight: 400;
+  letter-spacing: -0.012em;
+}
+
+/* Baskerville has no 600 — asking for one gets a synthesised, muddy weight.
+   Display sizes use the regular cut, which is how the face is meant to sit;
+   only the small brand lockup takes the bold. */
+.brand strong {
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 /* High-contrast display faces want a little more air at large sizes and
