@@ -17,8 +17,8 @@
      vinext (emits @font-face with no src). Newsreader is an editorial serif
      with real voice; Public Sans holds up in dense tables; Plex Mono carries
      identifiers where 0/O and 1/l must not be confused. */
-  --font-serif: "Instrument Serif", Georgia, serif;
-  --font-sans: "Instrument Sans", system-ui, -apple-system, sans-serif;
+  --font-serif: "Alegreya", Georgia, serif;
+  --font-sans: "Alegreya Sans", system-ui, -apple-system, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
 
   /* Type scale. The display size is spent once per screen — on the answer. */
@@ -32,49 +32,49 @@
   --font-size-xs: 0.75rem;
 
   /* Paper and ink */
-  --paper: #faf6ee;
-  --paper-sunken: #f0e9dc;
-  --surface: #fffdf8;
-  --surface-2: #f6f1e6;
+  --paper: #fbf6f2;
+  --paper-sunken: #f3e7de;
+  --surface: #fffcf9;
+  --surface-2: #f8efe8;
 
-  --ink: #221f1a;
-  --ink-soft: #5c5347;
-  --ink-faint: #6e6455;
+  --ink: #2b1a14;
+  --ink-soft: #6e4d40;
+  --ink-faint: #7a5648;
 
-  --rule: #e0d7c6;
-  --rule-strong: #c2b7a1;
+  --rule: #ecd8cb;
+  --rule-strong: #d5b5a2;
 
   /* Ivy — the institution itself: navigation, primary action, verified state */
-  --ivy: #2c5a55;
-  --ivy-deep: #16302c;
-  --ivy-mid: #4d7f78;
-  --ivy-tint: #e6efec;
-  --on-ivy: #fffdf8;
+  --ivy: #8a4636;
+  --ivy-deep: #43241e;
+  --ivy-mid: #b16b5e;
+  --ivy-tint: #f5e6e1;
+  --on-ivy: #fffcf9;
 
   /* Brass — the seal. Certified sources, approved packages, the one number. */
-  --brass: #8a6a1c;
-  --brass-deep: #6a5010;
-  --brass-tint: #faf3e0;
-  --brass-light: #d9c07f;
+  --brass: #a34a1a;
+  --brass-deep: #873d14;
+  --brass-tint: #fceee2;
+  --brass-light: #e27b34;
 
   /* Text tuned for the dark ivy panels. Held here so every raw colour in the
      system lives in one block (enforced by tests/ui-integrity.test.mjs). */
-  --ink-on-ivy: #e8e0cf;
-  --ink-soft-on-ivy: #cfc4ab;
-  --ink-faint-on-ivy: #b3a992;
-  --ivy-mid-on-ivy: #9fc4bc;
+  --ink-on-ivy: #f6e7de;
+  --ink-soft-on-ivy: #e0c3b2;
+  --ink-faint-on-ivy: #c9a695;
+  --ivy-mid-on-ivy: #d3927c;
 
   /* States. Severity is a single warm ramp: claret, terracotta, brass. */
-  --claret: #8c2f2f;
-  --claret-deep: #6d2222;
-  --claret-tint: #f9ecea;
-  --terracotta: #a84a1c;
-  --terracotta-deep: #8a3b14;
-  --terracotta-light: #e8a06d;
-  --terracotta-tint: #fbeee4;
-  --info: #2f4f7a;
-  --info-deep: #22395a;
-  --info-tint: #eaeff6;
+  --claret: #8f2f28;
+  --claret-deep: #73241e;
+  --claret-tint: #f9e6e3;
+  --terracotta: #a8402f;
+  --terracotta-deep: #8f3a2c;
+  --terracotta-light: #e3a680;
+  --terracotta-tint: #fbe9e2;
+  --info: #8a4636;
+  --info-deep: #6d3729;
+  --info-tint: #f5e6e1;
 
   /* Shape. Editorial means rules carry structure and shadows are rare. */
   --radius-sm: 3px;
@@ -279,6 +279,12 @@
   --color-fff4e4: var(--terracotta-tint); /* was #fff4e4 */
   --color-fff8ec: var(--terracotta-tint); /* was #fff8ec */
   --color-fff8ee: var(--terracotta-tint); /* was #fff8ee */
+  --chart-1: #a8402f;
+  --chart-2: #d7704c;
+  --chart-3: #d87348;
+  --chart-4: #d2886a;
+  --chart-5: #e3a680;
+
 }
 
 * {
@@ -797,7 +803,7 @@ textarea:focus-visible {
   border-radius: 16px;
   color: white;
   background:
-    radial-gradient(circle at 87% 10%, rgba(100,227,186,.2), transparent 30%),
+    radial-gradient(circle at 87% 10%, color-mix(in oklab, var(--terracotta-light) 20%, transparent), transparent 30%),
     radial-gradient(circle at 18% 110%, rgba(93,127,241,.25), transparent 42%),
     var(--navy);
   box-shadow: var(--shadow);
@@ -811,10 +817,10 @@ textarea:focus-visible {
   height: 48px;
   display: grid;
   place-items: center;
-  border: 1px solid rgba(100,227,186,.28);
+  border: 1px solid color-mix(in oklab, var(--terracotta-light) 28.0%, transparent);
   border-radius: 14px 14px 14px 3px;
   color: var(--mint);
-  background: rgba(100,227,186,.08);
+  background: color-mix(in oklab, var(--terracotta-light) 8%, transparent);
   font-size: 20px;
 }
 
@@ -822,7 +828,7 @@ textarea:focus-visible {
   content: "";
   position: absolute;
   inset: -9px;
-  border: 1px solid rgba(100,227,186,.08);
+  border: 1px solid color-mix(in oklab, var(--terracotta-light) 8%, transparent);
   border-radius: 19px 19px 19px 5px;
 }
 
@@ -1195,7 +1201,7 @@ textarea:focus-visible {
 
 .query-box:focus-within {
   border-color: var(--color-8da99f);
-  box-shadow: 0 0 0 4px rgba(100,227,186,.12);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--terracotta-light) 12%, transparent);
 }
 
 .query-box textarea {
@@ -1288,7 +1294,7 @@ textarea:focus-visible {
   height: 23px;
   display: grid;
   place-items: center;
-  border: 1px solid rgba(100,227,186,.25);
+  border: 1px solid color-mix(in oklab, var(--terracotta-light) 25%, transparent);
   border-radius: 7px;
   color: var(--mint);
   font-size: var(--font-size-xs);
@@ -1334,7 +1340,7 @@ textarea:focus-visible {
 }
 
 @keyframes pulse {
-  to { transform: scale(1.06); box-shadow: 0 0 0 9px rgba(100,227,186,.12); }
+  to { transform: scale(1.06); box-shadow: 0 0 0 9px color-mix(in oklab, var(--terracotta-light) 12%, transparent); }
 }
 
 .thinking-state strong,
@@ -2590,7 +2596,7 @@ textarea:focus-visible {
   border-radius: 16px;
   color: var(--surface);
   background:
-    radial-gradient(circle at 75% 0, rgba(100,227,186,.18), transparent 34%),
+    radial-gradient(circle at 75% 0, color-mix(in oklab, var(--terracotta-light) 18%, transparent), transparent 34%),
     var(--navy);
   box-shadow: var(--shadow);
 }
@@ -2809,9 +2815,9 @@ textarea:focus-visible {
 }
 
 .scenario-mode {
-  border-color: rgba(100,227,186,.25);
+  border-color: color-mix(in oklab, var(--terracotta-light) 25%, transparent);
   color: var(--mint);
-  background: rgba(100,227,186,.08);
+  background: color-mix(in oklab, var(--terracotta-light) 8%, transparent);
 }
 
 .scenario-mode-tabs {
@@ -3428,10 +3434,10 @@ textarea:focus-visible {
   height: 44px;
   display: grid;
   place-items: center;
-  border: 1px solid rgba(100,227,186,.25);
+  border: 1px solid color-mix(in oklab, var(--terracotta-light) 25%, transparent);
   border-radius: 13px;
   color: var(--mint);
-  background: rgba(100,227,186,.08);
+  background: color-mix(in oklab, var(--terracotta-light) 8%, transparent);
   font-size: 18px;
 }
 
@@ -4696,8 +4702,8 @@ h3,
 .section-heading h2,
 .brand strong {
   font-family: var(--font-serif);
-  font-weight: 400;
-  letter-spacing: -0.005em;
+  font-weight: 600;
+  letter-spacing: -0.004em;
 }
 
 /* High-contrast display faces want a little more air at large sizes and

@@ -2,7 +2,7 @@
 
 The source of truth for every visual decision. Read this before building UI.
 
-**System: Scriptorium.** Established 2026-07-31. Supersedes the earlier
+**System: Terracotta.** Established 2026-07-31. Supersedes the earlier
 navy/ochre attempt, which was rejected for being a palette swap over unchanged
 structure — the lesson worth keeping is that **structure carries more of a
 design's identity than colour does**.
@@ -20,56 +20,50 @@ photography, no single school's colours.
 
 ## Colour
 
-Warm cream paper and warm ink. **Terracotta leads** — it carries action and
-voice: primary buttons, links, eyebrows, the seal, the active section marker.
-Pine holds the ground and means *verified*. Gold marks what has been
-*certified and sealed*.
+An entirely earthen palette — **no green anywhere in the system**. Built from a
+supplied terracotta set. Token *names* are historical (`--ivy`, `--brass`) and
+kept deliberately: ~150 rules and 183 remapped aliases reference them, so only
+values moved. `--ivy` no longer means green; it means the mauve-clay secondary.
 
-Terracotta at `#a84a1c` measures only 2.4:1 on the pine sidebar, so dark
-grounds use `--terracotta-light` (6.5:1). Never put mid-tone terracotta on pine.
+**The supplied swatches could not carry text or solid buttons.** Measured on
+cream, the best of the nine reached only 3.87:1, and none reached 4.5:1 with
+white on top. So the mid-tones are used where they excel — as fills, chart
+series, and light cuts on dark ground — and the text/action values are darker
+cuts derived from them. That split is the whole structure of this palette.
 
-Severity still runs claret → terracotta → gold. Brand and severity therefore
-share terracotta, which is tolerable only because the treatments differ — a
-solid fill is an action, a tinted pill is a state — and because severity always
-carries its word. If that ever stops being true, split them. Token *names* are historical (`--ivy`,
-`--brass`) and are kept because ~150 rules and 183 remapped aliases reference
-them — only the values moved.
+### Used directly from the supplied set
 
-| Role | Token | Value |
+| Swatch | Hex | Where |
 |---|---|---|
-| Page ground | `--paper` | `#faf6ee` |
-| Panel | `--surface` | `#fffdf8` |
-| Raised / alt row | `--surface-2` | `#f6f1e6` |
-| Well, track | `--paper-sunken` | `#f0e9dc` |
-| Text | `--ink` | `#221f1a` |
-| Secondary text | `--ink-soft` | `#5c5347` |
-| Tertiary text | `--ink-faint` | `#6e6455` |
-| Hairline | `--rule` | `#e0d7c6` |
-| Emphasis rule | `--rule-strong` | `#c2b7a1` |
-| Institution / primary (pine) | `--ivy` | `#2c5a55` |
-| Sidebar / dark panel | `--ivy-deep` | `#16302c` |
-| Mid pine | `--ivy-mid` | `#4d7f78` |
-| Pine tint | `--ivy-tint` | `#e6efec` |
-| Certified / seal (gold) | `--brass` | `#8a6a1c` |
-| Seal, on dark | `--brass-light` | `#d9c07f` |
-| Gold tint | `--brass-tint` | `#faf3e0` |
-| Critical | `--claret` | `#8c2f2f` |
-| **Action, voice, brand** | `--terracotta` | `#a84a1c` |
-| Action, pressed | `--terracotta-deep` | `#8a3b14` |
-| Action, on dark ground | `--terracotta-light` | `#e8a06d` |
-| Informational | `--info` | `#2f4f7a` |
+| Pale Terracotta | `#e3a680` | `--terracotta-light` — action on dark ground (6.7:1 on the sidebar) |
+| Mauve Terracotta | `#b16b5e` | `--ivy-mid` |
+| Canyon Clay | `#d3927c` | `--ivy-mid-on-ivy` — status pip, replaces the old green |
+| Terracotta Pot | `#e27b34` | `--brass-light` — the seal on dark |
+| Terracotta / Brick / Dusty | `#d87348` `#d7704c` `#d2886a` | ordered chart ramp |
 
-Severity is one warm ramp — claret → terracotta → brass. Because Medium shares
-brass with the emphasis role, **severity must never be encoded by colour
-alone**; every chip carries its word.
+### Derived, because the set has no dark end
 
-### Verified contrast
+| Role | Token | Value | Ratio |
+|---|---|---|---|
+| Page ground | `--paper` | `#fbf6f2` | — |
+| Panel | `--surface` | `#fffcf9` | — |
+| Text | `--ink` | `#2b1a14` | 15.5:1 |
+| Secondary text | `--ink-soft` | `#6e4d40` | 7.0:1 |
+| Tertiary text | `--ink-faint` | `#7a5648` | 6.0:1 on paper, 5.3:1 on the tightest tint |
+| Hairline | `--rule` | `#ecd8cb` | — |
+| Emphasis rule | `--rule-strong` | `#d5b5a2` | — |
+| **Action / brand** | `--terracotta` | `#a8402f` | 5.7:1; 6.0:1 with cream on it |
+| Action pressed | `--terracotta-deep` | `#8f3a2c` | 7.0:1 |
+| Sidebar / dark ground | `--ivy-deep` | `#43241e` | 11.5:1 with cream text |
+| Secondary brand | `--ivy` | `#8a4636` | 6.5:1 |
+| Certified / seal | `--brass` | `#a34a1a` | 5.5:1 |
+| Critical | `--claret` | `#8f2f28` | — |
+| Informational | `--info` | `#8a4636` | mauve, not blue — nothing foreign to the palette |
 
-Every text/ground pair across all six views was measured in the browser with
-correct alpha compositing: **0 failures against WCAG AA**, sidebar included. `--ink-faint` is the
-floor at 5.41:1 on paper (lowest ratio anywhere: 4.95:1); do not introduce anything lighter for
-text. It is tuned against `--paper`, which is darker than `--surface` — check
-new colours against paper, not white.
+Severity runs claret → terracotta → brass, all warm. Since brand and severity
+share the family, **status must never be encoded by colour alone**; every chip
+carries its word. Treatments differ too: a solid fill is an action, a tinted
+pill is a state.
 
 ### Dark panels
 
@@ -95,8 +89,8 @@ fallback.
 
 | Variable | Face | Used for |
 |---|---|---|
-| `--font-serif` | **Instrument Serif** | Anything that speaks: headings, answer headlines |
-| `--font-sans` | **Instrument Sans** | Anything read in bulk: body, UI, dense tables |
+| `--font-serif` | **Alegreya** | Anything that speaks: headings, answer headlines |
+| `--font-sans` | **Alegreya Sans** | Anything read in bulk: body, UI, dense tables |
 | `--font-mono` | **IBM Plex Mono** | Identifiers: rule codes, survey codes, query plans |
 
 Scale: `--text-display` `clamp(2.5rem, 1.4rem + 3.6vw, 4rem)` · `--text-h1`
@@ -104,9 +98,9 @@ Scale: `--text-display` `clamp(2.5rem, 1.4rem + 3.6vw, 4rem)` · `--text-h1`
 `--text-h3` `1.0625rem` · `--text-body` `0.9375rem` · `--text-sm` `0.875rem` ·
 `--text-xs` `0.75rem`.
 
-Instrument Serif ships a **single weight by design**. Headings are 400 and
-hierarchy comes from size, not weight — do not reach for a bold heading, there
-isn't one. Its high stroke contrast carries the emphasis instead.
+Alegreya is a superfamily drawn for literature and long-form reading, and it
+has a full weight range — headings are 600. It pairs with Alegreya Sans by
+construction, so the two share proportions and colour on the page.
 
 **12px is the floor.** The stylesheet previously carried 48 rules at 10–11px;
 they were lifted. Nothing smaller ships.
@@ -120,7 +114,7 @@ Rules carry structure; shadows are for things that genuinely float (the audit
 drawer, modals). Radii are small: `--radius-sm` 3px, `--radius` 5px,
 `--radius-lg` 8px.
 
-**Navigation is a 268px pine sidebar**, treated as a designed object rather
+**Navigation is a 268px deep-sienna sidebar**, treated as a designed object rather
 than a slab: pressed-paper grain (inlined `feTurbulence`, no request), the
 engraved seal as the brand mark, and a colonnade along its foot. The active
 section is marked by a brass rule at the leading edge, the way a ledger marks
