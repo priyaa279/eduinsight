@@ -20,8 +20,18 @@ photography, no single school's colours.
 
 ## Colour
 
-Warm cream paper and warm ink. Pine is the institution; gold is what has been
-certified; terracotta carries attention. Token *names* are historical (`--ivy`,
+Warm cream paper and warm ink. **Terracotta leads** — it carries action and
+voice: primary buttons, links, eyebrows, the seal, the active section marker.
+Pine holds the ground and means *verified*. Gold marks what has been
+*certified and sealed*.
+
+Terracotta at `#a84a1c` measures only 2.4:1 on the pine sidebar, so dark
+grounds use `--terracotta-light` (6.5:1). Never put mid-tone terracotta on pine.
+
+Severity still runs claret → terracotta → gold. Brand and severity therefore
+share terracotta, which is tolerable only because the treatments differ — a
+solid fill is an action, a tinted pill is a state — and because severity always
+carries its word. If that ever stops being true, split them. Token *names* are historical (`--ivy`,
 `--brass`) and are kept because ~150 rules and 183 remapped aliases reference
 them — only the values moved.
 
@@ -44,7 +54,9 @@ them — only the values moved.
 | Seal, on dark | `--brass-light` | `#d9c07f` |
 | Gold tint | `--brass-tint` | `#faf3e0` |
 | Critical | `--claret` | `#8c2f2f` |
-| Attention / high | `--terracotta` | `#a84a1c` |
+| **Action, voice, brand** | `--terracotta` | `#a84a1c` |
+| Action, pressed | `--terracotta-deep` | `#8a3b14` |
+| Action, on dark ground | `--terracotta-light` | `#e8a06d` |
 | Informational | `--info` | `#2f4f7a` |
 
 Severity is one warm ramp — claret → terracotta → brass. Because Medium shares
@@ -83,14 +95,18 @@ fallback.
 
 | Variable | Face | Used for |
 |---|---|---|
-| `--font-serif` | **Fraunces** (variable `opsz`, `SOFT`, `WONK`) | Anything that speaks: headings, answer headlines |
-| `--font-sans` | **Karla** | Anything read in bulk: body, UI, dense tables |
+| `--font-serif` | **Instrument Serif** | Anything that speaks: headings, answer headlines |
+| `--font-sans` | **Instrument Sans** | Anything read in bulk: body, UI, dense tables |
 | `--font-mono` | **IBM Plex Mono** | Identifiers: rule codes, survey codes, query plans |
 
 Scale: `--text-display` `clamp(2.5rem, 1.4rem + 3.6vw, 4rem)` · `--text-h1`
 `clamp(1.75rem, 1.15rem + 1.9vw, 2.5rem)` · `--text-h2` `1.375rem` ·
 `--text-h3` `1.0625rem` · `--text-body` `0.9375rem` · `--text-sm` `0.875rem` ·
 `--text-xs` `0.75rem`.
+
+Instrument Serif ships a **single weight by design**. Headings are 400 and
+hierarchy comes from size, not weight — do not reach for a bold heading, there
+isn't one. Its high stroke contrast carries the emphasis instead.
 
 **12px is the floor.** The stylesheet previously carried 48 rules at 10–11px;
 they were lifted. Nothing smaller ships.

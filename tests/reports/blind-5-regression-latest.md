@@ -1,6 +1,6 @@
 # EduInsight Blind Set #5 — untouched first run
 
-- Executed: 2026-07-31T04:44:59.020Z
+- Executed: 2026-07-31T05:03:56.500Z
 - Suite SHA-256: `b50d2edc5e53394dee9bf8330348e8798a62af990c611879fb32ba8dc45b6b07`
 - Frozen engine SHA-256: `874cea984db287f660f84891da2bc10523910e86d6e1561814ed4b450785c207`
 - Dataset: `app/data/ask-eduinsight.generated.json`
