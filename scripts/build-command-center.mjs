@@ -6,12 +6,17 @@ import { buildComPackage } from "../lib/ipeds-com.mjs";
 import { buildEfPackage } from "../lib/ipeds-ef.mjs";
 import { loadIpedsSpecs } from "../lib/ipeds-specs.mjs";
 import { buildIpedsSuite } from "../lib/ipeds-suite.mjs";
+import {
+  evaluateDataQuality,
+  summarizeDataQuality,
+} from "../lib/data-quality/evaluate.mjs";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const uploadDir = path.join(projectRoot, "data", "sample-university-upload");
 const processedDir = path.join(projectRoot, "data", "processed");
 const appDataDir = path.join(projectRoot, "app", "data");
 const ipedsPackageDir = path.join(processedDir, "ipeds", "2025-26");
+const generatedAt = "2025-10-14T09:42:00-07:00";
 
 await Promise.all([
   fs.mkdir(processedDir, { recursive: true }),
@@ -130,7 +135,6 @@ const [
   sections,
   sectionEnrollments,
   ipedsResults,
-  qualityIssueLog,
   completions,
   financialAid,
 ] = await Promise.all([
@@ -142,16 +146,37 @@ const [
   readCsv("sections.csv"),
   readCsv("section_enrollments.csv"),
   readCsv("ipeds_validation_results.csv"),
-  readCsv("data_quality_issue_log.csv"),
   readCsv("completions.csv"),
   readCsv("financial_aid.csv"),
 ]);
 
 const contracts = {
   "institution.csv": ["institution_id", "institution_name", "data_classification"],
-  "terms.csv": ["term_id", "academic_year", "season", "census_date", "is_current"],
-  "programs.csv": ["program_id", "program_name", "degree_level", "cip_code"],
-  "students.csv": ["student_id", "degree_seeking", "ftft_cohort_term_id"],
+  "terms.csv": [
+    "term_id",
+    "academic_year",
+    "season",
+    "start_date",
+    "census_date",
+    "is_current",
+  ],
+  "programs.csv": [
+    "program_id",
+    "program_name",
+    "degree_level",
+    "cip_code",
+    "active_from",
+    "active_to",
+  ],
+  "students.csv": [
+    "student_id",
+    "birth_year",
+    "race_ethnicity",
+    "entry_term_id",
+    "degree_seeking",
+    "ftft_cohort_term_id",
+    "primary_program_id",
+  ],
   "student_terms.csv": [
     "student_id",
     "term_id",
@@ -171,15 +196,6 @@ const contracts = {
     "check_id",
     "status",
     "weight",
-  ],
-  "data_quality_issue_log.csv": [
-    "issue_id",
-    "severity",
-    "title",
-    "affected_records",
-    "status",
-    "opened_at",
-    "resolved_at",
   ],
   "completions.csv": [
     "completion_id",
@@ -209,7 +225,6 @@ for (const [fileName, requiredColumns] of Object.entries(contracts)) {
     "sections.csv": sections,
     "section_enrollments.csv": sectionEnrollments,
     "ipeds_validation_results.csv": ipedsResults,
-    "data_quality_issue_log.csv": qualityIssueLog,
     "completions.csv": completions,
     "financial_aid.csv": financialAid,
   }[fileName];
@@ -224,7 +239,6 @@ requireUnique("student_terms.csv", studentTerms, ["student_id", "term_id"]);
 requireUnique("sections.csv", sections, ["section_id"]);
 requireUnique("section_enrollments.csv", sectionEnrollments, ["section_id", "student_id"]);
 requireUnique("ipeds_validation_results.csv", ipedsResults, ["run_id", "check_id"]);
-requireUnique("data_quality_issue_log.csv", qualityIssueLog, ["issue_id"]);
 requireUnique("completions.csv", completions, ["completion_id"]);
 requireUnique("financial_aid.csv", financialAid, ["aid_record_id"]);
 
@@ -356,45 +370,40 @@ if (Math.abs(currentIpedsRun.total_weight - 100) >= 0.001) {
   );
 }
 
-const openQualityIssues = qualityIssueLog.filter((issue) => issue.status === "Open");
-const criticalQualityIssues = openQualityIssues.filter((issue) => issue.severity === "Critical");
-const snapshotDates = [
-  "2025-09-09",
-  "2025-09-16",
-  "2025-09-23",
-  "2025-09-30",
-  "2025-10-07",
-  "2025-10-14",
-];
-const qualityHistory = snapshotDates.map((date) => {
-  const asOf = new Date(`${date}T23:59:59`);
-  const open = qualityIssueLog.filter((issue) => {
-    const opened = new Date(issue.opened_at.replace(" ", "T"));
-    const resolved = issue.resolved_at
-      ? new Date(issue.resolved_at.replace(" ", "T"))
-      : null;
-    return opened <= asOf && (!resolved || resolved > asOf);
-  }).length;
-  return { label: date.slice(5), value: open };
-});
-const priorWeekQuality = qualityHistory.at(-2).value;
-
 const currentStudentTermRows = studentTermsByTerm.get(currentTerm.term_id);
-const fullTimeCreditMismatch = currentStudentTermRows.filter(
-  (row) =>
-    row.level === "UG" &&
-    row.attendance_status === "F" &&
-    Number(row.attempted_credits) < 12,
-).length;
-const loggedMismatch = openQualityIssues.find(
-  (issue) => issue.rule_id === "UG_FT_CREDIT_THRESHOLD",
+const dataQualityContext = {
+  generatedAt,
+  institutions,
+  terms,
+  programs,
+  students,
+  studentTerms,
+  sections,
+  sectionEnrollments,
+  completions,
+  financialAid,
+  currentTerm,
+  priorTerm,
+  currentStudentTermRows,
+};
+const dataQualityEvaluation = evaluateDataQuality(dataQualityContext);
+const qualityFindings = dataQualityEvaluation.activeFindings;
+const dataQualitySummary = summarizeDataQuality(
+  dataQualityEvaluation.results,
+  qualityFindings,
 );
-if (!loggedMismatch) throw new Error("The quality issue log is missing UG_FT_CREDIT_THRESHOLD.");
-if (Number(loggedMismatch.affected_records) !== fullTimeCreditMismatch) {
-  throw new Error(
-    `Quality reconciliation failed: SIS contains ${fullTimeCreditMismatch} full-time credit mismatches, but the issue log says ${loggedMismatch.affected_records}.`,
-  );
+const openQualityIssues = qualityFindings;
+const criticalQualityIssues = openQualityIssues.filter(
+  (issue) => issue.severity === "Critical",
+);
+const fullTimeCreditResult = dataQualityEvaluation.results.find(
+  (result) => result.ruleId === "DQ-ENR-001",
+);
+if (!fullTimeCreditResult || fullTimeCreditResult.status !== "FAIL") {
+  throw new Error("DQ-ENR-001 did not produce the expected source-derived failure.");
 }
+const fullTimeCreditMismatch = fullTimeCreditResult.violationCount;
+const qualityHistory = [{ label: currentTerm.term_id, value: openQualityIssues.length }];
 
 const programById = new Map(programs.map((program) => [program.program_id, program]));
 const currentProgramCounts = new Map();
@@ -717,124 +726,36 @@ const sectionFacts = sections.map((section) => {
   };
 });
 
-function sampleRowsForRule(ruleId) {
-  if (ruleId === "UG_FT_CREDIT_THRESHOLD") {
-    return studentTerms
-      .filter(
-        (row) =>
-          row.level === "UG" &&
-          row.attendance_status === "F" &&
-          Number(row.attempted_credits) < 12,
-      )
-      .slice(0, 5)
-      .map((row) => ({
-        student_id: row.student_id,
-        term_id: row.term_id,
-        program_id: row.program_id,
-        attempted_credits: Number(row.attempted_credits),
-        attendance_status: row.attendance_status,
-      }));
-  }
-  if (ruleId === "DEMOGRAPHIC_COMPLETENESS") {
-    return students
-      .filter((row) => !row.race_ethnicity)
-      .slice(0, 5)
-      .map((row) => ({
-        student_id: row.student_id,
-        entry_term_id: row.entry_term_id,
-        primary_program_id: row.primary_program_id,
-        race_ethnicity: row.race_ethnicity || "(blank)",
-      }));
-  }
-  if (ruleId === "AID_WITHOUT_ENROLLMENT") {
-    return qualityIssueLog
-      .filter((row) => row.rule_id === ruleId)
-      .slice(0, 1)
-      .map((row) => ({
-        issue_id: row.issue_id,
-        source_system: row.source_system,
-        affected_records: Number(row.affected_records),
-        note: "The current upload contains an aggregate finding; row-level aid records were not supplied.",
-      }));
-  }
-  if (ruleId === "CIP_EFFECTIVE_DATING") {
-    return programs.slice(0, 3).map((row) => ({
-      program_id: row.program_id,
-      program_name: row.program_name,
-      cip_code: row.cip_code,
-      active_from: row.active_from,
-      active_to: row.active_to || "(current)",
-    }));
-  }
-  return qualityIssueLog
-    .filter((row) => row.rule_id === ruleId)
-    .slice(0, 3)
-    .map((row) => ({
-      issue_id: row.issue_id,
-      source_system: row.source_system,
-      affected_records: Number(row.affected_records),
-      status: row.status,
-    }));
-}
-
-const qualityFindings = qualityIssueLog.map((issue, index) => ({
-  issueId: issue.issue_id,
-  severity: issue.severity,
-  title: issue.title,
-  description:
-    issue.rule_id === "UG_FT_CREDIT_THRESHOLD"
-      ? "Undergraduate students are coded full-time with fewer than 12 attempted credits in the governed census snapshot."
-      : `The governed ${issue.source_system} check found records that violate ${issue.rule_id}.`,
-  ruleId: issue.rule_id,
-  affectedRecords: Number(issue.affected_records),
-  owner: issue.owner,
-  sourceSystem: issue.source_system,
-  status: issue.status,
-  lifecycleStatus:
-    issue.status === "Resolved"
-      ? "Resolved"
-      : index % 5 === 0
-        ? "Investigating"
-        : index % 7 === 0
-          ? "Reviewed"
-          : "New",
-  openedAt: issue.opened_at,
-  resolvedAt: issue.resolved_at,
-  sampleRows: sampleRowsForRule(issue.rule_id),
-}));
-
-const firedByImplementationRule = new Map();
-for (const finding of qualityFindings) {
-  firedByImplementationRule.set(
-    finding.ruleId,
-    (firedByImplementationRule.get(finding.ruleId) ?? 0) + finding.affectedRecords,
-  );
-}
-const qualityRuleCatalog = DATA_QUALITY_RULES.map((rule) => ({
-  ...rule,
-  enabled: [
-    "UG_FT_CREDIT_THRESHOLD",
-    "DEMOGRAPHIC_COMPLETENESS",
-    "AID_WITHOUT_ENROLLMENT",
-    "CIP_EFFECTIVE_DATING",
-    "YOY_HEADCOUNT_VARIANCE",
-    "REFERENTIAL_INTEGRITY",
-  ].includes(rule.implementationRule),
-  lastFiredCount: firedByImplementationRule.get(rule.implementationRule) ?? 0,
-  coverage:
-    firedByImplementationRule.has(rule.implementationRule)
-      ? "Covered under live rule"
-      : [
-            "UG_FT_CREDIT_THRESHOLD",
-            "DEMOGRAPHIC_COMPLETENESS",
-            "AID_WITHOUT_ENROLLMENT",
-            "CIP_EFFECTIVE_DATING",
-            "YOY_HEADCOUNT_VARIANCE",
-            "REFERENTIAL_INTEGRITY",
-          ].includes(rule.implementationRule)
-        ? "Covered — no current finding"
-        : "Cataloged — implementation pending",
-}));
+const resultByRuleId = new Map(
+  dataQualityEvaluation.results.map((result) => [result.ruleId, result]),
+);
+const qualityRuleCatalog = DATA_QUALITY_RULES.map((rule) => {
+  const result = resultByRuleId.get(rule.id);
+  const executed = result?.status === "PASS" || result?.status === "FAIL";
+  return {
+    ...rule,
+    severity: result?.severity ?? null,
+    enabled: executed,
+    executionState: executed
+      ? "ENABLED_EXECUTED"
+      : "NOT_EVALUATED_MISSING_DATA",
+    lastEvaluated: executed ? generatedAt : null,
+    lastResult: result?.status ?? "NOT_EVALUATED",
+    lastViolationCount: result?.violationCount,
+    lastFiredCount: result?.status === "FAIL" ? result.violationCount : 0,
+    coverage: executed
+      ? result.status === "FAIL"
+        ? "Executed — violation detected"
+        : "Executed — passed"
+      : `Not evaluated — ${result?.reasonNotEvaluated ?? "missing required source data"}`,
+    reasonNotEvaluated: result?.reasonNotEvaluated ?? null,
+    sourceFiles: result?.sourceFiles ?? [],
+    sourceFields: result?.sourceFields ?? [],
+    parameters: result?.parameters ?? null,
+    scopeDescription: result?.scopeDescription ?? null,
+    countSemantics: result?.countSemantics ?? null,
+  };
+});
 
 const ipedsComPackage = buildComPackage({
   completions,
@@ -864,7 +785,7 @@ const ipedsSuite = buildIpedsSuite({
 const ipedsSpecs = loadIpedsSpecs();
 
 const askEduInsightDataset = {
-  generatedAt: "2025-10-14T09:42:00-07:00",
+  generatedAt,
   dataBoundary: institutions[0].data_classification,
   institution: {
     id: institutions[0].institution_id,
@@ -905,6 +826,8 @@ const askEduInsightDataset = {
   })),
   qualityIssues: qualityFindings,
   qualityRuleCatalog,
+  qualityRuleResults: dataQualityEvaluation.results,
+  qualityEvaluationSummary: dataQualitySummary,
   ipedsChecks: ipedsResults.map((result) => ({
     runId: result.run_id,
     sequence: Number(result.run_sequence),
@@ -937,7 +860,6 @@ const askEduInsightDataset = {
     "sections.csv",
     "section_enrollments.csv",
     "ipeds_validation_results.csv",
-    "data_quality_issue_log.csv",
     "completions.csv",
     "financial_aid.csv",
   ],
@@ -951,7 +873,7 @@ const brief = [
     subtitle: "Data Quality Agent · reconciled to SIS upload",
     destination: "quality",
     affectedRecords: fullTimeCreditMismatch,
-    sourceFiles: ["student_terms.csv", "data_quality_issue_log.csv"],
+    sourceFiles: ["student_terms.csv", "terms.csv"],
   },
   {
     priority: 2,
@@ -974,8 +896,8 @@ const brief = [
 ];
 
 const commandCenter = {
-  generatedAt: "2025-10-14T09:42:00-07:00",
-  pipelineVersion: "1.0.0",
+  generatedAt,
+  pipelineVersion: "2.0.0-dq-source-derived",
   dataBoundary: institutions[0].data_classification,
   institution: {
     id: institutions[0].institution_id,
@@ -988,6 +910,8 @@ const commandCenter = {
   activeAgents: 5,
   qualityFindings,
   qualityRuleCatalog,
+  qualityRuleResults: dataQualityEvaluation.results,
+  qualityEvaluationSummary: dataQualitySummary,
   ipedsComPackage,
   ipedsEfPackage,
   ipedsSuite,
@@ -1033,12 +957,12 @@ const commandCenter = {
       label: "Open quality issues",
       value: openQualityIssues.length,
       display: String(openQualityIssues.length),
-      comparisonValue: priorWeekQuality,
-      delta: openQualityIssues.length - priorWeekQuality,
-      deltaDisplay: `${openQualityIssues.length - priorWeekQuality} this week`,
+      comparisonValue: null,
+      delta: null,
+      deltaDisplay: "current evaluation",
       context: `${criticalQualityIssues.length} critical`,
       trend: qualityHistory.map((item) => item.value),
-      sources: ["data_quality_issue_log.csv"],
+      sources: ["data-quality-results.json"],
     },
   },
   brief,
@@ -1080,7 +1004,7 @@ const commandCenter = {
       },
       {
         label: "Cross-source reconciliation",
-        detail: `${fullTimeCreditMismatch} SIS mismatches agree with the issue log`,
+        detail: `${dataQualitySummary.executed} source-derived rules executed; ${dataQualitySummary.fail} failed`,
       },
       {
         label: "Published result",
@@ -1097,7 +1021,6 @@ const commandCenter = {
     { file: "sections.csv", rows: sections.length, role: "Course capacity" },
     { file: "section_enrollments.csv", rows: sectionEnrollments.length, role: "Filled seats" },
     { file: "ipeds_validation_results.csv", rows: ipedsResults.length, role: "IPEDS readiness" },
-    { file: "data_quality_issue_log.csv", rows: qualityIssueLog.length, role: "Open and resolved findings" },
     { file: "completions.csv", rows: completions.length, role: "IPEDS Completions source population" },
     { file: "financial_aid.csv", rows: financialAid.length, role: "Financial aid and Pell-recipient source population" },
   ],
@@ -1115,6 +1038,14 @@ const validationReport = {
     { check: "prior_headcount", status: "passed", value: priorHeadcount },
     { check: "retention_cohort", status: "passed", value: currentRetention.rate },
     { check: "full_time_credit_mismatch_reconciliation", status: "passed", value: fullTimeCreditMismatch },
+    {
+      check: "data_quality_rule_execution",
+      status: "passed",
+      executed: dataQualitySummary.executed,
+      pass: dataQualitySummary.pass,
+      fail: dataQualitySummary.fail,
+      notEvaluated: dataQualitySummary.notEvaluated,
+    },
     { check: "ipeds_weight_total", status: Math.abs(currentIpedsRun.total_weight - 100) < 0.001 ? "passed" : "failed", value: currentIpedsRun.total_weight },
   ],
 };
@@ -1135,6 +1066,20 @@ await Promise.all([
   fs.writeFile(
     path.join(processedDir, "command-center.json"),
     `${JSON.stringify(commandCenter, null, 2)}\n`,
+    "utf8",
+  ),
+  fs.writeFile(
+    path.join(processedDir, "data-quality-results.json"),
+    `${JSON.stringify(
+      {
+        generatedAt,
+        summary: dataQualitySummary,
+        results: dataQualityEvaluation.results,
+        activeFindings: qualityFindings,
+      },
+      null,
+      2,
+    )}\n`,
     "utf8",
   ),
   fs.writeFile(
@@ -1201,8 +1146,8 @@ await Promise.all([
         {
           metric: "open_quality_issues",
           current_value: openQualityIssues.length,
-          comparison_value: priorWeekQuality,
-          delta: openQualityIssues.length - priorWeekQuality,
+          comparison_value: "",
+          delta: "",
           display: commandCenter.kpis.openQualityIssues.display,
         },
       ],

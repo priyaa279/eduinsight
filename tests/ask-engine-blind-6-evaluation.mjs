@@ -741,7 +741,7 @@ const openQuality = dataset.qualityIssues.filter((issue) => issue.status === "Op
   ["Count unresolved governed quality findings.", "count"],
   ["List every open critical data-quality finding.", "critical"],
   ["Which quality issue affects the greatest number of records?", "ranking"],
-  ["Explain DQ-1004 and its record impact.", "detail"],
+  ["Explain DQ-COM-004 and its record impact.", "detail"],
   ["Group open quality issue counts by owner.", "owner"],
   ["Aggregate affected records by source system.", "source"],
   ["How many resolved quality findings are logged?", "resolved"],
@@ -775,7 +775,7 @@ const openQuality = dataset.qualityIssues.filter((issue) => issue.status === "Op
   }
   if (mode === "detail") {
     const issue = dataset.qualityIssues.find(
-      (candidate) => candidate.issueId === "DQ-1004",
+      (candidate) => candidate.issueId === "DQ-COM-004",
     );
     expected = answer({
       fields: {
@@ -890,7 +890,11 @@ const openQuality = dataset.qualityIssues.filter((issue) => issue.status === "Op
   ["Which files support the 2024 retention calculation?", "retention", ["students.csv", "student_terms.csv"]],
   ["Name the inputs to scheduled capacity utilization.", "capacity_utilization", ["sections.csv", "section_enrollments.csv"]],
   ["Cite the current IPEDS validation source.", "ipeds_readiness", ["ipeds_validation_results.csv"]],
-  ["Which governed file supports DQ-1001?", "quality_issues", ["data_quality_issue_log.csv"]],
+  [
+    "Which governed file supports DQ-1001?",
+    "quality_issues",
+    ["student_terms.csv", "terms.csv"],
+  ],
   ["Explain the enrollment denominator and exclusions.", "data_catalog", ["students.csv", "student_terms.csv"]],
   ["State the first-year retention cohort definition and lineage.", "data_catalog", ["students.csv", "student_terms.csv"]],
 ].forEach(([question, metric, sources]) =>

@@ -383,45 +383,6 @@ for (let run = 1; run <= 6; run += 1) {
   }
 }
 
-const snapshotDates = [
-  "2025-09-09",
-  "2025-09-16",
-  "2025-09-23",
-  "2025-09-30",
-  "2025-10-07",
-  "2025-10-14",
-];
-const openIssues = [
-  ["DQ-1001", "Critical", "Full-time status conflicts with attempted credits", "UG_FT_CREDIT_THRESHOLD", 146, "Registrar"],
-  ["DQ-1002", "High", "Fall headcount changed outside the expected band", "YOY_HEADCOUNT_VARIANCE", 808, "Institutional Research"],
-  ["DQ-1003", "High", "Race and ethnicity value is missing", "DEMOGRAPHIC_COMPLETENESS", 119, "Admissions"],
-  ["DQ-1004", "High", "Financial aid records lack term enrollment", "AID_WITHOUT_ENROLLMENT", 23, "Student Financial Services"],
-  ["DQ-1005", "Medium", "Program CIP changed without a bridge record", "CIP_EFFECTIVE_DATING", 307, "Academic Affairs"],
-];
-for (let i = 6; i <= 27; i += 1) {
-  openIssues.push([
-    `DQ-${String(1000 + i).padStart(4, "0")}`,
-    i <= 7 ? "Critical" : i <= 14 ? "High" : "Medium",
-    `Synthetic governance exception ${i}`,
-    `GOVERNANCE_RULE_${String(i).padStart(2, "0")}`,
-    2 + ((i * 17) % 73),
-    pick(["Registrar", "Admissions", "Financial Aid", "Academic Affairs", "Enterprise Systems"]),
-  ]);
-}
-
-const qualityIssues = openIssues.map(([issue_id, severity, title, rule_id, affected_records, owner]) => ({
-  issue_id,
-  severity,
-  title,
-  rule_id,
-  affected_records,
-  owner,
-  source_system: issue_id === "DQ-1001" ? "SIS student term" : "Enterprise data warehouse",
-  status: "Open",
-  opened_at: "2025-09-01 08:00",
-  resolved_at: "",
-}));
-
 const completions = [];
 let completionNumber = 1;
 for (const program of programs) {
@@ -439,32 +400,6 @@ for (const program of programs) {
   }
 }
 
-const resolutionGroups = [
-  { count: 5, resolvedAt: "2025-09-12 12:00" },
-  { count: 4, resolvedAt: "2025-09-19 12:00" },
-  { count: 5, resolvedAt: "2025-09-26 12:00" },
-  { count: 3, resolvedAt: "2025-10-03 12:00" },
-  { count: 9, resolvedAt: "2025-10-10 12:00" },
-];
-let resolvedCounter = 1;
-for (const group of resolutionGroups) {
-  for (let i = 0; i < group.count; i += 1) {
-    qualityIssues.push({
-      issue_id: `DQ-R${String(resolvedCounter).padStart(3, "0")}`,
-      severity: resolvedCounter % 4 === 0 ? "High" : "Medium",
-      title: `Resolved synthetic exception ${resolvedCounter}`,
-      rule_id: `RESOLVED_RULE_${String(resolvedCounter).padStart(2, "0")}`,
-      affected_records: 1 + ((resolvedCounter * 13) % 51),
-      owner: pick(["Registrar", "Admissions", "Financial Aid", "Academic Affairs"]),
-      source_system: "Enterprise data warehouse",
-      status: "Resolved",
-      opened_at: "2025-09-01 08:00",
-      resolved_at: group.resolvedAt,
-    });
-    resolvedCounter += 1;
-  }
-}
-
 await Promise.all([
   writeCsv("institution.csv", Object.keys(institution[0]), institution),
   writeCsv("terms.csv", Object.keys(terms[0]), terms),
@@ -474,7 +409,6 @@ await Promise.all([
   writeCsv("sections.csv", Object.keys(sections[0]), sections),
   writeCsv("section_enrollments.csv", Object.keys(sectionEnrollments[0]), sectionEnrollments),
   writeCsv("ipeds_validation_results.csv", Object.keys(ipedsChecks[0]), ipedsChecks),
-  writeCsv("data_quality_issue_log.csv", Object.keys(qualityIssues[0]), qualityIssues),
   writeCsv("completions.csv", Object.keys(completions[0]), completions),
   writeCsv("financial_aid.csv", Object.keys(financialAid[0]), financialAid),
 ]);
@@ -493,7 +427,6 @@ const manifest = {
     { file: "sections.csv", system: "SIS course schedule", rows: sections.length },
     { file: "section_enrollments.csv", system: "SIS registration", rows: sectionEnrollments.length },
     { file: "ipeds_validation_results.csv", system: "IPEDS validation engine", rows: ipedsChecks.length },
-    { file: "data_quality_issue_log.csv", system: "Data quality agent", rows: qualityIssues.length },
     { file: "completions.csv", system: "SIS degree history", rows: completions.length },
     { file: "financial_aid.csv", system: "Financial aid system", rows: financialAid.length },
   ],

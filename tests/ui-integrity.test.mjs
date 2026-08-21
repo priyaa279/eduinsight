@@ -30,15 +30,29 @@ test("Data Quality summary values reconcile to qualityFindings", () => {
   };
 
   assert.deepEqual(counts, {
-    critical: 3,
-    high: 16,
-    medium: 34,
-    open: 27,
-    resolved: 26,
+    critical: 1,
+    high: 3,
+    medium: 0,
+    open: 4,
+    resolved: 0,
   });
   assert.match(page, /qualitySummary\.critical/);
-  assert.match(page, /qualitySummary\.resolved/);
+  assert.match(page, /qualitySummary\.notEvaluated/);
+  assert.match(page, /Rule coverage: \{qualitySummary\.evaluated\} of \{qualitySummary\.catalogRules\} evaluated/);
+  assert.equal(commandCenter.qualityEvaluationSummary.executed, 14);
+  assert.equal(commandCenter.qualityEvaluationSummary.totalRules, 35);
+  assert.equal(commandCenter.qualityEvaluationSummary.notEvaluated, 21);
+  assert.equal(commandCenter.qualityEvaluationSummary.dataDefects, 3);
+  assert.equal(commandCenter.qualityEvaluationSummary.anomalies, 1);
+  assert.match(page, /qualitySummary\.dataDefects/);
+  assert.match(page, /qualitySummary\.anomalies/);
+  assert.match(page, /Executed · \$\{rule\.lastResult === "PASS" \? "Pass" : "Fail"\}/);
+  assert.match(page, /Period and threshold evidence/);
+  assert.match(page, /selected\.observation\?\.previousTerm/);
+  assert.match(page, /selected\.observation\?\.currentTerm/);
+  assert.match(page, /selected\.observation\?\.thresholdPercent/);
   assert.doesNotMatch(page, /Silent errors|<strong>94<\/strong>|<strong>41<\/strong>/);
+  assert.match(page, /item\.id === "quality" && <em>\{qualitySummary\.open\}<\/em>/);
 });
 
 test("static rings and legacy IPEDS implementations are absent", () => {

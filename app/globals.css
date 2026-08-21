@@ -1559,11 +1559,59 @@ textarea:focus-visible {
   font-weight: 800;
 }
 
-.status-new { background: var(--color-eaf0fd); color: var(--color-4f659c); }
-.status-investigating { background: var(--color-fff0dc); color: var(--color-a35b18); }
-.status-reviewed { background: var(--color-e9f8f2); color: var(--mint-dark); }
+.status-open { background: var(--color-eaf0fd); color: var(--color-4f659c); }
+.status-in-review { background: var(--color-fff0dc); color: var(--color-a35b18); }
 .status-resolved { background: var(--color-eef1f5); color: var(--color-586276); }
 .status-suppressed { background: var(--color-f5edf8); color: var(--color-78528a); }
+
+.lifecycle-editor {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--color-f8faf7);
+}
+
+.lifecycle-editor label {
+  display: grid;
+  gap: 7px;
+  color: var(--ink-muted);
+  font-size: var(--font-size-xs);
+  font-weight: 800;
+}
+
+.lifecycle-editor select,
+.lifecycle-editor textarea {
+  width: 100%;
+  border: 1px solid var(--border-strong);
+  border-radius: 9px;
+  background: white;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 500;
+}
+
+.lifecycle-editor select {
+  min-height: 40px;
+  padding: 8px 10px;
+}
+
+.lifecycle-editor textarea {
+  min-height: 96px;
+  padding: 10px;
+  resize: vertical;
+}
+
+.lifecycle-metadata {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 18px;
+  color: var(--color-758092);
+  font-size: var(--font-size-xs);
+}
 
 .rule-catalog-wrap,
 .sample-table-wrap {

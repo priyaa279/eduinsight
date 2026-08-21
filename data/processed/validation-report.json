@@ -5,7 +5,7 @@
     {
       "check": "required_files",
       "status": "passed",
-      "files": 11
+      "files": 10
     },
     {
       "check": "required_columns",
@@ -38,6 +38,14 @@
       "check": "full_time_credit_mismatch_reconciliation",
       "status": "passed",
       "value": 146
+    },
+    {
+      "check": "data_quality_rule_execution",
+      "status": "passed",
+      "executed": 14,
+      "pass": 10,
+      "fail": 4,
+      "notEvaluated": 21
     },
     {
       "check": "ipeds_weight_total",

@@ -64,7 +64,7 @@ const regressionSuites = await Promise.all(
 const blindNine = await blindNineScore();
 assert.equal(
   blindNine.raw,
-  195,
+  186,
   "Blind #9 raw score drifted; audit its contracts before changing the baseline.",
 );
 assert.equal(blindNine.adjudicated, blindNine.total);

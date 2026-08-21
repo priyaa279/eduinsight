@@ -1,8 +1,8 @@
 # EduInsight Blind Set #5 — untouched first run
 
-- Executed: 2026-07-31T05:40:42.955Z
-- Suite SHA-256: `b50d2edc5e53394dee9bf8330348e8798a62af990c611879fb32ba8dc45b6b07`
-- Frozen engine SHA-256: `874cea984db287f660f84891da2bc10523910e86d6e1561814ed4b450785c207`
+- Executed: 2026-08-20T20:04:29.976Z
+- Suite SHA-256: `f60d665363c43002955d5c1fcb5bc0814015e7227aafcc2aa5d038d6dcca06a0`
+- Frozen engine SHA-256: `f7b26e6d5c0ffa0c3853414d3ba2c8b4118888c1139eb37de69f5577f7401251`
 - Dataset: `app/data/ask-eduinsight.generated.json`
 - Score: **268/280 (95.7%)**
 - Release-gate result: **FAIL**

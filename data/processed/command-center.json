@@ -1,6 +1,6 @@
 {
   "generatedAt": "2025-10-14T09:42:00-07:00",
-  "pipelineVersion": "1.0.0",
+  "pipelineVersion": "2.0.0-dq-source-derived",
   "dataBoundary": "Synthetic demonstration data",
   "institution": {
     "id": "AVU001",
@@ -14,17 +14,35 @@
   "qualityFindings": [
     {
       "issueId": "DQ-1001",
+      "ruleId": "DQ-ENR-001",
+      "implementationRule": "UG_FT_CREDIT_THRESHOLD",
       "severity": "Critical",
-      "title": "Full-time status conflicts with attempted credits",
-      "description": "Undergraduate students are coded full-time with fewer than 12 attempted credits in the governed census snapshot.",
-      "ruleId": "UG_FT_CREDIT_THRESHOLD",
+      "title": "Full-time undergraduate attempted credits are below the governed threshold",
+      "description": "Reportable Fall census undergraduate rows coded full-time must carry at least 12 attempted credits.",
+      "findingType": "DATA_DEFECT",
       "affectedRecords": 146,
+      "observation": null,
       "owner": "Registrar",
       "sourceSystem": "SIS student term",
+      "sourceFiles": [
+        "student_terms.csv",
+        "terms.csv"
+      ],
+      "sourceFields": [
+        "student_terms.term_id",
+        "student_terms.level",
+        "student_terms.attendance_status",
+        "student_terms.attempted_credits",
+        "student_terms.census_enrolled",
+        "student_terms.reportable",
+        "terms.is_current"
+      ],
+      "scopeDescription": "Current Fall reportable census undergraduate enrollment",
+      "countSemantics": "Distinct violating student-term rows",
       "status": "Open",
-      "lifecycleStatus": "Investigating",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "",
+      "lifecycleStatus": "New",
+      "openedAt": "2025-10-14T09:42:00-07:00",
+      "resolvedAt": null,
       "sampleRows": [
         {
           "student_id": "S0038789",
@@ -61,43 +79,44 @@
           "attempted_credits": 6,
           "attendance_status": "F"
         }
-      ]
-    },
-    {
-      "issueId": "DQ-1002",
-      "severity": "High",
-      "title": "Fall headcount changed outside the expected band",
-      "description": "The governed Enterprise data warehouse check found records that violate YOY_HEADCOUNT_VARIANCE.",
-      "ruleId": "YOY_HEADCOUNT_VARIANCE",
-      "affectedRecords": 808,
-      "owner": "Institutional Research",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Open",
-      "lifecycleStatus": "New",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-1002",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 808,
-          "status": "Open"
-        }
-      ]
+      ],
+      "evidence": {
+        "thresholdCredits": 12,
+        "scopedRowCount": 16143
+      }
     },
     {
       "issueId": "DQ-1003",
+      "ruleId": "DQ-DEM-001",
+      "implementationRule": "DEMOGRAPHIC_COMPLETENESS",
       "severity": "High",
-      "title": "Race and ethnicity value is missing",
-      "description": "The governed Enterprise data warehouse check found records that violate DEMOGRAPHIC_COMPLETENESS.",
-      "ruleId": "DEMOGRAPHIC_COMPLETENESS",
+      "title": "Race and ethnicity is missing",
+      "description": "Students in the current Fall reportable census population require a nonblank race/ethnicity value.",
+      "findingType": "DATA_DEFECT",
       "affectedRecords": 119,
+      "observation": null,
       "owner": "Admissions",
-      "sourceSystem": "Enterprise data warehouse",
+      "sourceSystem": "SIS student",
+      "sourceFiles": [
+        "students.csv",
+        "student_terms.csv",
+        "terms.csv"
+      ],
+      "sourceFields": [
+        "students.student_id",
+        "students.race_ethnicity",
+        "student_terms.student_id",
+        "student_terms.term_id",
+        "student_terms.census_enrolled",
+        "student_terms.reportable",
+        "terms.is_current"
+      ],
+      "scopeDescription": "Distinct students in the current Fall reportable census",
+      "countSemantics": "Distinct in-scope students with a blank race/ethnicity value",
       "status": "Open",
       "lifecycleStatus": "New",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "",
+      "openedAt": "2025-10-14T09:42:00-07:00",
+      "resolvedAt": null,
       "sampleRows": [
         {
           "student_id": "S0000667",
@@ -129,1122 +148,139 @@
           "primary_program_id": "PENG",
           "race_ethnicity": "(blank)"
         }
-      ]
+      ],
+      "evidence": {
+        "scopedStudentCount": 18426
+      }
     },
     {
-      "issueId": "DQ-1004",
+      "issueId": "DQ-COM-004",
+      "ruleId": "DQ-COM-004",
+      "implementationRule": "COMPLETION_TIMELINE",
       "severity": "High",
-      "title": "Financial aid records lack term enrollment",
-      "description": "The governed Enterprise data warehouse check found records that violate AID_WITHOUT_ENROLLMENT.",
-      "ruleId": "AID_WITHOUT_ENROLLMENT",
-      "affectedRecords": 23,
-      "owner": "Student Financial Services",
-      "sourceSystem": "Enterprise data warehouse",
+      "title": "Completion date precedes the governed entry-term start",
+      "description": "A completion award date cannot be earlier than the start date of the student's governed entry term.",
+      "findingType": "DATA_DEFECT",
+      "affectedRecords": 211,
+      "observation": null,
+      "owner": "Registrar",
+      "sourceSystem": "SIS degree history",
+      "sourceFiles": [
+        "completions.csv",
+        "students.csv",
+        "terms.csv"
+      ],
+      "sourceFields": [
+        "completions.completion_id",
+        "completions.student_id",
+        "completions.award_date",
+        "students.entry_term_id",
+        "terms.start_date"
+      ],
+      "scopeDescription": "Completion rows under the single-career source contract with a resolvable first institutional entry term",
+      "countSemantics": "Completion rows where award_date is earlier than entry-term start_date",
       "status": "Open",
       "lifecycleStatus": "New",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "",
+      "openedAt": "2025-10-14T09:42:00-07:00",
+      "resolvedAt": null,
       "sampleRows": [
         {
-          "issue_id": "DQ-1004",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 23,
-          "note": "The current upload contains an aggregate finding; row-level aid records were not supplied."
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-1005",
-      "severity": "Medium",
-      "title": "Program CIP changed without a bridge record",
-      "description": "The governed Enterprise data warehouse check found records that violate CIP_EFFECTIVE_DATING.",
-      "ruleId": "CIP_EFFECTIVE_DATING",
-      "affectedRecords": 307,
-      "owner": "Academic Affairs",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Open",
-      "lifecycleStatus": "New",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "",
-      "sampleRows": [
-        {
-          "program_id": "PBA",
-          "program_name": "MS Business Analytics",
-          "cip_code": "52.1301",
-          "active_from": "2020FA",
-          "active_to": "(current)"
+          "completion_id": "C000004",
+          "student_id": "S0037958",
+          "award_date": "2025-05-17",
+          "entry_term_id": "2025FA",
+          "entry_term_start_date": "2025-08-25"
         },
         {
-          "program_id": "PCS",
-          "program_name": "MS Computer Science",
-          "cip_code": "11.0701",
-          "active_from": "2020FA",
-          "active_to": "(current)"
+          "completion_id": "C000008",
+          "student_id": "S0037020",
+          "award_date": "2025-05-17",
+          "entry_term_id": "2025FA",
+          "entry_term_start_date": "2025-08-25"
         },
         {
-          "program_id": "PNUR",
-          "program_name": "MS Nursing",
-          "cip_code": "51.3801",
-          "active_from": "2020FA",
-          "active_to": "(current)"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-1006",
-      "severity": "Critical",
-      "title": "Synthetic governance exception 6",
-      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_06.",
-      "ruleId": "GOVERNANCE_RULE_06",
-      "affectedRecords": 31,
-      "owner": "Registrar",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Open",
-      "lifecycleStatus": "Investigating",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "",
-      "sampleRows": [
+          "completion_id": "C000009",
+          "student_id": "S0038412",
+          "award_date": "2025-05-17",
+          "entry_term_id": "2025FA",
+          "entry_term_start_date": "2025-08-25"
+        },
         {
-          "issue_id": "DQ-1006",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 31,
-          "status": "Open"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-1007",
-      "severity": "Critical",
-      "title": "Synthetic governance exception 7",
-      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_07.",
-      "ruleId": "GOVERNANCE_RULE_07",
-      "affectedRecords": 48,
-      "owner": "Enterprise Systems",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Open",
-      "lifecycleStatus": "New",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "",
-      "sampleRows": [
+          "completion_id": "C000011",
+          "student_id": "S0040082",
+          "award_date": "2025-05-17",
+          "entry_term_id": "2025FA",
+          "entry_term_start_date": "2025-08-25"
+        },
         {
-          "issue_id": "DQ-1007",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 48,
-          "status": "Open"
+          "completion_id": "C000012",
+          "student_id": "S0038857",
+          "award_date": "2025-05-17",
+          "entry_term_id": "2025FA",
+          "entry_term_start_date": "2025-08-25"
         }
-      ]
+      ],
+      "evidence": {
+        "entryDateDerivation": "terms.start_date for students.entry_term_id",
+        "entryTermContract": "students.entry_term_id is the first institutional entry in this single-career source model",
+        "comparison": "completions.award_date < terms.start_date",
+        "entryContractMismatchCount": 0,
+        "violationsWithEarlierEnrollment": 0,
+        "unresolvedRowsExcluded": 0
+      }
     },
     {
-      "issueId": "DQ-1008",
+      "issueId": "DQ-1002",
+      "ruleId": "DQ-X-004",
+      "implementationRule": "YOY_HEADCOUNT_VARIANCE",
       "severity": "High",
-      "title": "Synthetic governance exception 8",
-      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_08.",
-      "ruleId": "GOVERNANCE_RULE_08",
-      "affectedRecords": 65,
-      "owner": "Financial Aid",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Open",
-      "lifecycleStatus": "Reviewed",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-1008",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 65,
-          "status": "Open"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-1009",
-      "severity": "High",
-      "title": "Synthetic governance exception 9",
-      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_09.",
-      "ruleId": "GOVERNANCE_RULE_09",
-      "affectedRecords": 9,
-      "owner": "Financial Aid",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Open",
-      "lifecycleStatus": "New",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-1009",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 9,
-          "status": "Open"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-1010",
-      "severity": "High",
-      "title": "Synthetic governance exception 10",
-      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_10.",
-      "ruleId": "GOVERNANCE_RULE_10",
-      "affectedRecords": 26,
-      "owner": "Admissions",
-      "sourceSystem": "Enterprise data warehouse",
+      "title": "Fall census headcount changed outside the expected range",
+      "description": "The distinct reportable Fall census headcount changed by more than ±2.5% from the prior Fall term.",
+      "findingType": "ANOMALY",
+      "affectedRecords": 0,
+      "observation": {
+        "previousTerm": "2024FA",
+        "currentTerm": "2025FA",
+        "previousValue": 19234,
+        "currentValue": 18426,
+        "absoluteChange": -808,
+        "percentChange": -4.200894249766039,
+        "thresholdPercent": 2.5,
+        "thresholdParameter": "DQ-X-004.parameters.thresholdPercent",
+        "thresholdBreached": true
+      },
+      "owner": "Institutional Research",
+      "sourceSystem": "SIS student term",
+      "sourceFiles": [
+        "student_terms.csv",
+        "terms.csv"
+      ],
+      "sourceFields": [
+        "student_terms.student_id",
+        "student_terms.term_id",
+        "student_terms.census_enrolled",
+        "student_terms.reportable",
+        "terms.season",
+        "terms.is_current"
+      ],
+      "scopeDescription": "Distinct reportable census students in current and prior Fall terms",
+      "countSemantics": "One anomaly observation; absolute change is not an affected-record count",
       "status": "Open",
       "lifecycleStatus": "New",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-1010",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 26,
-          "status": "Open"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-1011",
-      "severity": "High",
-      "title": "Synthetic governance exception 11",
-      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_11.",
-      "ruleId": "GOVERNANCE_RULE_11",
-      "affectedRecords": 43,
-      "owner": "Enterprise Systems",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Open",
-      "lifecycleStatus": "Investigating",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-1011",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 43,
-          "status": "Open"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-1012",
-      "severity": "High",
-      "title": "Synthetic governance exception 12",
-      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_12.",
-      "ruleId": "GOVERNANCE_RULE_12",
-      "affectedRecords": 60,
-      "owner": "Enterprise Systems",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Open",
-      "lifecycleStatus": "New",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-1012",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 60,
-          "status": "Open"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-1013",
-      "severity": "High",
-      "title": "Synthetic governance exception 13",
-      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_13.",
-      "ruleId": "GOVERNANCE_RULE_13",
-      "affectedRecords": 4,
-      "owner": "Enterprise Systems",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Open",
-      "lifecycleStatus": "New",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-1013",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 4,
-          "status": "Open"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-1014",
-      "severity": "High",
-      "title": "Synthetic governance exception 14",
-      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_14.",
-      "ruleId": "GOVERNANCE_RULE_14",
-      "affectedRecords": 21,
-      "owner": "Enterprise Systems",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Open",
-      "lifecycleStatus": "New",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-1014",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 21,
-          "status": "Open"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-1015",
-      "severity": "Medium",
-      "title": "Synthetic governance exception 15",
-      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_15.",
-      "ruleId": "GOVERNANCE_RULE_15",
-      "affectedRecords": 38,
-      "owner": "Academic Affairs",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Open",
-      "lifecycleStatus": "Reviewed",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-1015",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 38,
-          "status": "Open"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-1016",
-      "severity": "Medium",
-      "title": "Synthetic governance exception 16",
-      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_16.",
-      "ruleId": "GOVERNANCE_RULE_16",
-      "affectedRecords": 55,
-      "owner": "Financial Aid",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Open",
-      "lifecycleStatus": "Investigating",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-1016",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 55,
-          "status": "Open"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-1017",
-      "severity": "Medium",
-      "title": "Synthetic governance exception 17",
-      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_17.",
-      "ruleId": "GOVERNANCE_RULE_17",
-      "affectedRecords": 72,
-      "owner": "Registrar",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Open",
-      "lifecycleStatus": "New",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-1017",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 72,
-          "status": "Open"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-1018",
-      "severity": "Medium",
-      "title": "Synthetic governance exception 18",
-      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_18.",
-      "ruleId": "GOVERNANCE_RULE_18",
-      "affectedRecords": 16,
-      "owner": "Academic Affairs",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Open",
-      "lifecycleStatus": "New",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-1018",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 16,
-          "status": "Open"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-1019",
-      "severity": "Medium",
-      "title": "Synthetic governance exception 19",
-      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_19.",
-      "ruleId": "GOVERNANCE_RULE_19",
-      "affectedRecords": 33,
-      "owner": "Registrar",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Open",
-      "lifecycleStatus": "New",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-1019",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 33,
-          "status": "Open"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-1020",
-      "severity": "Medium",
-      "title": "Synthetic governance exception 20",
-      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_20.",
-      "ruleId": "GOVERNANCE_RULE_20",
-      "affectedRecords": 50,
-      "owner": "Financial Aid",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Open",
-      "lifecycleStatus": "New",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-1020",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 50,
-          "status": "Open"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-1021",
-      "severity": "Medium",
-      "title": "Synthetic governance exception 21",
-      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_21.",
-      "ruleId": "GOVERNANCE_RULE_21",
-      "affectedRecords": 67,
-      "owner": "Admissions",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Open",
-      "lifecycleStatus": "Investigating",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-1021",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 67,
-          "status": "Open"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-1022",
-      "severity": "Medium",
-      "title": "Synthetic governance exception 22",
-      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_22.",
-      "ruleId": "GOVERNANCE_RULE_22",
-      "affectedRecords": 11,
-      "owner": "Academic Affairs",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Open",
-      "lifecycleStatus": "Reviewed",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-1022",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 11,
-          "status": "Open"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-1023",
-      "severity": "Medium",
-      "title": "Synthetic governance exception 23",
-      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_23.",
-      "ruleId": "GOVERNANCE_RULE_23",
-      "affectedRecords": 28,
-      "owner": "Financial Aid",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Open",
-      "lifecycleStatus": "New",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-1023",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 28,
-          "status": "Open"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-1024",
-      "severity": "Medium",
-      "title": "Synthetic governance exception 24",
-      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_24.",
-      "ruleId": "GOVERNANCE_RULE_24",
-      "affectedRecords": 45,
-      "owner": "Academic Affairs",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Open",
-      "lifecycleStatus": "New",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-1024",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 45,
-          "status": "Open"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-1025",
-      "severity": "Medium",
-      "title": "Synthetic governance exception 25",
-      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_25.",
-      "ruleId": "GOVERNANCE_RULE_25",
-      "affectedRecords": 62,
-      "owner": "Registrar",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Open",
-      "lifecycleStatus": "New",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-1025",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 62,
-          "status": "Open"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-1026",
-      "severity": "Medium",
-      "title": "Synthetic governance exception 26",
-      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_26.",
-      "ruleId": "GOVERNANCE_RULE_26",
-      "affectedRecords": 6,
-      "owner": "Financial Aid",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Open",
-      "lifecycleStatus": "Investigating",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-1026",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 6,
-          "status": "Open"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-1027",
-      "severity": "Medium",
-      "title": "Synthetic governance exception 27",
-      "description": "The governed Enterprise data warehouse check found records that violate GOVERNANCE_RULE_27.",
-      "ruleId": "GOVERNANCE_RULE_27",
-      "affectedRecords": 23,
-      "owner": "Admissions",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Open",
-      "lifecycleStatus": "New",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-1027",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 23,
-          "status": "Open"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-R001",
-      "severity": "Medium",
-      "title": "Resolved synthetic exception 1",
-      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_01.",
-      "ruleId": "RESOLVED_RULE_01",
-      "affectedRecords": 14,
-      "owner": "Registrar",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Resolved",
-      "lifecycleStatus": "Resolved",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-09-12 12:00",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-R001",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 14,
-          "status": "Resolved"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-R002",
-      "severity": "Medium",
-      "title": "Resolved synthetic exception 2",
-      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_02.",
-      "ruleId": "RESOLVED_RULE_02",
-      "affectedRecords": 27,
-      "owner": "Financial Aid",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Resolved",
-      "lifecycleStatus": "Resolved",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-09-12 12:00",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-R002",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 27,
-          "status": "Resolved"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-R003",
-      "severity": "Medium",
-      "title": "Resolved synthetic exception 3",
-      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_03.",
-      "ruleId": "RESOLVED_RULE_03",
-      "affectedRecords": 40,
-      "owner": "Admissions",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Resolved",
-      "lifecycleStatus": "Resolved",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-09-12 12:00",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-R003",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 40,
-          "status": "Resolved"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-R004",
-      "severity": "High",
-      "title": "Resolved synthetic exception 4",
-      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_04.",
-      "ruleId": "RESOLVED_RULE_04",
-      "affectedRecords": 2,
-      "owner": "Registrar",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Resolved",
-      "lifecycleStatus": "Resolved",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-09-12 12:00",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-R004",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 2,
-          "status": "Resolved"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-R005",
-      "severity": "Medium",
-      "title": "Resolved synthetic exception 5",
-      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_05.",
-      "ruleId": "RESOLVED_RULE_05",
-      "affectedRecords": 15,
-      "owner": "Registrar",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Resolved",
-      "lifecycleStatus": "Resolved",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-09-12 12:00",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-R005",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 15,
-          "status": "Resolved"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-R006",
-      "severity": "Medium",
-      "title": "Resolved synthetic exception 6",
-      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_06.",
-      "ruleId": "RESOLVED_RULE_06",
-      "affectedRecords": 28,
-      "owner": "Academic Affairs",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Resolved",
-      "lifecycleStatus": "Resolved",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-09-19 12:00",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-R006",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 28,
-          "status": "Resolved"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-R007",
-      "severity": "Medium",
-      "title": "Resolved synthetic exception 7",
-      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_07.",
-      "ruleId": "RESOLVED_RULE_07",
-      "affectedRecords": 41,
-      "owner": "Academic Affairs",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Resolved",
-      "lifecycleStatus": "Resolved",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-09-19 12:00",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-R007",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 41,
-          "status": "Resolved"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-R008",
-      "severity": "High",
-      "title": "Resolved synthetic exception 8",
-      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_08.",
-      "ruleId": "RESOLVED_RULE_08",
-      "affectedRecords": 3,
-      "owner": "Registrar",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Resolved",
-      "lifecycleStatus": "Resolved",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-09-19 12:00",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-R008",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 3,
-          "status": "Resolved"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-R009",
-      "severity": "Medium",
-      "title": "Resolved synthetic exception 9",
-      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_09.",
-      "ruleId": "RESOLVED_RULE_09",
-      "affectedRecords": 16,
-      "owner": "Financial Aid",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Resolved",
-      "lifecycleStatus": "Resolved",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-09-19 12:00",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-R009",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 16,
-          "status": "Resolved"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-R010",
-      "severity": "Medium",
-      "title": "Resolved synthetic exception 10",
-      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_10.",
-      "ruleId": "RESOLVED_RULE_10",
-      "affectedRecords": 29,
-      "owner": "Academic Affairs",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Resolved",
-      "lifecycleStatus": "Resolved",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-09-26 12:00",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-R010",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 29,
-          "status": "Resolved"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-R011",
-      "severity": "Medium",
-      "title": "Resolved synthetic exception 11",
-      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_11.",
-      "ruleId": "RESOLVED_RULE_11",
-      "affectedRecords": 42,
-      "owner": "Financial Aid",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Resolved",
-      "lifecycleStatus": "Resolved",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-09-26 12:00",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-R011",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 42,
-          "status": "Resolved"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-R012",
-      "severity": "High",
-      "title": "Resolved synthetic exception 12",
-      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_12.",
-      "ruleId": "RESOLVED_RULE_12",
-      "affectedRecords": 4,
-      "owner": "Registrar",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Resolved",
-      "lifecycleStatus": "Resolved",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-09-26 12:00",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-R012",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 4,
-          "status": "Resolved"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-R013",
-      "severity": "Medium",
-      "title": "Resolved synthetic exception 13",
-      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_13.",
-      "ruleId": "RESOLVED_RULE_13",
-      "affectedRecords": 17,
-      "owner": "Academic Affairs",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Resolved",
-      "lifecycleStatus": "Resolved",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-09-26 12:00",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-R013",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 17,
-          "status": "Resolved"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-R014",
-      "severity": "Medium",
-      "title": "Resolved synthetic exception 14",
-      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_14.",
-      "ruleId": "RESOLVED_RULE_14",
-      "affectedRecords": 30,
-      "owner": "Financial Aid",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Resolved",
-      "lifecycleStatus": "Resolved",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-09-26 12:00",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-R014",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 30,
-          "status": "Resolved"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-R015",
-      "severity": "Medium",
-      "title": "Resolved synthetic exception 15",
-      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_15.",
-      "ruleId": "RESOLVED_RULE_15",
-      "affectedRecords": 43,
-      "owner": "Admissions",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Resolved",
-      "lifecycleStatus": "Resolved",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-10-03 12:00",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-R015",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 43,
-          "status": "Resolved"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-R016",
-      "severity": "High",
-      "title": "Resolved synthetic exception 16",
-      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_16.",
-      "ruleId": "RESOLVED_RULE_16",
-      "affectedRecords": 5,
-      "owner": "Financial Aid",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Resolved",
-      "lifecycleStatus": "Resolved",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-10-03 12:00",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-R016",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 5,
-          "status": "Resolved"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-R017",
-      "severity": "Medium",
-      "title": "Resolved synthetic exception 17",
-      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_17.",
-      "ruleId": "RESOLVED_RULE_17",
-      "affectedRecords": 18,
-      "owner": "Admissions",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Resolved",
-      "lifecycleStatus": "Resolved",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-10-03 12:00",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-R017",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 18,
-          "status": "Resolved"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-R018",
-      "severity": "Medium",
-      "title": "Resolved synthetic exception 18",
-      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_18.",
-      "ruleId": "RESOLVED_RULE_18",
-      "affectedRecords": 31,
-      "owner": "Registrar",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Resolved",
-      "lifecycleStatus": "Resolved",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-10-10 12:00",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-R018",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 31,
-          "status": "Resolved"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-R019",
-      "severity": "Medium",
-      "title": "Resolved synthetic exception 19",
-      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_19.",
-      "ruleId": "RESOLVED_RULE_19",
-      "affectedRecords": 44,
-      "owner": "Academic Affairs",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Resolved",
-      "lifecycleStatus": "Resolved",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-10-10 12:00",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-R019",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 44,
-          "status": "Resolved"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-R020",
-      "severity": "High",
-      "title": "Resolved synthetic exception 20",
-      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_20.",
-      "ruleId": "RESOLVED_RULE_20",
-      "affectedRecords": 6,
-      "owner": "Academic Affairs",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Resolved",
-      "lifecycleStatus": "Resolved",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-10-10 12:00",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-R020",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 6,
-          "status": "Resolved"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-R021",
-      "severity": "Medium",
-      "title": "Resolved synthetic exception 21",
-      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_21.",
-      "ruleId": "RESOLVED_RULE_21",
-      "affectedRecords": 19,
-      "owner": "Admissions",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Resolved",
-      "lifecycleStatus": "Resolved",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-10-10 12:00",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-R021",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 19,
-          "status": "Resolved"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-R022",
-      "severity": "Medium",
-      "title": "Resolved synthetic exception 22",
-      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_22.",
-      "ruleId": "RESOLVED_RULE_22",
-      "affectedRecords": 32,
-      "owner": "Academic Affairs",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Resolved",
-      "lifecycleStatus": "Resolved",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-10-10 12:00",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-R022",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 32,
-          "status": "Resolved"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-R023",
-      "severity": "Medium",
-      "title": "Resolved synthetic exception 23",
-      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_23.",
-      "ruleId": "RESOLVED_RULE_23",
-      "affectedRecords": 45,
-      "owner": "Admissions",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Resolved",
-      "lifecycleStatus": "Resolved",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-10-10 12:00",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-R023",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 45,
-          "status": "Resolved"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-R024",
-      "severity": "High",
-      "title": "Resolved synthetic exception 24",
-      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_24.",
-      "ruleId": "RESOLVED_RULE_24",
-      "affectedRecords": 7,
-      "owner": "Admissions",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Resolved",
-      "lifecycleStatus": "Resolved",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-10-10 12:00",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-R024",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 7,
-          "status": "Resolved"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-R025",
-      "severity": "Medium",
-      "title": "Resolved synthetic exception 25",
-      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_25.",
-      "ruleId": "RESOLVED_RULE_25",
-      "affectedRecords": 20,
-      "owner": "Admissions",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Resolved",
-      "lifecycleStatus": "Resolved",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-10-10 12:00",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-R025",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 20,
-          "status": "Resolved"
-        }
-      ]
-    },
-    {
-      "issueId": "DQ-R026",
-      "severity": "Medium",
-      "title": "Resolved synthetic exception 26",
-      "description": "The governed Enterprise data warehouse check found records that violate RESOLVED_RULE_26.",
-      "ruleId": "RESOLVED_RULE_26",
-      "affectedRecords": 33,
-      "owner": "Admissions",
-      "sourceSystem": "Enterprise data warehouse",
-      "status": "Resolved",
-      "lifecycleStatus": "Resolved",
-      "openedAt": "2025-09-01 08:00",
-      "resolvedAt": "2025-10-10 12:00",
-      "sampleRows": [
-        {
-          "issue_id": "DQ-R026",
-          "source_system": "Enterprise data warehouse",
-          "affected_records": 33,
-          "status": "Resolved"
-        }
-      ]
+      "openedAt": "2025-10-14T09:42:00-07:00",
+      "resolvedAt": null,
+      "sampleRows": [],
+      "evidence": {
+        "previousTerm": "2024FA",
+        "currentTerm": "2025FA",
+        "previousValue": 19234,
+        "currentValue": 18426,
+        "absoluteChange": -808,
+        "percentChange": -4.200894249766039,
+        "thresholdPercent": 2.5,
+        "thresholdParameter": "DQ-X-004.parameters.thresholdPercent",
+        "thresholdBreached": true
+      }
     }
   ],
   "qualityRuleCatalog": [
@@ -1255,9 +291,31 @@
       "threshold": "Full-time undergraduate with <12 attempted credits",
       "owner": "Registrar",
       "implementationRule": "UG_FT_CREDIT_THRESHOLD",
+      "severity": "Critical",
       "enabled": true,
+      "executionState": "ENABLED_EXECUTED",
+      "lastEvaluated": "2025-10-14T09:42:00-07:00",
+      "lastResult": "FAIL",
+      "lastViolationCount": 146,
       "lastFiredCount": 146,
-      "coverage": "Covered under live rule"
+      "coverage": "Executed — violation detected",
+      "reasonNotEvaluated": null,
+      "sourceFiles": [
+        "student_terms.csv",
+        "terms.csv"
+      ],
+      "sourceFields": [
+        "student_terms.term_id",
+        "student_terms.level",
+        "student_terms.attendance_status",
+        "student_terms.attempted_credits",
+        "student_terms.census_enrolled",
+        "student_terms.reportable",
+        "terms.is_current"
+      ],
+      "parameters": null,
+      "scopeDescription": "Current Fall reportable census undergraduate enrollment",
+      "countSemantics": "Distinct violating student-term rows"
     },
     {
       "id": "DQ-ENR-002",
@@ -1266,9 +324,24 @@
       "threshold": "Status must be in the institution's FT/PT code set",
       "owner": "Registrar",
       "implementationRule": "ENROLLMENT_STATUS_VALID",
-      "enabled": false,
+      "severity": "High",
+      "enabled": true,
+      "executionState": "ENABLED_EXECUTED",
+      "lastEvaluated": "2025-10-14T09:42:00-07:00",
+      "lastResult": "PASS",
+      "lastViolationCount": 0,
       "lastFiredCount": 0,
-      "coverage": "Cataloged — implementation pending"
+      "coverage": "Executed — passed",
+      "reasonNotEvaluated": null,
+      "sourceFiles": [
+        "student_terms.csv"
+      ],
+      "sourceFields": [
+        "student_terms.attendance_status"
+      ],
+      "parameters": null,
+      "scopeDescription": "All student-term rows",
+      "countSemantics": "Student-term rows with an unrecognized attendance code"
     },
     {
       "id": "DQ-ENR-003",
@@ -1277,9 +350,29 @@
       "threshold": "Program must exist and be active for the term",
       "owner": "Registrar",
       "implementationRule": "ACTIVE_PROGRAM_REFERENCE",
-      "enabled": false,
+      "severity": "Critical",
+      "enabled": true,
+      "executionState": "ENABLED_EXECUTED",
+      "lastEvaluated": "2025-10-14T09:42:00-07:00",
+      "lastResult": "PASS",
+      "lastViolationCount": 0,
       "lastFiredCount": 0,
-      "coverage": "Cataloged — implementation pending"
+      "coverage": "Executed — passed",
+      "reasonNotEvaluated": null,
+      "sourceFiles": [
+        "student_terms.csv",
+        "programs.csv"
+      ],
+      "sourceFields": [
+        "student_terms.program_id",
+        "student_terms.term_id",
+        "programs.program_id",
+        "programs.active_from",
+        "programs.active_to"
+      ],
+      "parameters": null,
+      "scopeDescription": "All student-term rows",
+      "countSemantics": "Student-term rows with a missing or inactive program"
     },
     {
       "id": "DQ-ENR-004",
@@ -1288,9 +381,26 @@
       "threshold": "One row per student + term + program",
       "owner": "Enterprise Systems",
       "implementationRule": "DUPLICATE_ENROLLMENT",
-      "enabled": false,
+      "severity": "High",
+      "enabled": true,
+      "executionState": "ENABLED_EXECUTED",
+      "lastEvaluated": "2025-10-14T09:42:00-07:00",
+      "lastResult": "PASS",
+      "lastViolationCount": 0,
       "lastFiredCount": 0,
-      "coverage": "Cataloged — implementation pending"
+      "coverage": "Executed — passed",
+      "reasonNotEvaluated": null,
+      "sourceFiles": [
+        "student_terms.csv"
+      ],
+      "sourceFields": [
+        "student_terms.student_id",
+        "student_terms.term_id",
+        "student_terms.program_id"
+      ],
+      "parameters": null,
+      "scopeDescription": "All student-term rows",
+      "countSemantics": "Rows after the first occurrence of a duplicate composite key"
     },
     {
       "id": "DQ-ENR-005",
@@ -1299,9 +409,20 @@
       "threshold": "Credits earned cannot exceed attempted credits",
       "owner": "Registrar",
       "implementationRule": "CREDITS_EARNED_LE_ATTEMPTED",
+      "severity": null,
       "enabled": false,
+      "executionState": "NOT_EVALUATED_MISSING_DATA",
+      "lastEvaluated": null,
+      "lastResult": "NOT_EVALUATED",
+      "lastViolationCount": null,
       "lastFiredCount": 0,
-      "coverage": "Cataloged — implementation pending"
+      "coverage": "Not evaluated — credits_earned is not present in the student-term source contract.",
+      "reasonNotEvaluated": "credits_earned is not present in the student-term source contract.",
+      "sourceFiles": [],
+      "sourceFields": [],
+      "parameters": null,
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available"
     },
     {
       "id": "DQ-ENR-006",
@@ -1310,9 +431,20 @@
       "threshold": "Attempted and earned credits must be >= 0",
       "owner": "Registrar",
       "implementationRule": "NONNEGATIVE_CREDITS",
+      "severity": null,
       "enabled": false,
+      "executionState": "NOT_EVALUATED_MISSING_DATA",
+      "lastEvaluated": null,
+      "lastResult": "NOT_EVALUATED",
+      "lastViolationCount": null,
       "lastFiredCount": 0,
-      "coverage": "Cataloged — implementation pending"
+      "coverage": "Not evaluated — credits_earned is not present, so the complete nonnegative-credit rule cannot run.",
+      "reasonNotEvaluated": "credits_earned is not present, so the complete nonnegative-credit rule cannot run.",
+      "sourceFiles": [],
+      "sourceFields": [],
+      "parameters": null,
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available"
     },
     {
       "id": "DQ-ENR-007",
@@ -1321,9 +453,20 @@
       "threshold": "Term GPA must be between 0.0 and 4.0",
       "owner": "Registrar",
       "implementationRule": "TERM_GPA_RANGE",
+      "severity": null,
       "enabled": false,
+      "executionState": "NOT_EVALUATED_MISSING_DATA",
+      "lastEvaluated": null,
+      "lastResult": "NOT_EVALUATED",
+      "lastViolationCount": null,
       "lastFiredCount": 0,
-      "coverage": "Cataloged — implementation pending"
+      "coverage": "Not evaluated — term_gpa is not present in the student-term source contract.",
+      "reasonNotEvaluated": "term_gpa is not present in the student-term source contract.",
+      "sourceFiles": [],
+      "sourceFields": [],
+      "parameters": null,
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available"
     },
     {
       "id": "DQ-ENR-008",
@@ -1332,9 +475,27 @@
       "threshold": "Age at entry must be between 14 and 100",
       "owner": "Admissions",
       "implementationRule": "AGE_AT_ENTRY_RANGE",
-      "enabled": false,
+      "severity": "Medium",
+      "enabled": true,
+      "executionState": "ENABLED_EXECUTED",
+      "lastEvaluated": "2025-10-14T09:42:00-07:00",
+      "lastResult": "PASS",
+      "lastViolationCount": 0,
       "lastFiredCount": 0,
-      "coverage": "Cataloged — implementation pending"
+      "coverage": "Executed — passed",
+      "reasonNotEvaluated": null,
+      "sourceFiles": [
+        "students.csv",
+        "terms.csv"
+      ],
+      "sourceFields": [
+        "students.birth_year",
+        "students.entry_term_id",
+        "terms.start_date"
+      ],
+      "parameters": null,
+      "scopeDescription": "All students with a governed entry term",
+      "countSemantics": "Student rows with derived age outside 14–100"
     },
     {
       "id": "DQ-ENR-009",
@@ -1343,9 +504,26 @@
       "threshold": "Every enrolled row must reference a governed term",
       "owner": "Enterprise Systems",
       "implementationRule": "TERM_REFERENCE",
-      "enabled": false,
+      "severity": "Critical",
+      "enabled": true,
+      "executionState": "ENABLED_EXECUTED",
+      "lastEvaluated": "2025-10-14T09:42:00-07:00",
+      "lastResult": "PASS",
+      "lastViolationCount": 0,
       "lastFiredCount": 0,
-      "coverage": "Cataloged — implementation pending"
+      "coverage": "Executed — passed",
+      "reasonNotEvaluated": null,
+      "sourceFiles": [
+        "student_terms.csv",
+        "terms.csv"
+      ],
+      "sourceFields": [
+        "student_terms.term_id",
+        "terms.term_id"
+      ],
+      "parameters": null,
+      "scopeDescription": "All student-term rows",
+      "countSemantics": "Student-term rows with an unresolved term foreign key"
     },
     {
       "id": "DQ-DEM-001",
@@ -1354,9 +532,32 @@
       "threshold": "Race/ethnicity cannot be blank for reporting",
       "owner": "Admissions",
       "implementationRule": "DEMOGRAPHIC_COMPLETENESS",
+      "severity": "High",
       "enabled": true,
+      "executionState": "ENABLED_EXECUTED",
+      "lastEvaluated": "2025-10-14T09:42:00-07:00",
+      "lastResult": "FAIL",
+      "lastViolationCount": 119,
       "lastFiredCount": 119,
-      "coverage": "Covered under live rule"
+      "coverage": "Executed — violation detected",
+      "reasonNotEvaluated": null,
+      "sourceFiles": [
+        "students.csv",
+        "student_terms.csv",
+        "terms.csv"
+      ],
+      "sourceFields": [
+        "students.student_id",
+        "students.race_ethnicity",
+        "student_terms.student_id",
+        "student_terms.term_id",
+        "student_terms.census_enrolled",
+        "student_terms.reportable",
+        "terms.is_current"
+      ],
+      "parameters": null,
+      "scopeDescription": "Distinct students in the current Fall reportable census",
+      "countSemantics": "Distinct in-scope students with a blank race/ethnicity value"
     },
     {
       "id": "DQ-DEM-002",
@@ -1365,9 +566,20 @@
       "threshold": "Race/ethnicity must map to IPEDS codes 1–9",
       "owner": "Institutional Research",
       "implementationRule": "RACE_CODE_VALID",
+      "severity": null,
       "enabled": false,
+      "executionState": "NOT_EVALUATED_MISSING_DATA",
+      "lastEvaluated": null,
+      "lastResult": "NOT_EVALUATED",
+      "lastViolationCount": null,
       "lastFiredCount": 0,
-      "coverage": "Cataloged — implementation pending"
+      "coverage": "Not evaluated — A versioned governed race/ethnicity-to-IPEDS code map is not present.",
+      "reasonNotEvaluated": "A versioned governed race/ethnicity-to-IPEDS code map is not present.",
+      "sourceFiles": [],
+      "sourceFields": [],
+      "parameters": null,
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available"
     },
     {
       "id": "DQ-DEM-003",
@@ -1376,9 +588,20 @@
       "threshold": "Sex/gender must map to the governed reporting set",
       "owner": "Institutional Research",
       "implementationRule": "SEX_CODE_VALID",
+      "severity": null,
       "enabled": false,
+      "executionState": "NOT_EVALUATED_MISSING_DATA",
+      "lastEvaluated": null,
+      "lastResult": "NOT_EVALUATED",
+      "lastViolationCount": null,
       "lastFiredCount": 0,
-      "coverage": "Cataloged — implementation pending"
+      "coverage": "Not evaluated — A versioned governed sex/gender reporting code set is not present.",
+      "reasonNotEvaluated": "A versioned governed sex/gender reporting code set is not present.",
+      "sourceFiles": [],
+      "sourceFields": [],
+      "parameters": null,
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available"
     },
     {
       "id": "DQ-DEM-004",
@@ -1387,9 +610,20 @@
       "threshold": "Residency must be in the governed residency set",
       "owner": "Admissions",
       "implementationRule": "RESIDENCY_CODE_VALID",
+      "severity": null,
       "enabled": false,
+      "executionState": "NOT_EVALUATED_MISSING_DATA",
+      "lastEvaluated": null,
+      "lastResult": "NOT_EVALUATED",
+      "lastViolationCount": null,
       "lastFiredCount": 0,
-      "coverage": "Cataloged — implementation pending"
+      "coverage": "Not evaluated — A versioned governed residency code set is not present.",
+      "reasonNotEvaluated": "A versioned governed residency code set is not present.",
+      "sourceFiles": [],
+      "sourceFields": [],
+      "parameters": null,
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available"
     },
     {
       "id": "DQ-DEM-005",
@@ -1398,9 +632,20 @@
       "threshold": "Flag published demographic cells with n < 10",
       "owner": "Institutional Research",
       "implementationRule": "SMALL_CELL_DISCLOSURE",
+      "severity": null,
       "enabled": false,
+      "executionState": "NOT_EVALUATED_MISSING_DATA",
+      "lastEvaluated": null,
+      "lastResult": "NOT_EVALUATED",
+      "lastViolationCount": null,
       "lastFiredCount": 0,
-      "coverage": "Cataloged — implementation pending"
+      "coverage": "Not evaluated — Published demographic cells are not present in the current source contract.",
+      "reasonNotEvaluated": "Published demographic cells are not present in the current source contract.",
+      "sourceFiles": [],
+      "sourceFields": [],
+      "parameters": null,
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available"
     },
     {
       "id": "DQ-COM-001",
@@ -1409,9 +654,26 @@
       "threshold": "Completer must have matching enrollment history",
       "owner": "Registrar",
       "implementationRule": "COMPLETION_WITH_ENROLLMENT",
-      "enabled": false,
+      "severity": "Critical",
+      "enabled": true,
+      "executionState": "ENABLED_EXECUTED",
+      "lastEvaluated": "2025-10-14T09:42:00-07:00",
+      "lastResult": "PASS",
+      "lastViolationCount": 0,
       "lastFiredCount": 0,
-      "coverage": "Cataloged — implementation pending"
+      "coverage": "Executed — passed",
+      "reasonNotEvaluated": null,
+      "sourceFiles": [
+        "completions.csv",
+        "student_terms.csv"
+      ],
+      "sourceFields": [
+        "completions.student_id",
+        "student_terms.student_id"
+      ],
+      "parameters": null,
+      "scopeDescription": "All completion rows",
+      "countSemantics": "Completion rows whose student has no enrollment history"
     },
     {
       "id": "DQ-COM-002",
@@ -1420,9 +682,27 @@
       "threshold": "CIP must use numeric xx.xxxx format",
       "owner": "Academic Affairs",
       "implementationRule": "CIP_FORMAT_VALID",
-      "enabled": false,
+      "severity": "High",
+      "enabled": true,
+      "executionState": "ENABLED_EXECUTED",
+      "lastEvaluated": "2025-10-14T09:42:00-07:00",
+      "lastResult": "PASS",
+      "lastViolationCount": 0,
       "lastFiredCount": 0,
-      "coverage": "Cataloged — implementation pending"
+      "coverage": "Executed — passed",
+      "reasonNotEvaluated": null,
+      "sourceFiles": [
+        "completions.csv",
+        "programs.csv"
+      ],
+      "sourceFields": [
+        "completions.program_id",
+        "programs.program_id",
+        "programs.cip_code"
+      ],
+      "parameters": null,
+      "scopeDescription": "All completion rows joined to their governed program",
+      "countSemantics": "Completion rows with a missing or malformed program CIP"
     },
     {
       "id": "DQ-COM-003",
@@ -1431,9 +711,20 @@
       "threshold": "AWLEVEL must be in the official valid set",
       "owner": "Institutional Research",
       "implementationRule": "AWLEVEL_VALID",
+      "severity": null,
       "enabled": false,
+      "executionState": "NOT_EVALUATED_MISSING_DATA",
+      "lastEvaluated": null,
+      "lastResult": "NOT_EVALUATED",
+      "lastViolationCount": null,
       "lastFiredCount": 0,
-      "coverage": "Cataloged — implementation pending"
+      "coverage": "Not evaluated — AWLEVEL is not present in the completion source contract.",
+      "reasonNotEvaluated": "AWLEVEL is not present in the completion source contract.",
+      "sourceFiles": [],
+      "sourceFields": [],
+      "parameters": null,
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available"
     },
     {
       "id": "DQ-COM-004",
@@ -1442,9 +733,30 @@
       "threshold": "Completion date cannot precede entry date",
       "owner": "Registrar",
       "implementationRule": "COMPLETION_TIMELINE",
-      "enabled": false,
-      "lastFiredCount": 0,
-      "coverage": "Cataloged — implementation pending"
+      "severity": "High",
+      "enabled": true,
+      "executionState": "ENABLED_EXECUTED",
+      "lastEvaluated": "2025-10-14T09:42:00-07:00",
+      "lastResult": "FAIL",
+      "lastViolationCount": 211,
+      "lastFiredCount": 211,
+      "coverage": "Executed — violation detected",
+      "reasonNotEvaluated": null,
+      "sourceFiles": [
+        "completions.csv",
+        "students.csv",
+        "terms.csv"
+      ],
+      "sourceFields": [
+        "completions.completion_id",
+        "completions.student_id",
+        "completions.award_date",
+        "students.entry_term_id",
+        "terms.start_date"
+      ],
+      "parameters": null,
+      "scopeDescription": "Completion rows under the single-career source contract with a resolvable first institutional entry term",
+      "countSemantics": "Completion rows where award_date is earlier than entry-term start_date"
     },
     {
       "id": "DQ-COM-005",
@@ -1453,9 +765,20 @@
       "threshold": "One row per student + program + completion term",
       "owner": "Registrar",
       "implementationRule": "DUPLICATE_DEGREE",
+      "severity": null,
       "enabled": false,
+      "executionState": "NOT_EVALUATED_MISSING_DATA",
+      "lastEvaluated": null,
+      "lastResult": "NOT_EVALUATED",
+      "lastViolationCount": null,
       "lastFiredCount": 0,
-      "coverage": "Cataloged — implementation pending"
+      "coverage": "Not evaluated — completion_term is not present in the completion source contract.",
+      "reasonNotEvaluated": "completion_term is not present in the completion source contract.",
+      "sourceFiles": [],
+      "sourceFields": [],
+      "parameters": null,
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available"
     },
     {
       "id": "DQ-AID-001",
@@ -1464,9 +787,29 @@
       "threshold": "Aid recipient must have enrollment in the award term",
       "owner": "Student Financial Services",
       "implementationRule": "AID_WITHOUT_ENROLLMENT",
+      "severity": "High",
       "enabled": true,
-      "lastFiredCount": 23,
-      "coverage": "Covered under live rule"
+      "executionState": "ENABLED_EXECUTED",
+      "lastEvaluated": "2025-10-14T09:42:00-07:00",
+      "lastResult": "PASS",
+      "lastViolationCount": 0,
+      "lastFiredCount": 0,
+      "coverage": "Executed — passed",
+      "reasonNotEvaluated": null,
+      "sourceFiles": [
+        "financial_aid.csv",
+        "student_terms.csv"
+      ],
+      "sourceFields": [
+        "financial_aid.aid_record_id",
+        "financial_aid.student_id",
+        "financial_aid.term_id",
+        "student_terms.student_id",
+        "student_terms.term_id"
+      ],
+      "parameters": null,
+      "scopeDescription": "All financial-aid rows",
+      "countSemantics": "Aid rows without a matching student_id + term_id enrollment key"
     },
     {
       "id": "DQ-AID-002",
@@ -1475,9 +818,20 @@
       "threshold": "Aid amount must be nonnegative and below the governed ceiling",
       "owner": "Student Financial Services",
       "implementationRule": "AID_AMOUNT_RANGE",
+      "severity": null,
       "enabled": false,
+      "executionState": "NOT_EVALUATED_MISSING_DATA",
+      "lastEvaluated": null,
+      "lastResult": "NOT_EVALUATED",
+      "lastViolationCount": null,
       "lastFiredCount": 0,
-      "coverage": "Cataloged — implementation pending"
+      "coverage": "Not evaluated — A governed aid-amount ceiling is not present in the source contract.",
+      "reasonNotEvaluated": "A governed aid-amount ceiling is not present in the source contract.",
+      "sourceFiles": [],
+      "sourceFields": [],
+      "parameters": null,
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available"
     },
     {
       "id": "DQ-AID-003",
@@ -1486,9 +840,20 @@
       "threshold": "Pell eligibility must reconcile to governed aid attributes",
       "owner": "Student Financial Services",
       "implementationRule": "PELL_ELIGIBILITY_RECONCILIATION",
+      "severity": null,
       "enabled": false,
+      "executionState": "NOT_EVALUATED_MISSING_DATA",
+      "lastEvaluated": null,
+      "lastResult": "NOT_EVALUATED",
+      "lastViolationCount": null,
       "lastFiredCount": 0,
-      "coverage": "Cataloged — implementation pending"
+      "coverage": "Not evaluated — A complete governed Pell reconciliation contract is not defined.",
+      "reasonNotEvaluated": "A complete governed Pell reconciliation contract is not defined.",
+      "sourceFiles": [],
+      "sourceFields": [],
+      "parameters": null,
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available"
     },
     {
       "id": "DQ-CRS-001",
@@ -1497,9 +862,28 @@
       "threshold": "Enrolled count cannot exceed section capacity",
       "owner": "Academic Affairs",
       "implementationRule": "SECTION_OVER_CAPACITY",
-      "enabled": false,
+      "severity": "High",
+      "enabled": true,
+      "executionState": "ENABLED_EXECUTED",
+      "lastEvaluated": "2025-10-14T09:42:00-07:00",
+      "lastResult": "PASS",
+      "lastViolationCount": 0,
       "lastFiredCount": 0,
-      "coverage": "Cataloged — implementation pending"
+      "coverage": "Executed — passed",
+      "reasonNotEvaluated": null,
+      "sourceFiles": [
+        "sections.csv",
+        "section_enrollments.csv"
+      ],
+      "sourceFields": [
+        "sections.section_id",
+        "sections.section_capacity",
+        "section_enrollments.section_id",
+        "section_enrollments.enrollment_status"
+      ],
+      "parameters": null,
+      "scopeDescription": "All sections and Enrolled registration rows",
+      "countSemantics": "Sections whose enrolled count exceeds capacity"
     },
     {
       "id": "DQ-CRS-002",
@@ -1508,9 +892,20 @@
       "threshold": "Zero-enrollment active sections require review",
       "owner": "Academic Affairs",
       "implementationRule": "EMPTY_ACTIVE_SECTION",
+      "severity": null,
       "enabled": false,
+      "executionState": "NOT_EVALUATED_MISSING_DATA",
+      "lastEvaluated": null,
+      "lastResult": "NOT_EVALUATED",
+      "lastViolationCount": null,
       "lastFiredCount": 0,
-      "coverage": "Cataloged — implementation pending"
+      "coverage": "Not evaluated — An active-section indicator is not present in the section source contract.",
+      "reasonNotEvaluated": "An active-section indicator is not present in the section source contract.",
+      "sourceFiles": [],
+      "sourceFields": [],
+      "parameters": null,
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available"
     },
     {
       "id": "DQ-CRS-003",
@@ -1519,9 +914,20 @@
       "threshold": "Active section must have assigned faculty",
       "owner": "Academic Affairs",
       "implementationRule": "MISSING_FACULTY",
+      "severity": null,
       "enabled": false,
+      "executionState": "NOT_EVALUATED_MISSING_DATA",
+      "lastEvaluated": null,
+      "lastResult": "NOT_EVALUATED",
+      "lastViolationCount": null,
       "lastFiredCount": 0,
-      "coverage": "Cataloged — implementation pending"
+      "coverage": "Not evaluated — Faculty assignment identifiers are not present; instructor_type is not an assignment.",
+      "reasonNotEvaluated": "Faculty assignment identifiers are not present; instructor_type is not an assignment.",
+      "sourceFiles": [],
+      "sourceFields": [],
+      "parameters": null,
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available"
     },
     {
       "id": "DQ-CRS-004",
@@ -1530,9 +936,20 @@
       "threshold": "Faculty FTE must remain within the governed range",
       "owner": "Human Resources",
       "implementationRule": "FACULTY_FTE_RANGE",
+      "severity": null,
       "enabled": false,
+      "executionState": "NOT_EVALUATED_MISSING_DATA",
+      "lastEvaluated": null,
+      "lastResult": "NOT_EVALUATED",
+      "lastViolationCount": null,
       "lastFiredCount": 0,
-      "coverage": "Cataloged — implementation pending"
+      "coverage": "Not evaluated — Faculty FTE is not present in the source contract.",
+      "reasonNotEvaluated": "Faculty FTE is not present in the source contract.",
+      "sourceFiles": [],
+      "sourceFields": [],
+      "parameters": null,
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available"
     },
     {
       "id": "DQ-CRS-005",
@@ -1541,9 +958,20 @@
       "threshold": "Faculty meeting times cannot overlap",
       "owner": "Academic Affairs",
       "implementationRule": "FACULTY_SCHEDULE_CONFLICT",
+      "severity": null,
       "enabled": false,
+      "executionState": "NOT_EVALUATED_MISSING_DATA",
+      "lastEvaluated": null,
+      "lastResult": "NOT_EVALUATED",
+      "lastViolationCount": null,
       "lastFiredCount": 0,
-      "coverage": "Cataloged — implementation pending"
+      "coverage": "Not evaluated — Faculty identifiers and section meeting times are not present.",
+      "reasonNotEvaluated": "Faculty identifiers and section meeting times are not present.",
+      "sourceFiles": [],
+      "sourceFields": [],
+      "parameters": null,
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available"
     },
     {
       "id": "DQ-X-001",
@@ -1552,9 +980,31 @@
       "threshold": "All declared foreign-key paths must resolve",
       "owner": "Enterprise Systems",
       "implementationRule": "REFERENTIAL_INTEGRITY",
+      "severity": "Critical",
       "enabled": true,
+      "executionState": "ENABLED_EXECUTED",
+      "lastEvaluated": "2025-10-14T09:42:00-07:00",
+      "lastResult": "PASS",
+      "lastViolationCount": 0,
       "lastFiredCount": 0,
-      "coverage": "Covered — no current finding"
+      "coverage": "Executed — passed",
+      "reasonNotEvaluated": null,
+      "sourceFiles": [
+        "students.csv",
+        "terms.csv",
+        "programs.csv",
+        "student_terms.csv",
+        "completions.csv",
+        "financial_aid.csv",
+        "sections.csv",
+        "section_enrollments.csv"
+      ],
+      "sourceFields": [
+        "All declared source foreign-key columns"
+      ],
+      "parameters": null,
+      "scopeDescription": "All declared source foreign-key relationships",
+      "countSemantics": "Unresolved child-key rows across declared relationships"
     },
     {
       "id": "DQ-X-002",
@@ -1563,9 +1013,20 @@
       "threshold": "Coded columns cannot introduce unrecognized values",
       "owner": "Enterprise Systems",
       "implementationRule": "CODESET_SCHEMA_DRIFT",
+      "severity": null,
       "enabled": false,
+      "executionState": "NOT_EVALUATED_MISSING_DATA",
+      "lastEvaluated": null,
+      "lastResult": "NOT_EVALUATED",
+      "lastViolationCount": null,
       "lastFiredCount": 0,
-      "coverage": "Cataloged — implementation pending"
+      "coverage": "Not evaluated — Versioned governed code sets are not present for schema-drift comparison.",
+      "reasonNotEvaluated": "Versioned governed code sets are not present for schema-drift comparison.",
+      "sourceFiles": [],
+      "sourceFields": [],
+      "parameters": null,
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available"
     },
     {
       "id": "DQ-X-003",
@@ -1574,9 +1035,20 @@
       "threshold": "Table row count cannot move >40% without explanation",
       "owner": "Enterprise Systems",
       "implementationRule": "ROW_COUNT_ANOMALY",
+      "severity": null,
       "enabled": false,
+      "executionState": "NOT_EVALUATED_MISSING_DATA",
+      "lastEvaluated": null,
+      "lastResult": "NOT_EVALUATED",
+      "lastViolationCount": null,
       "lastFiredCount": 0,
-      "coverage": "Cataloged — implementation pending"
+      "coverage": "Not evaluated — Historical table snapshots and approved explanations are not present.",
+      "reasonNotEvaluated": "Historical table snapshots and approved explanations are not present.",
+      "sourceFiles": [],
+      "sourceFields": [],
+      "parameters": null,
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available"
     },
     {
       "id": "DQ-X-004",
@@ -1585,9 +1057,32 @@
       "threshold": "Enrollment headcount variance outside ±2.5% requires explanation",
       "owner": "Institutional Research",
       "implementationRule": "YOY_HEADCOUNT_VARIANCE",
+      "severity": "High",
       "enabled": true,
-      "lastFiredCount": 808,
-      "coverage": "Covered under live rule"
+      "executionState": "ENABLED_EXECUTED",
+      "lastEvaluated": "2025-10-14T09:42:00-07:00",
+      "lastResult": "FAIL",
+      "lastViolationCount": 1,
+      "lastFiredCount": 1,
+      "coverage": "Executed — violation detected",
+      "reasonNotEvaluated": null,
+      "sourceFiles": [
+        "student_terms.csv",
+        "terms.csv"
+      ],
+      "sourceFields": [
+        "student_terms.student_id",
+        "student_terms.term_id",
+        "student_terms.census_enrolled",
+        "student_terms.reportable",
+        "terms.season",
+        "terms.is_current"
+      ],
+      "parameters": {
+        "thresholdPercent": 2.5
+      },
+      "scopeDescription": "Distinct reportable census students in current and prior Fall terms",
+      "countSemantics": "One anomaly observation; absolute change is not an affected-record count"
     },
     {
       "id": "DQ-X-005",
@@ -1596,9 +1091,20 @@
       "threshold": "Completion count variance outside ±10% requires explanation",
       "owner": "Institutional Research",
       "implementationRule": "YOY_COMPLETIONS_VARIANCE",
+      "severity": null,
       "enabled": false,
+      "executionState": "NOT_EVALUATED_MISSING_DATA",
+      "lastEvaluated": null,
+      "lastResult": "NOT_EVALUATED",
+      "lastViolationCount": null,
       "lastFiredCount": 0,
-      "coverage": "Cataloged — implementation pending"
+      "coverage": "Not evaluated — A comparable prior-year completion population is not present.",
+      "reasonNotEvaluated": "A comparable prior-year completion population is not present.",
+      "sourceFiles": [],
+      "sourceFields": [],
+      "parameters": null,
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available"
     },
     {
       "id": "DQ-X-006",
@@ -1607,9 +1113,20 @@
       "threshold": "Aid total variance outside ±10% requires explanation",
       "owner": "Student Financial Services",
       "implementationRule": "YOY_AID_VARIANCE",
+      "severity": null,
       "enabled": false,
+      "executionState": "NOT_EVALUATED_MISSING_DATA",
+      "lastEvaluated": null,
+      "lastResult": "NOT_EVALUATED",
+      "lastViolationCount": null,
       "lastFiredCount": 0,
-      "coverage": "Cataloged — implementation pending"
+      "coverage": "Not evaluated — A comparable prior-year financial-aid population is not present.",
+      "reasonNotEvaluated": "A comparable prior-year financial-aid population is not present.",
+      "sourceFiles": [],
+      "sourceFields": [],
+      "parameters": null,
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available"
     },
     {
       "id": "DQ-X-007",
@@ -1618,9 +1135,20 @@
       "threshold": "CIP changes require an effective-dated bridge",
       "owner": "Academic Affairs",
       "implementationRule": "CIP_EFFECTIVE_DATING",
-      "enabled": true,
-      "lastFiredCount": 307,
-      "coverage": "Covered under live rule"
+      "severity": null,
+      "enabled": false,
+      "executionState": "NOT_EVALUATED_MISSING_DATA",
+      "lastEvaluated": null,
+      "lastResult": "NOT_EVALUATED",
+      "lastViolationCount": null,
+      "lastFiredCount": 0,
+      "coverage": "Not evaluated — Historical CIP values and effective-dated bridge records are not present.",
+      "reasonNotEvaluated": "Historical CIP values and effective-dated bridge records are not present.",
+      "sourceFiles": [],
+      "sourceFields": [],
+      "parameters": null,
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available"
     },
     {
       "id": "DQ-X-008",
@@ -1629,11 +1157,1031 @@
       "threshold": "Potential duplicate identities require adjudication",
       "owner": "Enterprise Systems",
       "implementationRule": "IDENTITY_COLLISION",
+      "severity": null,
       "enabled": false,
+      "executionState": "NOT_EVALUATED_MISSING_DATA",
+      "lastEvaluated": null,
+      "lastResult": "NOT_EVALUATED",
+      "lastViolationCount": null,
       "lastFiredCount": 0,
-      "coverage": "Cataloged — implementation pending"
+      "coverage": "Not evaluated — Governed identity-match attributes are not present.",
+      "reasonNotEvaluated": "Governed identity-match attributes are not present.",
+      "sourceFiles": [],
+      "sourceFields": [],
+      "parameters": null,
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available"
     }
   ],
+  "qualityRuleResults": [
+    {
+      "ruleId": "DQ-ENR-001",
+      "implementationRule": "UG_FT_CREDIT_THRESHOLD",
+      "findingId": "DQ-1001",
+      "domain": "Enrollment",
+      "title": "Full-time undergraduate attempted credits are below the governed threshold",
+      "description": "Reportable Fall census undergraduate rows coded full-time must carry at least 12 attempted credits.",
+      "category": "Invalid values",
+      "severity": "Critical",
+      "owner": "Registrar",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": "SIS student term",
+      "sourceFiles": [
+        "student_terms.csv",
+        "terms.csv"
+      ],
+      "sourceFields": [
+        "student_terms.term_id",
+        "student_terms.level",
+        "student_terms.attendance_status",
+        "student_terms.attempted_credits",
+        "student_terms.census_enrolled",
+        "student_terms.reportable",
+        "terms.is_current"
+      ],
+      "scopeDescription": "Current Fall reportable census undergraduate enrollment",
+      "countSemantics": "Distinct violating student-term rows",
+      "status": "FAIL",
+      "violationCount": 146,
+      "evidence": {
+        "thresholdCredits": 12,
+        "scopedRowCount": 16143
+      },
+      "sampleRows": [
+        {
+          "student_id": "S0038789",
+          "term_id": "2025FA",
+          "program_id": "PENG",
+          "attempted_credits": 6,
+          "attendance_status": "F"
+        },
+        {
+          "student_id": "S0036400",
+          "term_id": "2025FA",
+          "program_id": "PBIO",
+          "attempted_credits": 6,
+          "attendance_status": "F"
+        },
+        {
+          "student_id": "S0028491",
+          "term_id": "2025FA",
+          "program_id": "PBUS",
+          "attempted_credits": 6,
+          "attendance_status": "F"
+        },
+        {
+          "student_id": "S0027303",
+          "term_id": "2025FA",
+          "program_id": "PMATH",
+          "attempted_credits": 6,
+          "attendance_status": "F"
+        },
+        {
+          "student_id": "S0038676",
+          "term_id": "2025FA",
+          "program_id": "PEDU",
+          "attempted_credits": 6,
+          "attendance_status": "F"
+        }
+      ],
+      "reasonNotEvaluated": null
+    },
+    {
+      "ruleId": "DQ-ENR-002",
+      "implementationRule": "ENROLLMENT_STATUS_VALID",
+      "domain": "Enrollment",
+      "title": "Attendance status uses the governed FT/PT code set",
+      "description": "Attendance status must be F or P in the current source contract.",
+      "category": "Unknown codes",
+      "severity": "High",
+      "owner": "Registrar",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": "SIS student term",
+      "sourceFiles": [
+        "student_terms.csv"
+      ],
+      "sourceFields": [
+        "student_terms.attendance_status"
+      ],
+      "scopeDescription": "All student-term rows",
+      "countSemantics": "Student-term rows with an unrecognized attendance code",
+      "status": "PASS",
+      "violationCount": 0,
+      "evidence": {
+        "governedCodes": [
+          "F",
+          "P"
+        ]
+      },
+      "sampleRows": [],
+      "reasonNotEvaluated": null
+    },
+    {
+      "ruleId": "DQ-ENR-003",
+      "implementationRule": "ACTIVE_PROGRAM_REFERENCE",
+      "domain": "Enrollment",
+      "title": "Student-term program references are active for the term",
+      "description": "Every student-term program must exist and be active for that term.",
+      "category": "Referential integrity",
+      "severity": "Critical",
+      "owner": "Registrar",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": "SIS student term",
+      "sourceFiles": [
+        "student_terms.csv",
+        "programs.csv"
+      ],
+      "sourceFields": [
+        "student_terms.program_id",
+        "student_terms.term_id",
+        "programs.program_id",
+        "programs.active_from",
+        "programs.active_to"
+      ],
+      "scopeDescription": "All student-term rows",
+      "countSemantics": "Student-term rows with a missing or inactive program",
+      "status": "PASS",
+      "violationCount": 0,
+      "evidence": {},
+      "sampleRows": [],
+      "reasonNotEvaluated": null
+    },
+    {
+      "ruleId": "DQ-ENR-004",
+      "implementationRule": "DUPLICATE_ENROLLMENT",
+      "domain": "Enrollment",
+      "title": "Student-term-program rows are unique",
+      "description": "Only one row may exist for a student, term, and program combination.",
+      "category": "Duplicates",
+      "severity": "High",
+      "owner": "Enterprise Systems",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": "SIS student term",
+      "sourceFiles": [
+        "student_terms.csv"
+      ],
+      "sourceFields": [
+        "student_terms.student_id",
+        "student_terms.term_id",
+        "student_terms.program_id"
+      ],
+      "scopeDescription": "All student-term rows",
+      "countSemantics": "Rows after the first occurrence of a duplicate composite key",
+      "status": "PASS",
+      "violationCount": 0,
+      "evidence": {},
+      "sampleRows": [],
+      "reasonNotEvaluated": null
+    },
+    {
+      "ruleId": "DQ-ENR-005",
+      "implementationRule": "CREDITS_EARNED_LE_ATTEMPTED",
+      "domain": "Enrollment",
+      "title": "Credits earned cannot exceed attempted credits",
+      "description": "Credits earned cannot exceed attempted credits",
+      "category": "Invalid values",
+      "severity": null,
+      "owner": "Registrar",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": null,
+      "sourceFiles": [],
+      "sourceFields": [],
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available",
+      "status": "NOT_EVALUATED",
+      "violationCount": null,
+      "evidence": {},
+      "sampleRows": [],
+      "reasonNotEvaluated": "credits_earned is not present in the student-term source contract."
+    },
+    {
+      "ruleId": "DQ-ENR-006",
+      "implementationRule": "NONNEGATIVE_CREDITS",
+      "domain": "Enrollment",
+      "title": "Attempted and earned credits must be >= 0",
+      "description": "Attempted and earned credits must be >= 0",
+      "category": "Invalid values",
+      "severity": null,
+      "owner": "Registrar",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": null,
+      "sourceFiles": [],
+      "sourceFields": [],
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available",
+      "status": "NOT_EVALUATED",
+      "violationCount": null,
+      "evidence": {},
+      "sampleRows": [],
+      "reasonNotEvaluated": "credits_earned is not present, so the complete nonnegative-credit rule cannot run."
+    },
+    {
+      "ruleId": "DQ-ENR-007",
+      "implementationRule": "TERM_GPA_RANGE",
+      "domain": "Enrollment",
+      "title": "Term GPA must be between 0.0 and 4.0",
+      "description": "Term GPA must be between 0.0 and 4.0",
+      "category": "Invalid values",
+      "severity": null,
+      "owner": "Registrar",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": null,
+      "sourceFiles": [],
+      "sourceFields": [],
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available",
+      "status": "NOT_EVALUATED",
+      "violationCount": null,
+      "evidence": {},
+      "sampleRows": [],
+      "reasonNotEvaluated": "term_gpa is not present in the student-term source contract."
+    },
+    {
+      "ruleId": "DQ-ENR-008",
+      "implementationRule": "AGE_AT_ENTRY_RANGE",
+      "domain": "Enrollment",
+      "title": "Age at entry is within the governed range",
+      "description": "Derived age at the entry-term start must be between 14 and 100.",
+      "category": "Anomalies",
+      "severity": "Medium",
+      "owner": "Admissions",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": "SIS student",
+      "sourceFiles": [
+        "students.csv",
+        "terms.csv"
+      ],
+      "sourceFields": [
+        "students.birth_year",
+        "students.entry_term_id",
+        "terms.start_date"
+      ],
+      "scopeDescription": "All students with a governed entry term",
+      "countSemantics": "Student rows with derived age outside 14–100",
+      "status": "PASS",
+      "violationCount": 0,
+      "evidence": {
+        "minimumAge": 14,
+        "maximumAge": 100
+      },
+      "sampleRows": [],
+      "reasonNotEvaluated": null
+    },
+    {
+      "ruleId": "DQ-ENR-009",
+      "implementationRule": "TERM_REFERENCE",
+      "domain": "Enrollment",
+      "title": "Student-term rows reference governed terms",
+      "description": "Every student-term term identifier must exist in terms.csv.",
+      "category": "Referential integrity",
+      "severity": "Critical",
+      "owner": "Enterprise Systems",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": "SIS student term",
+      "sourceFiles": [
+        "student_terms.csv",
+        "terms.csv"
+      ],
+      "sourceFields": [
+        "student_terms.term_id",
+        "terms.term_id"
+      ],
+      "scopeDescription": "All student-term rows",
+      "countSemantics": "Student-term rows with an unresolved term foreign key",
+      "status": "PASS",
+      "violationCount": 0,
+      "evidence": {},
+      "sampleRows": [],
+      "reasonNotEvaluated": null
+    },
+    {
+      "ruleId": "DQ-DEM-001",
+      "implementationRule": "DEMOGRAPHIC_COMPLETENESS",
+      "findingId": "DQ-1003",
+      "domain": "Demographics",
+      "title": "Race and ethnicity is missing",
+      "description": "Students in the current Fall reportable census population require a nonblank race/ethnicity value.",
+      "category": "Nulls",
+      "severity": "High",
+      "owner": "Admissions",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": "SIS student",
+      "sourceFiles": [
+        "students.csv",
+        "student_terms.csv",
+        "terms.csv"
+      ],
+      "sourceFields": [
+        "students.student_id",
+        "students.race_ethnicity",
+        "student_terms.student_id",
+        "student_terms.term_id",
+        "student_terms.census_enrolled",
+        "student_terms.reportable",
+        "terms.is_current"
+      ],
+      "scopeDescription": "Distinct students in the current Fall reportable census",
+      "countSemantics": "Distinct in-scope students with a blank race/ethnicity value",
+      "status": "FAIL",
+      "violationCount": 119,
+      "evidence": {
+        "scopedStudentCount": 18426
+      },
+      "sampleRows": [
+        {
+          "student_id": "S0000667",
+          "entry_term_id": "2020FA",
+          "primary_program_id": "PMATH",
+          "race_ethnicity": "(blank)"
+        },
+        {
+          "student_id": "S0001768",
+          "entry_term_id": "2020FA",
+          "primary_program_id": "PENG",
+          "race_ethnicity": "(blank)"
+        },
+        {
+          "student_id": "S0003169",
+          "entry_term_id": "2020FA",
+          "primary_program_id": "PEDU",
+          "race_ethnicity": "(blank)"
+        },
+        {
+          "student_id": "S0003281",
+          "entry_term_id": "2020FA",
+          "primary_program_id": "PENG",
+          "race_ethnicity": "(blank)"
+        },
+        {
+          "student_id": "S0003565",
+          "entry_term_id": "2020FA",
+          "primary_program_id": "PENG",
+          "race_ethnicity": "(blank)"
+        }
+      ],
+      "reasonNotEvaluated": null
+    },
+    {
+      "ruleId": "DQ-DEM-002",
+      "implementationRule": "RACE_CODE_VALID",
+      "domain": "Demographics",
+      "title": "Race/ethnicity must map to IPEDS codes 1–9",
+      "description": "Race/ethnicity must map to IPEDS codes 1–9",
+      "category": "Unknown codes",
+      "severity": null,
+      "owner": "Institutional Research",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": null,
+      "sourceFiles": [],
+      "sourceFields": [],
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available",
+      "status": "NOT_EVALUATED",
+      "violationCount": null,
+      "evidence": {},
+      "sampleRows": [],
+      "reasonNotEvaluated": "A versioned governed race/ethnicity-to-IPEDS code map is not present."
+    },
+    {
+      "ruleId": "DQ-DEM-003",
+      "implementationRule": "SEX_CODE_VALID",
+      "domain": "Demographics",
+      "title": "Sex/gender must map to the governed reporting set",
+      "description": "Sex/gender must map to the governed reporting set",
+      "category": "Unknown codes",
+      "severity": null,
+      "owner": "Institutional Research",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": null,
+      "sourceFiles": [],
+      "sourceFields": [],
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available",
+      "status": "NOT_EVALUATED",
+      "violationCount": null,
+      "evidence": {},
+      "sampleRows": [],
+      "reasonNotEvaluated": "A versioned governed sex/gender reporting code set is not present."
+    },
+    {
+      "ruleId": "DQ-DEM-004",
+      "implementationRule": "RESIDENCY_CODE_VALID",
+      "domain": "Demographics",
+      "title": "Residency must be in the governed residency set",
+      "description": "Residency must be in the governed residency set",
+      "category": "Unknown codes",
+      "severity": null,
+      "owner": "Admissions",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": null,
+      "sourceFiles": [],
+      "sourceFields": [],
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available",
+      "status": "NOT_EVALUATED",
+      "violationCount": null,
+      "evidence": {},
+      "sampleRows": [],
+      "reasonNotEvaluated": "A versioned governed residency code set is not present."
+    },
+    {
+      "ruleId": "DQ-DEM-005",
+      "implementationRule": "SMALL_CELL_DISCLOSURE",
+      "domain": "Demographics",
+      "title": "Flag published demographic cells with n < 10",
+      "description": "Flag published demographic cells with n < 10",
+      "category": "Privacy",
+      "severity": null,
+      "owner": "Institutional Research",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": null,
+      "sourceFiles": [],
+      "sourceFields": [],
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available",
+      "status": "NOT_EVALUATED",
+      "violationCount": null,
+      "evidence": {},
+      "sampleRows": [],
+      "reasonNotEvaluated": "Published demographic cells are not present in the current source contract."
+    },
+    {
+      "ruleId": "DQ-COM-001",
+      "implementationRule": "COMPLETION_WITH_ENROLLMENT",
+      "domain": "Completions",
+      "title": "Completers have enrollment history",
+      "description": "Every completion student must appear in student-term enrollment history.",
+      "category": "Referential integrity",
+      "severity": "Critical",
+      "owner": "Registrar",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": "SIS degree history",
+      "sourceFiles": [
+        "completions.csv",
+        "student_terms.csv"
+      ],
+      "sourceFields": [
+        "completions.student_id",
+        "student_terms.student_id"
+      ],
+      "scopeDescription": "All completion rows",
+      "countSemantics": "Completion rows whose student has no enrollment history",
+      "status": "PASS",
+      "violationCount": 0,
+      "evidence": {},
+      "sampleRows": [],
+      "reasonNotEvaluated": null
+    },
+    {
+      "ruleId": "DQ-COM-002",
+      "implementationRule": "CIP_FORMAT_VALID",
+      "domain": "Completions",
+      "title": "Completion CIP codes use the governed format",
+      "description": "The completion program CIP must use numeric xx.xxxx format.",
+      "category": "Invalid values",
+      "severity": "High",
+      "owner": "Academic Affairs",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": "SIS degree history",
+      "sourceFiles": [
+        "completions.csv",
+        "programs.csv"
+      ],
+      "sourceFields": [
+        "completions.program_id",
+        "programs.program_id",
+        "programs.cip_code"
+      ],
+      "scopeDescription": "All completion rows joined to their governed program",
+      "countSemantics": "Completion rows with a missing or malformed program CIP",
+      "status": "PASS",
+      "violationCount": 0,
+      "evidence": {
+        "requiredFormat": "xx.xxxx"
+      },
+      "sampleRows": [],
+      "reasonNotEvaluated": null
+    },
+    {
+      "ruleId": "DQ-COM-003",
+      "implementationRule": "AWLEVEL_VALID",
+      "domain": "Completions",
+      "title": "AWLEVEL must be in the official valid set",
+      "description": "AWLEVEL must be in the official valid set",
+      "category": "Unknown codes",
+      "severity": null,
+      "owner": "Institutional Research",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": null,
+      "sourceFiles": [],
+      "sourceFields": [],
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available",
+      "status": "NOT_EVALUATED",
+      "violationCount": null,
+      "evidence": {},
+      "sampleRows": [],
+      "reasonNotEvaluated": "AWLEVEL is not present in the completion source contract."
+    },
+    {
+      "ruleId": "DQ-COM-004",
+      "implementationRule": "COMPLETION_TIMELINE",
+      "findingId": "DQ-COM-004",
+      "domain": "Completions",
+      "title": "Completion date precedes the governed entry-term start",
+      "description": "A completion award date cannot be earlier than the start date of the student's governed entry term.",
+      "category": "Invalid values",
+      "severity": "High",
+      "owner": "Registrar",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": "SIS degree history",
+      "sourceFiles": [
+        "completions.csv",
+        "students.csv",
+        "terms.csv"
+      ],
+      "sourceFields": [
+        "completions.completion_id",
+        "completions.student_id",
+        "completions.award_date",
+        "students.entry_term_id",
+        "terms.start_date"
+      ],
+      "scopeDescription": "Completion rows under the single-career source contract with a resolvable first institutional entry term",
+      "countSemantics": "Completion rows where award_date is earlier than entry-term start_date",
+      "status": "FAIL",
+      "violationCount": 211,
+      "evidence": {
+        "entryDateDerivation": "terms.start_date for students.entry_term_id",
+        "entryTermContract": "students.entry_term_id is the first institutional entry in this single-career source model",
+        "comparison": "completions.award_date < terms.start_date",
+        "entryContractMismatchCount": 0,
+        "violationsWithEarlierEnrollment": 0,
+        "unresolvedRowsExcluded": 0
+      },
+      "sampleRows": [
+        {
+          "completion_id": "C000004",
+          "student_id": "S0037958",
+          "award_date": "2025-05-17",
+          "entry_term_id": "2025FA",
+          "entry_term_start_date": "2025-08-25"
+        },
+        {
+          "completion_id": "C000008",
+          "student_id": "S0037020",
+          "award_date": "2025-05-17",
+          "entry_term_id": "2025FA",
+          "entry_term_start_date": "2025-08-25"
+        },
+        {
+          "completion_id": "C000009",
+          "student_id": "S0038412",
+          "award_date": "2025-05-17",
+          "entry_term_id": "2025FA",
+          "entry_term_start_date": "2025-08-25"
+        },
+        {
+          "completion_id": "C000011",
+          "student_id": "S0040082",
+          "award_date": "2025-05-17",
+          "entry_term_id": "2025FA",
+          "entry_term_start_date": "2025-08-25"
+        },
+        {
+          "completion_id": "C000012",
+          "student_id": "S0038857",
+          "award_date": "2025-05-17",
+          "entry_term_id": "2025FA",
+          "entry_term_start_date": "2025-08-25"
+        }
+      ],
+      "reasonNotEvaluated": null
+    },
+    {
+      "ruleId": "DQ-COM-005",
+      "implementationRule": "DUPLICATE_DEGREE",
+      "domain": "Completions",
+      "title": "One row per student + program + completion term",
+      "description": "One row per student + program + completion term",
+      "category": "Duplicates",
+      "severity": null,
+      "owner": "Registrar",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": null,
+      "sourceFiles": [],
+      "sourceFields": [],
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available",
+      "status": "NOT_EVALUATED",
+      "violationCount": null,
+      "evidence": {},
+      "sampleRows": [],
+      "reasonNotEvaluated": "completion_term is not present in the completion source contract."
+    },
+    {
+      "ruleId": "DQ-AID-001",
+      "implementationRule": "AID_WITHOUT_ENROLLMENT",
+      "domain": "Financial aid",
+      "title": "Financial-aid records have matching term enrollment",
+      "description": "Every financial-aid record must match student-term enrollment on student_id and term_id.",
+      "category": "Referential integrity",
+      "severity": "High",
+      "owner": "Student Financial Services",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": "Financial aid system",
+      "sourceFiles": [
+        "financial_aid.csv",
+        "student_terms.csv"
+      ],
+      "sourceFields": [
+        "financial_aid.aid_record_id",
+        "financial_aid.student_id",
+        "financial_aid.term_id",
+        "student_terms.student_id",
+        "student_terms.term_id"
+      ],
+      "scopeDescription": "All financial-aid rows",
+      "countSemantics": "Aid rows without a matching student_id + term_id enrollment key",
+      "status": "PASS",
+      "violationCount": 0,
+      "evidence": {
+        "scopedAidRowCount": 18426
+      },
+      "sampleRows": [],
+      "reasonNotEvaluated": null
+    },
+    {
+      "ruleId": "DQ-AID-002",
+      "implementationRule": "AID_AMOUNT_RANGE",
+      "domain": "Financial aid",
+      "title": "Aid amount must be nonnegative and below the governed ceiling",
+      "description": "Aid amount must be nonnegative and below the governed ceiling",
+      "category": "Invalid values",
+      "severity": null,
+      "owner": "Student Financial Services",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": null,
+      "sourceFiles": [],
+      "sourceFields": [],
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available",
+      "status": "NOT_EVALUATED",
+      "violationCount": null,
+      "evidence": {},
+      "sampleRows": [],
+      "reasonNotEvaluated": "A governed aid-amount ceiling is not present in the source contract."
+    },
+    {
+      "ruleId": "DQ-AID-003",
+      "implementationRule": "PELL_ELIGIBILITY_RECONCILIATION",
+      "domain": "Financial aid",
+      "title": "Pell eligibility must reconcile to governed aid attributes",
+      "description": "Pell eligibility must reconcile to governed aid attributes",
+      "category": "Cross-domain",
+      "severity": null,
+      "owner": "Student Financial Services",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": null,
+      "sourceFiles": [],
+      "sourceFields": [],
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available",
+      "status": "NOT_EVALUATED",
+      "violationCount": null,
+      "evidence": {},
+      "sampleRows": [],
+      "reasonNotEvaluated": "A complete governed Pell reconciliation contract is not defined."
+    },
+    {
+      "ruleId": "DQ-CRS-001",
+      "implementationRule": "SECTION_OVER_CAPACITY",
+      "domain": "Courses/faculty",
+      "title": "Section enrollment does not exceed capacity",
+      "description": "The number of enrolled section rows cannot exceed section capacity.",
+      "category": "Invalid values",
+      "severity": "High",
+      "owner": "Academic Affairs",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": "SIS course schedule",
+      "sourceFiles": [
+        "sections.csv",
+        "section_enrollments.csv"
+      ],
+      "sourceFields": [
+        "sections.section_id",
+        "sections.section_capacity",
+        "section_enrollments.section_id",
+        "section_enrollments.enrollment_status"
+      ],
+      "scopeDescription": "All sections and Enrolled registration rows",
+      "countSemantics": "Sections whose enrolled count exceeds capacity",
+      "status": "PASS",
+      "violationCount": 0,
+      "evidence": {},
+      "sampleRows": [],
+      "reasonNotEvaluated": null
+    },
+    {
+      "ruleId": "DQ-CRS-002",
+      "implementationRule": "EMPTY_ACTIVE_SECTION",
+      "domain": "Courses/faculty",
+      "title": "Zero-enrollment active sections require review",
+      "description": "Zero-enrollment active sections require review",
+      "category": "Anomalies",
+      "severity": null,
+      "owner": "Academic Affairs",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": null,
+      "sourceFiles": [],
+      "sourceFields": [],
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available",
+      "status": "NOT_EVALUATED",
+      "violationCount": null,
+      "evidence": {},
+      "sampleRows": [],
+      "reasonNotEvaluated": "An active-section indicator is not present in the section source contract."
+    },
+    {
+      "ruleId": "DQ-CRS-003",
+      "implementationRule": "MISSING_FACULTY",
+      "domain": "Courses/faculty",
+      "title": "Active section must have assigned faculty",
+      "description": "Active section must have assigned faculty",
+      "category": "Nulls",
+      "severity": null,
+      "owner": "Academic Affairs",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": null,
+      "sourceFiles": [],
+      "sourceFields": [],
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available",
+      "status": "NOT_EVALUATED",
+      "violationCount": null,
+      "evidence": {},
+      "sampleRows": [],
+      "reasonNotEvaluated": "Faculty assignment identifiers are not present; instructor_type is not an assignment."
+    },
+    {
+      "ruleId": "DQ-CRS-004",
+      "implementationRule": "FACULTY_FTE_RANGE",
+      "domain": "Courses/faculty",
+      "title": "Faculty FTE must remain within the governed range",
+      "description": "Faculty FTE must remain within the governed range",
+      "category": "Invalid values",
+      "severity": null,
+      "owner": "Human Resources",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": null,
+      "sourceFiles": [],
+      "sourceFields": [],
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available",
+      "status": "NOT_EVALUATED",
+      "violationCount": null,
+      "evidence": {},
+      "sampleRows": [],
+      "reasonNotEvaluated": "Faculty FTE is not present in the source contract."
+    },
+    {
+      "ruleId": "DQ-CRS-005",
+      "implementationRule": "FACULTY_SCHEDULE_CONFLICT",
+      "domain": "Courses/faculty",
+      "title": "Faculty meeting times cannot overlap",
+      "description": "Faculty meeting times cannot overlap",
+      "category": "Cross-domain",
+      "severity": null,
+      "owner": "Academic Affairs",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": null,
+      "sourceFiles": [],
+      "sourceFields": [],
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available",
+      "status": "NOT_EVALUATED",
+      "violationCount": null,
+      "evidence": {},
+      "sampleRows": [],
+      "reasonNotEvaluated": "Faculty identifiers and section meeting times are not present."
+    },
+    {
+      "ruleId": "DQ-X-001",
+      "implementationRule": "REFERENTIAL_INTEGRITY",
+      "domain": "Cross-domain",
+      "title": "Declared source foreign keys resolve",
+      "description": "Every declared child key must resolve to its governed parent source.",
+      "category": "Referential integrity",
+      "severity": "Critical",
+      "owner": "Enterprise Systems",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": "Enterprise data warehouse",
+      "sourceFiles": [
+        "students.csv",
+        "terms.csv",
+        "programs.csv",
+        "student_terms.csv",
+        "completions.csv",
+        "financial_aid.csv",
+        "sections.csv",
+        "section_enrollments.csv"
+      ],
+      "sourceFields": [
+        "All declared source foreign-key columns"
+      ],
+      "scopeDescription": "All declared source foreign-key relationships",
+      "countSemantics": "Unresolved child-key rows across declared relationships",
+      "status": "PASS",
+      "violationCount": 0,
+      "evidence": {
+        "relationshipsEvaluated": 12
+      },
+      "sampleRows": [],
+      "reasonNotEvaluated": null
+    },
+    {
+      "ruleId": "DQ-X-002",
+      "implementationRule": "CODESET_SCHEMA_DRIFT",
+      "domain": "Cross-domain",
+      "title": "Coded columns cannot introduce unrecognized values",
+      "description": "Coded columns cannot introduce unrecognized values",
+      "category": "Schema drift",
+      "severity": null,
+      "owner": "Enterprise Systems",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": null,
+      "sourceFiles": [],
+      "sourceFields": [],
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available",
+      "status": "NOT_EVALUATED",
+      "violationCount": null,
+      "evidence": {},
+      "sampleRows": [],
+      "reasonNotEvaluated": "Versioned governed code sets are not present for schema-drift comparison."
+    },
+    {
+      "ruleId": "DQ-X-003",
+      "implementationRule": "ROW_COUNT_ANOMALY",
+      "domain": "Cross-domain",
+      "title": "Table row count cannot move >40% without explanation",
+      "description": "Table row count cannot move >40% without explanation",
+      "category": "Anomalies",
+      "severity": null,
+      "owner": "Enterprise Systems",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": null,
+      "sourceFiles": [],
+      "sourceFields": [],
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available",
+      "status": "NOT_EVALUATED",
+      "violationCount": null,
+      "evidence": {},
+      "sampleRows": [],
+      "reasonNotEvaluated": "Historical table snapshots and approved explanations are not present."
+    },
+    {
+      "ruleId": "DQ-X-004",
+      "implementationRule": "YOY_HEADCOUNT_VARIANCE",
+      "findingId": "DQ-1002",
+      "domain": "Cross-domain",
+      "title": "Fall census headcount changed outside the expected range",
+      "description": "The distinct reportable Fall census headcount changed by more than ±2.5% from the prior Fall term.",
+      "category": "Anomalies",
+      "severity": "High",
+      "owner": "Institutional Research",
+      "findingType": "ANOMALY",
+      "sourceSystem": "SIS student term",
+      "sourceFiles": [
+        "student_terms.csv",
+        "terms.csv"
+      ],
+      "sourceFields": [
+        "student_terms.student_id",
+        "student_terms.term_id",
+        "student_terms.census_enrolled",
+        "student_terms.reportable",
+        "terms.season",
+        "terms.is_current"
+      ],
+      "parameters": {
+        "thresholdPercent": 2.5
+      },
+      "scopeDescription": "Distinct reportable census students in current and prior Fall terms",
+      "countSemantics": "One anomaly observation; absolute change is not an affected-record count",
+      "status": "FAIL",
+      "violationCount": 1,
+      "evidence": {
+        "previousTerm": "2024FA",
+        "currentTerm": "2025FA",
+        "previousValue": 19234,
+        "currentValue": 18426,
+        "absoluteChange": -808,
+        "percentChange": -4.200894249766039,
+        "thresholdPercent": 2.5,
+        "thresholdParameter": "DQ-X-004.parameters.thresholdPercent",
+        "thresholdBreached": true
+      },
+      "sampleRows": [],
+      "reasonNotEvaluated": null
+    },
+    {
+      "ruleId": "DQ-X-005",
+      "implementationRule": "YOY_COMPLETIONS_VARIANCE",
+      "domain": "Cross-domain",
+      "title": "Completion count variance outside ±10% requires explanation",
+      "description": "Completion count variance outside ±10% requires explanation",
+      "category": "Anomalies",
+      "severity": null,
+      "owner": "Institutional Research",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": null,
+      "sourceFiles": [],
+      "sourceFields": [],
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available",
+      "status": "NOT_EVALUATED",
+      "violationCount": null,
+      "evidence": {},
+      "sampleRows": [],
+      "reasonNotEvaluated": "A comparable prior-year completion population is not present."
+    },
+    {
+      "ruleId": "DQ-X-006",
+      "implementationRule": "YOY_AID_VARIANCE",
+      "domain": "Cross-domain",
+      "title": "Aid total variance outside ±10% requires explanation",
+      "description": "Aid total variance outside ±10% requires explanation",
+      "category": "Anomalies",
+      "severity": null,
+      "owner": "Student Financial Services",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": null,
+      "sourceFiles": [],
+      "sourceFields": [],
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available",
+      "status": "NOT_EVALUATED",
+      "violationCount": null,
+      "evidence": {},
+      "sampleRows": [],
+      "reasonNotEvaluated": "A comparable prior-year financial-aid population is not present."
+    },
+    {
+      "ruleId": "DQ-X-007",
+      "implementationRule": "CIP_EFFECTIVE_DATING",
+      "domain": "Cross-domain",
+      "title": "CIP changes require an effective-dated bridge",
+      "description": "CIP changes require an effective-dated bridge",
+      "category": "Effective dating",
+      "severity": null,
+      "owner": "Academic Affairs",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": null,
+      "sourceFiles": [],
+      "sourceFields": [],
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available",
+      "status": "NOT_EVALUATED",
+      "violationCount": null,
+      "evidence": {},
+      "sampleRows": [],
+      "reasonNotEvaluated": "Historical CIP values and effective-dated bridge records are not present."
+    },
+    {
+      "ruleId": "DQ-X-008",
+      "implementationRule": "IDENTITY_COLLISION",
+      "domain": "Cross-domain",
+      "title": "Potential duplicate identities require adjudication",
+      "description": "Potential duplicate identities require adjudication",
+      "category": "Duplicates",
+      "severity": null,
+      "owner": "Enterprise Systems",
+      "findingType": "DATA_DEFECT",
+      "sourceSystem": null,
+      "sourceFiles": [],
+      "sourceFields": [],
+      "scopeDescription": "Not evaluated from the current source contract",
+      "countSemantics": "Not available",
+      "status": "NOT_EVALUATED",
+      "violationCount": null,
+      "evidence": {},
+      "sampleRows": [],
+      "reasonNotEvaluated": "Governed identity-match attributes are not present."
+    }
+  ],
+  "qualityEvaluationSummary": {
+    "totalRules": 35,
+    "executed": 14,
+    "pass": 10,
+    "fail": 4,
+    "notEvaluated": 21,
+    "activeFindings": 4,
+    "dataDefects": 3,
+    "anomalies": 1
+  },
   "ipedsComPackage": {
     "specId": "ipeds_spec.completions.v2025_26",
     "collectionYear": "2025-26",
@@ -3600,22 +4148,17 @@
     },
     "openQualityIssues": {
       "label": "Open quality issues",
-      "value": 27,
-      "display": "27",
-      "comparisonValue": 36,
-      "delta": -9,
-      "deltaDisplay": "-9 this week",
-      "context": "3 critical",
+      "value": 4,
+      "display": "4",
+      "comparisonValue": null,
+      "delta": null,
+      "deltaDisplay": "current evaluation",
+      "context": "1 critical",
       "trend": [
-        53,
-        48,
-        44,
-        39,
-        36,
-        27
+        4
       ],
       "sources": [
-        "data_quality_issue_log.csv"
+        "data-quality-results.json"
       ]
     }
   },
@@ -3629,7 +4172,7 @@
       "affectedRecords": 146,
       "sourceFiles": [
         "student_terms.csv",
-        "data_quality_issue_log.csv"
+        "terms.csv"
       ]
     },
     {
@@ -3714,7 +4257,7 @@
     {
       "status": "complete",
       "activity": "Evaluated data-quality rules",
-      "detail": "27 open findings · 146 record-level mismatches reconciled",
+      "detail": "4 open findings · 146 record-level mismatches reconciled",
       "time": "7:54"
     }
   ],
@@ -3723,7 +4266,7 @@
     "steps": [
       {
         "label": "Source upload",
-        "detail": "11 files · 40,669 students · 111,093 student-term rows"
+        "detail": "10 files · 40,669 students · 111,093 student-term rows"
       },
       {
         "label": "Schema validation",
@@ -3735,7 +4278,7 @@
       },
       {
         "label": "Cross-source reconciliation",
-        "detail": "146 SIS mismatches agree with the issue log"
+        "detail": "14 source-derived rules executed; 4 failed"
       },
       {
         "label": "Published result",
@@ -3783,11 +4326,6 @@
       "file": "ipeds_validation_results.csv",
       "rows": 294,
       "role": "IPEDS readiness"
-    },
-    {
-      "file": "data_quality_issue_log.csv",
-      "rows": 53,
-      "role": "Open and resolved findings"
     },
     {
       "file": "completions.csv",

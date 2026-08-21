@@ -45,11 +45,6 @@
       "rows": 294
     },
     {
-      "file": "data_quality_issue_log.csv",
-      "system": "Data quality agent",
-      "rows": 53
-    },
-    {
       "file": "completions.csv",
       "system": "SIS degree history",
       "rows": 1056

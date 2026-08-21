@@ -803,7 +803,7 @@ const resolvedIssues = dataset.qualityIssues.filter(
   ["Which open finding has the greatest affected-record footprint?", "Open", null, "ranking"],
   ["What issue rule is responsible for the largest record impact?", "Open", null, "ranking"],
   ["Tell me what DQ-1003 checks and its affected-record count.", "Open", null, "detail"],
-  ["Show quality findings assigned to Financial Aid.", "Open", null, "owner", "Financial Aid"],
+  ["Show quality findings assigned to Financial Aid.", "Open", null, "owner", "Student Financial Services"],
   ["Group unresolved issue counts by accountable owner.", "Open", null, "group-owner"],
   ["Aggregate open affected-record totals by source system.", "Open", null, "group-source"],
   ["Sum affected records across the unresolved quality log.", "Open", null, "sum"],
@@ -1020,7 +1020,7 @@ const resolvedIssues = dataset.qualityIssues.filter(
   ["Which tables support the MS Computer Science retention trend?", "retention", ["student_terms.csv", "students.csv", "programs.csv"]],
   ["For capacity utilization, name the schedule inputs.", "capacity_utilization", ["sections.csv", "section_enrollments.csv"]],
   ["What source produced the current IPEDS readiness result?", "ipeds_readiness", ["ipeds_validation_results.csv"]],
-  ["Name the governed file behind open data-quality findings.", "quality_issues", ["data_quality_issue_log.csv"]],
+  ["Name the governed file behind open data-quality findings.", "quality_issues", ["student_terms.csv", "students.csv", "terms.csv", "completions.csv"]],
 ].forEach(([question, metric, sources]) =>
   add(
     "provenance-context",

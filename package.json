@@ -29,6 +29,8 @@
     "test:planner-ui": "node --test tests/planner-presentation.test.mjs",
     "test:adversarial": "node --test tests/ask-engine-adversarial.test.mjs",
     "test:systemic": "node --test tests/ask-engine-systemic.test.mjs",
+    "test:data-quality": "node --test tests/data-quality-independence.test.mjs tests/data-quality-source-truth.test.mjs tests/data-quality-evaluator.test.mjs tests/data-quality-mutation.test.mjs",
+    "test:data-quality-lifecycle": "node --test tests/data-quality-lifecycle.test.mjs",
     "test:intent-routing": "node --test tests/intent-routing.test.mjs",
     "test:ipeds-com": "node --test tests/ipeds-com.test.mjs",
     "test:ipeds-ef": "node --test tests/ipeds-ef.test.mjs",

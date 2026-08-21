@@ -1656,8 +1656,8 @@ addBatch("temporal-ranking-math", [
         ranking: "highest",
         measure: "affected_records",
       }),
-      topLabel: "DQ-1002",
-      topValue: 808,
+      topLabel: "DQ-COM-004",
+      topValue: 211,
     },
   ],
   [
@@ -1830,8 +1830,8 @@ addBatch("provenance-confidence", [
     "List critical quality findings with their source evidence.",
     {
       ...plan({ metric: "quality_issues", severity: "Critical" }),
-      sourcesInclude: ["data_quality_issue_log.csv"],
-      sourcesExclude: ["student_terms.csv", "sections.csv"],
+      sourcesInclude: ["student_terms.csv", "terms.csv"],
+      sourcesExclude: ["students.csv", "sections.csv"],
     },
   ],
   [

@@ -96,8 +96,8 @@ test("capacity questions calculate from sections and registrations", () => {
     dataset,
   );
   assert.equal(result.plan.metric, "capacity_utilization");
-  assert.match(result.answer.headline, /MS Business Analytics/);
-  assert.equal(result.answer.points[0].display, "92%");
+  assert.match(result.answer.headline, /MS Computer Science/);
+  assert.equal(result.answer.points[0].display, "97%");
 });
 
 test("course outcome questions report the exact missing source field", () => {
@@ -224,8 +224,8 @@ test("quality questions can group affected records by source", () => {
   );
   assert.equal(result.plan.metric, "quality_issues");
   assert.equal(result.plan.measure, "affected_records");
-  assert.equal(result.answer.points[0].label, "Enterprise data warehouse");
-  assert.equal(result.answer.points[0].value, 2070);
+  assert.equal(result.answer.points[0].label, "SIS degree history");
+  assert.equal(result.answer.points[0].value, 211);
 });
 
 test("IPEDS check-count questions display counts rather than readiness", () => {

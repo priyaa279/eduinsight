@@ -1,7 +1,7 @@
 # EduInsight Blind Set #3 — untouched first run
 
-- Executed: 2026-07-31T05:40:41.303Z
-- Suite SHA-256: `a8e40c04c8fbed99c9149d1ed660873c26a70af2645ceb61316da01e338cb6d9`
+- Executed: 2026-08-20T20:04:27.861Z
+- Suite SHA-256: `034f4ec5fe6cf4ad98af10a7017c088d87d027ce690c4084da9072169487d30b`
 - Dataset: `app/data/ask-eduinsight.generated.json`
 - Score: **244/250 (97.6%)**
 - Policy: one execution only; no engine remediation or rerun occurred before this result was preserved.

@@ -1,8 +1,8 @@
 # EduInsight Blind Set #4 — untouched first run
 
-- Executed: 2026-07-31T05:40:42.134Z
-- Suite SHA-256: `cea655b751f64b3c3ec1328335c78aba4823564551c81a4422d675d49eea17ba`
-- Frozen engine SHA-256: `874cea984db287f660f84891da2bc10523910e86d6e1561814ed4b450785c207`
+- Executed: 2026-08-20T20:04:28.823Z
+- Suite SHA-256: `5126e0721667094bb969977ba24cf14b7ed7620eaadd78b7ab0700bbd04201eb`
+- Frozen engine SHA-256: `f7b26e6d5c0ffa0c3853414d3ba2c8b4118888c1139eb37de69f5577f7401251`
 - Dataset: `app/data/ask-eduinsight.generated.json`
 - Score: **276/285 (96.8%)**
 - Release-gate result: **FAIL**
@@ -120,7 +120,7 @@ Question: Group open quality-record impact by source system.
 Risk: `wrong-high-confidence`
 
 - plan.groupBy "source_system"; expected "source"
-- Actual headline: Enterprise data warehouse has the largest matched total at 2,070 affected records.
+- Actual headline: SIS degree history has the largest matched total at 211 affected records.
 - Actual confidence: High
 - Actual disposition: answer
 - Applied filters: Group by: source system | Time: 2020-2025
@@ -132,7 +132,7 @@ Question: How many reviewed and closed quality findings are recorded?
 Risk: `safe-abstention`
 
 - disposition limitation; expected answer
-- answer missing "26"
+- answer missing "0"
 - Actual headline: I cannot calculate that from the currently uploaded governed sources.
 - Actual confidence: Low
 - Actual disposition: limitation

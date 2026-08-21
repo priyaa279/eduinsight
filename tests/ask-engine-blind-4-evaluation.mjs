@@ -2505,7 +2505,7 @@ addBatch("provenance-confidence", [
       labelsContain: openIssues
         .filter((issue) => issue.severity === "Critical")
         .map((issue) => issue.issueId),
-      sourcesInclude: ["data_quality_issue_log.csv"],
+      sourcesInclude: ["student_terms.csv", "terms.csv"],
     }),
   ],
   [

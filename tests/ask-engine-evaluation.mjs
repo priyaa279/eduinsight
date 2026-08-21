@@ -439,31 +439,31 @@ add("ipeds", "Are there any unresolved IPEDS issues?", {
 
 add("data-quality", "What data quality issues are currently open?", {
   metric: "quality_issues",
-  textIncludes: ["27"],
+  textIncludes: ["4"],
 });
 add("data-quality", "How many data quality issues are there?", {
   metric: "quality_issues",
-  textIncludes: ["27"],
+  textIncludes: ["4"],
 });
 add("data-quality", "Show critical data quality issues.", {
   severity: "Critical",
-  values: [3],
+  values: [1],
 });
 add("data-quality", "Show high severity issues.", {
   severity: "High",
-  values: [10],
+  values: [3],
 });
 add("data-quality", "Which issue affects the most records?", {
-  headlineIncludes: ["DQ-1002", "808"],
+  headlineIncludes: ["DQ-COM-004", "211"],
 });
 add("data-quality", "Which source has the most data quality problems?", {
   groupBy: "source_system",
-  topLabel: "Enterprise data warehouse",
+  topLabel: "SIS student term",
 });
 add("data-quality", "Which owner has unresolved issues?", {
   groupBy: "owner",
-  topLabel: "Financial Aid",
-  topValue: 6,
+  topLabel: "Registrar",
+  topValue: 2,
 });
 add("data-quality", "Show issues assigned to Institutional Research.", {
   issueOwner: "Institutional Research",
@@ -474,13 +474,13 @@ add("data-quality", "Which issues have been reviewed?", {
 });
 add("data-quality", "How many records are affected by open issues?", {
   measure: "affected_records",
-  textIncludes: ["2,216"],
+  textIncludes: ["476"],
 });
 add("data-quality", "Explain DQ-001.", {
   disposition: "limitation",
 });
 add("data-quality", "What rule caused the largest data quality issue?", {
-  headlineIncludes: ["YOY_HEADCOUNT_VARIANCE", "808"],
+  headlineIncludes: ["DQ-COM-004", "211"],
 });
 for (const word of ["problems", "errors", "issues", "anomalies", "data quality"]) {
   add("data-quality-synonyms", `Show current ${word}.`, {
@@ -693,7 +693,7 @@ for (const question of [
 }
 add("attachment-verbatim", "Which data quality issue affects the most records?", {
   metric: "quality_issues",
-  headlineIncludes: ["DQ-1002", "808"],
+  headlineIncludes: ["DQ-COM-004", "211"],
 });
 add("attachment-verbatim", "What was total enrollment in 2025?", {
   values: [18426],

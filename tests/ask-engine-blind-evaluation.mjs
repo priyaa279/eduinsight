@@ -219,7 +219,7 @@ add("negation", "IPEDS checks that did not pass", {
 add("negation", "Data quality issues that are not resolved", {
   metric: "quality_issues",
   status: "Open",
-  textIncludes: ["27"],
+  textIncludes: ["4"],
 });
 
 // 41-50: thresholds, limits, ties, and date boundaries.
@@ -409,7 +409,7 @@ add("provenance-confidence", "Computer Science capacity utilization", {
 });
 add("provenance-confidence", "Show critical data quality issues", {
   confidence: "High",
-  sourcesInclude: ["data_quality_issue_log.csv"],
+  sourcesInclude: ["student_terms.csv", "terms.csv"],
   sourcesExclude: ["students.csv", "sections.csv"],
 });
 add("provenance-confidence", "Are we ready for IPEDS submission?", {

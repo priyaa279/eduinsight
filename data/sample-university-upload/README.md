@@ -29,7 +29,7 @@ To regenerate this exact synthetic institution and then ingest it:
 npm run data:refresh
 ```
 
-For a real institution, keep the file names and headers described in the upload-contract workbook, replace the synthetic rows with approved institutional exports, and run `npm run data:ingest`. The pipeline stops on missing files, missing columns, duplicate source keys, broken references, an invalid IPEDS weight total, or a mismatch between the SIS-derived full-time-credit exception count and the quality issue log.
+For a real institution, keep the file names and headers described in the upload-contract workbook, replace the synthetic rows with approved institutional exports, and run `npm run data:ingest`. The pipeline stops on missing files, missing columns, duplicate source keys, broken references, or an invalid IPEDS weight total. Data Quality findings are evaluated directly from these source rows during ingestion.
 
 ## Files
 
@@ -44,10 +44,20 @@ For a real institution, keep the file names and headers described in the upload-
 | `sections.csv` | SIS course schedule | Available program capacity |
 | `section_enrollments.csv` | SIS registration export | Filled seats and utilization |
 | `ipeds_validation_results.csv` | IPEDS validation workflow | Submission-readiness score and validation brief |
-| `data_quality_issue_log.csv` | Data-quality platform | Open issues, severity, week-over-week movement |
 | `completions.csv` | SIS degree history | Governed completer population used to prepare the IPEDS COM upload |
 | `ipeds_marts.json` | Governed extracts from admissions, HR, finance, cost, and cohort systems | Deterministic source contracts for the 2025-26 IPEDS import-file suite |
 | `manifest.json` | EduInsight package manifest | Row counts, provenance, and synthetic-data declaration |
+
+### Student entry-term contract
+
+For this deterministic sample package, `students.entry_term_id` is the student's
+first institutional entry term. A student is created once, may persist into later
+terms, and retains that original value. The sample does not model re-entry,
+multiple careers, or separate program-career entry dates. Therefore
+`completions.award_date < terms.start_date` for that entry term is an impossible
+timeline in this source contract. A production institution with re-entry or
+multiple careers must supply the appropriate governed career/program entry field
+before using DQ-COM-004 as a defect rule.
 
 The IPEDS Center generates a structurally validated key-value `.txt` file and a human-readable review CSV for every official 2025-26 NCES import layout. A generated file can remain a governed draft: surveys with missing source coverage are visibly blocked from approval until the named source fields are supplied. Institutional Characteristics has no public 2025-26 import layout, so it remains questionnaire/review only; Academic Libraries is retired for this collection year.
 
@@ -59,8 +69,13 @@ The IPEDS Center generates a structurally validated key-value `.txt` file and a 
 - Retention change: +0.8 percentage points
 - IPEDS Fall Enrollment readiness: 91%
 - Readiness change: +12 percentage points
-- Open quality issues: 27, including 3 critical
-- Week-over-week issue change: -9
+- Source-derived active quality findings: 4, including 1 critical
+- Data Quality rules executed: 14 (10 pass, 4 fail); 21 are not evaluated because required source fields are unavailable
 - Full-time/credit mismatches independently found in `student_terms.csv`: 146
+- Missing race/ethnicity among the current reportable census population: 119
+- Completion dates before the governed entry-term start: 211
+- Financial-aid rows without matching student-term enrollment: 0
+
+Evaluator output is written to `data/processed/data-quality-results.json`; there is no source issue-log input competing with evaluator truth.
 
 Production use would add authenticated encrypted upload, malware scanning, institutional retention policies, role-based access, and institution-specific semantic mappings. This repository currently implements the local batch contract and deterministic transformation layer.

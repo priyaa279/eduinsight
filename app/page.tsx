@@ -3,6 +3,7 @@
 import {
   useEffect,
   useMemo,
+  useRef,
   useState,
   type Dispatch,
   type SetStateAction,
@@ -22,6 +23,10 @@ import {
   loadSavedScenarios,
   persistSavedScenarios,
 } from "../lib/scenario-storage.mjs";
+import {
+  DATA_QUALITY_LIFECYCLE_STATUSES,
+  stableFindingIdentity,
+} from "../lib/data-quality/lifecycle.mjs";
 import commandCenter from "./data/command-center.generated.json";
 import ipedsSpecs from "./data/ipeds-specs.generated.json";
 import ipedsSuite from "./data/ipeds-suite.generated.json";
@@ -39,16 +44,41 @@ type ViewId =
   | "memory";
 
 type QualityIssue = {
+  findingKey: string;
   id: string;
   severity: "Critical" | "High" | "Medium";
+  findingType: "DATA_DEFECT" | "ANOMALY";
   title: string;
   description: string;
   records: number;
+  observation?: Record<string, string | number | boolean | null> | null;
   source: string;
+  sourceFiles: string[];
+  sourceFields: string[];
   owner: string;
   rule: string;
-  status: "Open" | "New" | "Investigating" | "Reviewed" | "Resolved" | "Suppressed";
+  countSemantics: string;
+  status: "Open" | "In Review" | "Resolved" | "Suppressed";
+  reviewNotes: string;
+  reviewerIdentity: string | null;
+  reviewerDisplayName: string | null;
+  lifecycleCreatedAt: string | null;
+  lifecycleUpdatedAt: string | null;
   sampleRows?: Record<string, string | number>[];
+};
+
+type QualityLifecycle = {
+  findingKey: string;
+  issueId: string;
+  ruleId: string;
+  status: QualityIssue["status"];
+  notes: string;
+  reviewerIdentity: string | null;
+  reviewerDisplayName: string | null;
+  createdAt: string | null;
+  updatedAt: string | null;
+  lastSeenEvaluationAt: string | null;
+  isActive: boolean;
 };
 
 type AnalystAnswer = {
@@ -245,15 +275,26 @@ const navigation: { id: ViewId; label: string; icon: IconName }[] = [
 
 const startingIssues: QualityIssue[] = commandCenter.qualityFindings
   .map((issue) => ({
+    findingKey: stableFindingIdentity(issue),
     id: issue.issueId,
     severity: issue.severity as QualityIssue["severity"],
+    findingType: issue.findingType as QualityIssue["findingType"],
     title: issue.title,
     description: issue.description,
     records: issue.affectedRecords,
+    observation: issue.observation,
     source: issue.sourceSystem,
+    sourceFiles: issue.sourceFiles,
+    sourceFields: issue.sourceFields,
     owner: issue.owner,
     rule: issue.ruleId,
-    status: issue.lifecycleStatus as QualityIssue["status"],
+    countSemantics: issue.countSemantics,
+    status: "Open",
+    reviewNotes: "",
+    reviewerIdentity: null,
+    reviewerDisplayName: null,
+    lifecycleCreatedAt: issue.openedAt,
+    lifecycleUpdatedAt: issue.openedAt,
     sampleRows: issue.sampleRows,
   }));
 
@@ -279,6 +320,11 @@ const qualitySummary = {
   resolved: commandCenter.qualityFindings.filter(
     (finding) => finding.lifecycleStatus === "Resolved",
   ).length,
+  notEvaluated: commandCenter.qualityEvaluationSummary.notEvaluated,
+  evaluated: commandCenter.qualityEvaluationSummary.executed,
+  catalogRules: commandCenter.qualityEvaluationSummary.totalRules,
+  dataDefects: commandCenter.qualityEvaluationSummary.dataDefects,
+  anomalies: commandCenter.qualityEvaluationSummary.anomalies,
 };
 
 function AppIcon({
@@ -1001,24 +1047,129 @@ function DataQuality({
   const [selected, setSelected] = useState<QualityIssue | null>(
     startingIssues[0]
   );
+  const selectedKeyRef = useRef(startingIssues[0]?.findingKey ?? null);
+  const [draftStatus, setDraftStatus] = useState<QualityIssue["status"]>("Open");
+  const [draftNotes, setDraftNotes] = useState("");
+  const [savingLifecycle, setSavingLifecycle] = useState(false);
+  const [persistenceState, setPersistenceState] = useState<
+    "loading" | "ready" | "unavailable"
+  >("loading");
+  const lifecycleCounts = Object.fromEntries(
+    DATA_QUALITY_LIFECYCLE_STATUSES.map((status) => [
+      status,
+      issues.filter((issue) => issue.status === status).length,
+    ]),
+  ) as Record<QualityIssue["status"], number>;
   const filtered = issues.filter(
     (issue) =>
       filter === "All" ||
       issue.severity === filter ||
-      (filter === "Open" && issue.status !== "Resolved") ||
       issue.status === filter
   );
 
-  function markReviewed(id: string) {
-    setIssues((current) =>
-      current.map((issue) =>
-        issue.id === id ? { ...issue, status: "Reviewed" } : issue
-      )
-    );
-    setSelected((current) =>
-      current?.id === id ? { ...current, status: "Reviewed" } : current
-    );
-    notify("Issue marked reviewed and added to the audit trail.");
+  useEffect(() => {
+    let active = true;
+    fetch("/api/data-quality/lifecycle", { cache: "no-store" })
+      .then(async (response) => {
+        if (!response.ok) throw new Error("Lifecycle service unavailable");
+        return (await response.json()) as {
+          findings?: { lifecycle: QualityLifecycle }[];
+        };
+      })
+      .then((result) => {
+        if (!active) return;
+        const lifecycleByKey = new Map(
+          (result.findings ?? []).map(({ lifecycle }) => [
+            lifecycle.findingKey,
+            lifecycle,
+          ]),
+        );
+        const mergeLifecycle = (issue: QualityIssue): QualityIssue => {
+          const lifecycle = lifecycleByKey.get(issue.findingKey);
+          return lifecycle
+            ? {
+                ...issue,
+                status: lifecycle.status,
+                reviewNotes: lifecycle.notes,
+                reviewerIdentity: lifecycle.reviewerIdentity,
+                reviewerDisplayName: lifecycle.reviewerDisplayName,
+                lifecycleCreatedAt: lifecycle.createdAt,
+                lifecycleUpdatedAt: lifecycle.updatedAt,
+              }
+            : issue;
+        };
+        setIssues((current) => current.map(mergeLifecycle));
+        setSelected((current) => (current ? mergeLifecycle(current) : current));
+        const selectedLifecycle = selectedKeyRef.current
+          ? lifecycleByKey.get(selectedKeyRef.current)
+          : null;
+        if (selectedLifecycle) {
+          setDraftStatus(selectedLifecycle.status);
+          setDraftNotes(selectedLifecycle.notes);
+        }
+        setPersistenceState("ready");
+      })
+      .catch(() => {
+        if (active) setPersistenceState("unavailable");
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  function selectIssue(issue: QualityIssue) {
+    selectedKeyRef.current = issue.findingKey;
+    setSelected(issue);
+    setDraftStatus(issue.status);
+    setDraftNotes(issue.reviewNotes);
+  }
+
+  async function saveLifecycle() {
+    if (!selected) return;
+    setSavingLifecycle(true);
+    try {
+      const response = await fetch("/api/data-quality/lifecycle", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          findingKey: selected.findingKey,
+          status: draftStatus,
+          notes: draftNotes,
+          expectedUpdatedAt: selected.lifecycleUpdatedAt,
+        }),
+      });
+      const result = (await response.json()) as {
+        lifecycle?: QualityLifecycle;
+        error?: string;
+      };
+      if (!response.ok || !result.lifecycle) {
+        throw new Error(result.error ?? "The lifecycle update could not be saved.");
+      }
+      const lifecycle = result.lifecycle;
+      const applyLifecycle = (issue: QualityIssue): QualityIssue =>
+        issue.findingKey === lifecycle.findingKey
+          ? {
+              ...issue,
+              status: lifecycle.status,
+              reviewNotes: lifecycle.notes,
+              reviewerIdentity: lifecycle.reviewerIdentity,
+              reviewerDisplayName: lifecycle.reviewerDisplayName,
+              lifecycleCreatedAt: lifecycle.createdAt,
+              lifecycleUpdatedAt: lifecycle.updatedAt,
+            }
+          : issue;
+      setIssues((current) => current.map(applyLifecycle));
+      setSelected((current) => (current ? applyLifecycle(current) : current));
+      setDraftStatus(lifecycle.status);
+      setDraftNotes(lifecycle.notes);
+      setPersistenceState("ready");
+      notify(`Saved ${selected.id} as ${lifecycle.status}.`);
+    } catch (error) {
+      setPersistenceState("unavailable");
+      notify(error instanceof Error ? error.message : "The lifecycle update could not be saved.");
+    } finally {
+      setSavingLifecycle(false);
+    }
   }
 
   return (
@@ -1032,24 +1183,34 @@ function DataQuality({
         <div className="quality-score">
           <div>
             <p className="eyebrow">Finding inventory</p>
-            <h2>{qualitySummary.total} governed findings in the current dataset.</h2>
-            <p>Every summary count is derived from the governed finding inventory.</p>
+            <h2>{qualitySummary.total} source-derived active findings.</h2>
+            <p>Every count comes from the current rule evaluation, not a seeded issue log.</p>
+            <p>
+              {qualitySummary.dataDefects} data defects · {qualitySummary.anomalies} anomaly
+              {qualitySummary.anomalies === 1 ? " observation" : " observations"}
+            </p>
+            <p>
+              Rule coverage: {qualitySummary.evaluated} of {qualitySummary.catalogRules} evaluated
+              ({Math.round((qualitySummary.evaluated / qualitySummary.catalogRules) * 100)}%).{" "}
+              {qualitySummary.notEvaluated} rules were not evaluated because required source data
+              or governed contracts are unavailable.
+            </p>
           </div>
         </div>
         <div className="quality-stat">
-          <span>Critical</span><strong>{qualitySummary.critical}</strong><small>all lifecycle states</small>
+          <span>Critical</span><strong>{qualitySummary.critical}</strong><small>active findings</small>
         </div>
         <div className="quality-stat">
-          <span>High</span><strong>{qualitySummary.high}</strong><small>all lifecycle states</small>
+          <span>High</span><strong>{qualitySummary.high}</strong><small>active findings</small>
         </div>
         <div className="quality-stat">
-          <span>Medium</span><strong>{qualitySummary.medium}</strong><small>all lifecycle states</small>
+          <span>Medium</span><strong>{qualitySummary.medium}</strong><small>active findings</small>
         </div>
         <div className="quality-stat">
-          <span>Open</span><strong>{qualitySummary.open}</strong><small>not resolved</small>
+          <span>Open</span><strong>{lifecycleCounts.Open}</strong><small>lifecycle status</small>
         </div>
         <div className="quality-stat">
-          <span>Resolved</span><strong>{qualitySummary.resolved}</strong><small>current dataset</small>
+          <span>Not evaluated</span><strong>{qualitySummary.notEvaluated}</strong><small>missing required data</small>
         </div>
       </section>
 
@@ -1078,7 +1239,7 @@ function DataQuality({
           {workspaceTab === "findings" ? (
             <>
             <div className="filter-tabs quality-secondary-tabs" role="group" aria-label="Filter findings">
-              {["All", "Critical", "High", "Medium", "Open", "Resolved"].map((item) => (
+              {["All", "Critical", "High", "Medium", ...DATA_QUALITY_LIFECYCLE_STATUSES].map((item) => (
                 <button
                   className={filter === item ? "active" : ""}
                   onClick={() => setFilter(item)}
@@ -1094,7 +1255,7 @@ function DataQuality({
                 className={`issue-row ${
                   selected?.id === issue.id ? "selected" : ""
                 }`}
-                onClick={() => setSelected(issue)}
+                onClick={() => selectIssue(issue)}
                 key={issue.id}
               >
                 <span className={`issue-severity ${issue.severity.toLowerCase()}`}>
@@ -1103,13 +1264,18 @@ function DataQuality({
                 <span className="issue-copy">
                   <span>
                     <strong>{issue.title}</strong>
-                    <em className={`lifecycle-chip status-${issue.status.toLowerCase()}`}>
-                      {issue.status === "Open" ? "New" : issue.status}
+                    <em className={`lifecycle-chip status-${issue.status.toLowerCase().replaceAll(" ", "-")}`}>
+                      {issue.status}
                     </em>
                   </span>
                   <small>{issue.id} · {issue.source}</small>
                 </span>
-                <span className="records">{issue.records.toLocaleString()}<small>records</small></span>
+                <span className="records">
+                  {issue.findingType === "ANOMALY"
+                    ? Number(issue.observation?.absoluteChange ?? 0).toLocaleString()
+                    : issue.records.toLocaleString()}
+                  <small>{issue.findingType === "ANOMALY" ? "change" : "records"}</small>
+                </span>
               </button>
             ))}
           </div>
@@ -1138,11 +1304,21 @@ function DataQuality({
                       <td>{rule.owner}</td>
                       <td>
                         <span className={`catalog-state ${rule.enabled ? "enabled" : "pending"}`}>
-                          {rule.enabled ? "Enabled" : "Disabled"}
+                          {rule.executionState === "ENABLED_EXECUTED"
+                            ? `Executed · ${rule.lastResult === "PASS" ? "Pass" : "Fail"}`
+                            : "Not evaluated"}
                         </span>
-                        <small>{rule.coverage}</small>
+                        <small>
+                          {rule.executionState === "ENABLED_EXECUTED"
+                            ? rule.coverage
+                            : rule.reasonNotEvaluated}
+                        </small>
                       </td>
-                      <td>{rule.lastFiredCount.toLocaleString()}</td>
+                      <td>
+                        {rule.lastViolationCount === null
+                          ? "—"
+                          : rule.lastViolationCount.toLocaleString()}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -1157,12 +1333,19 @@ function DataQuality({
                 <span className={`severity-chip ${selected.severity.toLowerCase()}`}>
                   {selected.severity}
                 </span>
-                <span>{selected.id}</span>
+                <span>{selected.id} · {selected.status}</span>
               </div>
               <h2>{selected.title}</h2>
               <p>{selected.description}</p>
               <div className="detail-grid">
-                <div><span>Affected</span><strong>{selected.records.toLocaleString()} records</strong></div>
+                <div>
+                  <span>{selected.findingType === "ANOMALY" ? "Observed change" : "Affected"}</span>
+                  <strong>
+                    {selected.findingType === "ANOMALY"
+                      ? `${Number(selected.observation?.absoluteChange ?? 0).toLocaleString()} students (${Number(selected.observation?.percentChange ?? 0).toFixed(1)}%)`
+                      : `${selected.records.toLocaleString()} records`}
+                  </strong>
+                </div>
                 <div><span>Source</span><strong>{selected.source}</strong></div>
                 <div><span>Owner</span><strong>{selected.owner}</strong></div>
                 <div><span>Rule</span><strong>{selected.rule}</strong></div>
@@ -1172,11 +1355,44 @@ function DataQuality({
                 <div>
                   <strong>Why the agent flagged this</strong>
                   <p>{selected.description}</p>
+                  <small>{selected.countSemantics}</small>
                 </div>
               </div>
+              {selected.findingType === "ANOMALY" && (
+                <div className="sample-records">
+                  <div className="sample-records-heading">
+                    <strong>Period and threshold evidence</strong>
+                    <span>one aggregate observation</span>
+                  </div>
+                  <div className="detail-grid">
+                    <div>
+                      <span>{String(selected.observation?.previousTerm ?? "Previous term")}</span>
+                      <strong>
+                        {Number(selected.observation?.previousValue ?? 0).toLocaleString()} students
+                      </strong>
+                    </div>
+                    <div>
+                      <span>{String(selected.observation?.currentTerm ?? "Current term")}</span>
+                      <strong>
+                        {Number(selected.observation?.currentValue ?? 0).toLocaleString()} students
+                      </strong>
+                    </div>
+                    <div>
+                      <span>Alert threshold</span>
+                      <strong>
+                        ±{Number(selected.observation?.thresholdPercent ?? 0).toFixed(1)}%
+                      </strong>
+                    </div>
+                  </div>
+                </div>
+              )}
               <div className="sample-records">
                 <div className="sample-records-heading">
-                  <strong>Affected sample rows</strong>
+                  <strong>
+                    {selected.findingType === "ANOMALY"
+                      ? "Observation evidence"
+                      : "Affected sample rows"}
+                  </strong>
                   <span>{selected.sampleRows?.length ?? 0} source records shown</span>
                 </div>
                 {selected.sampleRows?.length ? (
@@ -1198,9 +1414,58 @@ function DataQuality({
                   </div>
                 ) : (
                   <p className="sample-unavailable">
-                    This source supplied only an aggregate finding, so row-level samples are unavailable.
+                    {selected.findingType === "ANOMALY"
+                      ? "This is an aggregate reconciliation observation, not a set of defective records."
+                      : "No sample rows are available for this finding."}
                   </p>
                 )}
+              </div>
+              <div className="lifecycle-editor">
+                <div className="sample-records-heading">
+                  <strong>Finding review lifecycle</strong>
+                  <span>
+                    {persistenceState === "loading"
+                      ? "Loading saved review"
+                      : persistenceState === "ready"
+                        ? "Durable workspace record"
+                        : "Persistence unavailable"}
+                  </span>
+                </div>
+                <label>
+                  Lifecycle status
+                  <select
+                    value={draftStatus}
+                    onChange={(event) =>
+                      setDraftStatus(event.target.value as QualityIssue["status"])
+                    }
+                    disabled={persistenceState === "loading" || savingLifecycle}
+                  >
+                    {DATA_QUALITY_LIFECYCLE_STATUSES.map((status) => (
+                      <option value={status} key={status}>{status}</option>
+                    ))}
+                  </select>
+                </label>
+                <label>
+                  Review notes
+                  <textarea
+                    value={draftNotes}
+                    maxLength={4000}
+                    rows={4}
+                    placeholder="Record the review conclusion, evidence checked, or reason for suppression."
+                    onChange={(event) => setDraftNotes(event.target.value)}
+                    disabled={persistenceState === "loading" || savingLifecycle}
+                  />
+                </label>
+                <div className="lifecycle-metadata">
+                  <span>
+                    Reviewer: {selected.reviewerDisplayName ?? "Not yet reviewed"}
+                  </span>
+                  <span>
+                    Updated: {selected.lifecycleUpdatedAt
+                      ? new Date(selected.lifecycleUpdatedAt).toLocaleString()
+                      : "Not yet saved"}
+                  </span>
+                </div>
               </div>
               <div className="detail-actions">
                 <button className="button button-secondary" onClick={onAudit}>
@@ -1208,10 +1473,15 @@ function DataQuality({
                 </button>
                 <button
                   className="button button-primary"
-                  disabled={selected.status === "Reviewed"}
-                  onClick={() => markReviewed(selected.id)}
+                  disabled={
+                    persistenceState !== "ready" ||
+                    savingLifecycle ||
+                    (draftStatus === selected.status &&
+                      draftNotes.trim() === selected.reviewNotes)
+                  }
+                  onClick={saveLifecycle}
                 >
-                  {selected.status === "Reviewed" ? "Reviewed" : "Mark reviewed"}
+                  {savingLifecycle ? "Saving…" : "Save review"}
                 </button>
               </div>
             </>
@@ -2951,7 +3221,7 @@ export default function EduInsightApp() {
             >
               <AppIcon name={item.icon} />
               <span>{item.label}</span>
-              {item.id === "quality" && <em>3</em>}
+              {item.id === "quality" && <em>{qualitySummary.open}</em>}
             </button>
           ))}
         </nav>

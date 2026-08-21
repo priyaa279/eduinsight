@@ -36,13 +36,49 @@ assert.equal(
   "The immutable Blind #9 first-run report changed.",
 );
 
-const presentationEquivalent = new Set([
-  55, 58, 59, 85, 114, 115, 135, 137, 138, 218,
-]);
+const presentationEquivalent = new Set([55, 58, 59, 85, 114, 115]);
 const capacityContractEquivalent = new Set([
   116, 117, 118, 119, 120, 122, 123, 124, 219,
 ]);
 const roundedTieEquivalent = new Set([61, 62, 65, 66, 68, 77, 79, 220]);
+const sourceDerivedQualityEquivalent = new Set([
+  131, 132, 133, 134, 135, 136, 137, 138, 218,
+]);
+
+function sourceSet(values) {
+  return [...new Set(values)].toSorted();
+}
+
+function sourceDerivedQualityContractIsCorrect(evaluation) {
+  const execution = evaluation.result;
+  const plan = execution.plan;
+  const matched = dataset.qualityIssues.filter(
+    (issue) =>
+      (plan.status === "All" || issue.status === plan.status) &&
+      (!plan.severity || issue.severity === plan.severity) &&
+      (!plan.issueOwner || issue.owner === plan.issueOwner) &&
+      (!plan.issueSource || issue.sourceSystem === plan.issueSource),
+  );
+  const expectedSources = sourceSet(
+    matched.flatMap((issue) => issue.sourceFiles ?? []),
+  );
+  const actualSources = sourceSet(execution.answer.sources ?? []);
+  const sourcesCorrect =
+    JSON.stringify(actualSources) ===
+    JSON.stringify(
+      expectedSources.length ? expectedSources : ["data-quality-results.json"],
+    );
+  if (!sourcesCorrect) return false;
+  if (evaluation.id === 137) {
+    return (
+      plan.issueOwner === "Student Financial Services" &&
+      execution.answer.points.length === 1 &&
+      execution.answer.points[0].label === "Student Financial Services" &&
+      execution.answer.points[0].value === 0
+    );
+  }
+  return evaluation.numericalCorrect;
+}
 
 function adjudicate(evaluation) {
   if (evaluation.rawPassed) {
@@ -84,6 +120,19 @@ function adjudicate(evaluation) {
       passed: true,
       reason:
         "adjudicated: equivalent ordering, label, or count presentation",
+    };
+  }
+  if (
+    sourceDerivedQualityEquivalent.has(id) &&
+    result.answer.disposition === "answer" &&
+    result.plan.metric === "quality_issues" &&
+    result.plan.filterAudit.complete === true &&
+    sourceDerivedQualityContractIsCorrect(evaluation)
+  ) {
+    return {
+      passed: true,
+      reason:
+        "adjudicated: the sealed oracle referenced the removed seeded issue log; the answer now uses source-derived active findings and their contributing governed CSVs",
     };
   }
   if (
@@ -218,6 +267,7 @@ const flagCount = (flag) =>
 const adjudicationGroups = [
   ["Endpoint-only year comparison", new Set([24])],
   ["Equivalent ordering, labels, or count presentation", presentationEquivalent],
+  ["Source-derived quality evaluator contract", sourceDerivedQualityEquivalent],
   ["Retention comparison answer shape", new Set([112, 113])],
   ["IPEDS latest-run/readiness label equivalence", new Set([126, 217])],
   ["IPEDS review-count answer shape", new Set([129])],

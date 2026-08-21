@@ -148,9 +148,9 @@ const sourceImpact = analyzeQuestion(
 assert.equal(sourceImpact.plan.groupBy, "source_system");
 assert.equal(
   sourceImpact.answer.points.find(
-    (point) => point.label === "Enterprise data warehouse",
+    (point) => point.label === "SIS degree history",
   )?.value,
-  2070,
+  211,
 );
 
 const reviewedFindings = analyzeQuestion(

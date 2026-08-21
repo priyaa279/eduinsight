@@ -1,0 +1,1 @@
+CREATE INDEX `data_quality_lifecycle_active_idx` ON `data_quality_finding_lifecycle` (`is_active`,`updated_at`);

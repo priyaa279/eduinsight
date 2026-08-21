@@ -134,7 +134,7 @@ add("messy-language", "lowest headcount major", {
 add("messy-language", "open DQ probs", {
   metric: "quality_issues",
   status: "Open",
-  textIncludes: ["27"],
+  textIncludes: ["4"],
 });
 add("messy-language", "IPEDS good to go?", {
   metric: "ipeds_readiness",
@@ -530,8 +530,8 @@ add("provenance-confidence", "current IPEDS readiness evidence", {
 });
 add("provenance-confidence", "evidence for current critical quality issues", {
   confidence: "High",
-  sourcesInclude: ["data_quality_issue_log.csv"],
-  sourcesExclude: ["student_terms.csv", "sections.csv"],
+  sourcesInclude: ["student_terms.csv", "terms.csv"],
+  sourcesExclude: ["students.csv", "sections.csv"],
 });
 add("provenance-confidence", "evidence for 2024 overall retention", {
   confidence: "High",
