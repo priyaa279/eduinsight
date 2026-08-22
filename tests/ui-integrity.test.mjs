@@ -61,6 +61,15 @@ test("static rings and legacy IPEDS implementations are absent", () => {
   assert.doesNotMatch(page, /49 automated checks/);
 });
 
+test("Data Quality finding details expose compact immutable lifecycle history", () => {
+  assert.match(page, /Lifecycle audit history/);
+  assert.match(page, /selectedAuditEvents\.map/);
+  assert.match(page, /auditEventLabel\(event\)/);
+  assert.match(page, /Earlier lifecycle actions are unavailable/);
+  assert.match(css, /\.lifecycle-history/);
+  assert.match(css, /\.history-marker/);
+});
+
 test("small typography, icons, colors, and serif fonts use shared primitives", () => {
   assert.doesNotMatch(css, /font-size:\s*[789]px/);
   assert.doesNotMatch(css, /font-family:\s*Georgia/);

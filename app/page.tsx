@@ -81,6 +81,42 @@ type QualityLifecycle = {
   isActive: boolean;
 };
 
+type QualityAuditEvent = {
+  eventSequence: number;
+  eventId: string;
+  findingKey: string;
+  issueId: string;
+  ruleId: string;
+  eventType: string;
+  previousStatus: QualityIssue["status"] | null;
+  newStatus: QualityIssue["status"] | null;
+  actorIdentity: string | null;
+  actorDisplayName: string | null;
+  occurredAt: string;
+  noteSnapshot: string | null;
+  reasonSnapshot: string | null;
+  occurrenceCount: number;
+  schemaVersion: string;
+};
+
+function auditEventLabel(event: QualityAuditEvent) {
+  if (event.eventType === "FINDING_CREATED") return "Finding detected";
+  if (event.eventType === "LIFECYCLE_BASELINE_CREATED") {
+    return "Lifecycle baseline recorded";
+  }
+  if (event.eventType === "REVIEW_NOTE_UPDATED") return "Review note updated";
+  if (event.eventType === "FINDING_BECAME_INACTIVE") {
+    return "Finding became inactive";
+  }
+  if (event.eventType === "FINDING_REOPENED") {
+    return `Finding recurred · ${event.previousStatus ?? "Prior status"} → Open`;
+  }
+  if (event.previousStatus && event.newStatus) {
+    return `Status changed · ${event.previousStatus} → ${event.newStatus}`;
+  }
+  return event.eventType.replaceAll("_", " ").toLowerCase();
+}
+
 type AnalystAnswer = {
   eyebrow: string;
   headline: string;
@@ -1051,6 +1087,7 @@ function DataQuality({
   const [draftStatus, setDraftStatus] = useState<QualityIssue["status"]>("Open");
   const [draftNotes, setDraftNotes] = useState("");
   const [savingLifecycle, setSavingLifecycle] = useState(false);
+  const [auditEvents, setAuditEvents] = useState<QualityAuditEvent[]>([]);
   const [persistenceState, setPersistenceState] = useState<
     "loading" | "ready" | "unavailable"
   >("loading");
@@ -1074,6 +1111,7 @@ function DataQuality({
         if (!response.ok) throw new Error("Lifecycle service unavailable");
         return (await response.json()) as {
           findings?: { lifecycle: QualityLifecycle }[];
+          auditEvents?: QualityAuditEvent[];
         };
       })
       .then((result) => {
@@ -1099,6 +1137,7 @@ function DataQuality({
             : issue;
         };
         setIssues((current) => current.map(mergeLifecycle));
+        setAuditEvents(result.auditEvents ?? []);
         setSelected((current) => (current ? mergeLifecycle(current) : current));
         const selectedLifecycle = selectedKeyRef.current
           ? lifecycleByKey.get(selectedKeyRef.current)
@@ -1140,6 +1179,7 @@ function DataQuality({
       });
       const result = (await response.json()) as {
         lifecycle?: QualityLifecycle;
+        auditEvents?: QualityAuditEvent[];
         error?: string;
       };
       if (!response.ok || !result.lifecycle) {
@@ -1162,6 +1202,12 @@ function DataQuality({
       setSelected((current) => (current ? applyLifecycle(current) : current));
       setDraftStatus(lifecycle.status);
       setDraftNotes(lifecycle.notes);
+      if (result.auditEvents) {
+        setAuditEvents((current) => [
+          ...current.filter((event) => event.findingKey !== lifecycle.findingKey),
+          ...result.auditEvents!,
+        ]);
+      }
       setPersistenceState("ready");
       notify(`Saved ${selected.id} as ${lifecycle.status}.`);
     } catch (error) {
@@ -1171,6 +1217,10 @@ function DataQuality({
       setSavingLifecycle(false);
     }
   }
+
+  const selectedAuditEvents = selected
+    ? auditEvents.filter((event) => event.findingKey === selected.findingKey)
+    : [];
 
   return (
     <div className="view">
@@ -1466,6 +1516,38 @@ function DataQuality({
                       : "Not yet saved"}
                   </span>
                 </div>
+              </div>
+              <div className="lifecycle-history">
+                <div className="sample-records-heading">
+                  <strong>Lifecycle audit history</strong>
+                  <span>{selectedAuditEvents.length} immutable events</span>
+                </div>
+                {selectedAuditEvents.length ? (
+                  <ol>
+                    {selectedAuditEvents.map((event) => (
+                      <li key={event.eventId}>
+                        <span className="history-marker" aria-hidden="true" />
+                        <div>
+                          <strong>{auditEventLabel(event)}</strong>
+                          <small>
+                            {new Date(event.occurredAt).toLocaleString()}
+                            {event.actorDisplayName
+                              ? ` · ${event.actorDisplayName}`
+                              : " · System migration"}
+                          </small>
+                          {event.noteSnapshot && <p>{event.noteSnapshot}</p>}
+                          {event.eventType === "LIFECYCLE_BASELINE_CREATED" && (
+                            <p>Earlier lifecycle actions are unavailable.</p>
+                          )}
+                        </div>
+                      </li>
+                    ))}
+                  </ol>
+                ) : (
+                  <p className="sample-unavailable">
+                    Audit history will appear after the durable record is loaded.
+                  </p>
+                )}
               </div>
               <div className="detail-actions">
                 <button className="button button-secondary" onClick={onAudit}>

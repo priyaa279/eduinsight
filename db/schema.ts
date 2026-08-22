@@ -41,3 +41,31 @@ export const dataQualityFindingLifecycle = sqliteTable(
     ),
   ],
 );
+
+export const dataQualityLifecycleAuditEvents = sqliteTable(
+  "data_quality_lifecycle_audit_events",
+  {
+    eventSequence: integer("event_sequence").primaryKey({ autoIncrement: true }),
+    eventId: text("event_id").notNull().unique(),
+    findingKey: text("finding_key").notNull(),
+    issueId: text("issue_id").notNull(),
+    ruleId: text("rule_id").notNull(),
+    eventType: text("event_type").notNull(),
+    previousStatus: text("previous_status"),
+    newStatus: text("new_status"),
+    actorIdentity: text("actor_identity"),
+    actorDisplayName: text("actor_display_name"),
+    occurredAt: text("occurred_at").notNull(),
+    noteSnapshot: text("note_snapshot"),
+    reasonSnapshot: text("reason_snapshot"),
+    occurrenceCount: integer("occurrence_count").notNull().default(1),
+    schemaVersion: text("schema_version").notNull(),
+  },
+  (table) => [
+    index("data_quality_audit_finding_time_idx").on(
+      table.findingKey,
+      table.occurredAt,
+      table.eventSequence,
+    ),
+  ],
+);

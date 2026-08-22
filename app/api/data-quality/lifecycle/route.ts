@@ -6,6 +6,8 @@ import {
 } from "../../../../lib/data-quality/lifecycle.mjs";
 import {
   ensureLifecycleSchema,
+  LifecycleConflictError,
+  readLifecycleAuditEvents,
   reconcileStoredLifecycles,
   synchronizeLifecycleRecords,
   updateLifecycleRecord,
@@ -28,6 +30,7 @@ export async function GET() {
       env.DB,
       currentFindings(),
       commandCenter.generatedAt,
+      new Date().toISOString(),
     );
     return Response.json(reconciled, {
       headers: { "Cache-Control": "no-store" },
@@ -99,18 +102,26 @@ export async function PATCH(request: Request) {
     }
 
     const row = await updateLifecycleRecord(env.DB, {
-        findingKey,
-        status,
-        notes,
-        reviewerIdentity: REVIEWER_IDENTITY,
-        reviewerDisplayName: REVIEWER_DISPLAY_NAME,
-        updatedAt: new Date().toISOString(),
-      });
+      findingKey,
+      status,
+      notes,
+      reviewerIdentity: REVIEWER_IDENTITY,
+      reviewerDisplayName: REVIEWER_DISPLAY_NAME,
+      updatedAt: new Date().toISOString(),
+      expectedUpdatedAt:
+        typeof body.expectedUpdatedAt === "string"
+          ? body.expectedUpdatedAt
+          : existing?.updatedAt,
+    });
+    const auditEvents = await readLifecycleAuditEvents(env.DB, findingKey);
     return Response.json(
-      { lifecycle: row },
+      { lifecycle: row, auditEvents },
       { headers: { "Cache-Control": "no-store" } },
     );
-  } catch {
+  } catch (error) {
+    if (error instanceof LifecycleConflictError) {
+      return Response.json({ error: error.message }, { status: 409 });
+    }
     return Response.json(
       { error: "EduInsight could not persist the finding lifecycle." },
       { status: 503 },
