@@ -48,7 +48,8 @@ test("EF package produces governed key-value parts and exact source reconciliati
     reportingTerm: "2025FA",
   });
   assert.deepEqual(result.generatedParts, ["A", "B", "D", "H"]);
-  assert.deepEqual(result.blockedParts.map((part) => part.code), ["C", "E", "F", "G"]);
+  assert.deepEqual(result.modeledParts.map((part) => part.code), ["C", "E", "F", "G"]);
+  assert.deepEqual(result.blockedParts, []);
   assert.equal(result.completeSurveyPackage, false);
   assert.equal(result.structuralFailureCount, 0);
   assert.equal(result.reconciliationFailureCount, 0);
@@ -57,7 +58,7 @@ test("EF package produces governed key-value parts and exact source reconciliati
     /^UNITID=999999,SURVSECT=EF1,PART=A,CIPCODE=99\.0000,LINE=\d+,RACE=\d,SEX=[12],COUNT=\d+/,
   );
   assert.match(result.uploadText, /SURVSECT=EF1,PART=H,EFSEXUG=\d+,EFSEXG=\d+/);
-  assert.match(result.reviewCsv, /Parts C, E, F, and G are blocked/);
+  assert.match(result.reviewCsv, /Parts C, E, F, and G are added later from explicitly modeled demonstration controls/);
 });
 
 test("SFA source model exposes Pell-recipient separately from Pell eligibility", async () => {

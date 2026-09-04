@@ -489,7 +489,7 @@
       "status": "Current",
       "source": "EduInsight data-quality rule catalog",
       "sourceUrl": null,
-      "use": "Use the lifecycle status to distinguish new, investigating, reviewed, resolved, and suppressed findings.",
+      "use": "Use the current operational lifecycle states Open, In Review, Resolved, and Suppressed. Historical process wording must not be presented as an active lifecycle state.",
       "tags": ["data quality", "finding", "rule"],
       "related": ["IPEDS explanation edit", "Student-level privacy boundary"]
     },

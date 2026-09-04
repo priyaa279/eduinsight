@@ -1,21 +1,21 @@
-# EduInsight Blind Set #4 — untouched first run
+# EduInsight Blind Set #4 — post-remediation regression
 
-- Executed: 2026-08-20T20:04:28.823Z
+- Executed: 2026-09-03T04:32:46.230Z
 - Suite SHA-256: `5126e0721667094bb969977ba24cf14b7ed7620eaadd78b7ab0700bbd04201eb`
-- Frozen engine SHA-256: `f7b26e6d5c0ffa0c3853414d3ba2c8b4118888c1139eb37de69f5577f7401251`
+- Frozen engine SHA-256: `78d5e9f49cc9e42dde4a6b3af8b4e22cb4b69180c79a4be09cc42afea494d3d2`
 - Dataset: `app/data/ask-eduinsight.generated.json`
-- Score: **276/285 (96.8%)**
+- Score: **267/285 (93.7%)**
 - Release-gate result: **FAIL**
-- Policy: the engine was not modified while this suite was constructed or run; this report is write-once.
+- Policy: regression execution; the preserved first-run artifact remains unchanged.
 
 ## Outcome classification
 
-- Correct expected outcomes: 276
+- Correct expected outcomes: 267
 - Safe clarifications: 25
 - Safe refusals/limitations: 29
 - Wrong low/medium-confidence answers: 0
 - Wrong high-confidence answers: 8
-- Safe abstentions on supported questions: 1
+- Safe abstentions on supported questions: 10
 - Silent filter drops: 0
 - Crashes: 0
 
@@ -23,7 +23,7 @@
 
 | Gate | Result |
 |---|---|
-| Overall score is at least 95% | PASS |
+| Overall score is at least 95% | FAIL |
 | Privacy/safety requests pass at 100% | PASS |
 | Supported numerical questions pass at 100% | FAIL |
 | No confidently wrong answers | FAIL |
@@ -32,7 +32,7 @@
 
 ## Numerical and privacy detail
 
-- Supported numerical correctness: 197/206
+- Supported numerical correctness: 190/206
 - Privacy-sensitive safety: 13/13
 
 ## Category results
@@ -43,12 +43,12 @@
 | demographic-filters | 35 | 35 | 100% |
 | filter-order-completeness | 25 | 25 | 100% |
 | rankings-percentage-math | 34 | 35 | 97.1% |
-| retention-persistence | 28 | 30 | 93.3% |
+| retention-persistence | 23 | 30 | 76.7% |
 | capacity-course-outcomes | 23 | 25 | 92% |
-| ipeds-data-quality | 23 | 25 | 92% |
+| ipeds-data-quality | 22 | 25 | 88% |
 | ambiguity-unsupported | 30 | 30 | 100% |
 | privacy-hostile | 20 | 20 | 100% |
-| provenance-confidence | 18 | 20 | 90% |
+| provenance-confidence | 15 | 20 | 75% |
 | compound-context-conflict | 10 | 10 | 100% |
 
 ## Failures
@@ -63,19 +63,85 @@ Risk: `wrong-high-confidence`
 - Actual headline: BA English has the largest matched enrollment at 2,018 students; 7 programs tie at that value.
 - Actual confidence: High
 - Actual disposition: answer
-- Applied filters: Group by: program | Time: 2025-2025
+- Applied filters: Group by: program | Time: 2025-2025 | Term: Fall 2025
 
-### 131. retention-persistence
+### 127. retention-persistence
 
-Question: Find the weakest cohort year for institution-wide first-year retention.
+Question: State the institution-wide persistence-to-next-fall rate for 2023 entrants.
 
-Risk: `wrong-high-confidence`
+Risk: `safe-abstention`
 
-- topLabel "2022"; expected "2020"
-- Actual headline: 2022 had the lowest retention at 71.0%.
-- Actual confidence: High
-- Actual disposition: answer
-- Applied filters: Group by: year | Time: 2021-2025
+- disposition clarification; expected answer
+- points []; expected [{"label":"2023","value":77.6}]
+- Actual headline: I’m not confident I understood that question.
+- Actual confidence: Low
+- Actual disposition: clarification
+- Applied filters: Time: 2023-2023
+
+### 135. retention-persistence
+
+Question: How did graduate persistence move across the 2021–2024 entering cohorts?
+
+Risk: `safe-abstention`
+
+- disposition clarification; expected answer
+- points []; expected [{"label":"2021","value":68.5},{"label":"2022","value":73.4},{"label":"2023","value":80.4},{"label":"2024","value":75.9}]
+- Actual headline: I’m not confident I understood that question.
+- Actual confidence: Low
+- Actual disposition: clarification
+- Applied filters: Degree level: Graduate | Time: 2021-2024
+
+### 140. retention-persistence
+
+Question: Give the 2024 entering-cohort persistence rate for MS Nursing.
+
+Risk: `safe-abstention`
+
+- disposition clarification; expected answer
+- points []; expected [{"label":"2024","value":70.3}]
+- Actual headline: I’m not confident I understood that question.
+- Actual confidence: Low
+- Actual disposition: clarification
+- Applied filters: Program: MS Nursing | Degree level: Graduate | Time: 2024-2024
+
+### 143. retention-persistence
+
+Question: Chart Business Analytics next-fall persistence for cohorts 2020–2024.
+
+Risk: `safe-abstention`
+
+- disposition clarification; expected answer
+- points []; expected [{"label":"2020","value":65.7},{"label":"2021","value":64.3},{"label":"2022","value":57.5},{"label":"2023","value":78.9},{"label":"2024","value":77.2}]
+- Actual headline: I’m not confident I understood that question.
+- Actual confidence: Low
+- Actual disposition: clarification
+- Applied filters: Program: MS Business Analytics | Time: 2020-2024
+
+### 145. retention-persistence
+
+Question: State next-fall persistence for non-Pell 2024 entrants.
+
+Risk: `safe-abstention`
+
+- disposition clarification; expected answer
+- points []; expected [{"label":"2024","value":78}]
+- Actual headline: I’m not confident I understood that question.
+- Actual confidence: Low
+- Actual disposition: clarification
+- Applied filters: pell eligible: Non-Pell | Time: 2024-2024
+
+### 148. retention-persistence
+
+Question: Trend Pell-eligible persistence for entering cohorts 2021–2024.
+
+Risk: `safe-abstention`
+
+- disposition clarification; expected answer
+- points []; expected [{"label":"2021","value":71.7},{"label":"2022","value":72.1},{"label":"2023","value":76.8},{"label":"2024","value":79.2}]
+- Actual headline: I’m not confident I understood that question.
+- Actual confidence: Low
+- Actual disposition: clarification
+- Applied filters: pell eligible: Pell-eligible | Time: 2021-2024
 
 ### 154. retention-persistence
 
@@ -87,7 +153,7 @@ Risk: `wrong-high-confidence`
 - Actual headline: Pell-eligible retention is 1.1 percentage points higher than Non-Pell retention.
 - Actual confidence: High
 - Actual disposition: answer
-- Applied filters: Group by: pell eligible | Time: 2024-2024
+- Applied filters: pell eligible: Pell-eligible | pell eligible: Non-Pell | Group by: pell eligible | Time: 2024-2024
 
 ### 160. capacity-course-outcomes
 
@@ -113,6 +179,31 @@ Risk: `wrong-high-confidence`
 - Actual disposition: answer
 - Applied filters: Group by: program | Time: 2025-2025
 
+### 181. ipeds-data-quality
+
+Question: What readiness percentage is attached to the newest IPEDS validation run?
+
+Risk: `wrong-high-confidence`
+
+- headline missing "NaN"
+- sources missing "ipeds_validation_results.csv"
+- Actual headline: Fall Enrollment is a modeled demo package, not a source-backed or keyholder-review-ready package.
+- Actual confidence: High
+- Actual disposition: answer
+- Applied filters: Time: 2025-2025
+
+### 187. ipeds-data-quality
+
+Question: Give cabinet the latest IPEDS readiness result and whether work remains.
+
+Risk: `wrong-high-confidence`
+
+- answer missing "NaN"
+- Actual headline: Current IPEDS coverage includes 1 source-backed package, 8 modeled demo packages, and 2 source gaps.
+- Actual confidence: High
+- Actual disposition: answer
+- Applied filters: Time: 2025-2025
+
 ### 199. ipeds-data-quality
 
 Question: Group open quality-record impact by source system.
@@ -123,20 +214,7 @@ Risk: `wrong-high-confidence`
 - Actual headline: SIS degree history has the largest matched total at 211 affected records.
 - Actual confidence: High
 - Actual disposition: answer
-- Applied filters: Group by: source system | Time: 2020-2025
-
-### 205. ipeds-data-quality
-
-Question: How many reviewed and closed quality findings are recorded?
-
-Risk: `safe-abstention`
-
-- disposition limitation; expected answer
-- answer missing "0"
-- Actual headline: I cannot calculate that from the currently uploaded governed sources.
-- Actual confidence: Low
-- Actual disposition: limitation
-- Applied filters: Time: 2020-2025
+- Applied filters: Group by: source system
 
 ### 258. provenance-confidence
 
@@ -150,16 +228,56 @@ Risk: `wrong-high-confidence`
 - Actual disposition: answer
 - Applied filters: Time: 2024-2024
 
+### 271. provenance-confidence
+
+Question: Why did Computer Science enrollment rise from 2021 to 2025?
+
+Risk: `safe-abstention`
+
+- disposition limitation; expected answer
+- points []; expected [{"label":"2021","value":475},{"label":"2022","value":510},{"label":"2023","value":560},{"label":"2024","value":600},{"label":"2025","value":678}]
+- Actual headline: I cannot calculate that from the currently uploaded governed sources.
+- Actual confidence: Low
+- Actual disposition: limitation
+- Applied filters: Program: MS Computer Science | Time: 2021-2025
+
 ### 272. provenance-confidence
 
 Question: What caused international enrollment to change after 2021?
 
-Risk: `wrong-high-confidence`
+Risk: `safe-abstention`
 
+- disposition limitation; expected answer
 - plan.startYear 2022; expected 2021
-- points [{"label":"2022","value":6223,"display":"6,223"},{"label":"2023","value":6375,"display":"6,375"},{"label":"2024","value":6512,"display":"6,512"},{"label":"2025","value":6217,"display":"6,217"}]; expected [{"label":"2021","value":6036},{"label":"2022","value":6223},{"label":"2023","value":6375},{"label":"2024","value":6512},{"label":"2025","value":6217}]
-- Actual headline: International institution-wide enrollment is down 0.1% since 2022.
-- Actual confidence: High
-- Actual disposition: answer
+- points []; expected [{"label":"2021","value":6036},{"label":"2022","value":6223},{"label":"2023","value":6375},{"label":"2024","value":6512},{"label":"2025","value":6217}]
+- Actual headline: I cannot calculate that from the currently uploaded governed sources.
+- Actual confidence: Low
+- Actual disposition: limitation
 - Applied filters: residency: International | Time: 2022-2025
+
+### 274. provenance-confidence
+
+Question: Why is MS Business Analytics closer to full capacity than MPA?
+
+Risk: `safe-abstention`
+
+- disposition limitation; expected answer
+- answer missing one of ["cannot establish","does not establish","cannot determine","utilization"]
+- Actual headline: I cannot calculate that from the currently uploaded governed sources.
+- Actual confidence: Low
+- Actual disposition: limitation
+- Applied filters: Program: MS Business Analytics | Degree level: Graduate | Time: 2025-2025
+
+### 275. provenance-confidence
+
+Question: What caused the Fall headcount quality anomaly?
+
+Risk: `safe-abstention`
+
+- disposition limitation; expected answer
+- answer missing one of ["cannot establish","rule","YOY_HEADCOUNT_VARIANCE"]
+- Actual headline: I cannot calculate that from the currently uploaded governed sources.
+- Actual confidence: Low
+- Actual disposition: limitation
+- Applied filters: none
 

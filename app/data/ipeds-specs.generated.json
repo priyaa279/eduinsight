@@ -105,7 +105,7 @@
       "uploadCode": "EF1",
       "coverage": "full",
       "status": "Buildable",
-      "reason": "Parts A-H are generated from governed fall census and supplemental enrollment controls.",
+      "reason": "Parts A, B, D, and H are source-derived from the Fall census. Parts C, E, F, and G are structurally generated from explicitly modeled demonstration controls and are not operational submission-ready data.",
       "generator": true,
       "specId": "ipeds_spec.fall_enrollment.v2025_26",
       "uploadLayoutId": 22
@@ -193,13 +193,51 @@
       "keyOrder": [
         "UNITID",
         "SURVSECT",
-        "MAJORNUM",
-        "CIPCODE",
-        "AWLEVEL",
-        "RACE",
-        "SEX",
-        "COUNT"
+        "PART"
       ],
+      "partKeyOrder": {
+        "A": [
+          "UNITID",
+          "SURVSECT",
+          "PART",
+          "MAJORNUM",
+          "CIPCODE",
+          "AWLEVEL",
+          "RACE",
+          "SEX",
+          "COUNT"
+        ],
+        "B": [
+          "UNITID",
+          "SURVSECT",
+          "PART",
+          "MAJORNUM",
+          "CIPCODE",
+          "AWLEVEL",
+          "DistanceED"
+        ],
+        "C": [
+          "UNITID",
+          "SURVSECT",
+          "PART",
+          "RACE",
+          "SEX",
+          "COUNT"
+        ],
+        "D": [
+          "UNITID",
+          "SURVSECT",
+          "PART",
+          "CTLEVEL"
+        ],
+        "E": [
+          "UNITID",
+          "SURVSECT",
+          "PART",
+          "CSEXUG",
+          "CSEXG"
+        ]
+      },
       "codeTables": {
         "race": {
           "Nonresident alien": 1,
@@ -283,7 +321,7 @@
           ]
         },
         "C": {
-          "status": "blocked",
+          "status": "modeled_demo",
           "description": "Residence of first-time degree/certificate-seeking undergraduates.",
           "missingFields": [
             "admission_state_fips",
@@ -301,7 +339,7 @@
           ]
         },
         "E": {
-          "status": "blocked",
+          "status": "modeled_demo",
           "description": "Retention cohort counts.",
           "missingFields": [
             "cohort_exclusions",
@@ -309,14 +347,14 @@
           ]
         },
         "F": {
-          "status": "blocked",
+          "status": "modeled_demo",
           "description": "Student-to-faculty ratio.",
           "missingFields": [
             "official_student_faculty_ratio"
           ]
         },
         "G": {
-          "status": "blocked",
+          "status": "modeled_demo",
           "description": "Distance education enrollment and student location.",
           "missingFields": [
             "distance_education_status",

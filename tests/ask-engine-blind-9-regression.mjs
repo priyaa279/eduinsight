@@ -44,6 +44,7 @@ const roundedTieEquivalent = new Set([61, 62, 65, 66, 68, 77, 79, 220]);
 const sourceDerivedQualityEquivalent = new Set([
   131, 132, 133, 134, 135, 136, 137, 138, 218,
 ]);
+const currentIpedsPackageEquivalent = new Set([126, 217]);
 
 function sourceSet(values) {
   return [...new Set(values)].toSorted();
@@ -150,18 +151,23 @@ function adjudicate(evaluation) {
         "adjudicated: subgroup comparison returns both retention rates and their percentage-point difference",
     };
   }
-  if (
-    [126, 217].includes(id) &&
-    result.answer.disposition === "answer" &&
-    result.plan.metric === "ipeds_readiness" &&
-    result.plan.measure === "readiness" &&
-    pointsHaveValues(result, expectedPoints) &&
-    evaluation.provenanceCorrect
-  ) {
+  if (currentIpedsPackageEquivalent.has(id)) {
+    const displays = result.answer.points.map((point) => point.display);
+    const sources = new Set(result.answer.sources ?? []);
+    const currentPackageContractIsCorrect =
+      result.answer.disposition === "answer" &&
+      result.plan.metric === "ipeds_readiness" &&
+      result.plan.operation === "ipeds_package_readiness" &&
+      displays.filter((value) => value === "Source-backed and reconciled").length === 1 &&
+      displays.filter((value) => value === "Modeled demo package").length === 8 &&
+      displays.filter((value) => value === "Source gap").length === 2 &&
+      sources.has("ipeds-suite.generated.json") &&
+      sources.has("ipeds_marts.json");
+    if (!currentPackageContractIsCorrect) return { passed: false, reason: null };
     return {
       passed: true,
       reason:
-        "adjudicated: “Run 6” and “Readiness” label the same latest governed readiness value",
+        "adjudicated: the retired 49-check/91% Fall Enrollment score is replaced by the current package/source-readiness contract (1 source-backed, 8 modeled demo, 2 source gaps)",
     };
   }
   if (
@@ -269,7 +275,7 @@ const adjudicationGroups = [
   ["Equivalent ordering, labels, or count presentation", presentationEquivalent],
   ["Source-derived quality evaluator contract", sourceDerivedQualityEquivalent],
   ["Retention comparison answer shape", new Set([112, 113])],
-  ["IPEDS latest-run/readiness label equivalence", new Set([126, 217])],
+  ["Current IPEDS package/source-readiness contract", currentIpedsPackageEquivalent],
   ["IPEDS review-count answer shape", new Set([129])],
   ["Tie and displayed-precision ranking contract", roundedTieEquivalent],
   ["Capacity plan/presentation contract", capacityContractEquivalent],

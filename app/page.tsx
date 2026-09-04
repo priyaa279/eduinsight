@@ -1,38 +1,71 @@
 "use client";
 
 import {
+  useCallback,
   useEffect,
   useMemo,
   useRef,
   useState,
+  useSyncExternalStore,
   type Dispatch,
   type SetStateAction,
 } from "react";
 import { plannerModeLabel } from "../lib/ask/planner-presentation.mjs";
 import { searchMemoryRecords } from "../lib/institutional-memory-search.mjs";
 import {
+  buildInstitutionalMemoryCatalog,
+  isActiveMemoryPolicy,
+  memoryEffectivePeriodLabel,
+  resolveMemoryRelatedReference,
+  selectVisibleMemoryRecord,
+} from "../lib/institutional-memory-contract.mjs";
+import {
+  formatMemoryVerificationDate,
+  memoryKindDisplayLabel,
+} from "../lib/institutional-memory-presentation.mjs";
+import {
   calculateEnrollmentMix,
   calculateFacultyAttrition,
   calculatePricingAndAid,
   calculateProgramCapacity,
   calculateRetentionImprovement,
+  deriveEligibleCapacityPrograms,
+  deriveFacultyStaffingPlanningRange,
+  deriveScenarioBarPresentation,
   deriveScenarioEffect,
   formatCurrency,
+  SCENARIO_CONTROL_METADATA,
 } from "../lib/scenario-model.mjs";
 import {
-  loadSavedScenarios,
+  financialDefinitionForMode,
+  loadSavedScenarioState,
   persistSavedScenarios,
+  SAVED_SCENARIO_SCHEMA_VERSION,
+  SCENARIO_NAME_MAX_LENGTH,
 } from "../lib/scenario-storage.mjs";
 import {
   DATA_QUALITY_LIFECYCLE_STATUSES,
   stableFindingIdentity,
 } from "../lib/data-quality/lifecycle.mjs";
+import { buildCipVarianceDisplay } from "../lib/ipeds-code-labels.mjs";
+import {
+  summarizeReviewWorkflow,
+  summarizeValidationWorkflow,
+} from "../lib/ipeds-validation-presentation.mjs";
 import commandCenter from "./data/command-center.generated.json";
 import ipedsSpecs from "./data/ipeds-specs.generated.json";
 import ipedsSuite from "./data/ipeds-suite.generated.json";
 import institutionalMemory from "./data/institutional-memory.json";
 import institutionalMemoryExpanded from "./data/institutional-memory-expanded.json";
 import scenarioBaselines from "./data/scenario-baselines.generated.json";
+
+const LOCAL_DEMO_HOSTS = new Set(["localhost", "127.0.0.1", "::1"]);
+const subscribeToHost = () => () => {};
+const normalizeBrowserHostname = (hostname: string) =>
+  hostname.trim().toLowerCase().replace(/^\[|\]$/g, "").replace(/\.$/, "");
+const readPublicDemoHost = () =>
+  !LOCAL_DEMO_HOSTS.has(normalizeBrowserHostname(window.location.hostname));
+const readServerDemoHost = () => false;
 import { ArchColonnade, EmptyPlot, QuadPlan, SealMark } from "./artwork";
 
 type ViewId =
@@ -55,6 +88,9 @@ type QualityIssue = {
   source: string;
   sourceFiles: string[];
   sourceFields: string[];
+  scopeDescription: string;
+  applicabilityLimitation: string | null;
+  evidence: Record<string, string | number | boolean | null | undefined>;
   owner: string;
   rule: string;
   countSemantics: string;
@@ -64,7 +100,7 @@ type QualityIssue = {
   reviewerDisplayName: string | null;
   lifecycleCreatedAt: string | null;
   lifecycleUpdatedAt: string | null;
-  sampleRows?: Record<string, string | number>[];
+  sampleRows?: Record<string, string | number | undefined>[];
 };
 
 type QualityLifecycle = {
@@ -172,6 +208,16 @@ type IpedsApproval = {
   explanations?: Record<string, string>;
 };
 
+function ipedsApprovalStatusLabel(status: string) {
+  return status === "Ready for keyholder upload to NCES DCS"
+    ? "Ready for IPEDS keyholder review"
+    : status;
+}
+
+function isHistoricalIpedsApprovalStatus(status: string) {
+  return status === "Ready for keyholder upload to NCES DCS";
+}
+
 type MemoryRecord = {
   id: string;
   kind: "Policy" | "Definition" | "Analysis" | "Submission" | "Accreditation";
@@ -201,6 +247,7 @@ type ScenarioMode =
   | "faculty";
 
 type ScenarioResult = {
+  status?: "ready";
   title: string;
   summary: string;
   metrics: {
@@ -225,10 +272,14 @@ type ScenarioResult = {
   assumptions: string[];
   sources: string[];
   series?: number[];
+  supportingComparisons?: {
+    label: string;
+    display: string;
+  }[];
   details?: {
-    discountRatePointChange: number;
+    additionalGrantShareOfBaselineGrossTuitionPercent: number;
     coveredStudents: number;
-    modeledNetPriceChange: number;
+    modeledGrantOffsetPerPellEligibleStudent: number;
   };
   program?: {
     programId: string;
@@ -237,11 +288,36 @@ type ScenarioResult = {
   };
 };
 
+type MemorySearchEntry = {
+  record: MemoryRecord;
+  match: {
+    matchType: "all" | "direct" | "related" | "none";
+    reason: string | null;
+  };
+};
+
+type ScenarioUnavailableResult = {
+  status: "unavailable";
+  title: string;
+  summary: string;
+  reason: string;
+  missingDependency: string;
+};
+
+type ScenarioCalculation = ScenarioResult | ScenarioUnavailableResult;
+
 type SavedScenario = {
+  schemaVersion: number;
   id: string;
   name: string;
   mode: ScenarioMode;
+  savedAt: string;
+  financialDefinition:
+    | "gross-tuition"
+    | "gross-tuition-less-modeled-aid";
   result: ScenarioResult;
+  inputs: Record<string, number | string>;
+  assumptionSummary?: string;
 };
 
 type IpedsPackage = {
@@ -265,13 +341,27 @@ type IpedsPackage = {
   }[];
   structuralFailureCount: number;
   reconciliationFailureCount: number;
+  completenessFailureCount?: number;
   assumptions: string[];
   preparedRowCount: number;
   completeSurveyPackage?: boolean;
+  sourceReadiness:
+    | "source_backed"
+    | "modeled_demo"
+    | "source_gap";
+  sourceReadinessLabel: string;
+  sourceReadinessDetail: string;
   sourceCompleterCount?: number;
+  sourceAwardCount?: number;
   sourceEnrollmentCount?: number;
   sourceRecordCount?: number;
   generatedParts?: string[];
+  modeledParts?: {
+    code: string;
+    status: "modeled_demo";
+    description: string;
+    missingFields: string[];
+  }[];
   caveats?: string[];
   blockedParts?: {
     code: string;
@@ -322,6 +412,9 @@ const startingIssues: QualityIssue[] = commandCenter.qualityFindings
     source: issue.sourceSystem,
     sourceFiles: issue.sourceFiles,
     sourceFields: issue.sourceFields,
+    scopeDescription: issue.scopeDescription,
+    applicabilityLimitation: issue.applicabilityLimitation,
+    evidence: issue.evidence,
     owner: issue.owner,
     rule: issue.ruleId,
     countSemantics: issue.countSemantics,
@@ -329,15 +422,16 @@ const startingIssues: QualityIssue[] = commandCenter.qualityFindings
     reviewNotes: "",
     reviewerIdentity: null,
     reviewerDisplayName: null,
-    lifecycleCreatedAt: issue.openedAt,
-    lifecycleUpdatedAt: issue.openedAt,
+    lifecycleCreatedAt: null,
+    lifecycleUpdatedAt: null,
     sampleRows: issue.sampleRows,
   }));
 
-const memoryItems = [
-  ...institutionalMemory.records,
-  ...institutionalMemoryExpanded.records,
-] as unknown as MemoryRecord[];
+const memoryCatalog = buildInstitutionalMemoryCatalog([
+  institutionalMemory,
+  institutionalMemoryExpanded,
+], { isolateInvalidRecords: true });
+const memoryItems = memoryCatalog.records as unknown as MemoryRecord[];
 
 const qualitySummary = {
   total: commandCenter.qualityFindings.length,
@@ -350,12 +444,7 @@ const qualitySummary = {
   medium: commandCenter.qualityFindings.filter(
     (finding) => finding.severity === "Medium",
   ).length,
-  open: commandCenter.qualityFindings.filter(
-    (finding) => finding.lifecycleStatus !== "Resolved",
-  ).length,
-  resolved: commandCenter.qualityFindings.filter(
-    (finding) => finding.lifecycleStatus === "Resolved",
-  ).length,
+  active: commandCenter.qualityFindings.length,
   notEvaluated: commandCenter.qualityEvaluationSummary.notEvaluated,
   evaluated: commandCenter.qualityEvaluationSummary.executed,
   catalogRules: commandCenter.qualityEvaluationSummary.totalRules,
@@ -461,11 +550,15 @@ function AppIcon({
   );
 }
 
-function Sparkline({ values }: { values: number[] }) {
+function Sparkline({ values, label }: { values: number[]; label: string }) {
   const max = Math.max(...values);
   const min = Math.min(...values);
+  const accessibleLabel =
+    values.length === 1
+      ? `${label} current value: ${values[0]}`
+      : `${label} trend values: ${values.join(", ")}`;
   return (
-    <div className="sparkline" aria-label={`Trend values: ${values.join(", ")}`}>
+    <div className="sparkline" role="img" aria-label={accessibleLabel}>
       {values.map((value, index) => (
         <span
           key={`${value}-${index}`}
@@ -474,6 +567,12 @@ function Sparkline({ values }: { values: number[] }) {
       ))}
     </div>
   );
+}
+
+function briefAttentionHeadline(count: number) {
+  return count === 1
+    ? "One item needs your attention."
+    : `${count} items need your attention.`;
 }
 
 function LineChart({
@@ -524,11 +623,9 @@ function LineChart({
 function Header({
   title,
   description,
-  onAudit,
 }: {
   title: string;
   description: string;
-  onAudit: () => void;
 }) {
   return (
     <header className="page-header">
@@ -540,22 +637,14 @@ function Header({
         <h1>{title}</h1>
         <p className="page-description">{description}</p>
       </div>
-      <div className="header-actions">
-        <button className="button button-secondary" onClick={onAudit}>
-          <AppIcon name="command" />
-          Audit trail
-        </button>
-      </div>
     </header>
   );
 }
 
 function Overview({
   onNavigate,
-  onAudit,
 }: {
   onNavigate: (view: ViewId) => void;
-  onAudit: () => void;
 }) {
   const metrics = [
     { data: commandCenter.kpis.fallHeadcount, tone: "negative" },
@@ -568,8 +657,7 @@ function Overview({
     <div className="view">
       <Header
         title="Institutional command center"
-        description="A decision-ready brief assembled by your agents from the latest certified snapshots."
-        onAudit={onAudit}
+        description="A decision-ready brief calculated from a governed static snapshot."
       />
 
       <section className="hero-grid">
@@ -590,17 +678,17 @@ function Overview({
             Start an analysis <AppIcon name="arrow-right" />
           </button>
           <div className="ask-suggestion">
-            “Why did first-generation retention decline?”
+            “What was overall first-year retention in 2024?”
           </div>
         </article>
 
         <article className="brief-card">
           <div className="section-heading">
             <div>
-              <p className="eyebrow">Agent brief • {commandCenter.briefDate}</p>
-              <h2>Three items need your attention.</h2>
+              <p className="eyebrow">Governed brief • {commandCenter.briefPeriod}</p>
+              <h2>{briefAttentionHeadline(commandCenter.brief.length)}</h2>
             </div>
-            <span className="agent-badge">{commandCenter.activeAgents} agents active</span>
+            <span className="agent-badge">Deterministic checks complete</span>
           </div>
           <div className="brief-list">
             {commandCenter.brief.map((item) => (
@@ -615,6 +703,7 @@ function Overview({
                 <span>
                   <strong>{item.title}</strong>
                   <small>{item.subtitle}</small>
+                  <small className="brief-state">{item.attentionState}</small>
                 </span>
                     <AppIcon name="arrow-right" />
               </button>
@@ -635,7 +724,7 @@ function Overview({
                 <strong>{data.display}</strong>
                 <small>{data.context}</small>
               </div>
-              <Sparkline values={data.trend} />
+              <Sparkline values={data.trend} label={data.label} />
             </div>
           </article>
         ))}
@@ -646,7 +735,7 @@ function Overview({
           <div className="section-heading">
             <div>
               <p className="eyebrow">Enrollment signal</p>
-              <h2>Graduate demand is reshaping capacity.</h2>
+              <h2>Graduate program growth and course-seat utilization.</h2>
             </div>
             <button
               className="text-button"
@@ -656,15 +745,29 @@ function Overview({
             </button>
           </div>
           <div className="capacity-chart">
+            <div className="capacity-legend" aria-hidden="true">
+              <span>Program</span>
+              <span>Course-seat utilization</span>
+              <span>Enrollment growth</span>
+            </div>
             {commandCenter.programSignals.map((signal) => (
               <div className="capacity-row" key={signal.programId}>
                 <span>{signal.label}</span>
-                <div className="capacity-track">
-                  <span style={{ width: signal.utilizationDisplay }} />
+                <div className="capacity-utilization">
+                  <div
+                    className="capacity-track"
+                    role="img"
+                    aria-label={`${signal.label} course-seat utilization: ${signal.courseSeatUtilizationDisplay}`}
+                  >
+                    <span style={{ width: signal.courseSeatUtilizationDisplay }} />
+                  </div>
+                  <small>{signal.courseSeatUtilizationDisplay}</small>
                 </div>
-                <strong className={signal.growth < 0 ? "down" : ""}>
-                  {signal.delta}
-                </strong>
+                <span className="capacity-growth">
+                  <strong className={signal.enrollmentGrowth < 0 ? "down" : ""}>
+                    {signal.enrollmentGrowthDisplay}
+                  </strong>
+                </span>
               </div>
             ))}
           </div>
@@ -673,19 +776,19 @@ function Overview({
         <article className="panel">
           <div className="section-heading">
             <div>
-              <p className="eyebrow">Agent activity</p>
-              <h2>What EduInsight completed today</h2>
+              <p className="eyebrow">Processing summary</p>
+              <h2>What the governed pipeline produced</h2>
             </div>
           </div>
           <div className="activity-list">
             {commandCenter.activity.map((item) => (
-              <div key={`${item.time}-${item.activity}`}>
+              <div key={item.activity}>
               <AppIcon name="refresh" className="activity-icon" />
               <p>
                   <strong>{item.activity}</strong>
                   <small>{item.detail}</small>
               </p>
-                <time>{item.time}</time>
+                <span className="processing-state">{item.statusLabel}</span>
               </div>
             ))}
           </div>
@@ -778,7 +881,6 @@ function Analyst({
       <Header
         title="Ask EduInsight"
         description="Ask a clear question or compact request. Every answer is calculated locally from governed, traceable data."
-        onAudit={onAudit}
       />
 
       <section className="analyst-layout">
@@ -1071,11 +1173,11 @@ function Analyst({
 }
 
 function DataQuality({
-  onAudit,
   notify,
+  publicDemoReadOnly,
 }: {
-  onAudit: () => void;
   notify: (message: string) => void;
+  publicDemoReadOnly: boolean;
 }) {
   const [issues, setIssues] = useState(startingIssues);
   const [filter, setFilter] = useState("All");
@@ -1083,7 +1185,10 @@ function DataQuality({
   const [selected, setSelected] = useState<QualityIssue | null>(
     startingIssues[0]
   );
-  const selectedKeyRef = useRef(startingIssues[0]?.findingKey ?? null);
+  const selectedKeyRef = useRef<string | null>(
+    startingIssues[0]?.findingKey ?? null,
+  );
+  const sourceTraceRef = useRef<HTMLDivElement | null>(null);
   const [draftStatus, setDraftStatus] = useState<QualityIssue["status"]>("Open");
   const [draftNotes, setDraftNotes] = useState("");
   const [savingLifecycle, setSavingLifecycle] = useState(false);
@@ -1163,8 +1268,31 @@ function DataQuality({
     setDraftNotes(issue.reviewNotes);
   }
 
+  function selectFilter(nextFilter: string) {
+    setFilter(nextFilter);
+    const visibleIssues = issues.filter(
+      (issue) =>
+        nextFilter === "All" ||
+        issue.severity === nextFilter ||
+        issue.status === nextFilter,
+    );
+    if (selected && !visibleIssues.some((issue) => issue.findingKey === selected.findingKey)) {
+      const next = visibleIssues[0] ?? null;
+      selectedKeyRef.current = next?.findingKey ?? null;
+      setSelected(next);
+      if (next) {
+        setDraftStatus(next.status);
+        setDraftNotes(next.reviewNotes);
+      }
+    }
+  }
+
   async function saveLifecycle() {
     if (!selected) return;
+    if (publicDemoReadOnly) {
+      notify("The public portfolio is read-only. Review changes are available locally.");
+      return;
+    }
     setSavingLifecycle(true);
     try {
       const response = await fetch("/api/data-quality/lifecycle", {
@@ -1199,7 +1327,19 @@ function DataQuality({
             }
           : issue;
       setIssues((current) => current.map(applyLifecycle));
-      setSelected((current) => (current ? applyLifecycle(current) : current));
+      setSelected((current) => {
+        if (!current) return current;
+        const updated = applyLifecycle(current);
+        const remainsVisible =
+          filter === "All" ||
+          updated.severity === filter ||
+          updated.status === filter;
+        if (!remainsVisible) {
+          selectedKeyRef.current = null;
+          return null;
+        }
+        return updated;
+      });
       setDraftStatus(lifecycle.status);
       setDraftNotes(lifecycle.notes);
       if (result.auditEvents) {
@@ -1227,7 +1367,6 @@ function DataQuality({
       <Header
         title="Data quality"
         description="Find structural defects and governed validation failures before they reach a report."
-        onAudit={onAudit}
       />
       <section className="quality-summary">
         <div className="quality-score">
@@ -1274,12 +1413,14 @@ function DataQuality({
             <div className="filter-tabs" role="group" aria-label="Filter findings">
               <button
                 className={workspaceTab === "findings" ? "active" : ""}
+                aria-pressed={workspaceTab === "findings"}
                 onClick={() => setWorkspaceTab("findings")}
               >
                 Findings
               </button>
               <button
                 className={workspaceTab === "catalog" ? "active" : ""}
+                aria-pressed={workspaceTab === "catalog"}
                 onClick={() => setWorkspaceTab("catalog")}
               >
                 Rule catalog
@@ -1292,7 +1433,8 @@ function DataQuality({
               {["All", "Critical", "High", "Medium", ...DATA_QUALITY_LIFECYCLE_STATUSES].map((item) => (
                 <button
                   className={filter === item ? "active" : ""}
-                  onClick={() => setFilter(item)}
+                  aria-pressed={filter === item}
+                  onClick={() => selectFilter(item)}
                   key={item}
                 >
                   {item}
@@ -1305,6 +1447,7 @@ function DataQuality({
                 className={`issue-row ${
                   selected?.id === issue.id ? "selected" : ""
                 }`}
+                aria-pressed={selected?.findingKey === issue.findingKey}
                 onClick={() => selectIssue(issue)}
                 key={issue.id}
               >
@@ -1328,6 +1471,11 @@ function DataQuality({
                 </span>
               </button>
             ))}
+            {filtered.length === 0 && (
+              <p className="quality-empty-state">
+                No {filter === "All" ? "active" : filter} findings in the current view.
+              </p>
+            )}
           </div>
             </>
           ) : (
@@ -1403,11 +1551,21 @@ function DataQuality({
               <div className="agent-explanation">
                 <AppIcon name="sparkles" />
                 <div>
-                  <strong>Why the agent flagged this</strong>
+                  <strong>
+                    {selected.findingType === "ANOMALY"
+                      ? "Why this check flagged the observation"
+                      : "Why this check flagged the record"}
+                  </strong>
                   <p>{selected.description}</p>
                   <small>{selected.countSemantics}</small>
                 </div>
               </div>
+              {selected.applicabilityLimitation && (
+                <div className="finding-limitation" role="note">
+                  <strong>Applicability note</strong>
+                  <p>{selected.applicabilityLimitation}</p>
+                </div>
+              )}
               {selected.findingType === "ANOMALY" && (
                 <div className="sample-records">
                   <div className="sample-records-heading">
@@ -1470,6 +1628,26 @@ function DataQuality({
                   </p>
                 )}
               </div>
+              <div
+                className="finding-source-trace"
+                ref={sourceTraceRef}
+                tabIndex={-1}
+              >
+                <div className="sample-records-heading">
+                  <strong>Selected finding source trace</strong>
+                  <span>{selected.scopeDescription}</span>
+                </div>
+                <dl>
+                  <div>
+                    <dt>Source files</dt>
+                    <dd>{selected.sourceFiles.length ? selected.sourceFiles.join(", ") : "Not declared"}</dd>
+                  </div>
+                  <div>
+                    <dt>Source fields</dt>
+                    <dd>{selected.sourceFields.length ? selected.sourceFields.join(", ") : "Not declared"}</dd>
+                  </div>
+                </dl>
+              </div>
               <div className="lifecycle-editor">
                 <div className="sample-records-heading">
                   <strong>Finding review lifecycle</strong>
@@ -1488,7 +1666,7 @@ function DataQuality({
                     onChange={(event) =>
                       setDraftStatus(event.target.value as QualityIssue["status"])
                     }
-                    disabled={persistenceState === "loading" || savingLifecycle}
+                    disabled={publicDemoReadOnly || persistenceState === "loading" || savingLifecycle}
                   >
                     {DATA_QUALITY_LIFECYCLE_STATUSES.map((status) => (
                       <option value={status} key={status}>{status}</option>
@@ -1503,10 +1681,13 @@ function DataQuality({
                     rows={4}
                     placeholder="Record the review conclusion, evidence checked, or reason for suppression."
                     onChange={(event) => setDraftNotes(event.target.value)}
-                    disabled={persistenceState === "loading" || savingLifecycle}
+                    disabled={publicDemoReadOnly || persistenceState === "loading" || savingLifecycle}
                   />
                 </label>
                 <div className="lifecycle-metadata">
+                  {publicDemoReadOnly ? (
+                    <span>Public demo: lifecycle history is view-only.</span>
+                  ) : null}
                   <span>
                     Reviewer: {selected.reviewerDisplayName ?? "Not yet reviewed"}
                   </span>
@@ -1550,13 +1731,20 @@ function DataQuality({
                 )}
               </div>
               <div className="detail-actions">
-                <button className="button button-secondary" onClick={onAudit}>
+                <button
+                  className="button button-secondary"
+                  onClick={() => {
+                    sourceTraceRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+                    sourceTraceRef.current?.focus({ preventScroll: true });
+                  }}
+                >
                   Trace source
                 </button>
                 <button
                   className="button button-primary"
                   disabled={
                     persistenceState !== "ready" ||
+                    publicDemoReadOnly ||
                     savingLifecycle ||
                     (draftStatus === selected.status &&
                       draftNotes.trim() === selected.reviewNotes)
@@ -1580,14 +1768,18 @@ function Ipeds({
   onAudit,
   notify,
   onApproval,
+  publicDemoReadOnly,
 }: {
   onAudit: () => void;
   notify: (message: string) => void;
   onApproval: (approval: IpedsApproval) => void;
+  publicDemoReadOnly: boolean;
 }) {
   const [selected, setSelected] = useState(1);
   const [validating, setValidating] = useState(false);
   const [validationComplete, setValidationComplete] = useState(false);
+  const [validationExecutionError, setValidationExecutionError] =
+    useState(false);
   const [generated, setGenerated] = useState(false);
   const [approved, setApproved] = useState(false);
   const [packageHash, setPackageHash] = useState("");
@@ -1608,27 +1800,31 @@ function Ipeds({
             coverage: "partial",
             status: "Questionnaire",
             reason:
-              "NCES does not expose an import-file layout for Institutional Characteristics. Use the governed questionnaire evidence to complete the component in DCS.",
+              "Institutional Characteristics is completed through governed institutional and keyholder questionnaire responses. No public import-file layout is available for this component.",
             generator: false,
             blockedParts: [],
           }
-        : item;
+        : { ...item, blockedParts: [] };
     }
     return {
       ...item,
-      coverage: candidate.completeSurveyPackage ? "full" : "partial",
-      status: candidate.completeSurveyPackage
-        ? "Ready to prepare"
-        : "Source gap",
-      reason: candidate.completeSurveyPackage
-        ? `The ${item.code} source contract, current NCES layout, deterministic generator, review-file logic, and eight validation checks are configured.`
-        : "A review file is available, but one or more required parts remain blocked until the missing source arrives.",
+      coverage:
+        candidate.sourceReadiness === "source_backed"
+          ? "full"
+          : candidate.sourceReadiness === "modeled_demo"
+            ? "modeled"
+            : "partial",
+      status: candidate.sourceReadinessLabel,
+      reason: candidate.sourceReadinessDetail,
       blockedParts: candidate.blockedParts ?? [],
       generator: true,
     };
   });
-  const readyToPrepareCount = surveyCards.filter(
+  const sourceBackedCount = surveyCards.filter(
     (item) => item.generator && item.coverage === "full",
+  ).length;
+  const modeledDemoCount = surveyCards.filter(
+    (item) => item.generator && item.coverage === "modeled",
   ).length;
   const sourceGapCount = surveyCards.filter(
     (item) => item.generator && item.coverage === "partial",
@@ -1641,7 +1837,12 @@ function Ipeds({
   const isFallEnrollment = survey.code === "EF";
   const packageData = suitePackages[survey.code] ?? null;
   const canGenerate = Boolean(survey.generator && packageData);
-  const packageComplete = packageData?.completeSurveyPackage !== false;
+  const packageComplete = packageData?.completeSurveyPackage === true;
+  const packageSourceBacked = packageData?.sourceReadiness === "source_backed";
+  const computerScienceVariance = buildCipVarianceDisplay(
+    "11.0701",
+    commandCenter.referenceCatalogs.programs,
+  );
   const varianceItems = isCompletions
     ? [
         {
@@ -1649,11 +1850,11 @@ function Ipeds({
           edit: "Year-over-year completions total",
           prompt:
             "Completions changed more than 10% from the prior reporting year.",
+          supportingDetail: undefined,
         },
         {
           id: "completions-cip-110701-yoy",
-          edit: "CIP 11.0701 historical range",
-          prompt: "CIP 11.0701 increased outside the expected historical range.",
+          ...computerScienceVariance,
         },
       ]
     : isFallEnrollment
@@ -1663,6 +1864,7 @@ function Ipeds({
             edit: "Year-over-year Fall census headcount",
             prompt:
               "Fall census headcount changed outside the expected year-over-year range.",
+            supportingDetail: undefined,
           },
         ]
       : [];
@@ -1677,11 +1879,19 @@ function Ipeds({
   );
   const validationFailures = packageData
     ? packageData.structuralFailureCount +
-      packageData.reconciliationFailureCount
+      packageData.reconciliationFailureCount +
+      (packageData.completenessFailureCount ?? 0)
     : 0;
+  const validationWorkflow = summarizeValidationWorkflow(
+    packageData?.validations ?? [],
+    validationComplete,
+    validationExecutionError,
+  );
   const canApprove =
     canGenerate &&
     packageComplete &&
+    packageSourceBacked &&
+    !publicDemoReadOnly &&
     generated &&
     validationComplete &&
     validationFailures === 0 &&
@@ -1690,7 +1900,13 @@ function Ipeds({
   const selectedWorkflowStatus = !canGenerate
     ? "Questionnaire workflow"
     : !packageComplete
-      ? "Source gap"
+      ? packageData?.sourceReadiness === "source_backed"
+        ? "Source-backed records · package incomplete"
+        : packageData?.sourceReadiness === "source_gap"
+          ? "Source gap · partial demonstration output"
+          : "Modeled demo · package incomplete"
+      : !packageSourceBacked
+        ? "Modeled demo · structural validation only"
       : validationComplete
         ? "Validation complete"
         : generated
@@ -1703,10 +1919,16 @@ function Ipeds({
       ? "Run structural and reconciliation validation."
       : "",
     validationFailures > 0
-      ? "Resolve every structural and reconciliation failure."
+      ? "Resolve every structural, completeness, and reconciliation failure."
       : "",
     !packageComplete
-      ? "Complete every required survey part; this partial file is not ready for DCS upload."
+      ? "Complete every required survey part before institutional IPEDS review."
+      : "",
+    packageComplete && !packageSourceBacked
+      ? "Modeled demonstration values cannot be marked ready for IPEDS keyholder review."
+      : "",
+    publicDemoReadOnly
+      ? "The public portfolio is read-only; approvals can be recorded only in the local development workspace."
       : "",
     varianceItems.length && !allExplained
       ? "Write an explanation for every material year-over-year variance."
@@ -1715,11 +1937,19 @@ function Ipeds({
       ? "Acknowledge the 2025–26 NCES specification changes."
       : "",
   ].filter(Boolean);
+  const reviewWorkflow = summarizeReviewWorkflow({
+    generated,
+    validationState: validationWorkflow.state,
+    hasBlockers: blockers.length > 0,
+    eligible: canApprove,
+    approved,
+  });
 
   function resetSurvey(index: number) {
     setSelected(index);
     setApproved(false);
     setValidationComplete(false);
+    setValidationExecutionError(false);
     setGenerated(false);
     setPackageHash("");
     setExplanations({});
@@ -1739,13 +1969,24 @@ function Ipeds({
       notify(`${survey.code} validation is unavailable: ${survey.reason}`);
       return;
     }
+    setValidationExecutionError(false);
     setValidating(true);
     window.setTimeout(() => {
-      setValidating(false);
-      setValidationComplete(true);
-      notify(
-        `${packageData.validations.length} ${survey.code} checks completed with ${validationFailures} failures.`,
-      );
+      try {
+        if (!Array.isArray(packageData.validations)) {
+          throw new Error("Validation records are unavailable.");
+        }
+        setValidationComplete(true);
+        notify(
+          `${survey.name} validation completed · ${validationWorkflow.passedCount} passed · ${validationWorkflow.failedCount} failed.`,
+        );
+      } catch {
+        setValidationComplete(false);
+        setValidationExecutionError(true);
+        notify(`${survey.name} validation could not run.`);
+      } finally {
+        setValidating(false);
+      }
     }, 450);
   }
 
@@ -1780,7 +2021,7 @@ function Ipeds({
       setApproved(true);
       onApproval(result.approval);
       notify(
-        `${survey.code} package frozen and marked ready for the keyholder. EduInsight did not submit it to NCES.`,
+        `${survey.code} package frozen and marked ready for IPEDS keyholder review. Demo workflow; EduInsight did not submit it to NCES.`,
       );
     } catch (error) {
       notify(
@@ -1797,8 +2038,7 @@ function Ipeds({
     <div className="view">
       <Header
         title="IPEDS reporting center"
-        description="Coordinate source readiness, validation, variance explanations, and keyholder handoff for each reporting component."
-        onAudit={onAudit}
+        description="Coordinate source readiness, validation, institutional explanations, and IPEDS keyholder review for each reporting component."
       />
       <section className="ipeds-banner">
         <div>
@@ -1814,8 +2054,15 @@ function Ipeds({
         <article>
           <span className="queue-dot ready" />
           <div>
-            <strong>{readyToPrepareCount}</strong>
-            <small>Ready to prepare</small>
+            <strong>{sourceBackedCount}</strong>
+            <small>Source-backed and reconciled</small>
+          </div>
+        </article>
+        <article>
+          <span className="queue-dot modeled" />
+          <div>
+            <strong>{modeledDemoCount}</strong>
+            <small>Modeled demo packages</small>
           </div>
         </article>
         <article>
@@ -1897,6 +2144,7 @@ function Ipeds({
             key={item.code}
             className={`survey-card ${selected === index ? "selected" : ""}`}
             onClick={() => resetSurvey(index)}
+            aria-pressed={selected === index}
           >
             <span className="survey-code">{item.code}</span>
             <span
@@ -1938,13 +2186,15 @@ function Ipeds({
                   onClick={() => {
                     setGenerated(true);
                     notify(
-                      `${survey.code} import and review artifacts generated from governed data.`,
+                      `${survey.code} import and review artifacts generated from the disclosed package source contract.`,
                     );
                   }}
                 >
                   {packageComplete
                     ? "Generate import file"
-                    : "Generate review file"}
+                    : isCompletions && generated
+                      ? "Regenerate review file"
+                      : "Generate review file"}
                 </button>
               ) : null}
               {canGenerate ? (
@@ -1956,14 +2206,57 @@ function Ipeds({
                   {validating ? "Validating…" : "Run validation"}
                 </button>
               ) : null}
+              {canGenerate && isCompletions && packageData ? (
+                <>
+                  <button
+                    className="button button-secondary"
+                    disabled={!generated}
+                    onClick={() =>
+                      downloadArtifact(
+                        packageData.uploadText,
+                        `${packageData.fileStem}_draft.txt`,
+                        "text/plain;charset=utf-8",
+                      )
+                    }
+                  >
+                    Download review draft
+                  </button>
+                  <button
+                    className="button button-secondary"
+                    disabled={!generated}
+                    onClick={() =>
+                      downloadArtifact(
+                        packageData.reviewCsv,
+                        `${packageData.fileStem}_review.csv`,
+                        "text/csv;charset=utf-8",
+                      )
+                    }
+                  >
+                    Download review CSV
+                  </button>
+                </>
+              ) : null}
             </div>
           </div>
           {packageData ? (
             <>
+              <div className={`source-readiness-panel ${packageData.sourceReadiness}`}>
+                <strong>{packageData.sourceReadinessLabel}</strong>
+                <p>{packageData.sourceReadinessDetail}</p>
+                {packageData.modeledParts?.length ? (
+                  <p>
+                    Modeled sections: {packageData.modeledParts.map((part) => `Part ${part.code}`).join(", ")}.
+                  </p>
+                ) : null}
+                <small>
+                  Structural validation is reported separately and does not establish substantive source readiness.
+                </small>
+              </div>
               <div className="com-pipeline">
                 <span>
                   1 Source (
                   {(
+                    packageData.sourceAwardCount ??
                     packageData.sourceCompleterCount ??
                     packageData.sourceEnrollmentCount ??
                     packageData.sourceRecordCount ??
@@ -1983,8 +2276,22 @@ function Ipeds({
               {packageData.generatedParts ? (
                 <div className="part-status-grid">
                   {packageData.generatedParts.map((part) => (
-                    <span className="generated" key={part}>
-                      Part {part} generated
+                    <span
+                      className={
+                        packageData.sourceReadiness === "source_gap"
+                          ? "blocked"
+                          : packageData.sourceReadiness === "modeled_demo"
+                            ? "modeled"
+                            : "generated"
+                      }
+                      key={part}
+                    >
+                      Part {part}{" "}
+                      {packageData.sourceReadiness === "source_backed"
+                        ? "generated from synthetic source records"
+                        : packageData.sourceReadiness === "modeled_demo"
+                          ? "generated from modeled demonstration inputs"
+                          : "partial demonstration output · source gap"}
                     </span>
                   ))}
                   {packageData.blockedParts?.map((part) => (
@@ -2005,13 +2312,26 @@ function Ipeds({
                 {packageData.validations.map((check) => (
                   <div
                     className={`validation-row ${
-                      check.status === "Passed" ? "passed" : "attention"
+                      !validationComplete
+                        ? "not-run"
+                        : check.status === "Passed"
+                          ? "passed"
+                          : "attention"
                     }`}
                     key={check.id}
+                    aria-label={`Validation state: ${
+                      validationComplete ? check.status : "Not run"
+                    }. ${check.label}`}
                   >
                       <span>
                         <AppIcon
-                          name={check.status === "Passed" ? "check" : "warning"}
+                          name={
+                            !validationComplete
+                              ? "refresh"
+                              : check.status === "Passed"
+                                ? "check"
+                                : "warning"
+                          }
                         />
                       </span>
                     <div>
@@ -2058,31 +2378,35 @@ function Ipeds({
               ) : null}
               {generated ? (
                 <div className="download-row">
-                  <button
-                    className="button button-secondary"
-                    onClick={() =>
-                      downloadArtifact(
-                        packageData.uploadText,
-                        `${packageData.fileStem}_draft.txt`,
-                        "text/plain;charset=utf-8",
-                      )
-                    }
-                  >
-                    Download {survey.code}{" "}
-                    {packageComplete ? "import" : "review draft"}
-                  </button>
-                  <button
-                    className="button button-secondary"
-                    onClick={() =>
-                      downloadArtifact(
-                        packageData.reviewCsv,
-                        `${packageData.fileStem}_review.csv`,
-                        "text/csv;charset=utf-8",
-                      )
-                    }
-                  >
-                    Download review CSV
-                  </button>
+                  {!isCompletions ? (
+                    <>
+                      <button
+                        className="button button-secondary"
+                        onClick={() =>
+                          downloadArtifact(
+                            packageData.uploadText,
+                            `${packageData.fileStem}_draft.txt`,
+                            "text/plain;charset=utf-8",
+                          )
+                        }
+                      >
+                        Download {survey.code}{" "}
+                        {packageComplete ? "import" : "review draft"}
+                      </button>
+                      <button
+                        className="button button-secondary"
+                        onClick={() =>
+                          downloadArtifact(
+                            packageData.reviewCsv,
+                            `${packageData.fileStem}_review.csv`,
+                            "text/csv;charset=utf-8",
+                          )
+                        }
+                      >
+                        Download review CSV
+                      </button>
+                    </>
+                  ) : null}
                   <p className="filename-caption">
                     This filename is EduInsight’s internal recordkeeping
                     convention. NCES validates the key-value content, not a
@@ -2098,13 +2422,18 @@ function Ipeds({
                   <p className="variance-help">
                     Verify the values first. Correct the data if they are wrong;
                     otherwise document the factual institutional reason. The
-                    response is saved with the sealed approval and shown in the
-                    Audit trail for keyholder review.
+                    response is saved with the sealed approval and shown in
+                    Approval history for institutional review.
                   </p>
                   {varianceItems.map((item) => (
                     <label key={item.id}>
                       <small>{item.edit}</small>
                       <span>{item.prompt}</span>
+                      {item.supportingDetail ? (
+                        <small className="variance-reference">
+                          {item.supportingDetail}
+                        </small>
+                      ) : null}
                       <textarea
                         rows={2}
                         value={explanations[item.id] ?? ""}
@@ -2121,7 +2450,7 @@ function Ipeds({
                   {approved ? (
                     <p className="variance-saved">
                     <AppIcon name="check" /> Explanations saved with this approval record and
-                      available in the Audit trail.
+                      available in Approval history.
                     </p>
                   ) : null}
                 </div>
@@ -2129,12 +2458,13 @@ function Ipeds({
             </>
           ) : (
             <div className="unsupported-survey">
-              <p className="eyebrow">Generator intentionally unavailable</p>
+              <p className="eyebrow">Questionnaire workflow</p>
               <h3>{survey.status}</h3>
               <p>{survey.reason}</p>
               <strong>
-                No upload file will be generated until the missing governed
-                source domain and official survey rules are implemented.
+                EduInsight organizes the institutional response and supporting
+                evidence; the designated keyholder completes the external
+                reporting workflow. EduInsight does not submit data to NCES.
               </strong>
             </div>
           )}
@@ -2143,16 +2473,31 @@ function Ipeds({
           <p className="eyebrow">Human approval gate</p>
           <h2>
             {approved
-              ? "Ready-for-keyholder record saved"
-              : "Keyholder handoff review"}
+              ? "Ready for IPEDS keyholder review"
+              : "Institutional review"}
           </h2>
           <p>
-            This freezes and hashes the artifact for a human keyholder to upload
-            in the real NCES Data Collection System. EduInsight does not submit
-            or lock IPEDS surveys.
+            This freezes and hashes the artifact so the institution’s designated
+            IPEDS keyholder can review it.
           </p>
+          <small className="demo-workflow-note">
+            Demo workflow · EduInsight does not submit data to NCES.
+          </small>
+          {publicDemoReadOnly ? (
+            <p className="public-readonly-note">
+              Public demo mode is view-only. No shared approval state can be changed.
+            </p>
+          ) : null}
           <div className="approval-flow">
-            <div className={generated ? "done" : ""}>
+            <div
+              className={reviewWorkflow.prepared === "completed" ? "done" : "current"}
+              aria-current={reviewWorkflow.prepared === "current" ? "step" : undefined}
+              aria-label={
+                generated && packageData
+                  ? `Step 1 completed: Prepared; ${packageData.cellCount} cells`
+                  : "Step 1 current: Prepared; generate file"
+              }
+            >
                 <span>{generated ? <AppIcon name="check" /> : "1"}</span>
               <p>
                 <strong>Prepared</strong>
@@ -2163,18 +2508,77 @@ function Ipeds({
                 </small>
               </p>
             </div>
-            <div className={validationComplete ? "done" : ""}>
-                <span>{validationComplete ? <AppIcon name="check" /> : "2"}</span>
+            <div
+              className={
+                reviewWorkflow.validation === "completed"
+                  ? "done"
+                  : reviewWorkflow.validation === "error"
+                    ? "error"
+                  : reviewWorkflow.validation === "warning"
+                    ? "warning"
+                    : reviewWorkflow.validation === "current"
+                      ? "current"
+                      : ""
+              }
+              role="status"
+              aria-live="polite"
+              aria-current={reviewWorkflow.validation === "current" ? "step" : undefined}
+              aria-label={
+                reviewWorkflow.validation === "current"
+                  ? `Step 2 current: ${validationWorkflow.ariaLabel}`
+                  : reviewWorkflow.validation === "error"
+                    ? `Step 2 error: ${validationWorkflow.ariaLabel}`
+                    : reviewWorkflow.validation === "warning"
+                      ? `Step 2 completed with failures: ${validationWorkflow.ariaLabel}`
+                    : reviewWorkflow.validation === "completed"
+                      ? `Step 2 completed: ${validationWorkflow.ariaLabel}`
+                      : `Step 2 pending: ${validationWorkflow.ariaLabel}`
+              }
+            >
+                <span>
+                  {validationWorkflow.state === "passed" ? (
+                    <AppIcon name="check" />
+                  ) : validationWorkflow.state === "failed" ||
+                    validationWorkflow.state === "error" ? (
+                    <AppIcon name="warning" />
+                  ) : (
+                    "2"
+                  )}
+                </span>
               <p>
-                <strong>Validated</strong>
-                <small>{packageData?.validations.length ?? 0} checks</small>
+                <strong>{validationWorkflow.label}</strong>
+                <small>{validationWorkflow.summary}</small>
               </p>
             </div>
-            <div className={approved ? "done" : ""}>
+            <div
+              className={
+                reviewWorkflow.review === "completed"
+                  ? "done"
+                  : reviewWorkflow.review
+              }
+              aria-current={reviewWorkflow.review === "current" ? "step" : undefined}
+              aria-label={
+                approved
+                  ? "Step 3 completed: Ready for review"
+                  : reviewWorkflow.review === "current"
+                    ? "Step 3 current: Ready for review; eligibility requirements satisfied"
+                    : reviewWorkflow.review === "blocked"
+                      ? "Step 3 blocked: Ready for review unavailable because required evidence remains"
+                      : "Step 3 pending: Ready for review"
+              }
+            >
                 <span>{approved ? <AppIcon name="check" /> : "3"}</span>
               <p>
-                <strong>Ready for keyholder</strong>
-                <small>Persistent seal required</small>
+                <strong>Ready for review</strong>
+                <small>
+                  {approved
+                    ? "Persistent seal recorded"
+                    : reviewWorkflow.review === "current"
+                      ? "Eligible · persistent seal required"
+                      : reviewWorkflow.review === "blocked"
+                      ? "Blocked · required evidence remains"
+                      : "Persistent seal required"}
+                </small>
               </p>
             </div>
           </div>
@@ -2195,10 +2599,10 @@ function Ipeds({
             disabled={!canApprove || approved || approvalSaving}
           >
             {approved
-              ? "Ready-for-keyholder record saved"
+              ? "Ready for IPEDS keyholder review"
               : approvalSaving
                 ? "Freezing package…"
-                : "Mark ready for keyholder"}
+                : "Mark ready for IPEDS review"}
           </button>
           {packageHash ? (
             <div className="package-seal">
@@ -2207,7 +2611,7 @@ function Ipeds({
             </div>
           ) : null}
           <button className="text-button centered" onClick={onAudit}>
-            View source-to-handoff lineage
+            View approval history and lineage
           </button>
         </aside>
       </section>
@@ -2216,35 +2620,65 @@ function Ipeds({
 }
 
 function Scenario({
-  onAudit,
   onOpenMemory,
   savedScenarios,
   setSavedScenarios,
+  storageMessage,
+  setStorageMessage,
 }: {
-  onAudit: () => void;
   onOpenMemory: (recordId: string) => void;
   savedScenarios: SavedScenario[];
   setSavedScenarios: Dispatch<SetStateAction<SavedScenario[]>>;
+  storageMessage: string;
+  setStorageMessage: Dispatch<SetStateAction<string>>;
 }) {
   const [mode, setMode] = useState<ScenarioMode>("enrollment");
-  const [undergraduateChange, setUndergraduateChange] = useState(0);
-  const [graduateChange, setGraduateChange] = useState(15);
-  const [retentionPointGain, setRetentionPointGain] = useState(3);
-  const [undergraduatePriceChange, setUndergraduatePriceChange] = useState(0);
-  const [graduatePriceChange, setGraduatePriceChange] = useState(0);
-  const [additionalGrant, setAdditionalGrant] = useState(0);
-  const [programId, setProgramId] = useState("PCS");
-  const [programGrowth, setProgramGrowth] = useState(20);
-  const [positionsNotReplaced, setPositionsNotReplaced] = useState(5);
+  const [undergraduateChange, setUndergraduateChange] = useState<number>(
+    SCENARIO_CONTROL_METADATA.enrollment.undergraduate.defaultValue,
+  );
+  const [graduateChange, setGraduateChange] = useState<number>(
+    SCENARIO_CONTROL_METADATA.enrollment.graduate.defaultValue,
+  );
+  const [retentionPointGain, setRetentionPointGain] = useState<number>(
+    SCENARIO_CONTROL_METADATA.retention.pointGain.defaultValue,
+  );
+  const [undergraduatePriceChange, setUndergraduatePriceChange] = useState<number>(
+    SCENARIO_CONTROL_METADATA.pricing.undergraduate.defaultValue,
+  );
+  const [graduatePriceChange, setGraduatePriceChange] = useState<number>(
+    SCENARIO_CONTROL_METADATA.pricing.graduate.defaultValue,
+  );
+  const [additionalGrant, setAdditionalGrant] = useState<number>(
+    SCENARIO_CONTROL_METADATA.pricing.grant.defaultValue,
+  );
+  const [programId, setProgramId] = useState<string>(
+    SCENARIO_CONTROL_METADATA.capacity.program.defaultValue,
+  );
+  const [programGrowth, setProgramGrowth] = useState<number>(
+    SCENARIO_CONTROL_METADATA.capacity.growth.defaultValue,
+  );
+  const [positionsNotReplaced, setPositionsNotReplaced] = useState<number>(
+    SCENARIO_CONTROL_METADATA.faculty.positions.defaultValue,
+  );
   const [scenarioName, setScenarioName] = useState("");
   const [compareA, setCompareA] = useState("");
   const [compareB, setCompareB] = useState("");
+  const scenarioTabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const governedFacultyPlanningRange = deriveFacultyStaffingPlanningRange(
+    scenarioBaselines.faculty.fullTimeInstructionalCount,
+  );
+  const facultyPlanningRange = governedFacultyPlanningRange ?? {
+    minimum: 0,
+    maximum: 0,
+    midpoint: 0,
+    step: 1,
+  };
 
   const modes: { id: ScenarioMode; label: string; description: string }[] = [
     {
       id: "enrollment",
-      label: "Enrollment mix",
-      description: "Independent undergraduate and graduate changes",
+      label: "Enrollment change",
+      description: "Independent undergraduate and graduate enrollment changes",
     },
     {
       id: "retention",
@@ -2254,7 +2688,7 @@ function Scenario({
     {
       id: "pricing",
       label: "Tuition & aid",
-      description: "Pricing held apart from grant aid",
+      description: "Tuition and grant aid modeled separately",
     },
     {
       id: "capacity",
@@ -2268,34 +2702,55 @@ function Scenario({
     },
   ];
 
-  const result = useMemo<ScenarioResult>(() => {
+  function formatSignedWhole(value: number, unit = "") {
+    const normalized = Object.is(value, -0) || value === 0 ? 0 : Math.round(value);
+    return `${normalized > 0 ? "+" : ""}${normalized.toLocaleString()}${unit ? ` ${unit}` : ""}`;
+  }
+
+  function formatSignedDecimal(value: number, unit: string) {
+    const normalized = Object.is(value, -0) || value === 0 ? 0 : value;
+    return `${normalized > 0 ? "+" : ""}${normalized.toFixed(1)} ${unit}`;
+  }
+
+  function displayGovernedNumber(value: unknown) {
+    return typeof value === "number" && Number.isFinite(value)
+      ? value.toLocaleString()
+      : "Unavailable";
+  }
+
+  const capacityPrograms = deriveEligibleCapacityPrograms(scenarioBaselines) as {
+    programId: string;
+    name: string;
+  }[];
+
+  const result = useMemo<ScenarioCalculation>(() => {
     if (mode === "retention") {
       return calculateRetentionImprovement(scenarioBaselines, {
         pointGain: retentionPointGain,
-      }) as ScenarioResult;
+      }) as ScenarioCalculation;
     }
     if (mode === "pricing") {
       return calculatePricingAndAid(scenarioBaselines, {
         undergraduatePriceChangePercent: undergraduatePriceChange,
         graduatePriceChangePercent: graduatePriceChange,
         additionalGrantPerPellEligible: additionalGrant,
-      }) as ScenarioResult;
+      }) as ScenarioCalculation;
     }
     if (mode === "capacity") {
       return calculateProgramCapacity(scenarioBaselines, {
         programId,
         growthPercent: programGrowth,
-      }) as ScenarioResult;
+      }) as ScenarioCalculation;
     }
     if (mode === "faculty") {
       return calculateFacultyAttrition(scenarioBaselines, {
         positionsNotReplaced,
-      }) as ScenarioResult;
+      }) as ScenarioCalculation;
     }
     return calculateEnrollmentMix(scenarioBaselines, {
       undergraduateChangePercent: undergraduateChange,
       graduateChangePercent: graduateChange,
-    }) as ScenarioResult;
+    }) as ScenarioCalculation;
   }, [
     mode,
     undergraduateChange,
@@ -2308,9 +2763,14 @@ function Scenario({
     programGrowth,
     positionsNotReplaced,
   ]);
+  const availableResult: ScenarioResult | null =
+    result.status === "unavailable" ? null : result;
 
   const selectedA = savedScenarios.find((item) => item.id === compareA);
   const selectedB = savedScenarios.find((item) => item.id === compareB);
+  const sameScenarioSelected = Boolean(
+    selectedA && selectedB && selectedA.id === selectedB.id,
+  );
   type NumericComparisonKey =
     | "headcountImpact"
     | "annualRevenueImpact"
@@ -2323,16 +2783,23 @@ function Scenario({
   }[] = [
     {
       key: "headcountImpact",
-      label: "Year 1 headcount effect",
-      format: (value) =>
-        `${value > 0 ? "+" : ""}${Math.round(value).toLocaleString()}`,
-    },
-    {
-      key: "annualRevenueImpact",
-      label: "Year 1 financial effect",
-      format: formatCurrency,
+      label: "Year 1 headcount change",
+      format: (value) => formatSignedWhole(value, "students"),
     },
   ];
+
+  function financialComparisonDescriptor(scenario: SavedScenario) {
+    const horizon = scenario.result.comparison.financialHorizonYears;
+    const kind = scenario.financialDefinition;
+    return {
+      horizon,
+      kind,
+      label:
+        kind === "gross-tuition-less-modeled-aid"
+          ? `Year ${horizon} gross tuition change less modeled additional grant aid`
+          : `Year ${horizon} gross tuition change`,
+    };
+  }
 
   const capacityLabels = {
     "student-seat-demand": "Student-seat demand change",
@@ -2341,31 +2808,42 @@ function Scenario({
     none: "Capacity consequence",
   } as const;
   const facultyLabels = {
-    "faculty-demand": "Faculty FTE requirement",
+    "faculty-demand": "Faculty FTE requirement change",
     "faculty-supply": "Faculty FTE supply change",
     none: "Faculty FTE consequence",
   } as const;
+  const activeFinancialLabel =
+    mode === "pricing"
+      ? "Year 1 gross tuition change less modeled added grant aid"
+      : "Year 1 gross tuition change";
   const activeComparisonRows = [
     ...comparisonRows,
-    ...(result.comparison.capacityImpactKind !== "none"
+    {
+      key: "annualRevenueImpact" as NumericComparisonKey,
+      label: activeFinancialLabel,
+      format: formatCurrency,
+    },
+    ...(availableResult?.comparison.capacityImpactKind !== undefined &&
+    availableResult.comparison.capacityImpactKind !== "none"
       ? [
           {
             key: "capacitySeatImpact" as NumericComparisonKey,
-            label: capacityLabels[result.comparison.capacityImpactKind],
+            label: capacityLabels[availableResult.comparison.capacityImpactKind],
             format: (value: number) =>
-              `${value > 0 ? "+" : ""}${Math.round(value).toLocaleString()} ${
-                result.comparison.capacityImpactUnit
-              }`,
+              formatSignedWhole(
+                value,
+                availableResult.comparison.capacityImpactUnit ?? "",
+              ),
           },
         ]
       : []),
-    ...(result.comparison.facultyImpactKind !== "none"
+    ...(availableResult?.comparison.facultyImpactKind !== undefined &&
+    availableResult.comparison.facultyImpactKind !== "none"
       ? [
           {
             key: "facultyFteImpact" as NumericComparisonKey,
-            label: facultyLabels[result.comparison.facultyImpactKind],
-            format: (value: number) =>
-              `${value > 0 ? "+" : ""}${value.toFixed(1)} FTE`,
+            label: facultyLabels[availableResult.comparison.facultyImpactKind],
+            format: (value: number) => formatSignedDecimal(value, "FTE"),
           },
         ]
       : []),
@@ -2386,16 +2864,29 @@ function Scenario({
       selectedA.result.comparison.facultyImpactKind ===
         selectedB.result.comparison.facultyImpactKind,
   );
+  const financialA = selectedA
+    ? financialComparisonDescriptor(selectedA)
+    : null;
+  const financialB = selectedB
+    ? financialComparisonDescriptor(selectedB)
+    : null;
+  const financialComparisonCompatible = Boolean(
+    financialA &&
+      financialB &&
+      financialA.kind === financialB.kind &&
+      financialA.horizon === financialB.horizon,
+  );
 
   function formatCapacityConsequence(scenario: SavedScenario) {
     const comparison = scenario.result.comparison;
     if (comparison.capacityImpactKind === "none") return "Not applicable";
     const direction = comparison.capacityImpactKind.endsWith("supply")
-      ? "supply"
-      : "demand";
-    return `${comparison.capacitySeatImpact > 0 ? "+" : ""}${Math.round(
+      ? "supply change"
+      : "demand change";
+    return `${formatSignedWhole(
       comparison.capacitySeatImpact,
-    ).toLocaleString()} ${comparison.capacityImpactUnit} ${direction}`;
+      comparison.capacityImpactUnit ?? "",
+    )} ${direction}`;
   }
 
   function formatFacultyConsequence(scenario: SavedScenario) {
@@ -2404,38 +2895,120 @@ function Scenario({
     const direction =
       comparison.facultyImpactKind === "faculty-supply"
         ? "supply change"
-        : "required";
-    return `${comparison.facultyFteImpact > 0 ? "+" : ""}${comparison.facultyFteImpact.toFixed(
-      1,
-    )} FTE ${direction}`;
+        : "requirement change";
+    return `${formatSignedDecimal(
+      comparison.facultyFteImpact,
+      "FTE",
+    )} ${direction}`;
   }
 
   function saveScenario() {
-    const id = `scenario-${Date.now()}`;
+    if (!availableResult) {
+      setStorageMessage("Unavailable scenarios cannot be saved.");
+      return;
+    }
+    const id = `scenario-${crypto.randomUUID()}`;
+    const inputs: SavedScenario["inputs"] =
+      mode === "enrollment"
+        ? {
+            undergraduateChangePercent: undergraduateChange,
+            graduateChangePercent: graduateChange,
+          }
+        : mode === "retention"
+          ? { pointGain: retentionPointGain }
+          : mode === "pricing"
+            ? {
+                undergraduatePriceChangePercent: undergraduatePriceChange,
+                graduatePriceChangePercent: graduatePriceChange,
+                additionalGrantPerPellEligible: additionalGrant,
+              }
+            : mode === "capacity"
+              ? { programId, growthPercent: programGrowth }
+              : { positionsNotReplaced };
+    const assumptionSummary =
+      mode === "enrollment"
+        ? `UG ${undergraduateChange > 0 ? "+" : ""}${undergraduateChange}% · GR ${graduateChange > 0 ? "+" : ""}${graduateChange}%`
+        : mode === "retention"
+          ? `Retention ${retentionPointGain > 0 ? "+" : ""}${retentionPointGain.toFixed(1)} pts`
+          : mode === "pricing"
+            ? `UG ${undergraduatePriceChange > 0 ? "+" : ""}${undergraduatePriceChange}% · GR ${graduatePriceChange > 0 ? "+" : ""}${graduatePriceChange}% · Grant ${formatCurrency(additionalGrant)}`
+            : mode === "capacity"
+              ? `${programId} ${programGrowth > 0 ? "+" : ""}${programGrowth}%`
+              : `${positionsNotReplaced} positions not replaced`;
     const saved: SavedScenario = {
+      schemaVersion: SAVED_SCENARIO_SCHEMA_VERSION,
       id,
-      name: scenarioName.trim() || `${result.title} ${savedScenarios.length + 1}`,
+      name: (
+        scenarioName.trim() ||
+        `${availableResult.title} ${savedScenarios.length + 1}`
+      ).slice(0, SCENARIO_NAME_MAX_LENGTH),
       mode,
-      result: structuredClone(result),
+      savedAt: new Date().toISOString(),
+      financialDefinition: financialDefinitionForMode(mode),
+      result: structuredClone(availableResult),
+      inputs: structuredClone(inputs),
+      assumptionSummary,
     };
-    setSavedScenarios((current) => [...current, saved]);
+    const nextScenarios = [...savedScenarios, saved];
+    const persisted = persistSavedScenarios(
+      typeof window === "undefined" ? null : window.sessionStorage,
+      nextScenarios,
+    );
+    if (!persisted.ok) {
+      setStorageMessage(persisted.message);
+      return;
+    }
+    setSavedScenarios(nextScenarios);
+    setStorageMessage("");
     if (!compareA) setCompareA(id);
     else if (!compareB) setCompareB(id);
     setScenarioName("");
   }
 
-  const { tone: effectTone, label: effectLabel } = deriveScenarioEffect(
-    mode,
-    result.comparison,
+  const { tone: effectTone, label: effectLabel } = availableResult
+    ? deriveScenarioEffect(mode, availableResult)
+    : { tone: "neutral", label: "Unavailable" };
+  const retentionBarPresentation = deriveScenarioBarPresentation(
+    (availableResult?.series ?? []).map((value, index) => ({
+      id: `retention-year-${index + 1}`,
+      value,
+      unit: "students",
+      scaleGroup: "retention-added-headcount",
+      semanticType: "student-demand",
+    })),
+  );
+  const directionalBarPresentation = deriveScenarioBarPresentation(
+    activeComparisonRows.map((row) => ({
+      ...row,
+      value: availableResult?.comparison[row.key] ?? 0,
+      unit:
+        row.key === "annualRevenueImpact"
+          ? "dollars"
+          : row.key === "facultyFteImpact"
+            ? "FTE"
+            : row.key === "capacitySeatImpact"
+              ? availableResult?.comparison.capacityImpactUnit ?? "seats"
+              : "students",
+      scaleGroup: null,
+      semanticType:
+        row.key === "capacitySeatImpact"
+          ? availableResult?.comparison.capacityImpactKind ?? "none"
+          : row.key === "facultyFteImpact"
+            ? availableResult?.comparison.facultyImpactKind ?? "none"
+            : row.key,
+    })),
   );
   const activeMode = modes.find((item) => item.id === mode) ?? modes[0];
+  const planningCue =
+    mode === "pricing"
+      ? "Neutral starting point · Planning ranges are not institutional pricing or aid policy."
+      : "Demonstration starting point · Planning ranges are not institutional targets or policy.";
 
   return (
     <div className="view">
       <Header
         title="Scenario lab"
         description="Model deterministic what-if decisions with transparent assumptions—without pretending a forecast is certain."
-        onAudit={onAudit}
       />
       <section className="scenario-hero">
         <div>
@@ -2448,12 +3021,36 @@ function Scenario({
         </div>
       </section>
       <div className="scenario-mode-tabs" role="tablist" aria-label="Scenario type">
-        {modes.map((item) => (
+        {modes.map((item, index) => (
           <button
+            type="button"
+            id={`scenario-tab-${item.id}`}
+            ref={(element) => {
+              scenarioTabRefs.current[index] = element;
+            }}
             className={mode === item.id ? "active" : ""}
             onClick={() => setMode(item.id)}
+            onKeyDown={(event) => {
+              const lastIndex = modes.length - 1;
+              const targetIndex =
+                event.key === "ArrowRight"
+                  ? (index + 1) % modes.length
+                  : event.key === "ArrowLeft"
+                    ? (index - 1 + modes.length) % modes.length
+                    : event.key === "Home"
+                      ? 0
+                      : event.key === "End"
+                        ? lastIndex
+                        : null;
+              if (targetIndex === null) return;
+              event.preventDefault();
+              setMode(modes[targetIndex].id);
+              scenarioTabRefs.current[targetIndex]?.focus();
+            }}
             role="tab"
             aria-selected={mode === item.id}
+            aria-controls={`scenario-panel-${item.id}`}
+            tabIndex={mode === item.id ? 0 : -1}
             key={item.id}
           >
             <strong>{item.label}</strong>
@@ -2461,12 +3058,18 @@ function Scenario({
           </button>
         ))}
       </div>
-      <section className="scenario-layout">
+      <section
+        className="scenario-layout"
+        id={`scenario-panel-${mode}`}
+        role="tabpanel"
+        aria-labelledby={`scenario-tab-${mode}`}
+      >
         <aside className="assumptions-panel">
           <p className="eyebrow">Assumptions</p>
+          <p className="scenario-starting-point">{planningCue}</p>
           {mode === "enrollment" ? (
             <>
-              <h2>Enrollment mix shift</h2>
+              <h2>Enrollment change</h2>
               <label className="scenario-control">
                 <span>
                   Undergraduate change
@@ -2475,9 +3078,9 @@ function Scenario({
                 <input
                   aria-label="Undergraduate enrollment change"
                   type="range"
-                  min="-25"
-                  max="25"
-                  step="1"
+                  min={SCENARIO_CONTROL_METADATA.enrollment.undergraduate.minimum}
+                  max={SCENARIO_CONTROL_METADATA.enrollment.undergraduate.maximum}
+                  step={SCENARIO_CONTROL_METADATA.enrollment.undergraduate.step}
                   value={undergraduateChange}
                   onChange={(event) =>
                     setUndergraduateChange(Number(event.target.value))
@@ -2492,9 +3095,9 @@ function Scenario({
                 <input
                   aria-label="Graduate enrollment change"
                   type="range"
-                  min="-25"
-                  max="30"
-                  step="1"
+                  min={SCENARIO_CONTROL_METADATA.enrollment.graduate.minimum}
+                  max={SCENARIO_CONTROL_METADATA.enrollment.graduate.maximum}
+                  step={SCENARIO_CONTROL_METADATA.enrollment.graduate.step}
                   value={graduateChange}
                   onChange={(event) =>
                     setGraduateChange(Number(event.target.value))
@@ -2502,21 +3105,21 @@ function Scenario({
                 />
               </label>
               <div className="baseline-pair">
-                <span><small>UG baseline</small><strong>{scenarioBaselines.enrollment.undergraduateHeadcount.toLocaleString()}</strong></span>
-                <span><small>GR baseline</small><strong>{scenarioBaselines.enrollment.graduateHeadcount.toLocaleString()}</strong></span>
+                <span><small>UG baseline</small><strong>{displayGovernedNumber(scenarioBaselines.enrollment.undergraduateHeadcount)}</strong></span>
+                <span><small>GR baseline</small><strong>{displayGovernedNumber(scenarioBaselines.enrollment.graduateHeadcount)}</strong></span>
               </div>
             </>
           ) : null}
           {mode === "retention" ? (
             <>
               <h2>Retention improvement</h2>
-              <div className="slider-value positive">+{retentionPointGain.toFixed(1)} pts</div>
+              <div className="slider-value positive">{retentionPointGain > 0 ? "+" : ""}{retentionPointGain.toFixed(1)} pts</div>
               <input
                 aria-label="First-year retention point improvement"
                 type="range"
-                min="0"
-                max="8"
-                step=".5"
+                min={SCENARIO_CONTROL_METADATA.retention.pointGain.minimum}
+                max={SCENARIO_CONTROL_METADATA.retention.pointGain.maximum}
+                step={SCENARIO_CONTROL_METADATA.retention.pointGain.step}
                 value={retentionPointGain}
                 onChange={(event) =>
                   setRetentionPointGain(Number(event.target.value))
@@ -2524,8 +3127,8 @@ function Scenario({
               />
               <div className="range-labels"><span>Current</span><span>+4 pts</span><span>+8 pts</span></div>
               <div className="baseline-pair">
-                <span><small>2024 FTFT cohort</small><strong>{scenarioBaselines.retention.cohortSize.toLocaleString()}</strong></span>
-                <span><small>Current rate</small><strong>{(scenarioBaselines.retention.rate * 100).toFixed(1)}%</strong></span>
+                <span><small>2024 FTFT cohort</small><strong>{displayGovernedNumber(scenarioBaselines.retention.cohortSize)}</strong></span>
+                <span><small>Current rate</small><strong>{Number.isFinite(scenarioBaselines.retention.rate) ? `${(scenarioBaselines.retention.rate * 100).toFixed(1)}%` : "Unavailable"}</strong></span>
               </div>
             </>
           ) : null}
@@ -2540,9 +3143,9 @@ function Scenario({
                 <input
                   aria-label="Undergraduate tuition and fee change"
                   type="range"
-                  min="-10"
-                  max="10"
-                  step="1"
+                  min={SCENARIO_CONTROL_METADATA.pricing.undergraduate.minimum}
+                  max={SCENARIO_CONTROL_METADATA.pricing.undergraduate.maximum}
+                  step={SCENARIO_CONTROL_METADATA.pricing.undergraduate.step}
                   value={undergraduatePriceChange}
                   onChange={(event) =>
                     setUndergraduatePriceChange(Number(event.target.value))
@@ -2557,9 +3160,9 @@ function Scenario({
                 <input
                   aria-label="Graduate tuition and fee change"
                   type="range"
-                  min="-10"
-                  max="10"
-                  step="1"
+                  min={SCENARIO_CONTROL_METADATA.pricing.graduate.minimum}
+                  max={SCENARIO_CONTROL_METADATA.pricing.graduate.maximum}
+                  step={SCENARIO_CONTROL_METADATA.pricing.graduate.step}
                   value={graduatePriceChange}
                   onChange={(event) =>
                     setGraduatePriceChange(Number(event.target.value))
@@ -2573,15 +3176,18 @@ function Scenario({
                   <input
                     aria-label="Additional grant per Pell-eligible student"
                     type="number"
-                    min="0"
-                    max="50000"
-                    step="250"
+                    min={SCENARIO_CONTROL_METADATA.pricing.grant.minimum}
+                    max={SCENARIO_CONTROL_METADATA.pricing.grant.maximum}
+                    step={SCENARIO_CONTROL_METADATA.pricing.grant.step}
                     value={additionalGrant}
                     onChange={(event) =>
                       setAdditionalGrant(
                         Math.min(
-                          50_000,
-                          Math.max(0, Number(event.target.value)),
+                          SCENARIO_CONTROL_METADATA.pricing.grant.maximum,
+                          Math.max(
+                            SCENARIO_CONTROL_METADATA.pricing.grant.minimum,
+                            Number(event.target.value),
+                          ),
                         ),
                       )
                     }
@@ -2599,20 +3205,26 @@ function Scenario({
                   value={programId}
                   onChange={(event) => setProgramId(event.target.value)}
                 >
-                  {scenarioBaselines.programs.map((program) => (
+                  {!capacityPrograms.length ? (
+                    <option value="">No capacity evidence available</option>
+                  ) : null}
+                  {capacityPrograms.map((program) => (
                     <option value={program.programId} key={program.programId}>
                       {program.name}
                     </option>
                   ))}
                 </select>
               </label>
+              <p className="range-helper">
+                Showing {capacityPrograms.length} programs with complete modeled course-capacity evidence.
+              </p>
               <div className="slider-value positive">{programGrowth > 0 ? "+" : ""}{programGrowth}%</div>
               <input
                 aria-label="Program enrollment change"
                 type="range"
-                min="-20"
-                max="40"
-                step="1"
+                min={SCENARIO_CONTROL_METADATA.capacity.growth.minimum}
+                max={SCENARIO_CONTROL_METADATA.capacity.growth.maximum}
+                step={SCENARIO_CONTROL_METADATA.capacity.growth.step}
                 value={programGrowth}
                 onChange={(event) => setProgramGrowth(Number(event.target.value))}
               />
@@ -2626,27 +3238,52 @@ function Scenario({
               <input
                 aria-label="Faculty positions not replaced"
                 type="range"
-                min="0"
-                max="20"
-                step="1"
+                min={facultyPlanningRange.minimum}
+                max={facultyPlanningRange.maximum}
+                step={facultyPlanningRange.step}
                 value={positionsNotReplaced}
+                disabled={!governedFacultyPlanningRange}
                 onChange={(event) =>
                   setPositionsNotReplaced(Number(event.target.value))
                 }
               />
-              <div className="range-labels"><span>0</span><span>10</span><span>20</span></div>
+              <div className="range-labels">
+                <span>{facultyPlanningRange.minimum}</span>
+                <span>{facultyPlanningRange.midpoint}</span>
+                <span>{facultyPlanningRange.maximum}</span>
+              </div>
+              <p className="range-helper">
+                {governedFacultyPlanningRange
+                  ? `Planning range: up to ${facultyPlanningRange.maximum} positions (~10% of the modeled ${displayGovernedNumber(scenarioBaselines.faculty.fullTimeInstructionalCount)}-position baseline).`
+                  : "Planning range unavailable because the staffing baseline is unavailable."}
+              </p>
               <div className="baseline-pair">
-                <span><small>Full-time instructional</small><strong>{scenarioBaselines.faculty.fullTimeInstructionalCount}</strong></span>
+                <span><small>Full-time instructional</small><strong>{displayGovernedNumber(scenarioBaselines.faculty.fullTimeInstructionalCount)}</strong></span>
                 <span><small>Hire year</small><strong>Unavailable</strong></span>
               </div>
             </>
           ) : null}
           <div className="assumption-note">
             <span>i</span>
-            <p>{result.assumptions[0]}</p>
+            <p>
+              {result.status === "unavailable"
+                ? result.reason
+                : result.assumptions[0]}
+            </p>
           </div>
         </aside>
         <article className="scenario-results">
+          {result.status === "unavailable" ? (
+            <div className="scenario-unavailable" role="status">
+              <p className="eyebrow">Scenario unavailable</p>
+              <h2>{result.summary}</h2>
+              <p>
+                Required dependency: <code>{result.missingDependency}</code>
+              </p>
+              <small>No downstream metric was calculated or substituted.</small>
+            </div>
+          ) : (
+            <>
           <div className="section-heading">
             <div>
               <p className="eyebrow">Modeled impact</p>
@@ -2661,7 +3298,7 @@ function Scenario({
               <div key={metric.label}>
                 <span>{metric.label}</span>
                 <strong>{metric.display}</strong>
-                <small>direct modeled value</small>
+                <small>Modeled direct effect</small>
               </div>
             ))}
           </div>
@@ -2672,46 +3309,55 @@ function Scenario({
                 <strong>{result.details.coveredStudents.toLocaleString()}</strong>
               </span>
               <span>
-                <small>Modeled price change after added grant</small>
-                <strong>{formatCurrency(result.details.modeledNetPriceChange)}</strong>
+                <small>Modeled grant offset per Pell-eligible student</small>
+                <strong>{formatCurrency(result.details.modeledGrantOffsetPerPellEligibleStudent)}</strong>
               </span>
               <span>
-                <small>Incremental gross discount-rate effect</small>
-                <strong>+{result.details.discountRatePointChange.toFixed(2)} pts</strong>
+                <small>Added grant aid as share of baseline gross tuition</small>
+                <strong>{result.details.additionalGrantShareOfBaselineGrossTuitionPercent.toFixed(2)}%</strong>
               </span>
+            </div>
+          ) : null}
+          {result.supportingComparisons?.length ? (
+            <div className="scenario-context-strip">
+              {result.supportingComparisons.map((comparison) => (
+                <span key={comparison.label}>
+                  <small>{comparison.label}</small>
+                  <strong>{comparison.display}</strong>
+                </span>
+              ))}
             </div>
           ) : null}
           {result.series ? (
             <div className="retention-horizon">
               <p className="eyebrow">Cumulative effect if this rate holds</p>
-              {result.series.map((value, index) => (
-                <div key={index}>
+              {retentionBarPresentation.map((bar, index) => (
+                <div key={bar.id}>
                   <span>Year {index + 1}</span>
-                  <div><span style={{ width: `${(value / Math.max(...result.series!)) * 100}%` }} /></div>
-                  <strong>+{value.toLocaleString()}</strong>
+                  <div>
+                    <span
+                      style={{ width: `${bar.widthPercent ?? 0}%` }}
+                    />
+                  </div>
+                  <strong>{bar.value > 0 ? "+" : ""}{bar.value.toLocaleString()} students</strong>
                 </div>
               ))}
             </div>
           ) : (
-            <div className="scenario-bars">
-              {activeComparisonRows.map((row) => {
-                const value = result.comparison[row.key];
-                const scale =
-                  row.key === "annualRevenueImpact"
-                    ? 15_000_000
-                    : row.key === "facultyFteImpact"
-                      ? 20
-                      : 2000;
+            <div className="scenario-bars scenario-direction-indicators">
+              <p className="scenario-bar-note">
+                Directional indicators only · Unlike units are not scaled against one another.
+              </p>
+              {directionalBarPresentation.map((row) => {
+                const value = row.value;
                 return (
                   <div className="scenario-bar" key={row.key}>
                     <span>{row.label}</span>
-                    <div>
-                      <span
-                        className={value < 0 ? "negative" : ""}
-                        style={{
-                          width: `${Math.max(3, Math.min(100, (Math.abs(value) / scale) * 100))}%`,
-                        }}
-                      />
+                    <div
+                      className={`scenario-direction-track ${row.direction}`}
+                      aria-hidden="true"
+                    >
+                      <span />
                     </div>
                     <strong>{row.format(value)}</strong>
                   </div>
@@ -2745,11 +3391,13 @@ function Scenario({
           <div className="scenario-caveat">
             <strong>Interpretation, not prediction</strong>
             <p>
-              This model shows the direct effect of your assumptions. It does
+              This model shows the modeled direct effect of your assumptions. It does
               not estimate behavioral response, price elasticity, yield,
               course-mix changes, or second-order effects.
             </p>
           </div>
+            </>
+          )}
         </article>
       </section>
       <section className="scenario-save-panel">
@@ -2763,12 +3411,22 @@ function Scenario({
           <input
             value={scenarioName}
             onChange={(event) => setScenarioName(event.target.value)}
+            maxLength={SCENARIO_NAME_MAX_LENGTH}
             placeholder={`e.g. ${result.title} — working case`}
           />
         </label>
-        <button className="button button-primary" onClick={saveScenario}>
+        <button
+          className="button button-primary"
+          onClick={saveScenario}
+          disabled={!availableResult}
+        >
           Save current scenario
         </button>
+        {storageMessage ? (
+          <p className="scenario-storage-message" role="status" aria-live="polite">
+            {storageMessage}
+          </p>
+        ) : null}
       </section>
       {savedScenarios.length ? (
         <section className="saved-scenarios">
@@ -2777,6 +3435,7 @@ function Scenario({
               <article key={scenario.id}>
                 <span>{modes.find((item) => item.id === scenario.mode)?.label}</span>
                 <strong>{scenario.name}</strong>
+                {scenario.assumptionSummary ? <small>{scenario.assumptionSummary}</small> : null}
                 <small>{scenario.result.summary}</small>
               </article>
             ))}
@@ -2787,7 +3446,13 @@ function Scenario({
               <select value={compareA} onChange={(event) => setCompareA(event.target.value)}>
                 <option value="">Choose scenario</option>
                 {savedScenarios.map((scenario) => (
-                  <option value={scenario.id} key={scenario.id}>{scenario.name}</option>
+                  <option
+                    value={scenario.id}
+                    key={scenario.id}
+                    disabled={scenario.id === compareB}
+                  >
+                    {scenario.name}
+                  </option>
                 ))}
               </select>
             </label>
@@ -2797,18 +3462,28 @@ function Scenario({
               <select value={compareB} onChange={(event) => setCompareB(event.target.value)}>
                 <option value="">Choose scenario</option>
                 {savedScenarios.map((scenario) => (
-                  <option value={scenario.id} key={scenario.id}>{scenario.name}</option>
+                  <option
+                    value={scenario.id}
+                    key={scenario.id}
+                    disabled={scenario.id === compareA}
+                  >
+                    {scenario.name}
+                  </option>
                 ))}
               </select>
             </label>
           </div>
-          {selectedA && selectedB ? (
+          {sameScenarioSelected ? (
+            <p className="scenario-compare-message" role="status">
+              Choose two different saved scenarios to compare.
+            </p>
+          ) : selectedA && selectedB ? (
             <div className="scenario-comparison-table">
               <div className="comparison-row heading">
                 <strong>Measure</strong>
                 <strong>{selectedA.name}</strong>
                 <strong>{selectedB.name}</strong>
-                <strong>Delta B − A</strong>
+                <strong>Difference (B − A)</strong>
               </div>
               {comparisonRows.map((row) => {
                 const aValue = selectedA.result.comparison[row.key];
@@ -2816,19 +3491,67 @@ function Scenario({
                 return (
                   <div className="comparison-row" key={row.key}>
                     <span>{row.label}</span>
-                    <strong>{row.format(aValue)}</strong>
-                    <strong>{row.format(bValue)}</strong>
-                    <strong className={bValue - aValue < 0 ? "negative" : "positive"}>
+                    <strong data-mobile-label="Scenario A">{row.format(aValue)}</strong>
+                    <strong data-mobile-label="Scenario B">{row.format(bValue)}</strong>
+                    <strong
+                      data-mobile-label="Difference (B − A)"
+                      className={bValue - aValue < 0 ? "negative" : "positive"}
+                    >
                       {row.format(bValue - aValue)}
                     </strong>
                   </div>
                 );
               })}
               <div className="comparison-row">
-                <span>Capacity consequence</span>
-                <strong>{formatCapacityConsequence(selectedA)}</strong>
-                <strong>{formatCapacityConsequence(selectedB)}</strong>
+                <span>
+                  {financialComparisonCompatible
+                    ? financialA!.label
+                    : "Financial comparison"}
+                </span>
+                <strong data-mobile-label="Scenario A">
+                  {financialComparisonCompatible
+                    ? formatCurrency(
+                        selectedA.result.comparison.annualRevenueImpact,
+                      )
+                    : `${financialA!.label}: ${formatCurrency(
+                        selectedA.result.comparison.annualRevenueImpact,
+                      )}`}
+                </strong>
+                <strong data-mobile-label="Scenario B">
+                  {financialComparisonCompatible
+                    ? formatCurrency(
+                        selectedB.result.comparison.annualRevenueImpact,
+                      )
+                    : `${financialB!.label}: ${formatCurrency(
+                        selectedB.result.comparison.annualRevenueImpact,
+                      )}`}
+                </strong>
                 <strong
+                  data-mobile-label="Difference (B − A)"
+                  className={
+                    financialComparisonCompatible
+                      ? selectedB.result.comparison.annualRevenueImpact -
+                            selectedA.result.comparison.annualRevenueImpact <
+                          0
+                        ? "negative"
+                        : "positive"
+                      : "not-comparable"
+                  }
+                >
+                  {financialComparisonCompatible
+                    ? formatCurrency(
+                        selectedB.result.comparison.annualRevenueImpact -
+                          selectedA.result.comparison.annualRevenueImpact,
+                      )
+                    : "Not comparable"}
+                </strong>
+              </div>
+              <div className="comparison-row">
+                <span>Capacity consequence</span>
+                <strong data-mobile-label="Scenario A">{formatCapacityConsequence(selectedA)}</strong>
+                <strong data-mobile-label="Scenario B">{formatCapacityConsequence(selectedB)}</strong>
+                <strong
+                  data-mobile-label="Difference (B − A)"
                   className={
                     capacityComparisonCompatible
                       ? selectedB.result.comparison.capacitySeatImpact -
@@ -2840,26 +3563,20 @@ function Scenario({
                   }
                 >
                   {capacityComparisonCompatible
-                    ? `${
-                        selectedB.result.comparison.capacitySeatImpact -
-                          selectedA.result.comparison.capacitySeatImpact >
-                        0
-                          ? "+"
-                          : ""
-                      }${Math.round(
+                    ? formatSignedWhole(
                         selectedB.result.comparison.capacitySeatImpact -
                           selectedA.result.comparison.capacitySeatImpact,
-                      ).toLocaleString()} ${
-                        selectedA.result.comparison.capacityImpactUnit
-                      }`
+                        selectedA.result.comparison.capacityImpactUnit ?? "",
+                      )
                     : "Not comparable"}
                 </strong>
               </div>
               <div className="comparison-row">
                 <span>Faculty consequence</span>
-                <strong>{formatFacultyConsequence(selectedA)}</strong>
-                <strong>{formatFacultyConsequence(selectedB)}</strong>
+                <strong data-mobile-label="Scenario A">{formatFacultyConsequence(selectedA)}</strong>
+                <strong data-mobile-label="Scenario B">{formatFacultyConsequence(selectedB)}</strong>
                 <strong
+                  data-mobile-label="Difference (B − A)"
                   className={
                     facultyComparisonCompatible
                       ? selectedB.result.comparison.facultyFteImpact -
@@ -2871,16 +3588,11 @@ function Scenario({
                   }
                 >
                   {facultyComparisonCompatible
-                    ? `${
+                    ? formatSignedDecimal(
                         selectedB.result.comparison.facultyFteImpact -
-                          selectedA.result.comparison.facultyFteImpact >
-                        0
-                          ? "+"
-                          : ""
-                      }${(
-                        selectedB.result.comparison.facultyFteImpact -
-                        selectedA.result.comparison.facultyFteImpact
-                      ).toFixed(1)} FTE`
+                          selectedA.result.comparison.facultyFteImpact,
+                        "FTE",
+                      )
                     : "Not comparable"}
                 </strong>
               </div>
@@ -2898,10 +3610,8 @@ function Scenario({
 }
 
 function Memory({
-  onAudit,
   initialRecordId,
 }: {
-  onAudit: () => void;
   initialRecordId?: string;
 }) {
   const [search, setSearch] = useState("");
@@ -2922,14 +3632,14 @@ function Memory({
   const definitionCount = memoryItems.filter(
     (item) => item.kind === "Definition",
   ).length;
-  const policyCount = memoryItems.filter((item) => item.kind === "Policy").length;
+  const policyCount = memoryItems.filter(isActiveMemoryPolicy).length;
   const sourceCount = new Set(memoryItems.map((item) => item.source)).size;
   const ownerCount = new Set(memoryItems.map((item) => item.owner)).size;
-  const searchResults = useMemo(() => {
+  const searchResults = useMemo<MemorySearchEntry[]>(() => {
     const kindFiltered = memoryItems.filter(
       (item) => kind === "All" || item.kind === kind,
     );
-    return searchMemoryRecords(kindFiltered, search);
+    return searchMemoryRecords(kindFiltered, search) as MemorySearchEntry[];
   }, [search, kind]);
   const results = searchResults.map(({ record }) => record);
   const resultGroups = search.trim()
@@ -2950,34 +3660,51 @@ function Memory({
         },
       ].filter((group) => group.entries.length > 0)
     : [{ key: "all", label: null, entries: searchResults }];
-  const displayedSelected =
-    results.find((item) => item.id === selected.id) ?? results[0] ?? selected;
+  const displayedSelected = selectVisibleMemoryRecord(results, selected.id) as
+    | MemoryRecord
+    | null;
 
   return (
     <div className="view">
       <Header
         title="Institutional memory"
         description="Search governed definitions, policies, prior submissions, analyses, and evidence—with owners, effective periods, and sources."
-        onAudit={onAudit}
       />
       <section className="memory-search">
         <div className="memory-mark"><AppIcon name="memory" /></div>
         <div>
           <details
             className="memory-version"
-            title={`Catalog version ${institutionalMemoryExpanded.catalogVersion}`}
+            title="Combined catalog metadata"
           >
-            <summary>Definitions verified July 30, 2026</summary>
-            <code>{institutionalMemoryExpanded.catalogVersion}</code>
+            <summary>Governed knowledge catalog</summary>
+            {memoryCatalog.sourceCatalogs.map((catalog) => (
+              <code key={catalog.catalogVersion}>
+                Catalog version {catalog.catalogVersion} · verified{" "}
+                {formatMemoryVerificationDate(catalog.verifiedAt)}
+              </code>
+            ))}
+            <code>
+              Combined technical validation · {memoryCatalog.technicalValidation.status}
+              {" · "}{memoryCatalog.technicalValidation.validatedRecordCount} records
+              {" · schema "}{memoryCatalog.technicalValidation.schemaVersion}
+            </code>
+            {memoryCatalog.errors.length ? (
+              <code role="status">
+                {memoryCatalog.errors.length} catalog validation issue
+                {memoryCatalog.errors.length === 1 ? "" : "s"} quarantined
+              </code>
+            ) : null}
           </details>
-          <h2>Find the definition before using the number.</h2>
+          <h2>Understand the definition, source, and history behind the number.</h2>
         </div>
         <label>
             <AppIcon name="search" />
           <input
+            aria-label="Search institutional memory"
             value={search}
             onChange={(event) => setSearch(event.target.value)}
-            placeholder="Search IPEDS, retention, Pell, DFW, census, capacity…"
+            placeholder="Search definitions, policies, IPEDS, retention, census..."
           />
         </label>
       </section>
@@ -2992,13 +3719,18 @@ function Memory({
         </article>
         <article>
           <strong>{sourceCount}</strong>
-          <span>Named sources</span>
+          <span>Distinct source references</span>
         </article>
         <article>
           <strong>{ownerCount}</strong>
-          <span>Accountable owners</span>
+          <span>Distinct owner references</span>
         </article>
       </section>
+      <p className="memory-governance-note">
+        Statuses and owners are internal demonstration governance metadata.
+        Sources provide record-level references, not field-level lineage. Data:
+        Synthetic institutional dataset created for demonstration and testing.
+      </p>
       <div
         className="memory-filters"
         role="group"
@@ -3011,20 +3743,21 @@ function Memory({
               : memoryItems.filter((record) => record.kind === item).length;
           return (
             <button
+              aria-pressed={kind === item}
               className={kind === item ? "active" : ""}
               onClick={() => setKind(item)}
               key={item}
             >
-              {item} <span>{count}</span>
+              {memoryKindDisplayLabel(item)} <span>{count}</span>
             </button>
           );
         })}
       </div>
       <section className="memory-layout">
         <article className="memory-results">
-          <div className="results-topline">
+          <div className="results-topline" role="status" aria-live="polite">
             <span>{results.length} governed records</span>
-            <span>Verified {institutionalMemoryExpanded.verifiedAt}</span>
+            <span>{memoryCatalog.sourceCatalogs.length} source catalogs</span>
           </div>
           {resultGroups.map((group) => (
             <section className="memory-result-group" key={group.key}>
@@ -3037,8 +3770,9 @@ function Memory({
               {group.entries.map(({ record: item, match }) => (
                 <button
                   className={`memory-item ${
-                    displayedSelected.id === item.id ? "selected" : ""
+                    displayedSelected?.id === item.id ? "selected" : ""
                   }`}
+                  aria-pressed={displayedSelected?.id === item.id}
                   onClick={() => setSelected(item)}
                   key={item.id}
                 >
@@ -3070,11 +3804,12 @@ function Memory({
             </section>
           ))}
           {!results.length ? (
-            <div className="empty-state">
+            <div className="empty-state" role="status" aria-live="polite">
               No governed records match that search.
             </div>
           ) : null}
         </article>
+        {displayedSelected ? (
         <aside className="memory-preview">
           <div className="document-page">
             <div className="doc-heading-row">
@@ -3083,16 +3818,13 @@ function Memory({
             </div>
             <h2>{displayedSelected.title}</h2>
             <p className="doc-meta">
-              {displayedSelected.updated} · Effective:{" "}
+              Record activity: {displayedSelected.updated} ·{" "}
+              {memoryEffectivePeriodLabel(displayedSelected.kind)}:{" "}
               {displayedSelected.effective}
             </p>
             <p className="doc-owner">Owner: {displayedSelected.owner}</p>
             <hr />
-            <h3>
-              {displayedSelected.kind === "Definition"
-                ? "Definition"
-                : "Record"}
-            </h3>
+            <h3>Summary</h3>
             <p>{displayedSelected.body}</p>
             {displayedSelected.calculation ? (
               <div className="definition-formula">
@@ -3110,10 +3842,10 @@ function Memory({
                 </span>
               </div>
             ) : null}
-            <h3>Reporting use</h3>
+            <h3>Institutional use</h3>
             <p>{displayedSelected.use}</p>
             <div className="memory-source">
-              <span>Governed source</span>
+              <span>Record source reference</span>
               {displayedSelected.sourceUrl ? (
                 <a
                   href={displayedSelected.sourceUrl}
@@ -3127,20 +3859,37 @@ function Memory({
               )}
             </div>
             <div className="doc-citations">
-              {displayedSelected.related.map((term) => (
-                <button
-                  key={term}
-                  onClick={() => {
-                    setSearch(term);
-                    setKind("All");
-                  }}
-                >
-                  {term}
-                </button>
-              ))}
+              {displayedSelected.related.map((term) => {
+                const target = resolveMemoryRelatedReference(
+                  memoryItems,
+                  displayedSelected,
+                  term,
+                ) as MemoryRecord | null;
+                return (
+                  <button
+                    disabled={!target}
+                    key={term}
+                    onClick={() => {
+                      if (!target) return;
+                      setSelected(target);
+                      setSearch(target.term || target.title);
+                      setKind("All");
+                    }}
+                  >
+                    {term}
+                  </button>
+                );
+              })}
             </div>
           </div>
         </aside>
+        ) : (
+          <aside className="memory-preview memory-preview-empty" role="status">
+            <div className="empty-state">
+              Select a visible governed record to view its details.
+            </div>
+          </aside>
+        )}
       </section>
     </div>
   );
@@ -3155,20 +3904,75 @@ function AuditDrawer({
   onClose: () => void;
   ipedsApprovals: IpedsApproval[];
 }) {
+  const drawerRef = useRef<HTMLElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const returnFocusRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (!open) return;
+
+    returnFocusRef.current = document.activeElement as HTMLElement | null;
+    const background = [
+      document.querySelector<HTMLElement>(".sidebar"),
+      document.querySelector<HTMLElement>(".mobile-menu"),
+      document.querySelector<HTMLElement>(".main-canvas"),
+    ].filter((element): element is HTMLElement => Boolean(element));
+    for (const element of background) element.setAttribute("inert", "");
+    closeButtonRef.current?.focus();
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        onClose();
+        return;
+      }
+      if (event.key !== "Tab" || !drawerRef.current) return;
+      const focusable = [...drawerRef.current.querySelectorAll<HTMLElement>(
+        'button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      )].filter((element) => !element.hasAttribute("hidden"));
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable.at(-1);
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last?.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      for (const element of background) element.removeAttribute("inert");
+      returnFocusRef.current?.focus();
+    };
+  }, [open, onClose]);
+
   return (
     <>
       <button
         className={`drawer-scrim ${open ? "open" : ""}`}
         aria-label="Close audit trail"
+        aria-hidden="true"
+        tabIndex={-1}
         onClick={onClose}
       />
-      <aside className={`audit-drawer ${open ? "open" : ""}`} aria-hidden={!open}>
+      <aside
+        ref={drawerRef}
+        className={`audit-drawer ${open ? "open" : ""}`}
+        aria-hidden={!open}
+        aria-labelledby="audit-drawer-title"
+        aria-modal="true"
+        role="dialog"
+      >
         <div className="drawer-header">
           <div>
             <p className="eyebrow">Audit & provenance</p>
-            <h2>Every number has a chain of custody.</h2>
+            <h2 id="audit-drawer-title">Key metrics include governed source and calculation context.</h2>
           </div>
-          <button aria-label="Close audit trail" onClick={onClose}>×</button>
+          <button ref={closeButtonRef} aria-label="Close audit trail" onClick={onClose}>×</button>
         </div>
         <div className="audit-id">{commandCenter.audit.runId} · Completed</div>
         <div className="lineage-flow">
@@ -3179,18 +3983,42 @@ function AuditDrawer({
             </div>
           ))}
         </div>
+        <div className="snapshot-contract" aria-label="Command Center snapshot chronology">
+          <div>
+            <span>Data period</span>
+            <strong>{commandCenter.snapshotMetadata.dataPeriod.label}</strong>
+            <small>Census date {commandCenter.snapshotMetadata.dataPeriod.censusDate}</small>
+          </div>
+          <div>
+            <span>Institutional source snapshot</span>
+            <strong>{commandCenter.snapshotMetadata.institutionalSourceSnapshotAt}</strong>
+            <small>IPEDS module generated {commandCenter.snapshotMetadata.moduleVerification.ipeds.generatedAt}</small>
+          </div>
+          <div>
+            <span>Command Center artifact build</span>
+            <strong>{commandCenter.snapshotMetadata.artifactBuiltAt}</strong>
+            <small>{commandCenter.snapshotMetadata.freshnessDisclosure}</small>
+            <small>{commandCenter.snapshotMetadata.rebuildFailureDisclosure}</small>
+          </div>
+        </div>
         {ipedsApprovals.length ? (
           <div className="audit-approvals">
-            <p className="eyebrow">IPEDS keyholder handoffs</p>
+            <p className="eyebrow">Approval history</p>
             {ipedsApprovals.map((approval) => (
               <div key={approval.id}>
                 <strong>
-                  {approval.surveyCode} · {approval.status}
+                  {approval.surveyCode} · {ipedsApprovalStatusLabel(approval.status)}
                 </strong>
                 <small>
                   {approval.approver} ·{" "}
                   {new Date(approval.approvedAt).toLocaleString()}
                 </small>
+                {isHistoricalIpedsApprovalStatus(approval.status) ? (
+                  <small>
+                    Historical event wording is retained in the immutable record;
+                    the label above uses the current institutional-review contract.
+                  </small>
+                ) : null}
                 <code>{approval.sha256}</code>
                 {approval.explanations &&
                 Object.keys(approval.explanations).length ? (
@@ -3217,9 +4045,9 @@ function AuditDrawer({
           </div>
         ) : null}
         <div className="audit-note">
-          <strong>Demonstration data notice</strong>
+          <strong>Data disclosure</strong>
           <p>
-            This portfolio workspace uses generated institution-like records.
+            Data: Synthetic institutional dataset created for demonstration and testing.
             No personal or institution-owned student data is present.
           </p>
         </div>
@@ -3235,18 +4063,23 @@ export default function EduInsightApp() {
   const [auditOpen, setAuditOpen] = useState(false);
   const [toast, setToast] = useState("");
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
-  const [savedScenarios, setSavedScenarios] = useState<SavedScenario[]>(() =>
+  const [initialSavedScenarioState] = useState(() =>
     typeof window === "undefined"
-      ? []
-      : (loadSavedScenarios(window.sessionStorage) as SavedScenario[]),
+      ? { scenarios: [], message: "" }
+      : loadSavedScenarioState(window.sessionStorage),
+  );
+  const [savedScenarios, setSavedScenarios] = useState<SavedScenario[]>(
+    initialSavedScenarioState.scenarios as SavedScenario[],
+  );
+  const [scenarioStorageMessage, setScenarioStorageMessage] = useState(
+    initialSavedScenarioState.message,
   );
   const [ipedsApprovals, setIpedsApprovals] = useState<IpedsApproval[]>([]);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      persistSavedScenarios(window.sessionStorage, savedScenarios);
-    }
-  }, [savedScenarios]);
+  const publicDemoReadOnly = useSyncExternalStore(
+    subscribeToHost,
+    readPublicDemoHost,
+    readServerDemoHost,
+  );
 
   useEffect(() => {
     let active = true;
@@ -3282,6 +4115,9 @@ export default function EduInsightApp() {
     navigate("memory");
   }
 
+  const openAudit = useCallback(() => setAuditOpen(true), []);
+  const closeAudit = useCallback(() => setAuditOpen(false), []);
+
   return (
     <main className="app-shell">
       <aside className={`sidebar ${mobileNavOpen ? "mobile-open" : ""}`}>
@@ -3303,7 +4139,7 @@ export default function EduInsightApp() {
             >
               <AppIcon name={item.icon} />
               <span>{item.label}</span>
-              {item.id === "quality" && <em>{qualitySummary.open}</em>}
+              {item.id === "quality" && <em>{qualitySummary.active}</em>}
             </button>
           ))}
         </nav>
@@ -3311,12 +4147,12 @@ export default function EduInsightApp() {
           <div>
             <span className="status-pip" aria-hidden="true" />
             <p>
-              <strong>Agents online</strong>
-              <small>Last sync 8 min ago</small>
+              <strong>Governed workspace</strong>
+              <small>Source snapshot loaded</small>
             </p>
           </div>
-          <button onClick={() => setAuditOpen(true)}>
-            View system status <AppIcon name="arrow-right" />
+          <button onClick={openAudit}>
+            View data status <AppIcon name="arrow-right" />
           </button>
         </div>
         <div className="profile">
@@ -3343,19 +4179,20 @@ export default function EduInsightApp() {
 
       <section className="main-canvas">
         {view === "overview" && (
-          <Overview onNavigate={navigate} onAudit={() => setAuditOpen(true)} />
+          <Overview onNavigate={navigate} />
         )}
-        {view === "analyst" && <Analyst onAudit={() => setAuditOpen(true)} />}
+        {view === "analyst" && <Analyst onAudit={openAudit} />}
         {view === "quality" && (
           <DataQuality
-            onAudit={() => setAuditOpen(true)}
             notify={notify}
+            publicDemoReadOnly={publicDemoReadOnly}
           />
         )}
         {view === "ipeds" && (
           <Ipeds
-            onAudit={() => setAuditOpen(true)}
+            onAudit={openAudit}
             notify={notify}
+            publicDemoReadOnly={publicDemoReadOnly}
             onApproval={(approval) =>
               setIpedsApprovals((current) => [
                 approval,
@@ -3366,15 +4203,15 @@ export default function EduInsightApp() {
         )}
         {view === "scenario" && (
           <Scenario
-            onAudit={() => setAuditOpen(true)}
             onOpenMemory={openMemory}
             savedScenarios={savedScenarios}
             setSavedScenarios={setSavedScenarios}
+            storageMessage={scenarioStorageMessage}
+            setStorageMessage={setScenarioStorageMessage}
           />
         )}
         {view === "memory" && (
           <Memory
-            onAudit={() => setAuditOpen(true)}
             initialRecordId={memoryTarget}
           />
         )}
@@ -3382,7 +4219,7 @@ export default function EduInsightApp() {
 
       <AuditDrawer
         open={auditOpen}
-        onClose={() => setAuditOpen(false)}
+        onClose={closeAudit}
         ipedsApprovals={ipedsApprovals}
       />
       <div className={`toast ${toast ? "show" : ""}`} role="status">

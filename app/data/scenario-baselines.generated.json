@@ -1,6 +1,6 @@
 {
   "version": "scenario-baselines.v2025_26",
-  "generatedAt": "2026-08-20T19:11:25.764Z",
+  "generatedAt": "2026-09-01T17:22:08.437Z",
   "institution": {
     "id": "AVU001",
     "name": "Atlas Valley University",
@@ -35,8 +35,9 @@
     "graduateTuitionAndFees": 16530,
     "basis": "Published in-state tuition and required fees",
     "sources": [
-      "ipeds_marts.json — governed Cost contract"
-    ]
+      "ipeds_marts.json — modeled demonstration Cost contract"
+    ],
+    "limitation": "IPEDS Cost values are modeled demonstration inputs, not operational institutional finance data."
   },
   "aid": {
     "pellEligibleStudents": 6088,
@@ -102,8 +103,9 @@
     "sectionsPerFacultyFteAssumption": 8,
     "seatsPerSectionAssumption": 24,
     "sources": [
-      "ipeds_marts.json — governed HR contract"
+      "ipeds_marts.json — modeled demonstration HR contract"
     ],
-    "limitation": "The current HR source does not include hire_year, so retirement eligibility and timing cannot be modeled."
+    "limitation": "The current HR source does not include hire_year, so retirement eligibility and timing cannot be modeled.",
+    "sourceLimitation": "IPEDS HR values are modeled demonstration inputs, not an operational human-resources source."
   }
 }

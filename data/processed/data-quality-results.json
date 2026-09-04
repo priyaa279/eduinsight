@@ -42,7 +42,8 @@
       "violationCount": 146,
       "evidence": {
         "thresholdCredits": 12,
-        "scopedRowCount": 16143
+        "currentUndergraduateRowCount": 16143,
+        "scopedFullTimeUndergraduateRowCount": 12943
       },
       "sampleRows": [
         {
@@ -81,7 +82,9 @@
           "attendance_status": "F"
         }
       ],
-      "reasonNotEvaluated": null
+      "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-ENR-002",
@@ -111,7 +114,9 @@
         ]
       },
       "sampleRows": [],
-      "reasonNotEvaluated": null
+      "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-ENR-003",
@@ -141,7 +146,9 @@
       "violationCount": 0,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": null
+      "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-ENR-004",
@@ -168,7 +175,9 @@
       "violationCount": 0,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": null
+      "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-ENR-005",
@@ -189,7 +198,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "credits_earned is not present in the student-term source contract."
+      "reasonNotEvaluated": "credits_earned is not present in the student-term source contract.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "credits_earned is not present in the student-term source contract."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-ENR-006",
@@ -210,7 +226,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "credits_earned is not present, so the complete nonnegative-credit rule cannot run."
+      "reasonNotEvaluated": "credits_earned is not present, so the complete nonnegative-credit rule cannot run.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "credits_earned is not present, so the complete nonnegative-credit rule cannot run."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-ENR-007",
@@ -231,7 +254,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "term_gpa is not present in the student-term source contract."
+      "reasonNotEvaluated": "term_gpa is not present in the student-term source contract.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "term_gpa is not present in the student-term source contract."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-ENR-008",
@@ -262,7 +292,9 @@
         "maximumAge": 100
       },
       "sampleRows": [],
-      "reasonNotEvaluated": null
+      "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-ENR-009",
@@ -289,7 +321,9 @@
       "violationCount": 0,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": null
+      "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-DEM-001",
@@ -356,7 +390,9 @@
           "race_ethnicity": "(blank)"
         }
       ],
-      "reasonNotEvaluated": null
+      "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-DEM-002",
@@ -377,7 +413,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "A versioned governed race/ethnicity-to-IPEDS code map is not present."
+      "reasonNotEvaluated": "A versioned governed race/ethnicity-to-IPEDS code map is not present.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "A versioned governed race/ethnicity-to-IPEDS code map is not present."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-DEM-003",
@@ -398,7 +441,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "A versioned governed sex/gender reporting code set is not present."
+      "reasonNotEvaluated": "A versioned governed sex/gender reporting code set is not present.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "A versioned governed sex/gender reporting code set is not present."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-DEM-004",
@@ -419,7 +469,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "A versioned governed residency code set is not present."
+      "reasonNotEvaluated": "A versioned governed residency code set is not present.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "A versioned governed residency code set is not present."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-DEM-005",
@@ -440,7 +497,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "Published demographic cells are not present in the current source contract."
+      "reasonNotEvaluated": "Published demographic cells are not present in the current source contract.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "Published demographic cells are not present in the current source contract."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-COM-001",
@@ -467,7 +531,9 @@
       "violationCount": 0,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": null
+      "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-COM-002",
@@ -497,7 +563,9 @@
         "requiredFormat": "xx.xxxx"
       },
       "sampleRows": [],
-      "reasonNotEvaluated": null
+      "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-COM-003",
@@ -518,7 +586,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "AWLEVEL is not present in the completion source contract."
+      "reasonNotEvaluated": "AWLEVEL is not present in the completion source contract.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "AWLEVEL is not present in the completion source contract."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-COM-004",
@@ -546,6 +621,7 @@
       ],
       "scopeDescription": "Completion rows under the single-career source contract with a resolvable first institutional entry term",
       "countSemantics": "Completion rows where award_date is earlier than entry-term start_date",
+      "applicabilityLimitation": "Current demo assumption: entry_term_id represents first institutional entry in this synthetic single-career dataset. A production implementation would require career/program-specific entry logic.",
       "status": "FAIL",
       "violationCount": 211,
       "evidence": {
@@ -593,7 +669,9 @@
           "entry_term_start_date": "2025-08-25"
         }
       ],
-      "reasonNotEvaluated": null
+      "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-COM-005",
@@ -614,7 +692,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "completion_term is not present in the completion source contract."
+      "reasonNotEvaluated": "completion_term is not present in the completion source contract.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "completion_term is not present in the completion source contract."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-AID-001",
@@ -646,7 +731,9 @@
         "scopedAidRowCount": 18426
       },
       "sampleRows": [],
-      "reasonNotEvaluated": null
+      "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-AID-002",
@@ -667,7 +754,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "A governed aid-amount ceiling is not present in the source contract."
+      "reasonNotEvaluated": "A governed aid-amount ceiling is not present in the source contract.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "A governed aid-amount ceiling is not present in the source contract."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-AID-003",
@@ -688,7 +782,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "A complete governed Pell reconciliation contract is not defined."
+      "reasonNotEvaluated": "A complete governed Pell reconciliation contract is not defined.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "A complete governed Pell reconciliation contract is not defined."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-CRS-001",
@@ -717,7 +818,9 @@
       "violationCount": 0,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": null
+      "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-CRS-002",
@@ -738,7 +841,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "An active-section indicator is not present in the section source contract."
+      "reasonNotEvaluated": "An active-section indicator is not present in the section source contract.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "An active-section indicator is not present in the section source contract."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-CRS-003",
@@ -759,7 +869,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "Faculty assignment identifiers are not present; instructor_type is not an assignment."
+      "reasonNotEvaluated": "Faculty assignment identifiers are not present; instructor_type is not an assignment.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "Faculty assignment identifiers are not present; instructor_type is not an assignment."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-CRS-004",
@@ -780,7 +897,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "Faculty FTE is not present in the source contract."
+      "reasonNotEvaluated": "Faculty FTE is not present in the source contract.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "Faculty FTE is not present in the source contract."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-CRS-005",
@@ -801,7 +925,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "Faculty identifiers and section meeting times are not present."
+      "reasonNotEvaluated": "Faculty identifiers and section meeting times are not present.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "Faculty identifiers and section meeting times are not present."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-X-001",
@@ -835,7 +966,9 @@
         "relationshipsEvaluated": 12
       },
       "sampleRows": [],
-      "reasonNotEvaluated": null
+      "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-X-002",
@@ -856,7 +989,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "Versioned governed code sets are not present for schema-drift comparison."
+      "reasonNotEvaluated": "Versioned governed code sets are not present for schema-drift comparison.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "Versioned governed code sets are not present for schema-drift comparison."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-X-003",
@@ -877,7 +1017,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "Historical table snapshots and approved explanations are not present."
+      "reasonNotEvaluated": "Historical table snapshots and approved explanations are not present.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "Historical table snapshots and approved explanations are not present."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-X-004",
@@ -922,7 +1069,9 @@
         "thresholdBreached": true
       },
       "sampleRows": [],
-      "reasonNotEvaluated": null
+      "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-X-005",
@@ -943,7 +1092,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "A comparable prior-year completion population is not present."
+      "reasonNotEvaluated": "A comparable prior-year completion population is not present.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "A comparable prior-year completion population is not present."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-X-006",
@@ -964,7 +1120,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "A comparable prior-year financial-aid population is not present."
+      "reasonNotEvaluated": "A comparable prior-year financial-aid population is not present.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "A comparable prior-year financial-aid population is not present."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-X-007",
@@ -985,7 +1148,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "Historical CIP values and effective-dated bridge records are not present."
+      "reasonNotEvaluated": "Historical CIP values and effective-dated bridge records are not present.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "Historical CIP values and effective-dated bridge records are not present."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-X-008",
@@ -1006,7 +1176,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "Governed identity-match attributes are not present."
+      "reasonNotEvaluated": "Governed identity-match attributes are not present.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "Governed identity-match attributes are not present."
+      ],
+      "evaluationErrors": []
     }
   ],
   "activeFindings": [
@@ -1019,6 +1196,10 @@
       "description": "Reportable Fall census undergraduate rows coded full-time must carry at least 12 attempted credits.",
       "findingType": "DATA_DEFECT",
       "affectedRecords": 146,
+      "observationCount": 0,
+      "defectiveRecordCount": 146,
+      "absoluteChange": null,
+      "percentChange": null,
       "observation": null,
       "owner": "Registrar",
       "sourceSystem": "SIS student term",
@@ -1037,10 +1218,7 @@
       ],
       "scopeDescription": "Current Fall reportable census undergraduate enrollment",
       "countSemantics": "Distinct violating student-term rows",
-      "status": "Open",
-      "lifecycleStatus": "New",
-      "openedAt": "2025-10-14T09:42:00-07:00",
-      "resolvedAt": null,
+      "applicabilityLimitation": null,
       "sampleRows": [
         {
           "student_id": "S0038789",
@@ -1080,7 +1258,8 @@
       ],
       "evidence": {
         "thresholdCredits": 12,
-        "scopedRowCount": 16143
+        "currentUndergraduateRowCount": 16143,
+        "scopedFullTimeUndergraduateRowCount": 12943
       }
     },
     {
@@ -1092,6 +1271,10 @@
       "description": "Students in the current Fall reportable census population require a nonblank race/ethnicity value.",
       "findingType": "DATA_DEFECT",
       "affectedRecords": 119,
+      "observationCount": 0,
+      "defectiveRecordCount": 119,
+      "absoluteChange": null,
+      "percentChange": null,
       "observation": null,
       "owner": "Admissions",
       "sourceSystem": "SIS student",
@@ -1111,10 +1294,7 @@
       ],
       "scopeDescription": "Distinct students in the current Fall reportable census",
       "countSemantics": "Distinct in-scope students with a blank race/ethnicity value",
-      "status": "Open",
-      "lifecycleStatus": "New",
-      "openedAt": "2025-10-14T09:42:00-07:00",
-      "resolvedAt": null,
+      "applicabilityLimitation": null,
       "sampleRows": [
         {
           "student_id": "S0000667",
@@ -1160,6 +1340,10 @@
       "description": "A completion award date cannot be earlier than the start date of the student's governed entry term.",
       "findingType": "DATA_DEFECT",
       "affectedRecords": 211,
+      "observationCount": 0,
+      "defectiveRecordCount": 211,
+      "absoluteChange": null,
+      "percentChange": null,
       "observation": null,
       "owner": "Registrar",
       "sourceSystem": "SIS degree history",
@@ -1177,10 +1361,7 @@
       ],
       "scopeDescription": "Completion rows under the single-career source contract with a resolvable first institutional entry term",
       "countSemantics": "Completion rows where award_date is earlier than entry-term start_date",
-      "status": "Open",
-      "lifecycleStatus": "New",
-      "openedAt": "2025-10-14T09:42:00-07:00",
-      "resolvedAt": null,
+      "applicabilityLimitation": "Current demo assumption: entry_term_id represents first institutional entry in this synthetic single-career dataset. A production implementation would require career/program-specific entry logic.",
       "sampleRows": [
         {
           "completion_id": "C000004",
@@ -1236,6 +1417,10 @@
       "description": "The distinct reportable Fall census headcount changed by more than ±2.5% from the prior Fall term.",
       "findingType": "ANOMALY",
       "affectedRecords": 0,
+      "observationCount": 1,
+      "defectiveRecordCount": 0,
+      "absoluteChange": -808,
+      "percentChange": -4.200894249766039,
       "observation": {
         "previousTerm": "2024FA",
         "currentTerm": "2025FA",
@@ -1263,10 +1448,7 @@
       ],
       "scopeDescription": "Distinct reportable census students in current and prior Fall terms",
       "countSemantics": "One anomaly observation; absolute change is not an affected-record count",
-      "status": "Open",
-      "lifecycleStatus": "New",
-      "openedAt": "2025-10-14T09:42:00-07:00",
-      "resolvedAt": null,
+      "applicabilityLimitation": null,
       "sampleRows": [],
       "evidence": {
         "previousTerm": "2024FA",

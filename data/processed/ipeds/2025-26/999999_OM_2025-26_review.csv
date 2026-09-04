@@ -1,49 +1,49 @@
 UNITID,SURVSECT,PART,LINE,RECIPIENT_TYPE,COHORT,EXCLUSION,ADJ_COHORT,ReviewStatus,AWARD_CERTIFICATES,AWARD_ASSOCIATES,AWARD_BACHELORS,ADJ_COHORT_AWARD_TOT,PCT_ADJ_COHORT_AWARD,STILL_ENROLLED,ENROLLED_ANOTHER,ENROLLED_UNKNOWN,NOT_AWARDED_TOTAL,PCT_ADJ_COHORT_ST_EN
-999999,OM1,A,1,3,872,2,870,Generated from governed source mart,,,,,,,,,,
-999999,OM1,B,1,3,,,,Generated from governed source mart,2,107,546,655,75,,,,,
-999999,OM1,C,1,3,,,,Generated from governed source mart,2,107,546,655,75,,,,,
-999999,OM1,D,1,3,,,,Generated from governed source mart,2,107,546,655,75,101,0,116,215,12
-999999,OM1,A,3,1,425,0,425,Generated from governed source mart,,,,,,,,,,
-999999,OM1,B,3,1,,,,Generated from governed source mart,2,47,272,321,76,,,,,
-999999,OM1,C,3,1,,,,Generated from governed source mart,2,47,272,321,76,,,,,
-999999,OM1,D,3,1,,,,Generated from governed source mart,2,47,272,321,76,49,0,55,104,12
-999999,OM1,A,1,1,527,1,526,Generated from governed source mart,,,,,,,,,,
-999999,OM1,B,1,1,,,,Generated from governed source mart,1,66,329,396,75,,,,,
-999999,OM1,C,1,1,,,,Generated from governed source mart,1,66,329,396,75,,,,,
-999999,OM1,D,1,1,,,,Generated from governed source mart,1,66,329,396,75,76,0,55,130,14
-999999,OM1,A,1,2,463,1,462,Generated from governed source mart,,,,,,,,,,
-999999,OM1,B,1,2,,,,Generated from governed source mart,2,54,290,346,75,,,,,
-999999,OM1,C,1,2,,,,Generated from governed source mart,2,54,290,346,75,,,,,
-999999,OM1,D,1,2,,,,Generated from governed source mart,2,54,290,346,75,62,0,55,116,13
-999999,OM1,A,3,2,366,2,364,Generated from governed source mart,,,,,,,,,,
-999999,OM1,B,3,2,,,,Generated from governed source mart,1,56,215,272,75,,,,,
-999999,OM1,C,3,2,,,,Generated from governed source mart,1,56,215,272,75,,,,,
-999999,OM1,D,3,2,,,,Generated from governed source mart,1,56,215,272,75,47,0,47,92,13
-999999,OM1,A,3,3,736,7,729,Generated from governed source mart,,,,,,,,,,
-999999,OM1,B,3,3,,,,Generated from governed source mart,6,90,463,559,77,,,,,
-999999,OM1,C,3,3,,,,Generated from governed source mart,6,90,463,559,77,,,,,
-999999,OM1,D,3,3,,,,Generated from governed source mart,6,90,463,559,77,85,0,92,170,12
-999999,OM1,A,2,3,196,1,195,Generated from governed source mart,,,,,,,,,,
-999999,OM1,B,2,3,,,,Generated from governed source mart,99,0,97,196,101,,,,,
-999999,OM1,C,2,3,,,,Generated from governed source mart,99,0,97,196,101,,,,,
-999999,OM1,D,2,3,,,,Generated from governed source mart,99,0,97,196,101,0,0,0,0,0
-999999,OM1,A,4,1,131,0,131,Generated from governed source mart,,,,,,,,,,
-999999,OM1,B,4,1,,,,Generated from governed source mart,75,0,56,131,100,,,,,
-999999,OM1,C,4,1,,,,Generated from governed source mart,75,0,56,131,100,,,,,
-999999,OM1,D,4,1,,,,Generated from governed source mart,75,0,56,131,100,0,0,0,0,0
-999999,OM1,A,4,2,99,1,98,Generated from governed source mart,,,,,,,,,,
-999999,OM1,B,4,2,,,,Generated from governed source mart,43,0,56,99,101,,,,,
-999999,OM1,C,4,2,,,,Generated from governed source mart,43,0,56,99,101,,,,,
-999999,OM1,D,4,2,,,,Generated from governed source mart,43,0,56,99,101,0,0,0,0,0
-999999,OM1,A,2,2,99,0,99,Generated from governed source mart,,,,,,,,,,
-999999,OM1,B,2,2,,,,Generated from governed source mart,49,0,50,99,100,,,,,
-999999,OM1,C,2,2,,,,Generated from governed source mart,49,0,50,99,100,,,,,
-999999,OM1,D,2,2,,,,Generated from governed source mart,49,0,50,99,100,0,0,0,0,0
-999999,OM1,A,4,3,166,1,165,Generated from governed source mart,,,,,,,,,,
-999999,OM1,B,4,3,,,,Generated from governed source mart,71,0,95,166,101,,,,,
-999999,OM1,C,4,3,,,,Generated from governed source mart,71,0,95,166,101,,,,,
-999999,OM1,D,4,3,,,,Generated from governed source mart,71,0,95,166,101,0,0,0,0,0
-999999,OM1,A,2,1,120,1,119,Generated from governed source mart,,,,,,,,,,
-999999,OM1,B,2,1,,,,Generated from governed source mart,69,0,51,120,101,,,,,
-999999,OM1,C,2,1,,,,Generated from governed source mart,69,0,51,120,101,,,,,
-999999,OM1,D,2,1,,,,Generated from governed source mart,69,0,51,120,101,0,0,0,0,0
+999999,OM1,A,1,3,872,2,870,Generated from the disclosed package input contract; review the package source-readiness classification,,,,,,,,,,
+999999,OM1,B,1,3,,,,Generated from the disclosed package input contract; review the package source-readiness classification,2,107,546,655,75,,,,,
+999999,OM1,C,1,3,,,,Generated from the disclosed package input contract; review the package source-readiness classification,2,107,546,655,75,,,,,
+999999,OM1,D,1,3,,,,Generated from the disclosed package input contract; review the package source-readiness classification,2,107,546,655,75,101,0,116,215,12
+999999,OM1,A,3,1,425,0,425,Generated from the disclosed package input contract; review the package source-readiness classification,,,,,,,,,,
+999999,OM1,B,3,1,,,,Generated from the disclosed package input contract; review the package source-readiness classification,2,47,272,321,76,,,,,
+999999,OM1,C,3,1,,,,Generated from the disclosed package input contract; review the package source-readiness classification,2,47,272,321,76,,,,,
+999999,OM1,D,3,1,,,,Generated from the disclosed package input contract; review the package source-readiness classification,2,47,272,321,76,49,0,55,104,12
+999999,OM1,A,1,1,527,1,526,Generated from the disclosed package input contract; review the package source-readiness classification,,,,,,,,,,
+999999,OM1,B,1,1,,,,Generated from the disclosed package input contract; review the package source-readiness classification,1,66,329,396,75,,,,,
+999999,OM1,C,1,1,,,,Generated from the disclosed package input contract; review the package source-readiness classification,1,66,329,396,75,,,,,
+999999,OM1,D,1,1,,,,Generated from the disclosed package input contract; review the package source-readiness classification,1,66,329,396,75,76,0,55,130,14
+999999,OM1,A,1,2,463,1,462,Generated from the disclosed package input contract; review the package source-readiness classification,,,,,,,,,,
+999999,OM1,B,1,2,,,,Generated from the disclosed package input contract; review the package source-readiness classification,2,54,290,346,75,,,,,
+999999,OM1,C,1,2,,,,Generated from the disclosed package input contract; review the package source-readiness classification,2,54,290,346,75,,,,,
+999999,OM1,D,1,2,,,,Generated from the disclosed package input contract; review the package source-readiness classification,2,54,290,346,75,62,0,55,116,13
+999999,OM1,A,3,2,366,2,364,Generated from the disclosed package input contract; review the package source-readiness classification,,,,,,,,,,
+999999,OM1,B,3,2,,,,Generated from the disclosed package input contract; review the package source-readiness classification,1,56,215,272,75,,,,,
+999999,OM1,C,3,2,,,,Generated from the disclosed package input contract; review the package source-readiness classification,1,56,215,272,75,,,,,
+999999,OM1,D,3,2,,,,Generated from the disclosed package input contract; review the package source-readiness classification,1,56,215,272,75,47,0,47,92,13
+999999,OM1,A,3,3,736,7,729,Generated from the disclosed package input contract; review the package source-readiness classification,,,,,,,,,,
+999999,OM1,B,3,3,,,,Generated from the disclosed package input contract; review the package source-readiness classification,6,90,463,559,77,,,,,
+999999,OM1,C,3,3,,,,Generated from the disclosed package input contract; review the package source-readiness classification,6,90,463,559,77,,,,,
+999999,OM1,D,3,3,,,,Generated from the disclosed package input contract; review the package source-readiness classification,6,90,463,559,77,85,0,92,170,12
+999999,OM1,A,2,3,196,1,195,Generated from the disclosed package input contract; review the package source-readiness classification,,,,,,,,,,
+999999,OM1,B,2,3,,,,Generated from the disclosed package input contract; review the package source-readiness classification,99,0,97,196,101,,,,,
+999999,OM1,C,2,3,,,,Generated from the disclosed package input contract; review the package source-readiness classification,99,0,97,196,101,,,,,
+999999,OM1,D,2,3,,,,Generated from the disclosed package input contract; review the package source-readiness classification,99,0,97,196,101,0,0,0,0,0
+999999,OM1,A,4,1,131,0,131,Generated from the disclosed package input contract; review the package source-readiness classification,,,,,,,,,,
+999999,OM1,B,4,1,,,,Generated from the disclosed package input contract; review the package source-readiness classification,75,0,56,131,100,,,,,
+999999,OM1,C,4,1,,,,Generated from the disclosed package input contract; review the package source-readiness classification,75,0,56,131,100,,,,,
+999999,OM1,D,4,1,,,,Generated from the disclosed package input contract; review the package source-readiness classification,75,0,56,131,100,0,0,0,0,0
+999999,OM1,A,4,2,99,1,98,Generated from the disclosed package input contract; review the package source-readiness classification,,,,,,,,,,
+999999,OM1,B,4,2,,,,Generated from the disclosed package input contract; review the package source-readiness classification,43,0,56,99,101,,,,,
+999999,OM1,C,4,2,,,,Generated from the disclosed package input contract; review the package source-readiness classification,43,0,56,99,101,,,,,
+999999,OM1,D,4,2,,,,Generated from the disclosed package input contract; review the package source-readiness classification,43,0,56,99,101,0,0,0,0,0
+999999,OM1,A,2,2,99,0,99,Generated from the disclosed package input contract; review the package source-readiness classification,,,,,,,,,,
+999999,OM1,B,2,2,,,,Generated from the disclosed package input contract; review the package source-readiness classification,49,0,50,99,100,,,,,
+999999,OM1,C,2,2,,,,Generated from the disclosed package input contract; review the package source-readiness classification,49,0,50,99,100,,,,,
+999999,OM1,D,2,2,,,,Generated from the disclosed package input contract; review the package source-readiness classification,49,0,50,99,100,0,0,0,0,0
+999999,OM1,A,4,3,166,1,165,Generated from the disclosed package input contract; review the package source-readiness classification,,,,,,,,,,
+999999,OM1,B,4,3,,,,Generated from the disclosed package input contract; review the package source-readiness classification,71,0,95,166,101,,,,,
+999999,OM1,C,4,3,,,,Generated from the disclosed package input contract; review the package source-readiness classification,71,0,95,166,101,,,,,
+999999,OM1,D,4,3,,,,Generated from the disclosed package input contract; review the package source-readiness classification,71,0,95,166,101,0,0,0,0,0
+999999,OM1,A,2,1,120,1,119,Generated from the disclosed package input contract; review the package source-readiness classification,,,,,,,,,,
+999999,OM1,B,2,1,,,,Generated from the disclosed package input contract; review the package source-readiness classification,69,0,51,120,101,,,,,
+999999,OM1,C,2,1,,,,Generated from the disclosed package input contract; review the package source-readiness classification,69,0,51,120,101,,,,,
+999999,OM1,D,2,1,,,,Generated from the disclosed package input contract; review the package source-readiness classification,69,0,51,120,101,0,0,0,0,0

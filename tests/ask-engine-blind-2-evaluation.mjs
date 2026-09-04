@@ -138,7 +138,7 @@ add("messy-language", "open DQ probs", {
 });
 add("messy-language", "IPEDS good to go?", {
   metric: "ipeds_readiness",
-  headlineIncludes: ["91%"],
+  headlineIncludes: ["1 source-backed package", "8 modeled demo packages", "2 source gaps"],
 });
 add("messy-language", "IPEDS probs", {
   metric: "ipeds_readiness",
@@ -525,7 +525,7 @@ add("provenance-confidence", "certified CS utilization", {
 });
 add("provenance-confidence", "current IPEDS readiness evidence", {
   confidence: "High",
-  sourcesInclude: ["ipeds_validation_results.csv"],
+  sourcesInclude: ["ipeds-suite.generated.json", "ipeds_marts.json"],
   sourcesExclude: ["students.csv", "sections.csv"],
 });
 add("provenance-confidence", "evidence for current critical quality issues", {

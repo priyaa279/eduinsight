@@ -1,5 +1,14 @@
 import { env } from "cloudflare:workers";
 import generatedSuite from "../../../data/ipeds-suite.generated.json";
+import {
+  isPublicDemoReadOnly,
+  publicDemoReadOnlyResponse,
+} from "../../../../lib/public-demo-mode.mjs";
+import {
+  approvalMatchesCurrentArtifact,
+  CURRENT_IPEDS_REVIEW_STATUS,
+  readIpedsApprovalRows,
+} from "../../../../lib/ipeds-approval-store.mjs";
 
 export const runtime = "edge";
 
@@ -25,6 +34,20 @@ const createIndexSql = `
   CREATE INDEX IF NOT EXISTS ipeds_package_approvals_created_idx
   ON ipeds_package_approvals (created_at_epoch DESC)
 `;
+
+type IpedsApprovalRow = {
+  id: string;
+  surveyCode: string;
+  collectionYear: string;
+  specId: string;
+  fileName: string;
+  sha256: string;
+  approver: string;
+  approvedAt: string;
+  validationSummary: string;
+  explanationsJson: string;
+  status: string;
+};
 
 async function ensureSchema() {
   if (!env.DB) throw new Error("D1 binding DB is unavailable.");
@@ -56,19 +79,15 @@ function parseExplanations(value: unknown) {
   }
 }
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
-    await ensureSchema();
-    const result = await env.DB.prepare(
-      `SELECT id, survey_code AS surveyCode, collection_year AS collectionYear,
-        spec_id AS specId, file_name AS fileName, sha256, approver,
-        approved_at AS approvedAt, validation_summary AS validationSummary,
-        explanations_json AS explanationsJson, status
-       FROM ipeds_package_approvals
-       ORDER BY created_at_epoch DESC
-       LIMIT 25`,
-    ).all();
-    const approvals = result.results.map((row) => ({
+    const publicRead = isPublicDemoReadOnly(request);
+    const result = await readIpedsApprovalRows({
+      db: env.DB,
+      initializeSchema: !publicRead,
+      ensureSchema,
+    });
+    const approvals = (result.results as IpedsApprovalRow[]).map((row) => ({
       ...row,
       explanations: parseExplanations(row.explanationsJson),
       explanationsJson: undefined,
@@ -86,6 +105,7 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
+  if (isPublicDemoReadOnly(request)) return publicDemoReadOnlyResponse();
   try {
     const body = (await request.json()) as {
       surveyCode?: unknown;
@@ -133,30 +153,25 @@ export async function POST(request: Request) {
           uploadText: string;
           structuralFailureCount: number;
           reconciliationFailureCount: number;
+          completenessFailureCount?: number;
           completeSurveyPackage?: boolean;
+          sourceReadiness?: string;
         }
       >
     )[body.surveyCode as string];
     if (!governedPackage) {
       return Response.json(
         {
-          error: "This survey does not have an NCES import-file package.",
+          error: "This survey does not have an official import-layout package.",
         },
         { status: 409 },
       );
     }
-    if (
-      governedPackage.completeSurveyPackage === false ||
-      body.specId !== governedPackage.specId ||
-      body.collectionYear !== governedPackage.collectionYear ||
-      body.uploadText !== governedPackage.uploadText ||
-      governedPackage.structuralFailureCount !== 0 ||
-      governedPackage.reconciliationFailureCount !== 0
-    ) {
+    if (!approvalMatchesCurrentArtifact(body, governedPackage)) {
       return Response.json(
         {
           error:
-            "The submitted artifact does not match the current governed, complete, validated survey package.",
+            "Only a current source-backed, reconciled, structurally valid package can be marked ready for IPEDS keyholder review.",
         },
         { status: 409 },
       );
@@ -180,6 +195,8 @@ export async function POST(request: Request) {
 
     await ensureSchema();
     if (!env.ARTIFACTS) throw new Error("R2 binding ARTIFACTS is unavailable.");
+    if (!env.DB) throw new Error("D1 binding DB is unavailable.");
+    const database = env.DB;
     const uploadText = body.uploadText as string;
     const approvedAt = new Date().toISOString();
     const id = crypto.randomUUID();
@@ -198,7 +215,7 @@ export async function POST(request: Request) {
         approvedAt,
       },
     });
-    await env.DB.prepare(
+    await database.prepare(
       `INSERT INTO ipeds_package_approvals
         (id, survey_code, collection_year, spec_id, file_name, object_key,
          sha256, approver, approved_at, validation_summary, explanations_json,
@@ -215,9 +232,9 @@ export async function POST(request: Request) {
         sha256,
         body.approver,
         approvedAt,
-        "0 structural or reconciliation failures",
+        "0 structural, completeness, or reconciliation failures",
         JSON.stringify(explanations),
-        "Ready for keyholder upload to NCES DCS",
+        CURRENT_IPEDS_REVIEW_STATUS,
         Date.now(),
       )
       .run();
@@ -233,7 +250,7 @@ export async function POST(request: Request) {
           sha256,
           approver: body.approver,
           approvedAt,
-          status: "Ready for keyholder upload to NCES DCS",
+          status: CURRENT_IPEDS_REVIEW_STATUS,
           explanations,
         },
       },

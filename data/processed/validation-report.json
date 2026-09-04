@@ -1,6 +1,7 @@
 {
   "status": "passed",
-  "generatedAt": "2025-10-14T09:42:00-07:00",
+  "generatedAt": "2026-09-01T17:22:08.437Z",
+  "contentSnapshotAt": "2025-10-14T09:42:00-07:00",
   "checks": [
     {
       "check": "required_files",

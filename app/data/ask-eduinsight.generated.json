@@ -12084,6 +12084,12 @@
       }
     ]
   },
+  "completions": [
+    {
+      "year": 2025,
+      "count": 1056
+    }
+  ],
   "retention": [
     {
       "cohortTermId": "2020FA",
@@ -24589,7 +24595,6 @@
     {
       "runId": "EF-RUN-1",
       "sequence": 1,
-      "readiness": 0.45,
       "passedChecks": 20,
       "totalChecks": 49,
       "timestamp": "2025-10-09 08:00"
@@ -24597,7 +24602,6 @@
     {
       "runId": "EF-RUN-2",
       "sequence": 2,
-      "readiness": 0.54,
       "passedChecks": 25,
       "totalChecks": 49,
       "timestamp": "2025-10-10 08:00"
@@ -24605,7 +24609,6 @@
     {
       "runId": "EF-RUN-3",
       "sequence": 3,
-      "readiness": 0.61,
       "passedChecks": 29,
       "totalChecks": 49,
       "timestamp": "2025-10-11 08:00"
@@ -24613,7 +24616,6 @@
     {
       "runId": "EF-RUN-4",
       "sequence": 4,
-      "readiness": 0.74,
       "passedChecks": 35,
       "totalChecks": 49,
       "timestamp": "2025-10-12 08:00"
@@ -24621,7 +24623,6 @@
     {
       "runId": "EF-RUN-5",
       "sequence": 5,
-      "readiness": 0.79,
       "passedChecks": 40,
       "totalChecks": 49,
       "timestamp": "2025-10-13 08:00"
@@ -24629,7 +24630,6 @@
     {
       "runId": "EF-RUN-6",
       "sequence": 6,
-      "readiness": 0.91,
       "passedChecks": 46,
       "totalChecks": 49,
       "timestamp": "2025-10-14 08:00"
@@ -24645,6 +24645,10 @@
       "description": "Reportable Fall census undergraduate rows coded full-time must carry at least 12 attempted credits.",
       "findingType": "DATA_DEFECT",
       "affectedRecords": 146,
+      "observationCount": 0,
+      "defectiveRecordCount": 146,
+      "absoluteChange": null,
+      "percentChange": null,
       "observation": null,
       "owner": "Registrar",
       "sourceSystem": "SIS student term",
@@ -24663,10 +24667,7 @@
       ],
       "scopeDescription": "Current Fall reportable census undergraduate enrollment",
       "countSemantics": "Distinct violating student-term rows",
-      "status": "Open",
-      "lifecycleStatus": "New",
-      "openedAt": "2025-10-14T09:42:00-07:00",
-      "resolvedAt": null,
+      "applicabilityLimitation": null,
       "sampleRows": [
         {
           "student_id": "S0038789",
@@ -24706,8 +24707,10 @@
       ],
       "evidence": {
         "thresholdCredits": 12,
-        "scopedRowCount": 16143
-      }
+        "currentUndergraduateRowCount": 16143,
+        "scopedFullTimeUndergraduateRowCount": 12943
+      },
+      "status": "Open"
     },
     {
       "issueId": "DQ-1003",
@@ -24718,6 +24721,10 @@
       "description": "Students in the current Fall reportable census population require a nonblank race/ethnicity value.",
       "findingType": "DATA_DEFECT",
       "affectedRecords": 119,
+      "observationCount": 0,
+      "defectiveRecordCount": 119,
+      "absoluteChange": null,
+      "percentChange": null,
       "observation": null,
       "owner": "Admissions",
       "sourceSystem": "SIS student",
@@ -24737,10 +24744,7 @@
       ],
       "scopeDescription": "Distinct students in the current Fall reportable census",
       "countSemantics": "Distinct in-scope students with a blank race/ethnicity value",
-      "status": "Open",
-      "lifecycleStatus": "New",
-      "openedAt": "2025-10-14T09:42:00-07:00",
-      "resolvedAt": null,
+      "applicabilityLimitation": null,
       "sampleRows": [
         {
           "student_id": "S0000667",
@@ -24775,7 +24779,8 @@
       ],
       "evidence": {
         "scopedStudentCount": 18426
-      }
+      },
+      "status": "Open"
     },
     {
       "issueId": "DQ-COM-004",
@@ -24786,6 +24791,10 @@
       "description": "A completion award date cannot be earlier than the start date of the student's governed entry term.",
       "findingType": "DATA_DEFECT",
       "affectedRecords": 211,
+      "observationCount": 0,
+      "defectiveRecordCount": 211,
+      "absoluteChange": null,
+      "percentChange": null,
       "observation": null,
       "owner": "Registrar",
       "sourceSystem": "SIS degree history",
@@ -24803,10 +24812,7 @@
       ],
       "scopeDescription": "Completion rows under the single-career source contract with a resolvable first institutional entry term",
       "countSemantics": "Completion rows where award_date is earlier than entry-term start_date",
-      "status": "Open",
-      "lifecycleStatus": "New",
-      "openedAt": "2025-10-14T09:42:00-07:00",
-      "resolvedAt": null,
+      "applicabilityLimitation": "Current demo assumption: entry_term_id represents first institutional entry in this synthetic single-career dataset. A production implementation would require career/program-specific entry logic.",
       "sampleRows": [
         {
           "completion_id": "C000004",
@@ -24851,7 +24857,8 @@
         "entryContractMismatchCount": 0,
         "violationsWithEarlierEnrollment": 0,
         "unresolvedRowsExcluded": 0
-      }
+      },
+      "status": "Open"
     },
     {
       "issueId": "DQ-1002",
@@ -24862,6 +24869,10 @@
       "description": "The distinct reportable Fall census headcount changed by more than ±2.5% from the prior Fall term.",
       "findingType": "ANOMALY",
       "affectedRecords": 0,
+      "observationCount": 1,
+      "defectiveRecordCount": 0,
+      "absoluteChange": -808,
+      "percentChange": -4.200894249766039,
       "observation": {
         "previousTerm": "2024FA",
         "currentTerm": "2025FA",
@@ -24889,10 +24900,7 @@
       ],
       "scopeDescription": "Distinct reportable census students in current and prior Fall terms",
       "countSemantics": "One anomaly observation; absolute change is not an affected-record count",
-      "status": "Open",
-      "lifecycleStatus": "New",
-      "openedAt": "2025-10-14T09:42:00-07:00",
-      "resolvedAt": null,
+      "applicabilityLimitation": null,
       "sampleRows": [],
       "evidence": {
         "previousTerm": "2024FA",
@@ -24904,7 +24912,8 @@
         "thresholdPercent": 2.5,
         "thresholdParameter": "DQ-X-004.parameters.thresholdPercent",
         "thresholdBreached": true
-      }
+      },
+      "status": "Open"
     }
   ],
   "qualityRuleCatalog": [
@@ -24924,6 +24933,10 @@
       "lastFiredCount": 146,
       "coverage": "Executed — violation detected",
       "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [],
       "sourceFiles": [
         "student_terms.csv",
         "terms.csv"
@@ -24957,6 +24970,10 @@
       "lastFiredCount": 0,
       "coverage": "Executed — passed",
       "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [],
       "sourceFiles": [
         "student_terms.csv"
       ],
@@ -24983,6 +25000,10 @@
       "lastFiredCount": 0,
       "coverage": "Executed — passed",
       "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [],
       "sourceFiles": [
         "student_terms.csv",
         "programs.csv"
@@ -25014,6 +25035,10 @@
       "lastFiredCount": 0,
       "coverage": "Executed — passed",
       "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [],
       "sourceFiles": [
         "student_terms.csv"
       ],
@@ -25042,6 +25067,12 @@
       "lastFiredCount": 0,
       "coverage": "Not evaluated — credits_earned is not present in the student-term source contract.",
       "reasonNotEvaluated": "credits_earned is not present in the student-term source contract.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "credits_earned is not present in the student-term source contract."
+      ],
       "sourceFiles": [],
       "sourceFields": [],
       "parameters": null,
@@ -25064,6 +25095,12 @@
       "lastFiredCount": 0,
       "coverage": "Not evaluated — credits_earned is not present, so the complete nonnegative-credit rule cannot run.",
       "reasonNotEvaluated": "credits_earned is not present, so the complete nonnegative-credit rule cannot run.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "credits_earned is not present, so the complete nonnegative-credit rule cannot run."
+      ],
       "sourceFiles": [],
       "sourceFields": [],
       "parameters": null,
@@ -25086,6 +25123,12 @@
       "lastFiredCount": 0,
       "coverage": "Not evaluated — term_gpa is not present in the student-term source contract.",
       "reasonNotEvaluated": "term_gpa is not present in the student-term source contract.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "term_gpa is not present in the student-term source contract."
+      ],
       "sourceFiles": [],
       "sourceFields": [],
       "parameters": null,
@@ -25108,6 +25151,10 @@
       "lastFiredCount": 0,
       "coverage": "Executed — passed",
       "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [],
       "sourceFiles": [
         "students.csv",
         "terms.csv"
@@ -25137,6 +25184,10 @@
       "lastFiredCount": 0,
       "coverage": "Executed — passed",
       "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [],
       "sourceFiles": [
         "student_terms.csv",
         "terms.csv"
@@ -25165,6 +25216,10 @@
       "lastFiredCount": 119,
       "coverage": "Executed — violation detected",
       "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [],
       "sourceFiles": [
         "students.csv",
         "student_terms.csv",
@@ -25199,6 +25254,12 @@
       "lastFiredCount": 0,
       "coverage": "Not evaluated — A versioned governed race/ethnicity-to-IPEDS code map is not present.",
       "reasonNotEvaluated": "A versioned governed race/ethnicity-to-IPEDS code map is not present.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "A versioned governed race/ethnicity-to-IPEDS code map is not present."
+      ],
       "sourceFiles": [],
       "sourceFields": [],
       "parameters": null,
@@ -25221,6 +25282,12 @@
       "lastFiredCount": 0,
       "coverage": "Not evaluated — A versioned governed sex/gender reporting code set is not present.",
       "reasonNotEvaluated": "A versioned governed sex/gender reporting code set is not present.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "A versioned governed sex/gender reporting code set is not present."
+      ],
       "sourceFiles": [],
       "sourceFields": [],
       "parameters": null,
@@ -25243,6 +25310,12 @@
       "lastFiredCount": 0,
       "coverage": "Not evaluated — A versioned governed residency code set is not present.",
       "reasonNotEvaluated": "A versioned governed residency code set is not present.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "A versioned governed residency code set is not present."
+      ],
       "sourceFiles": [],
       "sourceFields": [],
       "parameters": null,
@@ -25265,6 +25338,12 @@
       "lastFiredCount": 0,
       "coverage": "Not evaluated — Published demographic cells are not present in the current source contract.",
       "reasonNotEvaluated": "Published demographic cells are not present in the current source contract.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "Published demographic cells are not present in the current source contract."
+      ],
       "sourceFiles": [],
       "sourceFields": [],
       "parameters": null,
@@ -25287,6 +25366,10 @@
       "lastFiredCount": 0,
       "coverage": "Executed — passed",
       "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [],
       "sourceFiles": [
         "completions.csv",
         "student_terms.csv"
@@ -25315,6 +25398,10 @@
       "lastFiredCount": 0,
       "coverage": "Executed — passed",
       "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [],
       "sourceFiles": [
         "completions.csv",
         "programs.csv"
@@ -25344,6 +25431,12 @@
       "lastFiredCount": 0,
       "coverage": "Not evaluated — AWLEVEL is not present in the completion source contract.",
       "reasonNotEvaluated": "AWLEVEL is not present in the completion source contract.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "AWLEVEL is not present in the completion source contract."
+      ],
       "sourceFiles": [],
       "sourceFields": [],
       "parameters": null,
@@ -25366,6 +25459,10 @@
       "lastFiredCount": 211,
       "coverage": "Executed — violation detected",
       "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [],
       "sourceFiles": [
         "completions.csv",
         "students.csv",
@@ -25398,6 +25495,12 @@
       "lastFiredCount": 0,
       "coverage": "Not evaluated — completion_term is not present in the completion source contract.",
       "reasonNotEvaluated": "completion_term is not present in the completion source contract.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "completion_term is not present in the completion source contract."
+      ],
       "sourceFiles": [],
       "sourceFields": [],
       "parameters": null,
@@ -25420,6 +25523,10 @@
       "lastFiredCount": 0,
       "coverage": "Executed — passed",
       "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [],
       "sourceFiles": [
         "financial_aid.csv",
         "student_terms.csv"
@@ -25451,6 +25558,12 @@
       "lastFiredCount": 0,
       "coverage": "Not evaluated — A governed aid-amount ceiling is not present in the source contract.",
       "reasonNotEvaluated": "A governed aid-amount ceiling is not present in the source contract.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "A governed aid-amount ceiling is not present in the source contract."
+      ],
       "sourceFiles": [],
       "sourceFields": [],
       "parameters": null,
@@ -25473,6 +25586,12 @@
       "lastFiredCount": 0,
       "coverage": "Not evaluated — A complete governed Pell reconciliation contract is not defined.",
       "reasonNotEvaluated": "A complete governed Pell reconciliation contract is not defined.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "A complete governed Pell reconciliation contract is not defined."
+      ],
       "sourceFiles": [],
       "sourceFields": [],
       "parameters": null,
@@ -25495,6 +25614,10 @@
       "lastFiredCount": 0,
       "coverage": "Executed — passed",
       "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [],
       "sourceFiles": [
         "sections.csv",
         "section_enrollments.csv"
@@ -25525,6 +25648,12 @@
       "lastFiredCount": 0,
       "coverage": "Not evaluated — An active-section indicator is not present in the section source contract.",
       "reasonNotEvaluated": "An active-section indicator is not present in the section source contract.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "An active-section indicator is not present in the section source contract."
+      ],
       "sourceFiles": [],
       "sourceFields": [],
       "parameters": null,
@@ -25547,6 +25676,12 @@
       "lastFiredCount": 0,
       "coverage": "Not evaluated — Faculty assignment identifiers are not present; instructor_type is not an assignment.",
       "reasonNotEvaluated": "Faculty assignment identifiers are not present; instructor_type is not an assignment.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "Faculty assignment identifiers are not present; instructor_type is not an assignment."
+      ],
       "sourceFiles": [],
       "sourceFields": [],
       "parameters": null,
@@ -25569,6 +25704,12 @@
       "lastFiredCount": 0,
       "coverage": "Not evaluated — Faculty FTE is not present in the source contract.",
       "reasonNotEvaluated": "Faculty FTE is not present in the source contract.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "Faculty FTE is not present in the source contract."
+      ],
       "sourceFiles": [],
       "sourceFields": [],
       "parameters": null,
@@ -25591,6 +25732,12 @@
       "lastFiredCount": 0,
       "coverage": "Not evaluated — Faculty identifiers and section meeting times are not present.",
       "reasonNotEvaluated": "Faculty identifiers and section meeting times are not present.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "Faculty identifiers and section meeting times are not present."
+      ],
       "sourceFiles": [],
       "sourceFields": [],
       "parameters": null,
@@ -25613,6 +25760,10 @@
       "lastFiredCount": 0,
       "coverage": "Executed — passed",
       "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [],
       "sourceFiles": [
         "students.csv",
         "terms.csv",
@@ -25646,6 +25797,12 @@
       "lastFiredCount": 0,
       "coverage": "Not evaluated — Versioned governed code sets are not present for schema-drift comparison.",
       "reasonNotEvaluated": "Versioned governed code sets are not present for schema-drift comparison.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "Versioned governed code sets are not present for schema-drift comparison."
+      ],
       "sourceFiles": [],
       "sourceFields": [],
       "parameters": null,
@@ -25668,6 +25825,12 @@
       "lastFiredCount": 0,
       "coverage": "Not evaluated — Historical table snapshots and approved explanations are not present.",
       "reasonNotEvaluated": "Historical table snapshots and approved explanations are not present.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "Historical table snapshots and approved explanations are not present."
+      ],
       "sourceFiles": [],
       "sourceFields": [],
       "parameters": null,
@@ -25690,6 +25853,10 @@
       "lastFiredCount": 1,
       "coverage": "Executed — violation detected",
       "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [],
       "sourceFiles": [
         "student_terms.csv",
         "terms.csv"
@@ -25724,6 +25891,12 @@
       "lastFiredCount": 0,
       "coverage": "Not evaluated — A comparable prior-year completion population is not present.",
       "reasonNotEvaluated": "A comparable prior-year completion population is not present.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "A comparable prior-year completion population is not present."
+      ],
       "sourceFiles": [],
       "sourceFields": [],
       "parameters": null,
@@ -25746,6 +25919,12 @@
       "lastFiredCount": 0,
       "coverage": "Not evaluated — A comparable prior-year financial-aid population is not present.",
       "reasonNotEvaluated": "A comparable prior-year financial-aid population is not present.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "A comparable prior-year financial-aid population is not present."
+      ],
       "sourceFiles": [],
       "sourceFields": [],
       "parameters": null,
@@ -25768,6 +25947,12 @@
       "lastFiredCount": 0,
       "coverage": "Not evaluated — Historical CIP values and effective-dated bridge records are not present.",
       "reasonNotEvaluated": "Historical CIP values and effective-dated bridge records are not present.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "Historical CIP values and effective-dated bridge records are not present."
+      ],
       "sourceFiles": [],
       "sourceFields": [],
       "parameters": null,
@@ -25790,6 +25975,12 @@
       "lastFiredCount": 0,
       "coverage": "Not evaluated — Governed identity-match attributes are not present.",
       "reasonNotEvaluated": "Governed identity-match attributes are not present.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "Governed identity-match attributes are not present."
+      ],
       "sourceFiles": [],
       "sourceFields": [],
       "parameters": null,
@@ -25829,7 +26020,8 @@
       "violationCount": 146,
       "evidence": {
         "thresholdCredits": 12,
-        "scopedRowCount": 16143
+        "currentUndergraduateRowCount": 16143,
+        "scopedFullTimeUndergraduateRowCount": 12943
       },
       "sampleRows": [
         {
@@ -25868,7 +26060,9 @@
           "attendance_status": "F"
         }
       ],
-      "reasonNotEvaluated": null
+      "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-ENR-002",
@@ -25898,7 +26092,9 @@
         ]
       },
       "sampleRows": [],
-      "reasonNotEvaluated": null
+      "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-ENR-003",
@@ -25928,7 +26124,9 @@
       "violationCount": 0,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": null
+      "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-ENR-004",
@@ -25955,7 +26153,9 @@
       "violationCount": 0,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": null
+      "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-ENR-005",
@@ -25976,7 +26176,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "credits_earned is not present in the student-term source contract."
+      "reasonNotEvaluated": "credits_earned is not present in the student-term source contract.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "credits_earned is not present in the student-term source contract."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-ENR-006",
@@ -25997,7 +26204,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "credits_earned is not present, so the complete nonnegative-credit rule cannot run."
+      "reasonNotEvaluated": "credits_earned is not present, so the complete nonnegative-credit rule cannot run.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "credits_earned is not present, so the complete nonnegative-credit rule cannot run."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-ENR-007",
@@ -26018,7 +26232,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "term_gpa is not present in the student-term source contract."
+      "reasonNotEvaluated": "term_gpa is not present in the student-term source contract.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "term_gpa is not present in the student-term source contract."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-ENR-008",
@@ -26049,7 +26270,9 @@
         "maximumAge": 100
       },
       "sampleRows": [],
-      "reasonNotEvaluated": null
+      "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-ENR-009",
@@ -26076,7 +26299,9 @@
       "violationCount": 0,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": null
+      "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-DEM-001",
@@ -26143,7 +26368,9 @@
           "race_ethnicity": "(blank)"
         }
       ],
-      "reasonNotEvaluated": null
+      "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-DEM-002",
@@ -26164,7 +26391,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "A versioned governed race/ethnicity-to-IPEDS code map is not present."
+      "reasonNotEvaluated": "A versioned governed race/ethnicity-to-IPEDS code map is not present.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "A versioned governed race/ethnicity-to-IPEDS code map is not present."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-DEM-003",
@@ -26185,7 +26419,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "A versioned governed sex/gender reporting code set is not present."
+      "reasonNotEvaluated": "A versioned governed sex/gender reporting code set is not present.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "A versioned governed sex/gender reporting code set is not present."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-DEM-004",
@@ -26206,7 +26447,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "A versioned governed residency code set is not present."
+      "reasonNotEvaluated": "A versioned governed residency code set is not present.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "A versioned governed residency code set is not present."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-DEM-005",
@@ -26227,7 +26475,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "Published demographic cells are not present in the current source contract."
+      "reasonNotEvaluated": "Published demographic cells are not present in the current source contract.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "Published demographic cells are not present in the current source contract."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-COM-001",
@@ -26254,7 +26509,9 @@
       "violationCount": 0,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": null
+      "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-COM-002",
@@ -26284,7 +26541,9 @@
         "requiredFormat": "xx.xxxx"
       },
       "sampleRows": [],
-      "reasonNotEvaluated": null
+      "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-COM-003",
@@ -26305,7 +26564,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "AWLEVEL is not present in the completion source contract."
+      "reasonNotEvaluated": "AWLEVEL is not present in the completion source contract.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "AWLEVEL is not present in the completion source contract."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-COM-004",
@@ -26333,6 +26599,7 @@
       ],
       "scopeDescription": "Completion rows under the single-career source contract with a resolvable first institutional entry term",
       "countSemantics": "Completion rows where award_date is earlier than entry-term start_date",
+      "applicabilityLimitation": "Current demo assumption: entry_term_id represents first institutional entry in this synthetic single-career dataset. A production implementation would require career/program-specific entry logic.",
       "status": "FAIL",
       "violationCount": 211,
       "evidence": {
@@ -26380,7 +26647,9 @@
           "entry_term_start_date": "2025-08-25"
         }
       ],
-      "reasonNotEvaluated": null
+      "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-COM-005",
@@ -26401,7 +26670,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "completion_term is not present in the completion source contract."
+      "reasonNotEvaluated": "completion_term is not present in the completion source contract.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "completion_term is not present in the completion source contract."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-AID-001",
@@ -26433,7 +26709,9 @@
         "scopedAidRowCount": 18426
       },
       "sampleRows": [],
-      "reasonNotEvaluated": null
+      "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-AID-002",
@@ -26454,7 +26732,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "A governed aid-amount ceiling is not present in the source contract."
+      "reasonNotEvaluated": "A governed aid-amount ceiling is not present in the source contract.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "A governed aid-amount ceiling is not present in the source contract."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-AID-003",
@@ -26475,7 +26760,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "A complete governed Pell reconciliation contract is not defined."
+      "reasonNotEvaluated": "A complete governed Pell reconciliation contract is not defined.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "A complete governed Pell reconciliation contract is not defined."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-CRS-001",
@@ -26504,7 +26796,9 @@
       "violationCount": 0,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": null
+      "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-CRS-002",
@@ -26525,7 +26819,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "An active-section indicator is not present in the section source contract."
+      "reasonNotEvaluated": "An active-section indicator is not present in the section source contract.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "An active-section indicator is not present in the section source contract."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-CRS-003",
@@ -26546,7 +26847,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "Faculty assignment identifiers are not present; instructor_type is not an assignment."
+      "reasonNotEvaluated": "Faculty assignment identifiers are not present; instructor_type is not an assignment.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "Faculty assignment identifiers are not present; instructor_type is not an assignment."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-CRS-004",
@@ -26567,7 +26875,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "Faculty FTE is not present in the source contract."
+      "reasonNotEvaluated": "Faculty FTE is not present in the source contract.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "Faculty FTE is not present in the source contract."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-CRS-005",
@@ -26588,7 +26903,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "Faculty identifiers and section meeting times are not present."
+      "reasonNotEvaluated": "Faculty identifiers and section meeting times are not present.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "Faculty identifiers and section meeting times are not present."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-X-001",
@@ -26622,7 +26944,9 @@
         "relationshipsEvaluated": 12
       },
       "sampleRows": [],
-      "reasonNotEvaluated": null
+      "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-X-002",
@@ -26643,7 +26967,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "Versioned governed code sets are not present for schema-drift comparison."
+      "reasonNotEvaluated": "Versioned governed code sets are not present for schema-drift comparison.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "Versioned governed code sets are not present for schema-drift comparison."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-X-003",
@@ -26664,7 +26995,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "Historical table snapshots and approved explanations are not present."
+      "reasonNotEvaluated": "Historical table snapshots and approved explanations are not present.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "Historical table snapshots and approved explanations are not present."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-X-004",
@@ -26709,7 +27047,9 @@
         "thresholdBreached": true
       },
       "sampleRows": [],
-      "reasonNotEvaluated": null
+      "reasonNotEvaluated": null,
+      "reasonCode": null,
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-X-005",
@@ -26730,7 +27070,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "A comparable prior-year completion population is not present."
+      "reasonNotEvaluated": "A comparable prior-year completion population is not present.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "A comparable prior-year completion population is not present."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-X-006",
@@ -26751,7 +27098,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "A comparable prior-year financial-aid population is not present."
+      "reasonNotEvaluated": "A comparable prior-year financial-aid population is not present.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "A comparable prior-year financial-aid population is not present."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-X-007",
@@ -26772,7 +27126,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "Historical CIP values and effective-dated bridge records are not present."
+      "reasonNotEvaluated": "Historical CIP values and effective-dated bridge records are not present.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "Historical CIP values and effective-dated bridge records are not present."
+      ],
+      "evaluationErrors": []
     },
     {
       "ruleId": "DQ-X-008",
@@ -26793,7 +27154,14 @@
       "violationCount": null,
       "evidence": {},
       "sampleRows": [],
-      "reasonNotEvaluated": "Governed identity-match attributes are not present."
+      "reasonNotEvaluated": "Governed identity-match attributes are not present.",
+      "reasonCode": "SOURCE_CAPABILITY_UNAVAILABLE",
+      "requiredSources": [],
+      "requiredFields": [],
+      "requiredCapabilities": [
+        "Governed identity-match attributes are not present."
+      ],
+      "evaluationErrors": []
     }
   ],
   "qualityEvaluationSummary": {
@@ -26805,6 +27173,1810 @@
     "activeFindings": 4,
     "dataDefects": 3,
     "anomalies": 1
+  },
+  "governedDefinitions": [
+    {
+      "id": "definition-ipeds",
+      "kind": "Definition",
+      "term": "IPEDS",
+      "title": "Integrated Postsecondary Education Data System (IPEDS)",
+      "aliases": [
+        "IPEDS",
+        "Integrated Postsecondary Education Data System (IPEDS)"
+      ],
+      "definition": "IPEDS is the Integrated Postsecondary Education Data System administered by the National Center for Education Statistics. Institutions report aggregated information through interrelated survey components during the Fall, Winter, and Spring collection periods.",
+      "excerpt": "The annual NCES collection of institution-level information from postsecondary institutions participating in federal student-aid programs.",
+      "institutionalUse": "Use this definition when describing the federal reporting program, not as a synonym for one individual survey component.",
+      "source": "NCES IPEDS — Report Your Data",
+      "sourceUrl": "https://nces.ed.gov/ipeds/report-your-data",
+      "owner": "IPEDS Keyholder",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.v2025_26"
+    },
+    {
+      "id": "definition-ipeds-component",
+      "kind": "Definition",
+      "term": "Survey component",
+      "title": "IPEDS survey component",
+      "aliases": [
+        "Survey component",
+        "IPEDS survey component"
+      ],
+      "definition": "An IPEDS survey component is a defined reporting instrument such as Completions, Fall Enrollment, Student Financial Aid, or Finance. Each component has its own reporting period, instructions, edit specifications, and applicable import layout.",
+      "excerpt": "One of the interrelated institutional reporting questionnaires completed during an IPEDS collection period.",
+      "institutionalUse": "Use the component code and collection year together when identifying a submission package.",
+      "source": "NCES IPEDS Survey Components",
+      "sourceUrl": "https://nces.ed.gov/ipeds/use-the-data/survey-components",
+      "owner": "IPEDS Keyholder",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.v2025_26"
+    },
+    {
+      "id": "definition-collection-periods",
+      "kind": "Definition",
+      "term": "Fall, Winter, and Spring collections",
+      "title": "IPEDS collection periods",
+      "aliases": [
+        "Fall, Winter, and Spring collections",
+        "IPEDS collection periods",
+        "Fall collection",
+        "Winter collection",
+        "Spring collection"
+      ],
+      "definition": "IPEDS work is organized into Fall, Winter, and Spring collection periods. A collection period describes when a component is reported; it is not necessarily the same as the academic term or data reference period used by that component.",
+      "excerpt": "The three official periods in which institutions complete different groups of IPEDS survey components.",
+      "institutionalUse": "Use these labels for the IPEDS reporting calendar. Use census term or academic year when describing the underlying data period.",
+      "source": "NCES Timing of IPEDS Data Collection",
+      "sourceUrl": "https://nces.ed.gov/ipeds/use-the-data/timing-of-ipeds-data-collection",
+      "owner": "IPEDS Keyholder",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.v2025_26"
+    },
+    {
+      "id": "definition-keyholder",
+      "kind": "Definition",
+      "term": "Keyholder",
+      "title": "IPEDS keyholder",
+      "aliases": [
+        "Keyholder",
+        "IPEDS keyholder"
+      ],
+      "definition": "The IPEDS keyholder is the institution's designated reporting official in the NCES Data Collection System. EduInsight can prepare, validate, document, and seal a package, but it does not replace the keyholder's responsibility to review and submit accurate data.",
+      "excerpt": "The institutional user responsible for coordinating, entering, reviewing, locking, and submitting IPEDS data.",
+      "institutionalUse": "Use this role as the final human control before an IPEDS component is locked in DCS.",
+      "source": "NCES IPEDS Keyholder materials",
+      "sourceUrl": "https://nces.ed.gov/ipeds/report-your-data",
+      "owner": "Institutional Research",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.v2025_26"
+    },
+    {
+      "id": "definition-explanation-edit",
+      "kind": "Definition",
+      "term": "Explanation edit",
+      "title": "IPEDS explanation edit",
+      "aliases": [
+        "Explanation edit",
+        "IPEDS explanation edit"
+      ],
+      "definition": "An explanation edit does not automatically mean the reported value is wrong. It asks the institution to verify the value and document why the exception is accurate, or to correct the data if the edit exposed an error.",
+      "excerpt": "A data-quality edit that requires the institution to explain a value or change that is plausible but outside an expected range.",
+      "institutionalUse": "EduInsight stores the triggering edit and the written institutional explanation with the sealed approval record for keyholder review.",
+      "source": "NCES IPEDS survey materials and edit specifications",
+      "sourceUrl": "https://nces.ed.gov/ipeds/report-your-data/resource-software-providers",
+      "owner": "IPEDS Keyholder",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.v2025_26"
+    },
+    {
+      "id": "definition-context-box",
+      "kind": "Definition",
+      "term": "Context box",
+      "title": "IPEDS context box",
+      "aliases": [
+        "Context box",
+        "IPEDS context box"
+      ],
+      "definition": "A context box provides information for data users and is different from an edit explanation used to clear a validation condition. Institutional reporters should write concise, factual context and avoid confidential or personally identifiable information.",
+      "excerpt": "Optional explanatory text used to help data users understand unusual institutional circumstances behind a reported value.",
+      "institutionalUse": "Use only when the context helps external users interpret published institutional data.",
+      "source": "NCES IPEDS survey materials",
+      "sourceUrl": "https://surveys.nces.ed.gov/ipeds/public/survey-materials/index",
+      "owner": "IPEDS Keyholder",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.v2025_26"
+    },
+    {
+      "id": "definition-fall-census",
+      "kind": "Definition",
+      "term": "Fall census",
+      "title": "Official Fall census",
+      "aliases": [
+        "Fall census",
+        "Official Fall census"
+      ],
+      "definition": "The official Fall census is the governed snapshot of registrations after the institution's add/drop policy is applied. Late registrations, withdrawals, nonreportable activity, and other exclusions follow the effective census policy.",
+      "excerpt": "The institutionally certified snapshot date used to determine the reportable Fall enrollment population.",
+      "institutionalUse": "Use the certified snapshot, not a live registration total, for official Fall headcount reporting.",
+      "source": "Official Census Date and Enrollment Reporting Policy",
+      "sourceUrl": null,
+      "owner": "Registrar",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.v2025_26"
+    },
+    {
+      "id": "definition-fall-headcount",
+      "kind": "Definition",
+      "term": "Fall headcount",
+      "title": "Fall enrollment headcount",
+      "aliases": [
+        "Fall headcount",
+        "Fall enrollment headcount",
+        "Fall enrollment",
+        "governed enrollment",
+        "enrollment definition"
+      ],
+      "definition": "Fall enrollment headcount counts each reportable student once in the certified Fall census population, regardless of the number of sections in which that student is enrolled.",
+      "excerpt": "Distinct active students enrolled at the official Fall census date after reportable-population exclusions.",
+      "institutionalUse": "Use for Fall point-in-time enrollment. Do not substitute 12-month unduplicated headcount.",
+      "source": "EduInsight governed metric dictionary",
+      "sourceUrl": null,
+      "owner": "Institutional Research",
+      "calculation": "COUNT(DISTINCT reportable student_id)",
+      "numerator": "Distinct reportable student identifiers",
+      "denominator": "Not applicable",
+      "status": "Certified",
+      "catalogVersion": "institutional-memory.v2025_26"
+    },
+    {
+      "id": "definition-e12",
+      "kind": "Definition",
+      "term": "12-month enrollment",
+      "title": "12-month enrollment",
+      "aliases": [
+        "12-month enrollment"
+      ],
+      "definition": "The IPEDS 12-month Enrollment component reports an unduplicated headcount and instructional activity for the applicable July-through-June reporting period. It is not the same population as a single Fall census snapshot.",
+      "excerpt": "Unduplicated enrollment across the institution's defined 12-month reporting period.",
+      "institutionalUse": "Use for annual unduplicated enrollment and instructional-activity reporting.",
+      "source": "NCES 12-month Enrollment survey component",
+      "sourceUrl": "https://nces.ed.gov/ipeds/survey-components/5",
+      "owner": "Institutional Research",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.v2025_26"
+    },
+    {
+      "id": "definition-ftft",
+      "kind": "Definition",
+      "term": "FTFT",
+      "title": "First-time, full-time cohort (FTFT)",
+      "aliases": [
+        "FTFT",
+        "First-time, full-time cohort (FTFT)"
+      ],
+      "definition": "FTFT is a cohort classification, not a synonym for all new students. Each member must satisfy first-time, full-time, degree/certificate-seeking, entry-period, and applicable exclusion rules.",
+      "excerpt": "Students entering the institution for the first time who are enrolled full time and are degree- or certificate-seeking under the governed cohort rules.",
+      "institutionalUse": "Use as the starting cohort for the governed first-year retention calculation.",
+      "source": "EduInsight governed retention definition",
+      "sourceUrl": null,
+      "owner": "Institutional Research",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Certified",
+      "catalogVersion": "institutional-memory.v2025_26"
+    },
+    {
+      "id": "definition-adjusted-cohort",
+      "kind": "Definition",
+      "term": "Adjusted cohort",
+      "title": "Adjusted cohort",
+      "aliases": [
+        "Adjusted cohort"
+      ],
+      "definition": "An adjusted cohort begins with the governed entering cohort and removes only allowable exclusions supported by the source record and reporting definition. Every exclusion must remain traceable.",
+      "excerpt": "The original cohort after permitted exclusions are documented and applied.",
+      "institutionalUse": "Use as the denominator for first-year retention.",
+      "source": "EduInsight governed retention definition",
+      "sourceUrl": null,
+      "owner": "Institutional Research",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Certified",
+      "catalogVersion": "institutional-memory.v2025_26"
+    },
+    {
+      "id": "definition-retention",
+      "kind": "Definition",
+      "term": "First-year retention",
+      "title": "First-year retention",
+      "aliases": [
+        "First-year retention",
+        "retention",
+        "first year retention"
+      ],
+      "definition": "EduInsight's governed first-year retention rate divides retained or completed members of the prior Fall FTFT cohort by the adjusted prior FTFT cohort.",
+      "excerpt": "The share of an adjusted entering cohort that is enrolled or completed by the following Fall census.",
+      "institutionalUse": "Use for cohort-based retention; do not interpret it as course persistence or graduation rate.",
+      "source": "EduInsight governed metric dictionary",
+      "sourceUrl": null,
+      "owner": "Institutional Research",
+      "calculation": "retained_or_completed ÷ adjusted_cohort",
+      "numerator": "Adjusted-cohort members enrolled or completed by the next Fall census",
+      "denominator": "Adjusted prior-Fall FTFT cohort",
+      "status": "Certified",
+      "catalogVersion": "institutional-memory.v2025_26"
+    },
+    {
+      "id": "definition-completion",
+      "kind": "Definition",
+      "term": "Completion",
+      "title": "Completion",
+      "aliases": [
+        "Completion",
+        "completions"
+      ],
+      "definition": "A completion is an award earned, such as a certificate or degree. One student may generate more than one completion when multiple reportable awards are earned.",
+      "excerpt": "A recognized postsecondary credential awarded by the institution.",
+      "institutionalUse": "Use completion count for awards. Use completer count when counting distinct people.",
+      "source": "NCES Completions survey component",
+      "sourceUrl": "https://nces.ed.gov/ipeds/survey-components/7",
+      "owner": "Registrar",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.v2025_26"
+    },
+    {
+      "id": "definition-completer",
+      "kind": "Definition",
+      "term": "Completer",
+      "title": "Completer",
+      "aliases": [
+        "Completer"
+      ],
+      "definition": "A completer is a distinct individual. A student with multiple awards is one completer but may contribute multiple completion records.",
+      "excerpt": "A student who earned at least one reportable award during the reporting period.",
+      "institutionalUse": "Use when the requested unit is people rather than credentials.",
+      "source": "NCES Completions survey component",
+      "sourceUrl": "https://nces.ed.gov/ipeds/survey-components/7",
+      "owner": "Registrar",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.v2025_26"
+    },
+    {
+      "id": "definition-cip",
+      "kind": "Definition",
+      "term": "CIP code",
+      "title": "Classification of Instructional Programs code (CIP)",
+      "aliases": [
+        "CIP code",
+        "Classification of Instructional Programs code (CIP)"
+      ],
+      "definition": "CIP codes organize instructional programs into a nationally consistent taxonomy. EduInsight validates the numeric xx.xxxx format and maps each governed academic program to the applicable code.",
+      "excerpt": "A six-digit NCES taxonomy code used to classify fields of study and program completions.",
+      "institutionalUse": "Use for IPEDS Completions reporting and consistent field-of-study classification.",
+      "source": "NCES Classification of Instructional Programs",
+      "sourceUrl": "https://nces.ed.gov/ipeds/cipcode/",
+      "owner": "Academic Affairs",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.v2025_26"
+    },
+    {
+      "id": "definition-awlevel",
+      "kind": "Definition",
+      "term": "AWLEVEL",
+      "title": "IPEDS award level (AWLEVEL)",
+      "aliases": [
+        "AWLEVEL",
+        "IPEDS award level (AWLEVEL)"
+      ],
+      "definition": "AWLEVEL classifies a completion by credential level, such as certificate, associate's, bachelor's, master's, or research doctorate. Only codes allowed by the current Completions specification may be emitted.",
+      "excerpt": "The IPEDS code identifying the type of credential awarded.",
+      "institutionalUse": "Use with CIP and student demographic codes to construct Completions import cells.",
+      "source": "NCES IPEDS Completions survey materials",
+      "sourceUrl": "https://surveys.nces.ed.gov/ipeds/public/survey-materials/index",
+      "owner": "Institutional Research",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.v2025_26"
+    },
+    {
+      "id": "definition-dfw",
+      "kind": "Definition",
+      "term": "DFW",
+      "title": "DFW outcome",
+      "aliases": [
+        "DFW",
+        "DFW outcome"
+      ],
+      "definition": "DFW is an institutional course-outcome grouping. The eligible grade population and withdrawal treatment must remain consistent with the governed course-outcome contract.",
+      "excerpt": "A course outcome of D, F, or withdrawal (W) within the governed grade population.",
+      "institutionalUse": "Use DFW count for actual outcomes and DFW rate for the proportion of eligible outcomes.",
+      "source": "EduInsight governed course-outcome definition",
+      "sourceUrl": null,
+      "owner": "Institutional Research",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.v2025_26"
+    },
+    {
+      "id": "definition-dfw-rate",
+      "kind": "Definition",
+      "term": "DFW rate",
+      "title": "DFW rate",
+      "aliases": [
+        "DFW rate"
+      ],
+      "definition": "The DFW rate measures the share of eligible course outcomes recorded as D, F, or W. It is distinct from the number of DFW students or outcomes.",
+      "excerpt": "DFW outcomes divided by all eligible course outcomes in the selected population.",
+      "institutionalUse": "Use for comparing outcome proportions; use DFW count when measuring workload or number of affected outcomes.",
+      "source": "EduInsight governed course-outcome definition",
+      "sourceUrl": null,
+      "owner": "Institutional Research",
+      "calculation": "eligible DFW outcomes ÷ all eligible course outcomes",
+      "numerator": "Eligible D, F, and W outcomes",
+      "denominator": "All eligible course outcomes",
+      "status": "Current",
+      "catalogVersion": "institutional-memory.v2025_26"
+    },
+    {
+      "id": "definition-pell-eligible",
+      "kind": "Definition",
+      "term": "Pell eligible",
+      "title": "Pell-eligible student",
+      "aliases": [
+        "Pell eligible",
+        "Pell-eligible student"
+      ],
+      "definition": "Pell eligibility and Pell receipt are separate governed attributes. Eligibility must not be substituted for the count of students actually awarded Pell aid.",
+      "excerpt": "A student whose governed financial-aid attributes indicate Pell eligibility, whether or not a Pell Grant was awarded.",
+      "institutionalUse": "Use for institutional subgroup analysis. Use Pell recipient for IPEDS aid-award reporting.",
+      "source": "EduInsight financial-aid source contract",
+      "sourceUrl": null,
+      "owner": "Student Financial Services",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.v2025_26"
+    },
+    {
+      "id": "definition-pell-recipient",
+      "kind": "Definition",
+      "term": "Pell recipient",
+      "title": "Pell recipient",
+      "aliases": [
+        "Pell recipient"
+      ],
+      "definition": "Pell recipient status is based on the governed award record used for Student Financial Aid reporting. It is narrower than Pell eligibility.",
+      "excerpt": "A student recorded as having been awarded a Federal Pell Grant in the governed aid source.",
+      "institutionalUse": "Use for Pell-recipient counts and award amounts in the SFA component.",
+      "source": "NCES Student Financial Aid survey component",
+      "sourceUrl": "https://nces.ed.gov/ipeds/survey-components/12",
+      "owner": "Student Financial Services",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.v2025_26"
+    },
+    {
+      "id": "definition-first-generation",
+      "kind": "Definition",
+      "term": "First generation",
+      "title": "First-generation student",
+      "aliases": [
+        "First generation",
+        "First-generation student"
+      ],
+      "definition": "First-generation status is an institutional analytic attribute derived from governed student information. It is not assumed from Pell eligibility, residency, or another demographic field.",
+      "excerpt": "A student meeting the institution's governed parental-education definition for first-generation status.",
+      "institutionalUse": "Use for governed subgroup analysis when the source attribute is present.",
+      "source": "EduInsight student demographic contract",
+      "sourceUrl": null,
+      "owner": "Institutional Research",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.v2025_26"
+    },
+    {
+      "id": "definition-residency",
+      "kind": "Definition",
+      "term": "Residency",
+      "title": "Residency category",
+      "aliases": [
+        "Residency",
+        "Residency category"
+      ],
+      "definition": "Residency is a governed analytic dimension. Domestic and international categories are applied from the uploaded student source and must not be inferred from race/ethnicity, program, or name.",
+      "excerpt": "The governed domestic or international residency classification attached to a student record for institutional analysis.",
+      "institutionalUse": "Use for enrollment comparisons when residency data are complete and the requested population is explicit.",
+      "source": "EduInsight student demographic contract",
+      "sourceUrl": null,
+      "owner": "Registrar",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.v2025_26"
+    },
+    {
+      "id": "definition-capacity",
+      "kind": "Definition",
+      "term": "Capacity utilization",
+      "title": "Program capacity utilization",
+      "aliases": [
+        "Capacity utilization",
+        "Program capacity utilization",
+        "course-seat utilization",
+        "course seat utilization"
+      ],
+      "definition": "Program capacity utilization measures the share of governed instructional capacity currently occupied. It is not a forecast and does not by itself establish whether a program should grow or contract.",
+      "excerpt": "Filled seats divided by available seats across the active sections associated with a program.",
+      "institutionalUse": "Use for instructional planning alongside enrollment demand, course mix, and faculty availability.",
+      "source": "EduInsight governed metric dictionary",
+      "sourceUrl": null,
+      "owner": "Academic Affairs",
+      "calculation": "SUM(enrolled seats) ÷ SUM(section capacity)",
+      "numerator": "Registered seats",
+      "denominator": "Available section capacity",
+      "status": "Current",
+      "catalogVersion": "institutional-memory.v2025_26"
+    },
+    {
+      "id": "definition-fte-enrollment",
+      "kind": "Definition",
+      "term": "Full-time equivalent enrollment",
+      "title": "Full-time equivalent (FTE) enrollment",
+      "aliases": [
+        "Full-time equivalent enrollment",
+        "Full-time equivalent (FTE) enrollment",
+        "FTE",
+        "full-time equivalency"
+      ],
+      "definition": "Full-time equivalent enrollment is a calculated workload measure and is not a count of distinct students. The applicable IPEDS calculation depends on the instructional-activity and reporter rules for the survey component.",
+      "excerpt": "A calculated student workload measure that converts reported instructional activity into an equivalent full-time enrollment value.",
+      "institutionalUse": "Use for workload and resource metrics when FTE is requested. Do not label it as student headcount.",
+      "source": "NCES 12-month Enrollment survey component",
+      "sourceUrl": "https://nces.ed.gov/ipeds/survey-components/5",
+      "owner": "Institutional Research",
+      "calculation": "Applicable annual instructional activity divided by the NCES annualizing divisor, plus separately reported professional-practice doctoral FTE when required",
+      "numerator": "Reportable undergraduate and graduate credit-hour activity, undergraduate clock-hour activity, and separately reported professional-practice doctoral FTE as applicable",
+      "denominator": "The annualizing divisor required by the current IPEDS 12-month Enrollment instructions for the institution's calendar and activity type",
+      "status": "Current",
+      "catalogVersion": "institutional-memory.v2025_26"
+    },
+    {
+      "id": "definition-first-time",
+      "kind": "Definition",
+      "term": "First-time student",
+      "title": "First-time student",
+      "aliases": [
+        "First-time student"
+      ],
+      "definition": "First-time status is an entry classification. It must be resolved from the governed prior-attendance and entry records and should not be inferred merely because a student is new to a program or appears in the current source for the first time.",
+      "excerpt": "A student attending a postsecondary institution for the first time at the applicable level under the governed reporting rules.",
+      "institutionalUse": "Use with attendance status and degree/certificate-seeking status when constructing FTFT and admissions populations.",
+      "source": "NCES IPEDS glossary and survey materials",
+      "sourceUrl": "https://nces.ed.gov/ipeds/report-your-data",
+      "owner": "Registrar",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.v2025_26"
+    },
+    {
+      "id": "definition-gateway-course",
+      "kind": "Definition",
+      "term": "Gateway course",
+      "title": "Gateway course",
+      "aliases": [
+        "Gateway course"
+      ],
+      "definition": "Gateway-course status comes from the governed course catalog or institutional policy. It is not inferred from a high enrollment or DFW rate alone.",
+      "excerpt": "A governed course designation identifying an early or required course whose completion is important to progression in a program.",
+      "institutionalUse": "Use when comparing course outcomes or capacity for the institutionally designated gateway-course population.",
+      "source": "EduInsight governed course catalog",
+      "sourceUrl": null,
+      "owner": "Academic Affairs",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.v2025_26"
+    },
+    {
+      "id": "definition-sfa",
+      "kind": "Definition",
+      "term": "Student Financial Aid",
+      "title": "IPEDS Student Financial Aid (SFA)",
+      "aliases": [
+        "Student Financial Aid",
+        "IPEDS Student Financial Aid (SFA)"
+      ],
+      "definition": "The SFA component reports counts of students awarded specified types of aid and the associated amounts for defined undergraduate categories, plus applicable military education benefits. Eligibility and receipt remain separate concepts.",
+      "excerpt": "The IPEDS component reporting student counts and amounts for applicable aid and military-benefit categories.",
+      "institutionalUse": "Use the current SFA specification and governed award records when preparing counts, amounts, percentages, and averages.",
+      "source": "NCES Student Financial Aid survey component",
+      "sourceUrl": "https://nces.ed.gov/ipeds/survey-components/12",
+      "owner": "Student Financial Services",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.v2025_26"
+    },
+    {
+      "id": "definition-quality-finding",
+      "kind": "Definition",
+      "term": "Data-quality finding",
+      "title": "Data-quality finding",
+      "aliases": [
+        "Data-quality finding"
+      ],
+      "definition": "A finding records the rule, affected records, severity, source, owner, and lifecycle status. A finding is evidence of a condition requiring review; it is not automatically proof that the source value is wrong.",
+      "excerpt": "A governed rule result identifying records or aggregates that require correction, investigation, review, or suppression.",
+      "institutionalUse": "Use the current operational lifecycle states Open, In Review, Resolved, and Suppressed. Historical process wording must not be presented as an active lifecycle state.",
+      "source": "EduInsight data-quality rule catalog",
+      "sourceUrl": null,
+      "owner": "Data Governance",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.v2025_26"
+    },
+    {
+      "id": "definition-graduation-rate-150",
+      "kind": "Definition",
+      "term": "Graduation rate",
+      "title": "Graduation rate within 150% of normal time",
+      "aliases": [
+        "Graduation rate",
+        "Graduation rate within 150% of normal time"
+      ],
+      "definition": "The IPEDS Graduation Rates component follows a defined entering cohort. The rate uses completers by 150% of normal time in the numerator and the original cohort less allowable exclusions in the denominator. It is not first-year retention and it is not the institution-wide percentage of all students who graduate.",
+      "excerpt": "The share of an adjusted full-time, first-time degree/certificate-seeking undergraduate cohort completing within 150% of the program's normal time.",
+      "institutionalUse": "Use the governed GR cohort mart. Do not substitute a current enrollment population or the retention cohort.",
+      "source": "NCES IPEDS Graduation Rates (GR)",
+      "sourceUrl": "https://nces.ed.gov/ipeds/report-your-data/overview-survey-components-data-cycle",
+      "owner": "Institutional Research",
+      "calculation": "completed within 150% of normal time / adjusted GR cohort",
+      "numerator": "Adjusted-cohort members completing within 150% of normal time",
+      "denominator": "Full-time, first-time degree/certificate-seeking undergraduate cohort less allowable exclusions",
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-graduation-rate-200",
+      "kind": "Definition",
+      "term": "200% graduation rate",
+      "title": "Graduation rate within 200% of normal time",
+      "aliases": [
+        "200% graduation rate",
+        "Graduation rate within 200% of normal time"
+      ],
+      "definition": "GR200 uses the same governed cohort and allowable exclusion logic as the applicable Graduation Rates component, but extends the completion window to 200% of normal time. A bachelor's program with four years of normal time therefore uses an eight-year window.",
+      "excerpt": "The share of the adjusted GR cohort completing within twice the program's normal time.",
+      "institutionalUse": "Use for GR200 reporting; do not combine a different cohort with the longer completion window.",
+      "source": "NCES IPEDS Graduation Rates 200% (GR200)",
+      "sourceUrl": "https://nces.ed.gov/ipeds/report-your-data/overview-survey-components-data-cycle",
+      "owner": "Institutional Research",
+      "calculation": "completed within 200% of normal time / adjusted GR cohort",
+      "numerator": "Adjusted-cohort members completing within 200% of normal time",
+      "denominator": "The applicable adjusted GR cohort",
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-outcome-measures",
+      "kind": "Definition",
+      "term": "Outcome Measures",
+      "title": "IPEDS Outcome Measures",
+      "aliases": [
+        "Outcome Measures",
+        "IPEDS Outcome Measures"
+      ],
+      "definition": "The IPEDS Outcome Measures component follows first-time and non-first-time degree/certificate-seeking undergraduates, each split into full-time and part-time cohorts. It reports award and enrollment outcomes at specified follow-up points and covers a broader population than the full-time, first-time GR cohort.",
+      "excerpt": "Completion and enrollment outcomes for four degree/certificate-seeking undergraduate cohorts defined by entering and attendance status.",
+      "institutionalUse": "Local award and enrollment outcomes are supported. Subsequent enrollment at another institution requires Clearinghouse or an equivalent external source and must remain flagged when unavailable.",
+      "source": "NCES IPEDS Outcome Measures (OM)",
+      "sourceUrl": "https://nces.ed.gov/ipeds/survey-components/11",
+      "owner": "Institutional Research",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Partially governed",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-admission-rate",
+      "kind": "Definition",
+      "term": "Admission rate",
+      "title": "Undergraduate admission rate",
+      "aliases": [
+        "Admission rate",
+        "Undergraduate admission rate"
+      ],
+      "definition": "The IPEDS Admissions component covers the selection process for entering first-time degree/certificate-seeking undergraduates at institutions without an open-admissions policy. Admission rate is sometimes called acceptance or selectivity rate, but the numerator and denominator must use the same governed applicant population and reporting term.",
+      "excerpt": "Admitted first-time degree/certificate-seeking undergraduate applicants divided by applicants in the applicable admissions population.",
+      "institutionalUse": "Definition is governed, but the current applicant funnel is estimated from enrolled headcount. A production admissions-system extract is required before this rate is submission-ready.",
+      "source": "NCES IPEDS Admissions (ADM)",
+      "sourceUrl": "https://nces.ed.gov/ipeds/survey-components/ipeds-survey-methodology",
+      "owner": "Admissions",
+      "calculation": "admitted applicants / applicants",
+      "numerator": "Applicants admitted in the governed ADM population",
+      "denominator": "Applicants in the governed ADM population",
+      "status": "Source required",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-admissions-yield",
+      "kind": "Definition",
+      "term": "Admissions yield",
+      "title": "Admissions yield",
+      "aliases": [
+        "Admissions yield"
+      ],
+      "definition": "Admissions yield describes how many admitted students subsequently enroll. It is distinct from admission rate: the denominator is admitted students, not all applicants.",
+      "excerpt": "Enrolled admitted students divided by admitted students for the same governed entering population.",
+      "institutionalUse": "A production applicant and decision extract is required. Do not certify the current estimated applicant funnel.",
+      "source": "NCES IPEDS Admissions (ADM)",
+      "sourceUrl": "https://nces.ed.gov/ipeds/survey-components/ipeds-survey-methodology",
+      "owner": "Admissions",
+      "calculation": "enrolled admitted students / admitted students",
+      "numerator": "Admitted students who enrolled",
+      "denominator": "Admitted students in the same governed ADM population",
+      "status": "Source required",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-cost-attendance",
+      "kind": "Definition",
+      "term": "Cost of attendance",
+      "title": "Cost of attendance (COA)",
+      "aliases": [
+        "Cost of attendance",
+        "Cost of attendance (COA)"
+      ],
+      "definition": "For IPEDS Cost reporting, COA for full-time, first-time degree/certificate-seeking undergraduates includes tuition and required fees, books and supplies, food and housing, and other expenses. The applicable amount depends on residency and living arrangement. COA is a published budget, not the amount every student actually pays.",
+      "excerpt": "The applicable student budget combining tuition and fees with books, supplies, living costs, and other expenses.",
+      "institutionalUse": "Use the governed cost schedule for the requested residency and living arrangement. Do not label COA as net price.",
+      "source": "NCES IPEDS Cost (CST)",
+      "sourceUrl": "https://nces.ed.gov/ipeds/survey-components/13",
+      "owner": "Student Financial Services",
+      "calculation": "tuition and required fees + books and supplies + food and housing + other expenses",
+      "numerator": "Not applicable",
+      "denominator": "Not applicable",
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-tuition-fees",
+      "kind": "Definition",
+      "term": "Tuition and required fees",
+      "title": "Tuition and required fees",
+      "aliases": [
+        "Tuition and required fees"
+      ],
+      "definition": "Tuition and required fees are one component of cost of attendance. Optional charges and costs that vary solely by individual choice are not automatically included. The applicable level, residency, enrollment load, and academic period must be stated.",
+      "excerpt": "Published tuition plus fees required of the applicable student population.",
+      "institutionalUse": "Use the published governed charge schedule; do not substitute total cost of attendance.",
+      "source": "NCES IPEDS Cost (CST)",
+      "sourceUrl": "https://nces.ed.gov/ipeds/survey-components/13",
+      "owner": "Student Financial Services",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-average-net-price",
+      "kind": "Definition",
+      "term": "Average net price",
+      "title": "Average institutional net price",
+      "aliases": [
+        "Average net price",
+        "Average institutional net price"
+      ],
+      "definition": "IPEDS average net price is calculated for specified full-time, first-time undergraduate aid cohorts. It moves beyond sticker price by subtracting grant and scholarship aid from cost of attendance; loans are not subtracted as grant aid.",
+      "excerpt": "Average cost of attendance minus average applicable grant and scholarship aid for the defined student cohort.",
+      "institutionalUse": "State the cohort and income band when applicable. Do not call tuition alone net price.",
+      "source": "NCES Average Institutional Net Price FAQ",
+      "sourceUrl": "https://nces.ed.gov/ipeds/report-your-data/faq-average-net-price",
+      "owner": "Student Financial Services",
+      "calculation": "average cost of attendance - average grant and scholarship aid",
+      "numerator": "Not applicable",
+      "denominator": "Applicable full-time, first-time undergraduate aid cohort",
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-total-revenue",
+      "kind": "Definition",
+      "term": "Total revenue",
+      "title": "Total revenue",
+      "aliases": [
+        "Total revenue"
+      ],
+      "definition": "IPEDS Finance collects revenues by source under different formats for GASB and FASB reporters. Total revenue must reconcile to the applicable audited financial statements and cannot be reconstructed safely from a few operating categories.",
+      "excerpt": "Revenue recognized under the accounting standard and reporting scope applicable to the institution.",
+      "institutionalUse": "The current finance mart is a limited planning summary, not an audited general-ledger contract. Obtain the audited GASB-aligned source before certification.",
+      "source": "NCES IPEDS Finance (F)",
+      "sourceUrl": "https://nces.ed.gov/ipeds/report-your-data/overview-survey-components-data-cycle",
+      "owner": "Finance",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Source required",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-total-expenses",
+      "kind": "Definition",
+      "term": "Total expenses",
+      "title": "Total expenses",
+      "aliases": [
+        "Total expenses"
+      ],
+      "definition": "IPEDS Finance collects expenses by function, such as instruction, research, academic support, and institutional support. A complete total must reconcile to audited financial statements and the correct GASB or FASB reporting form.",
+      "excerpt": "Expenses recognized and classified under the institution's applicable accounting and IPEDS reporting standards.",
+      "institutionalUse": "Do not certify the limited current finance mart as the institution's audited total expenses.",
+      "source": "NCES IPEDS Finance (F)",
+      "sourceUrl": "https://nces.ed.gov/ipeds/report-your-data/overview-survey-components-data-cycle",
+      "owner": "Finance",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Source required",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-net-position",
+      "kind": "Definition",
+      "term": "Net position",
+      "title": "Net position",
+      "aliases": [
+        "Net position"
+      ],
+      "definition": "Net position is a financial-statement measure, not cash on hand or annual operating surplus. IPEDS Finance classification must follow the institution's audited GASB statements and current survey instructions.",
+      "excerpt": "For the public GASB reporting model, assets and deferred outflows less liabilities and deferred inflows.",
+      "institutionalUse": "Require audited financial-statement mapping before using this value in a submission.",
+      "source": "NCES IPEDS Finance (F)",
+      "sourceUrl": "https://nces.ed.gov/ipeds/report-your-data/overview-survey-components-data-cycle",
+      "owner": "Finance",
+      "calculation": "assets + deferred outflows - liabilities - deferred inflows",
+      "numerator": "Not applicable",
+      "denominator": "Not applicable",
+      "status": "Source required",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-instructional-staff",
+      "kind": "Definition",
+      "term": "Instructional staff",
+      "title": "Instructional staff (instructional faculty)",
+      "aliases": [
+        "Instructional staff",
+        "Instructional staff (instructional faculty)"
+      ],
+      "definition": "IPEDS instructional staff includes employees classified as primarily instruction or instruction combined with research and/or public service. It is not interchangeable with every employee holding a faculty title, and it is independent of academic rank or tenure status.",
+      "excerpt": "The IPEDS occupational category for employees whose primary occupation includes instruction.",
+      "institutionalUse": "Classify from the governed HR occupational assignment; do not infer from department name alone.",
+      "source": "NCES IPEDS Human Resources (HR)",
+      "sourceUrl": "https://nces.ed.gov/ipeds/report-your-data/overview-survey-components-data-cycle",
+      "owner": "Human Resources",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-occupational-category",
+      "kind": "Definition",
+      "term": "IPEDS occupational category",
+      "title": "IPEDS occupational category",
+      "aliases": [
+        "IPEDS occupational category"
+      ],
+      "definition": "Each reportable employee is assigned to the applicable current IPEDS/SOC-aligned occupational category based on primary duties. Job title alone may not be sufficient to determine the correct category.",
+      "excerpt": "The primary occupational activity classification used to aggregate employees in the IPEDS HR component.",
+      "institutionalUse": "Use the governed HR crosswalk and current SOC guidance; retain unresolved mappings for review.",
+      "source": "NCES IPEDS Human Resources and SOC resources",
+      "sourceUrl": "https://nces.ed.gov/ipeds/report-your-data/reporting-tools",
+      "owner": "Human Resources",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-tenure-status",
+      "kind": "Definition",
+      "term": "Tenure status",
+      "title": "Tenure status",
+      "aliases": [
+        "Tenure status"
+      ],
+      "definition": "Tenure status is separate from academic rank, full-time status, and faculty title. It must come from the institutional HR appointment record and be mapped to the current IPEDS reporting categories.",
+      "excerpt": "The governed HR classification of a reportable instructional employee as tenured, on tenure track, or not on tenure track.",
+      "institutionalUse": "Use only for employees in the applicable HR reporting population.",
+      "source": "NCES IPEDS Human Resources (HR)",
+      "sourceUrl": "https://nces.ed.gov/ipeds/report-your-data/overview-survey-components-data-cycle",
+      "owner": "Human Resources",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-faculty-headcount",
+      "kind": "Definition",
+      "term": "Faculty headcount",
+      "title": "Faculty headcount",
+      "aliases": [
+        "Faculty headcount"
+      ],
+      "definition": "Faculty headcount counts people once within the selected reporting population. The institutional faculty population and the narrower IPEDS instructional-staff population may differ, so the selected definition must be shown with the result.",
+      "excerpt": "A distinct-person count of employees included in the governed faculty population.",
+      "institutionalUse": "State whether the result is all institutional faculty or the IPEDS instructional-staff population.",
+      "source": "EduInsight HR source contract and NCES IPEDS HR",
+      "sourceUrl": "https://nces.ed.gov/ipeds/report-your-data/overview-survey-components-data-cycle",
+      "owner": "Human Resources",
+      "calculation": "COUNT(DISTINCT reportable employee_id)",
+      "numerator": "Distinct reportable faculty employee identifiers",
+      "denominator": "Not applicable",
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-faculty-fte",
+      "kind": "Definition",
+      "term": "Faculty full-time equivalent",
+      "title": "Faculty full-time equivalent (FTE)",
+      "aliases": [
+        "Faculty full-time equivalent",
+        "Faculty full-time equivalent (FTE)"
+      ],
+      "definition": "Faculty FTE converts full- and part-time appointments into a comparable workload measure under a governed institutional methodology. It is not necessarily the same as IPEDS student FTE or a faculty headcount.",
+      "excerpt": "A workload-equivalent measure of faculty staffing, distinct from the count of individual employees.",
+      "institutionalUse": "The appointment-to-FTE conversion policy must be supplied and approved before this metric is certified.",
+      "source": "Institutional HR workload policy",
+      "sourceUrl": null,
+      "owner": "Human Resources",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Policy required",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-student-faculty-ratio",
+      "kind": "Definition",
+      "term": "Student-to-faculty ratio",
+      "title": "Student-to-faculty ratio",
+      "aliases": [
+        "Student-to-faculty ratio"
+      ],
+      "definition": "The ratio is not total student headcount divided by all employees. Its student and instructional-staff populations follow the applicable Fall Enrollment instructions, including exclusions for certain students and staff.",
+      "excerpt": "The IPEDS ratio of student FTE to instructional-staff FTE after applying the component's inclusion and exclusion rules.",
+      "institutionalUse": "Use the current EF specification and show both contributing populations.",
+      "source": "NCES IPEDS Fall Enrollment (EF)",
+      "sourceUrl": "https://nces.ed.gov/ipeds/report-your-data/overview-survey-components-data-cycle",
+      "owner": "Institutional Research",
+      "calculation": "applicable student FTE / applicable instructional-staff FTE",
+      "numerator": "Applicable student FTE",
+      "denominator": "Applicable instructional-staff FTE",
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-institutional-control",
+      "kind": "Definition",
+      "term": "Institutional control",
+      "title": "Institutional control",
+      "aliases": [
+        "Institutional control"
+      ],
+      "definition": "Institutional control is a core Institutional Characteristics field that affects applicable survey forms and comparisons. The current institution profile is governed as public.",
+      "excerpt": "The IPEDS classification of an institution as public, private nonprofit, or private for-profit.",
+      "institutionalUse": "Verify annually because the IC header controls downstream component applicability.",
+      "source": "NCES IPEDS Institutional Characteristics (IC)",
+      "sourceUrl": "https://nces.ed.gov/ipeds/use-the-data/download-survey-material/2025/institutional%20characteristics/package_12_93.pdf",
+      "owner": "IPEDS Keyholder",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-institution-level",
+      "kind": "Definition",
+      "term": "Institution level",
+      "title": "Institution level",
+      "aliases": [
+        "Institution level"
+      ],
+      "definition": "Institution level distinguishes four-year, two-year, and less-than-two-year institutions under IPEDS rules. The current profile is governed as a four-year degree-granting institution.",
+      "excerpt": "The IPEDS classification based on the highest award level offered by the institution.",
+      "institutionalUse": "Do not infer level from the institution name; use the governed award offerings and current IC instructions.",
+      "source": "NCES IPEDS Institutional Characteristics (IC)",
+      "sourceUrl": "https://nces.ed.gov/ipeds/use-the-data/download-survey-material/2025/institutional%20characteristics/package_12_93.pdf",
+      "owner": "IPEDS Keyholder",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-calendar-system",
+      "kind": "Definition",
+      "term": "Calendar system",
+      "title": "Calendar system",
+      "aliases": [
+        "Calendar system"
+      ],
+      "definition": "Common IPEDS calendar systems include semester, quarter, trimester, 4-1-4, program-based, and continuous enrollment. The current institution profile is governed as semester-based, and that selection affects Cost, Fall Enrollment, Graduation Rates, and Student Financial Aid reporting.",
+      "excerpt": "The method by which the institution structures most courses for the academic year.",
+      "institutionalUse": "Verify in the IC header before preparing other components.",
+      "source": "NCES IPEDS Institutional Characteristics (IC)",
+      "sourceUrl": "https://nces.ed.gov/ipeds/use-the-data/download-survey-material/2025/institutional%20characteristics/package_12_93.pdf",
+      "owner": "Registrar",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-credit-hour",
+      "kind": "Definition",
+      "term": "Credit hour",
+      "title": "Credit hour",
+      "aliases": [
+        "Credit hour"
+      ],
+      "definition": "Credit hours represent an amount of student work defined through the institution's academic and regulatory policy. They support enrollment-load, instructional-activity, and program-length calculations; they are not interchangeable with clock hours.",
+      "excerpt": "A unit used to measure academic work under the institution's approved credit-hour policy and applicable federal requirements.",
+      "institutionalUse": "Use the approved institutional policy and program modality. Do not derive credits solely from scheduled contact time without the authorized conversion.",
+      "source": "Institutional credit-hour policy and 34 CFR 600.2",
+      "sourceUrl": "https://www.ecfr.gov/current/title-34/subtitle-B/chapter-VI/part-600/section-600.2",
+      "owner": "Academic Affairs",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Policy required",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-clock-hour",
+      "kind": "Definition",
+      "term": "Clock hour",
+      "title": "Clock hour",
+      "aliases": [
+        "Clock hour"
+      ],
+      "definition": "A clock hour measures scheduled instructional activity and is distinct from a credit hour. Programs reported in clock hours must follow the applicable institutional and federal definitions and any approved credit-hour conversion rules.",
+      "excerpt": "A measured period of instructional time used by applicable programs and federal reporting rules.",
+      "institutionalUse": "Use only for programs whose governed unit of instructional activity is clock hours.",
+      "source": "Institutional program records and 34 CFR 600.2",
+      "sourceUrl": "https://www.ecfr.gov/current/title-34/subtitle-B/chapter-VI/part-600/section-600.2",
+      "owner": "Academic Affairs",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Policy required",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-academic-term",
+      "kind": "Definition",
+      "term": "Academic term",
+      "title": "Academic term",
+      "aliases": [
+        "Academic term"
+      ],
+      "definition": "A term is an institutional instructional period. It is different from an IPEDS collection period: Fall, Winter, and Spring collections describe federal reporting windows, not necessarily the term in which the underlying activity occurred.",
+      "excerpt": "A defined instructional period, such as a semester or quarter, with governed start, end, and census dates.",
+      "institutionalUse": "State the term and year when a point-in-time or term-specific metric is requested.",
+      "source": "Institutional academic calendar",
+      "sourceUrl": null,
+      "owner": "Registrar",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-academic-year",
+      "kind": "Definition",
+      "term": "Academic year",
+      "title": "Academic year",
+      "aliases": [
+        "Academic year"
+      ],
+      "definition": "For a traditional calendar, an academic year generally covers two semesters or trimesters, three quarters, or a 4-1-4 period. It differs from a calendar year, aid year, collection year, and the July-through-June 12-month enrollment period unless a specification explicitly aligns them.",
+      "excerpt": "The institution's governed instructional year, usually spanning parts of two calendar years.",
+      "institutionalUse": "Always display both years, such as 2025-26, when the period spans two calendar years.",
+      "source": "NCES IPEDS glossary and institutional calendar",
+      "sourceUrl": "https://nces.ed.gov/ipeds/use-the-data/download-survey-material/2025/institutional%20characteristics/package_12_93.pdf",
+      "owner": "Registrar",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-class-standing",
+      "kind": "Definition",
+      "term": "Class standing",
+      "title": "Class standing",
+      "aliases": [
+        "Class standing"
+      ],
+      "definition": "Class standing usually depends on earned credits or institutional progression rules. It is not the same as first-time status, cohort year, or undergraduate/graduate level.",
+      "excerpt": "An institutional student level, such as first-year, sophomore, junior, or senior, assigned under the academic policy.",
+      "institutionalUse": "The current upload does not include an approved class-standing derivation. Supply the registrar policy before computing this dimension.",
+      "source": "Institutional academic standing policy",
+      "sourceUrl": null,
+      "owner": "Registrar",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Policy required",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-degree-seeking",
+      "kind": "Definition",
+      "term": "Degree/certificate-seeking",
+      "title": "Degree/certificate-seeking student",
+      "aliases": [
+        "Degree/certificate-seeking",
+        "Degree/certificate-seeking student"
+      ],
+      "definition": "Degree/certificate-seeking status is an institutional classification used throughout IPEDS cohorts and enrollment categories. Enrollment in credit-bearing coursework alone does not necessarily establish this status.",
+      "excerpt": "A student recognized by the institution as seeking a degree, certificate, or other recognized postsecondary credential.",
+      "institutionalUse": "Resolve from the governed student program/intent record; do not infer from course level.",
+      "source": "NCES IPEDS glossary",
+      "sourceUrl": "https://nces.ed.gov/ipeds/use-the-data/download-survey-material/2025/institutional%20characteristics/package_12_93.pdf",
+      "owner": "Registrar",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-nondegree-seeking",
+      "kind": "Definition",
+      "term": "Non-degree/certificate-seeking",
+      "title": "Non-degree/certificate-seeking student",
+      "aliases": [
+        "Non-degree/certificate-seeking",
+        "Non-degree/certificate-seeking student"
+      ],
+      "definition": "Non-degree/certificate-seeking is not a synonym for part-time or continuing education. The student may take credit-bearing courses while remaining outside a credential-seeking program.",
+      "excerpt": "A student taking reportable coursework who is not recognized as seeking a degree, certificate, or other formal credential.",
+      "institutionalUse": "Use the governed program-intent status and the component's inclusion rules.",
+      "source": "NCES IPEDS glossary",
+      "sourceUrl": "https://nces.ed.gov/ipeds/report-your-data",
+      "owner": "Registrar",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-credential-level",
+      "kind": "Definition",
+      "term": "Credential level",
+      "title": "Credential or award level",
+      "aliases": [
+        "Credential level",
+        "Credential or award level",
+        "Award level"
+      ],
+      "definition": "Credential level describes the award itself. It differs from student class standing and from the institution's IPEDS level. For Completions import files, the credential maps to an allowed AWLEVEL code.",
+      "excerpt": "The level of a recognized postsecondary credential, such as certificate, associate's, bachelor's, master's, or doctorate.",
+      "institutionalUse": "Use the governed credential catalog and current AWLEVEL crosswalk.",
+      "source": "NCES IPEDS Completions and Institutional Characteristics",
+      "sourceUrl": "https://nces.ed.gov/ipeds/survey-components/7",
+      "owner": "Registrar",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-academic-program",
+      "kind": "Definition",
+      "term": "Academic program",
+      "title": "Academic program",
+      "aliases": [
+        "Academic program"
+      ],
+      "definition": "An academic program is the institutionally approved curriculum entity used for enrollment, completions, and program reporting. A program may have one or more majors or concentrations, but those terms should not be treated as interchangeable unless the catalog mapping says they are.",
+      "excerpt": "A governed curriculum leading toward a defined educational objective or recognized credential.",
+      "institutionalUse": "Resolve program names and codes through the governed catalog before filtering students or completions.",
+      "source": "Governed academic catalog",
+      "sourceUrl": null,
+      "owner": "Academic Affairs",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-major",
+      "kind": "Definition",
+      "term": "Major",
+      "title": "Major",
+      "aliases": [
+        "Major"
+      ],
+      "definition": "A major is a student-program relationship and may differ from the broader academic program entity or its CIP reporting code. Multiple majors require explicit ordering and effective dates.",
+      "excerpt": "A student's formally declared primary or secondary field of study within the institutional curriculum.",
+      "institutionalUse": "State whether primary majors, second majors, or both are included.",
+      "source": "Governed academic catalog and student-program records",
+      "sourceUrl": null,
+      "owner": "Registrar",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-concentration",
+      "kind": "Definition",
+      "term": "Concentration",
+      "title": "Concentration",
+      "aliases": [
+        "Concentration"
+      ],
+      "definition": "A concentration is narrower than a program or major and may not map to a separate IPEDS CIP code. It should be reported only when the governed catalog and source record identify it explicitly.",
+      "excerpt": "An approved area of emphasis nested within an academic program or major.",
+      "institutionalUse": "Do not infer a concentration from course-taking behavior.",
+      "source": "Governed academic catalog",
+      "sourceUrl": null,
+      "owner": "Academic Affairs",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-full-time-status",
+      "kind": "Definition",
+      "term": "Full-time status",
+      "title": "Full-time and part-time attendance status",
+      "aliases": [
+        "Full-time status",
+        "Full-time and part-time attendance status"
+      ],
+      "definition": "The current undergraduate source contract treats fewer than 12 semester credits as inconsistent with full-time status. Federal rules set 12 semester or quarter hours as the undergraduate minimum for many term-based programs, while graduate full-time workload is institution-defined.",
+      "excerpt": "A term-level enrollment-load classification determined under the applicable institutional and reporting rules.",
+      "institutionalUse": "Undergraduate 12-credit validation is available. A governed graduate full-time policy has not been supplied and must not be invented.",
+      "source": "Institutional enrollment-status contract and Federal Student Aid Handbook",
+      "sourceUrl": "https://fsapartners.ed.gov/knowledge-center/fsa-handbook/2024-2025/vol1/ch1-school-determined-requirements",
+      "owner": "Registrar",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Partially governed",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-duplicated-headcount",
+      "kind": "Definition",
+      "term": "Duplicated headcount",
+      "title": "Duplicated headcount",
+      "aliases": [
+        "Duplicated headcount"
+      ],
+      "definition": "Duplicated headcount counts qualifying records or appearances rather than unique people over the whole selected period. It may be useful for activity analysis but must never be labeled unduplicated enrollment.",
+      "excerpt": "A count in which the same student can appear more than once across terms, programs, or reporting units.",
+      "institutionalUse": "Disclose the duplication grain, such as student-term or student-program.",
+      "source": "EduInsight governed metric dictionary",
+      "sourceUrl": null,
+      "owner": "Institutional Research",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-unduplicated-headcount",
+      "kind": "Definition",
+      "term": "Unduplicated headcount",
+      "title": "Unduplicated headcount",
+      "aliases": [
+        "Unduplicated headcount"
+      ],
+      "definition": "IPEDS 12-month enrollment uses an unduplicated headcount across its reporting period. Unduplicated does not mean the same thing as Fall census headcount because the reporting windows and included activity differ.",
+      "excerpt": "A distinct-person count in which each student is counted once across the defined reporting period.",
+      "institutionalUse": "Use for the July-through-June E12 population; use Fall headcount for the certified point-in-time census.",
+      "source": "NCES IPEDS 12-month Enrollment (E12)",
+      "sourceUrl": "https://nces.ed.gov/statprog/handbook/ipeds.asp",
+      "owner": "Institutional Research",
+      "calculation": "COUNT(DISTINCT reportable student_id) across the defined period",
+      "numerator": "Distinct reportable student identifiers",
+      "denominator": "Not applicable",
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-new-student",
+      "kind": "Definition",
+      "term": "New student",
+      "title": "New student",
+      "aliases": [
+        "New student"
+      ],
+      "definition": "New student is broader than first-time student unless the institution explicitly defines the two populations as identical. A new student may be first-time, transfer-in, or another non-first-time entrant, depending on the governed reporting context.",
+      "excerpt": "An institutional label for a student newly entering the reporting institution in a defined period.",
+      "institutionalUse": "Always state which entry categories are included. Do not substitute new student for the narrower IPEDS first-time population.",
+      "source": "Institutional entry-status policy",
+      "sourceUrl": null,
+      "owner": "Registrar",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Policy required",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-continuing-returning",
+      "kind": "Definition",
+      "term": "Continuing/returning student",
+      "title": "Continuing or returning student",
+      "aliases": [
+        "Continuing/returning student",
+        "Continuing or returning student"
+      ],
+      "definition": "Continuing/returning is an enrollment-status category, not proof of continuous enrollment. A student returning after a stop-out may be included when the component and institutional status rules place the student in this category.",
+      "excerpt": "A degree/certificate-seeking student who is neither first-time nor transfer-in for the applicable reporting classification.",
+      "institutionalUse": "Use the governed entry-status field; do not infer solely from class standing.",
+      "source": "NCES IPEDS Fall Enrollment (EF)",
+      "sourceUrl": "https://nces.ed.gov/statprog/handbook/ipeds.asp",
+      "owner": "Registrar",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-transfer-in",
+      "kind": "Definition",
+      "term": "Transfer-in student",
+      "title": "Transfer-in student",
+      "aliases": [
+        "Transfer-in student"
+      ],
+      "definition": "Transfer-in describes entry into this institution and is distinct from transfer-out. Credits earned before high school completion do not by themselves make an undergraduate a transfer-in student under the first-time definition.",
+      "excerpt": "A student entering the reporting institution with prior postsecondary attendance after high school under the applicable reporting rules.",
+      "institutionalUse": "Resolve from governed prior-attendance and transfer-entry records.",
+      "source": "NCES IPEDS Fall Enrollment and Outcome Measures",
+      "sourceUrl": "https://nces.ed.gov/statprog/handbook/ipeds.asp",
+      "owner": "Registrar",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-transfer-out",
+      "kind": "Definition",
+      "term": "Transfer-out student",
+      "title": "Transfer-out student",
+      "aliases": [
+        "Transfer-out student"
+      ],
+      "definition": "Transfer-out is an outcome after attendance at the reporting institution. Reliable identification generally requires an external enrollment source such as National Student Clearinghouse data; absence from the local SIS does not prove transfer.",
+      "excerpt": "A student known to have subsequently enrolled at another postsecondary institution under the applicable outcome definition.",
+      "institutionalUse": "The current local warehouse cannot establish transfers to other institutions without an external subsequent-enrollment source.",
+      "source": "NCES IPEDS Graduation Rates and external enrollment records",
+      "sourceUrl": "https://nces.ed.gov/ipeds/report-your-data/overview-survey-components-data-cycle",
+      "owner": "Institutional Research",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Source required",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-stopout",
+      "kind": "Definition",
+      "term": "Stop-out",
+      "title": "Stop-out",
+      "aliases": [
+        "Stop-out"
+      ],
+      "definition": "Stop-out is an observed enrollment pattern, not a permanent outcome. The permitted gap and observation window must be defined before the measure is calculated.",
+      "excerpt": "A temporary break in enrollment followed by a return within the governed observation window.",
+      "institutionalUse": "The current catalog does not assert a universal gap length. Approve the institutional definition before reporting a stop-out rate.",
+      "source": "Institutional student-success metric policy",
+      "sourceUrl": null,
+      "owner": "Institutional Research",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Policy required",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-dropout",
+      "kind": "Definition",
+      "term": "Dropout",
+      "title": "Dropout",
+      "aliases": [
+        "Dropout"
+      ],
+      "definition": "A missing local enrollment record does not by itself establish that a student dropped out. The institution must define the observation window and account for completion and external enrollment before applying this label.",
+      "excerpt": "A student outcome that requires an explicit observation window and evidence that distinguishes departure from stop-out, transfer, completion, or continuing enrollment.",
+      "institutionalUse": "Do not calculate from the local SIS alone when subsequent enrollment elsewhere is unknown.",
+      "source": "Institutional student-success metric policy",
+      "sourceUrl": null,
+      "owner": "Institutional Research",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Source required",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-persistence",
+      "kind": "Definition",
+      "term": "Persistence",
+      "title": "Persistence",
+      "aliases": [
+        "Persistence"
+      ],
+      "definition": "Persistence must state whether it means continued activity at this institution only or at any institution. Institution-only persistence can use local records; any-institution persistence requires an external subsequent-enrollment source. Persistence is broader than the governed IPEDS first-year retention rate.",
+      "excerpt": "Continued enrollment or completion across a defined period, potentially at the same institution or at another institution.",
+      "institutionalUse": "Local persistence is computable when the cohort and window are specified. Any-institution persistence is not supported without Clearinghouse or equivalent data.",
+      "source": "Institutional student-success metric policy",
+      "sourceUrl": null,
+      "owner": "Institutional Research",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Partially governed",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-tuition-discount",
+      "kind": "Definition",
+      "term": "Tuition discount rate",
+      "title": "Tuition discount rate",
+      "aliases": [
+        "Tuition discount rate"
+      ],
+      "definition": "Tuition discount rate is a finance and enrollment-management measure, not an IPEDS net-price calculation. Institutions may use different scopes, such as first-time undergraduates or all undergraduates, so the population and aid source must be stated.",
+      "excerpt": "Institution-funded grant aid divided by gross tuition and fee revenue for a defined population and period.",
+      "institutionalUse": "The current warehouse lacks an approved gross-tuition and institutional-aid contract for this metric.",
+      "source": "Institutional finance metric policy",
+      "sourceUrl": null,
+      "owner": "Finance",
+      "calculation": "institution-funded grant aid / gross tuition and required fee revenue",
+      "numerator": "Institution-funded grant aid for the defined population",
+      "denominator": "Gross tuition and required fee revenue for the same population and period",
+      "status": "Source required",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-instructional-activity",
+      "kind": "Definition",
+      "term": "Instructional activity",
+      "title": "Instructional activity",
+      "aliases": [
+        "Instructional activity"
+      ],
+      "definition": "Instructional activity is the annual volume of reportable credit hours and, where applicable, clock hours generated during the 12-month reporting period. Undergraduate and graduate credit-hour activity are reported separately, and the applicable IPEDS rules determine which activity belongs in the FTE calculation.",
+      "excerpt": "Reportable credit-hour and clock-hour activity used by the IPEDS 12-month Enrollment component to derive student FTE.",
+      "institutionalUse": "Use the same annual period, student levels, calendar basis, and exclusions required by the current E12 specification.",
+      "source": "NCES IPEDS 12-month Enrollment (E12), Part B",
+      "sourceUrl": "https://nces.ed.gov/ipeds/survey-components/5",
+      "owner": "Institutional Research",
+      "calculation": "SUM(reportable attempted credit hours or clock hours) for the applicable level and reporting period",
+      "numerator": "Reportable instructional activity",
+      "denominator": "Not applicable until activity is converted to FTE",
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-distance-education-status",
+      "kind": "Definition",
+      "term": "Distance education status",
+      "title": "Distance education enrollment status",
+      "aliases": [
+        "Distance education status",
+        "Distance education enrollment status"
+      ],
+      "definition": "IPEDS distance-education status is based on the student's reportable course enrollment during the applicable survey period. Exclusively distance education, some but not all distance education, and no distance education are mutually exclusive categories and must reconcile to the applicable enrollment population.",
+      "excerpt": "The governed classification of a student as enrolled exclusively, enrolled in some, or not enrolled in distance education courses.",
+      "institutionalUse": "Classify from governed course-modality records; do not infer distance status from a student's program or campus alone.",
+      "source": "NCES IPEDS 12-month Enrollment and Fall Enrollment distance-education instructions",
+      "sourceUrl": "https://nces.ed.gov/ipeds/report-your-data/overview-survey-components-data-cycle",
+      "owner": "Institutional Research",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-dual-enrollment",
+      "kind": "Definition",
+      "term": "Dual enrollment",
+      "title": "Dual enrollment",
+      "aliases": [
+        "Dual enrollment"
+      ],
+      "definition": "For IPEDS 12-month Enrollment reporting, institutions identify whether high school students took college courses for credit and report the applicable unduplicated population. Participation in a formal dual-enrollment program is distinguished from high school enrollment outside such a program.",
+      "excerpt": "High school students enrolled in college courses for credit, either within or outside a formal dual-enrollment program.",
+      "institutionalUse": "Use governed high-school and college-credit indicators; do not infer dual enrollment solely from age.",
+      "source": "NCES IPEDS 12-month Enrollment (E12), Parts E and F",
+      "sourceUrl": "https://nces.ed.gov/ipeds/survey-components/5",
+      "owner": "Registrar",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-us-nonresident",
+      "kind": "Definition",
+      "term": "U.S. nonresident",
+      "title": "U.S. nonresident reporting category",
+      "aliases": [
+        "U.S. nonresident",
+        "U.S. nonresident reporting category"
+      ],
+      "definition": "U.S. nonresident is a federal reporting category and is not interchangeable with institutional residency for tuition purposes, international recruitment status, or place of residence. The current IPEDS specification and citizenship/visa source control the classification.",
+      "excerpt": "The current IPEDS reporting category for a person who is not a citizen or national of the United States and is in the country on an applicable temporary visa.",
+      "institutionalUse": "Do not derive this category from the domestic/international display label alone; retain the governed citizenship and visa mapping.",
+      "source": "NCES IPEDS race/ethnicity reporting instructions",
+      "sourceUrl": "https://nces.ed.gov/ipeds/report-your-data",
+      "owner": "Institutional Research",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-race-ethnicity-category",
+      "kind": "Definition",
+      "term": "Race/ethnicity reporting category",
+      "title": "Race/ethnicity reporting category",
+      "aliases": [
+        "Race/ethnicity reporting category"
+      ],
+      "definition": "IPEDS race/ethnicity categories are derived through the federal reporting sequence and include a separate U.S. nonresident category and an unknown category where applicable. They are reporting classifications, not a substitute for the more detailed identities a student may provide.",
+      "excerpt": "The mutually exclusive federal reporting classification used in applicable IPEDS enrollment, completions, and outcomes tables.",
+      "institutionalUse": "Apply the current federal mapping consistently and preserve unknown values rather than assigning an unsupported category.",
+      "source": "NCES IPEDS race/ethnicity reporting instructions",
+      "sourceUrl": "https://nces.ed.gov/ipeds/report-your-data",
+      "owner": "Data Governance",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-sex-reporting-category",
+      "kind": "Definition",
+      "term": "Sex reporting category",
+      "title": "Sex reporting category",
+      "aliases": [
+        "Sex reporting category"
+      ],
+      "definition": "The reporting categories and accepted codes are controlled by the current IPEDS survey specification. Institutional gender-identity data must not be silently remapped into a federal sex category without an approved crosswalk.",
+      "excerpt": "The sex classification accepted by the applicable IPEDS collection-year specification, including unknown when the current form permits it.",
+      "institutionalUse": "Use the collection-year code set and retain unknown values where supported; do not reuse a prior-year code that the current form removed.",
+      "source": "NCES IPEDS 2025-26 import specifications",
+      "sourceUrl": "https://nces.ed.gov/ipeds/report-your-data",
+      "owner": "Data Governance",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-instructional-staff-fte",
+      "kind": "Definition",
+      "term": "Instructional-staff FTE",
+      "title": "Instructional-staff full-time equivalent (FTE)",
+      "aliases": [
+        "Instructional-staff FTE",
+        "Instructional-staff full-time equivalent (FTE)"
+      ],
+      "definition": "Instructional-staff FTE applies the current IPEDS inclusion, exclusion, and part-time conversion rules to the reportable instructional-staff population. It is narrower than all-employee FTE and may differ from an institution's internal faculty-workload FTE.",
+      "excerpt": "The workload-equivalent instructional-staff measure used in the IPEDS student-to-faculty ratio.",
+      "institutionalUse": "Do not certify the value until the employee population and appointment-to-FTE conversion are governed for the applicable reporting year.",
+      "source": "NCES IPEDS Fall Enrollment and institutional HR workload policy",
+      "sourceUrl": "https://nces.ed.gov/ipeds/report-your-data/overview-survey-components-data-cycle",
+      "owner": "Human Resources",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Policy required",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-normal-time",
+      "kind": "Definition",
+      "term": "Normal time",
+      "title": "Normal time to completion",
+      "aliases": [
+        "Normal time",
+        "Normal time to completion"
+      ],
+      "definition": "Normal time is program-specific and provides the reference period for IPEDS graduation-rate windows such as 100%, 150%, and 200% of normal time. It is not the observed average time students actually take to graduate.",
+      "excerpt": "The amount of time a student would normally take to complete a program according to the institution's published program length.",
+      "institutionalUse": "Resolve from the governed program length and credential; do not apply one institution-wide duration to every program.",
+      "source": "NCES IPEDS Graduation Rates instructions and institutional program catalog",
+      "sourceUrl": "https://nces.ed.gov/ipeds/report-your-data/overview-survey-components-data-cycle",
+      "owner": "Registrar",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-accreditation",
+      "kind": "Definition",
+      "term": "Accreditation",
+      "title": "Accreditation",
+      "aliases": [
+        "Accreditation"
+      ],
+      "definition": "Institutional accreditation generally applies to the institution as a whole; specialized or programmatic accreditation applies to a program, department, or school. The U.S. Department of Education recognizes accrediting agencies that meet federal criteria, but the Department does not directly accredit institutions.",
+      "excerpt": "Public recognition granted by an accrediting agency after evaluating an institution or program against its standards.",
+      "institutionalUse": "Identify the accrediting agency, accredited scope, status, and effective period; do not infer accreditation from program approval alone.",
+      "source": "U.S. Department of Education accreditation guidance",
+      "sourceUrl": "https://www.ed.gov/laws-and-policy/higher-education-laws-and-policy/college-accreditation/overview-of-accreditation-united-states",
+      "owner": "Institutional Effectiveness",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-title-iv",
+      "kind": "Definition",
+      "term": "Title IV",
+      "title": "Title IV federal student aid",
+      "aliases": [
+        "Title IV",
+        "Title IV federal student aid"
+      ],
+      "definition": "Title IV includes federal grants, work-study, and loan programs administered under the Higher Education Act. IPEDS participation and several reported cohorts use Title IV status, but Title IV recipient, Pell recipient, and aid applicant are not interchangeable populations.",
+      "excerpt": "Federal student-aid programs authorized under Title IV of the Higher Education Act.",
+      "institutionalUse": "Use the governed aid-award source and the exact cohort required by the current reporting specification.",
+      "source": "U.S. Department of Education Federal Student Aid and NCES IPEDS",
+      "sourceUrl": "https://nces.ed.gov/ipeds/report-your-data/faq-average-net-price",
+      "owner": "Student Financial Services",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    },
+    {
+      "id": "definition-ferpa",
+      "kind": "Definition",
+      "term": "FERPA",
+      "title": "Family Educational Rights and Privacy Act (FERPA)",
+      "aliases": [
+        "FERPA",
+        "Family Educational Rights and Privacy Act (FERPA)"
+      ],
+      "definition": "FERPA applies to education records maintained by covered educational agencies and institutions. At the postsecondary level, rights transfer to the eligible student. Personally identifiable information includes direct and indirect identifiers that can identify a student alone or in combination.",
+      "excerpt": "The federal law protecting the privacy of student education records and granting eligible students rights over those records.",
+      "institutionalUse": "EduInsight's aggregate-first privacy boundary remains stricter than merely removing names; identifiable row-level requests must be refused or routed through an authorized governed workflow.",
+      "source": "U.S. Department of Education Student Privacy Policy Office",
+      "sourceUrl": "https://studentprivacy.ed.gov/ferpa",
+      "owner": "Data Governance",
+      "calculation": null,
+      "numerator": null,
+      "denominator": null,
+      "status": "Current",
+      "catalogVersion": "institutional-memory.expansion.v2026_07_30"
+    }
+  ],
+  "governedDefinitionContract": {
+    "contractVersion": "institutional-memory.combined.v1",
+    "definitionCount": 81,
+    "sourceCatalogs": [
+      {
+        "catalogVersion": "institutional-memory.v2025_26",
+        "verifiedAt": "2026-07-29",
+        "recordCount": 36
+      },
+      {
+        "catalogVersion": "institutional-memory.expansion.v2026_07_30",
+        "verifiedAt": "2026-07-30",
+        "recordCount": 53
+      }
+    ],
+    "technicalValidation": {
+      "status": "passed",
+      "schemaVersion": "institutional-memory-record.v1",
+      "validatedRecordCount": 89,
+      "rejectedRecordCount": 0,
+      "validationIssueCount": 0
+    }
+  },
+  "ipedsPackageSummary": {
+    "collectionYear": "2025-26",
+    "officialLayoutCount": 11,
+    "officialLayoutCodes": [
+      "ADM",
+      "C",
+      "CST",
+      "E12",
+      "EF",
+      "F",
+      "GR",
+      "GR200",
+      "HR",
+      "OM",
+      "SFA"
+    ],
+    "questionnaireWorkflowCount": 1,
+    "packages": [
+      {
+        "code": "C",
+        "sourceReadiness": "source_backed",
+        "sourceReadinessLabel": "Source-backed and reconciled",
+        "completeSurveyPackage": false,
+        "structuralFailureCount": 0,
+        "reconciliationFailureCount": 0
+      },
+      {
+        "code": "EF",
+        "sourceReadiness": "modeled_demo",
+        "sourceReadinessLabel": "Modeled demo package",
+        "completeSurveyPackage": true,
+        "structuralFailureCount": 0,
+        "reconciliationFailureCount": 0
+      },
+      {
+        "code": "E12",
+        "sourceReadiness": "modeled_demo",
+        "sourceReadinessLabel": "Modeled demo package",
+        "completeSurveyPackage": true,
+        "structuralFailureCount": 0,
+        "reconciliationFailureCount": 0
+      },
+      {
+        "code": "SFA",
+        "sourceReadiness": "modeled_demo",
+        "sourceReadinessLabel": "Modeled demo package",
+        "completeSurveyPackage": true,
+        "structuralFailureCount": 0,
+        "reconciliationFailureCount": 0
+      },
+      {
+        "code": "GR",
+        "sourceReadiness": "modeled_demo",
+        "sourceReadinessLabel": "Modeled demo package",
+        "completeSurveyPackage": true,
+        "structuralFailureCount": 0,
+        "reconciliationFailureCount": 0
+      },
+      {
+        "code": "GR200",
+        "sourceReadiness": "modeled_demo",
+        "sourceReadinessLabel": "Modeled demo package",
+        "completeSurveyPackage": true,
+        "structuralFailureCount": 0,
+        "reconciliationFailureCount": 0
+      },
+      {
+        "code": "ADM",
+        "sourceReadiness": "modeled_demo",
+        "sourceReadinessLabel": "Modeled demo package",
+        "completeSurveyPackage": true,
+        "structuralFailureCount": 0,
+        "reconciliationFailureCount": 0
+      },
+      {
+        "code": "OM",
+        "sourceReadiness": "source_gap",
+        "sourceReadinessLabel": "Source gap",
+        "completeSurveyPackage": false,
+        "structuralFailureCount": 0,
+        "reconciliationFailureCount": 0
+      },
+      {
+        "code": "HR",
+        "sourceReadiness": "modeled_demo",
+        "sourceReadinessLabel": "Modeled demo package",
+        "completeSurveyPackage": true,
+        "structuralFailureCount": 0,
+        "reconciliationFailureCount": 0
+      },
+      {
+        "code": "F",
+        "sourceReadiness": "source_gap",
+        "sourceReadinessLabel": "Source gap",
+        "completeSurveyPackage": false,
+        "structuralFailureCount": 0,
+        "reconciliationFailureCount": 0
+      },
+      {
+        "code": "CST",
+        "sourceReadiness": "modeled_demo",
+        "sourceReadinessLabel": "Modeled demo package",
+        "completeSurveyPackage": true,
+        "structuralFailureCount": 0,
+        "reconciliationFailureCount": 0
+      }
+    ]
   },
   "ipedsChecks": [
     {

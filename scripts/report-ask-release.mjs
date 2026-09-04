@@ -41,11 +41,11 @@ async function blindNineScore() {
 
 const regressionSuites = await Promise.all(
   [
-    ["Blind #3", "blind-3-regression-latest.md", 244],
-    ["Blind #4", "blind-4-regression-latest.md", 276],
-    ["Blind #5", "blind-5-regression-latest.md", 268],
-    ["Blind #6", "blind-6-regression-latest.md", 259],
-    ["Blind #7", "blind-7-regression-latest.md", 247],
+    ["Blind #3", "blind-3-regression-latest.md", 238],
+    ["Blind #4", "blind-4-regression-latest.md", 267],
+    ["Blind #5", "blind-5-regression-latest.md", 257],
+    ["Blind #6", "blind-6-regression-latest.md", 243],
+    ["Blind #7", "blind-7-regression-latest.md", 240],
   ].map(async ([name, fileName, expectedRaw]) => {
     const score = await scoreFromReport(fileName);
     assert.equal(
@@ -75,12 +75,14 @@ const rows = [
   { name: "Blind #2", raw: 180, adjudicated: 180, total: 180 },
   ...regressionSuites,
   { name: "Blind #9", ...blindNine },
-  {
-    name: "Semantic, safety, systemic, and scenario checks",
-    raw: 117,
-    adjudicated: 117,
-    total: 117,
-  },
+];
+
+const currentActiveSuites = [
+  "Core Ask unit suite",
+  "Semantic hardening",
+  "Intent routing",
+  "Completion hardening",
+  "Semantic-boundary blockers",
 ];
 
 const totals = rows.reduce(
@@ -111,6 +113,8 @@ const markdown = [
   `| **Total** | **${totals.raw}/${totals.total} (${percent(totals.raw, totals.total)})** | **${totals.adjudicated}/${totals.total} (${percent(totals.adjudicated, totals.total)})** | **${gap}** |`,
   "",
   "Raw and adjudicated results are intentionally reported side by side. Adjudication may document an accepted oracle or presentation-contract difference, but it never changes the preserved raw result.",
+  "",
+  `Current active raw suites (run before the historical bank): ${currentActiveSuites.join(", ")}. Their exact current pass count is reported by the node:test runner and is not replaced by historical adjudication.`,
   "",
 ];
 

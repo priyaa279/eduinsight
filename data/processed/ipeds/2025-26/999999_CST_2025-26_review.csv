@@ -1,6 +1,6 @@
 UNITID,SURVSECT,PART,DA03,DA04,DA06,ReviewStatus,DE011,DE012,DE021,DE022,DE031,DE032,DE01_T,DE02_T,DE03_T,DB01,DB02,DB03,DB04,DC01,DC02,DC03,DD01,DD02,DD03
-999999,CT1,A,65,75,1,Generated from governed source mart,,,,,,,,,,,,,,,,,,,
-999999,CT1,E,,,,Generated from governed source mart,1240,3380,14760,3380,15420,4210,1240,18140,19630,,,,,,,,,,
-999999,CT1,B,,,,Generated from governed source mart,,,,,,,,,,12960,12960,31740,1840,,,,,,
-999999,CT1,C,,,,Generated from governed source mart,,,,,,,,,,,,,,14880,28620,1650,,,
-999999,CT1,D,,,,Generated from governed source mart,,,,,,,,,,,,,,,,,14760,15420,1240
+999999,CT1,A,65,75,1,Generated from the disclosed package input contract; review the package source-readiness classification,,,,,,,,,,,,,,,,,,,
+999999,CT1,E,,,,Generated from the disclosed package input contract; review the package source-readiness classification,1240,3380,14760,3380,15420,4210,1240,18140,19630,,,,,,,,,,
+999999,CT1,B,,,,Generated from the disclosed package input contract; review the package source-readiness classification,,,,,,,,,,12960,12960,31740,1840,,,,,,
+999999,CT1,C,,,,Generated from the disclosed package input contract; review the package source-readiness classification,,,,,,,,,,,,,,14880,28620,1650,,,
+999999,CT1,D,,,,Generated from the disclosed package input contract; review the package source-readiness classification,,,,,,,,,,,,,,,,,14760,15420,1240

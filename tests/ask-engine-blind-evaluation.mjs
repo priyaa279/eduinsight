@@ -414,7 +414,7 @@ add("provenance-confidence", "Show critical data quality issues", {
 });
 add("provenance-confidence", "Are we ready for IPEDS submission?", {
   confidence: "High",
-  sourcesInclude: ["ipeds_validation_results.csv"],
+  sourcesInclude: ["ipeds-suite.generated.json", "ipeds_marts.json"],
   sourcesExclude: ["students.csv", "sections.csv"],
 });
 add("provenance-confidence", "Overall retention for the 2024 cohort", {

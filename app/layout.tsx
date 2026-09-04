@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "EduInsight AI — Institutional Intelligence",
   description:
-    "An agentic institutional intelligence workspace for higher education, powered entirely by synthetic data.",
+    "A deterministic governed institutional analytics prototype with natural-language analysis, powered entirely by synthetic data.",
 };
 
 export default function RootLayout({

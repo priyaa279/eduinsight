@@ -6,17 +6,33 @@ import { buildComPackage } from "../lib/ipeds-com.mjs";
 import { buildEfPackage } from "../lib/ipeds-ef.mjs";
 import { loadIpedsSpecs } from "../lib/ipeds-specs.mjs";
 import { buildIpedsSuite } from "../lib/ipeds-suite.mjs";
+import { createIpedsProgramDisplayCatalog } from "../lib/ipeds-code-labels.mjs";
+import { buildInstitutionalMemoryCatalog } from "../lib/institutional-memory-contract.mjs";
 import {
   evaluateDataQuality,
   summarizeDataQuality,
 } from "../lib/data-quality/evaluate.mjs";
+import { reconcileFindingLifecycles } from "../lib/data-quality/lifecycle.mjs";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const uploadDir = path.join(projectRoot, "data", "sample-university-upload");
+const uploadDir = process.env.EDUINSIGHT_UPLOAD_DIR
+  ? path.resolve(process.env.EDUINSIGHT_UPLOAD_DIR)
+  : path.join(projectRoot, "data", "sample-university-upload");
 const processedDir = path.join(projectRoot, "data", "processed");
 const appDataDir = path.join(projectRoot, "app", "data");
 const ipedsPackageDir = path.join(processedDir, "ipeds", "2025-26");
-const generatedAt = "2025-10-14T09:42:00-07:00";
+const institutionalSourceSnapshotAt = "2025-10-14T09:42:00-07:00";
+const artifactBuiltAt = (() => {
+  const configured = process.env.EDUINSIGHT_ARTIFACT_BUILT_AT;
+  if (!configured) return new Date().toISOString();
+  const parsed = new Date(configured);
+  if (Number.isNaN(parsed.getTime())) {
+    throw new Error(
+      "EDUINSIGHT_ARTIFACT_BUILT_AT must be a valid ISO-8601 timestamp.",
+    );
+  }
+  return parsed.toISOString();
+})();
 
 await Promise.all([
   fs.mkdir(processedDir, { recursive: true }),
@@ -363,7 +379,6 @@ const ipedsRuns = [...ipedsRunMap.values()]
   .sort((a, b) => a.run_sequence - b.run_sequence)
   .map((run) => ({ ...run, readiness: run.passed_weight / run.total_weight }));
 const currentIpedsRun = ipedsRuns.at(-1);
-const priorIpedsRun = ipedsRuns.at(-2);
 if (Math.abs(currentIpedsRun.total_weight - 100) >= 0.001) {
   throw new Error(
     `The current IPEDS run weights total ${currentIpedsRun.total_weight}; expected 100.`,
@@ -372,7 +387,7 @@ if (Math.abs(currentIpedsRun.total_weight - 100) >= 0.001) {
 
 const currentStudentTermRows = studentTermsByTerm.get(currentTerm.term_id);
 const dataQualityContext = {
-  generatedAt,
+  generatedAt: institutionalSourceSnapshotAt,
   institutions,
   terms,
   programs,
@@ -388,6 +403,14 @@ const dataQualityContext = {
 };
 const dataQualityEvaluation = evaluateDataQuality(dataQualityContext);
 const qualityFindings = dataQualityEvaluation.activeFindings;
+const qualityFindingsWithDefaultLifecycle = reconcileFindingLifecycles(
+  qualityFindings,
+  [],
+  institutionalSourceSnapshotAt,
+).findings.map(({ lifecycle, ...finding }) => ({
+  ...finding,
+  status: lifecycle.status,
+}));
 const dataQualitySummary = summarizeDataQuality(
   dataQualityEvaluation.results,
   qualityFindings,
@@ -455,6 +478,10 @@ const programSignals = programs
       utilizationDisplay: `${Math.round((filled / capacity) * 100)}%`,
       growth,
       delta: formatSignedPercent(growth, 0),
+      courseSeatUtilization: capacity ? filled / capacity : 0,
+      courseSeatUtilizationDisplay: `${Math.round((filled / capacity) * 100)}%`,
+      enrollmentGrowth: growth,
+      enrollmentGrowthDisplay: formatSignedPercent(growth, 0),
     };
   })
   .sort((a, b) => b.growth - a.growth);
@@ -739,7 +766,7 @@ const qualityRuleCatalog = DATA_QUALITY_RULES.map((rule) => {
     executionState: executed
       ? "ENABLED_EXECUTED"
       : "NOT_EVALUATED_MISSING_DATA",
-    lastEvaluated: executed ? generatedAt : null,
+    lastEvaluated: executed ? institutionalSourceSnapshotAt : null,
     lastResult: result?.status ?? "NOT_EVALUATED",
     lastViolationCount: result?.violationCount,
     lastFiredCount: result?.status === "FAIL" ? result.violationCount : 0,
@@ -749,6 +776,10 @@ const qualityRuleCatalog = DATA_QUALITY_RULES.map((rule) => {
         : "Executed — passed"
       : `Not evaluated — ${result?.reasonNotEvaluated ?? "missing required source data"}`,
     reasonNotEvaluated: result?.reasonNotEvaluated ?? null,
+    reasonCode: result?.reasonCode ?? null,
+    requiredSources: result?.requiredSources ?? [],
+    requiredFields: result?.requiredFields ?? [],
+    requiredCapabilities: result?.requiredCapabilities ?? [],
     sourceFiles: result?.sourceFiles ?? [],
     sourceFields: result?.sourceFields ?? [],
     parameters: result?.parameters ?? null,
@@ -783,9 +814,66 @@ const ipedsSuite = buildIpedsSuite({
   efPackage: ipedsEfPackage,
 });
 const ipedsSpecs = loadIpedsSpecs();
+const institutionalMemory = JSON.parse(
+  await fs.readFile(path.join(appDataDir, "institutional-memory.json"), "utf8"),
+);
+const institutionalMemoryExpanded = JSON.parse(
+  await fs.readFile(
+    path.join(appDataDir, "institutional-memory-expanded.json"),
+    "utf8",
+  ),
+);
+const institutionalMemoryContract = buildInstitutionalMemoryCatalog([
+  institutionalMemory,
+  institutionalMemoryExpanded,
+]);
+const governedDefinitions = institutionalMemoryContract.definitions;
+
+const ipedsPackageSummary = {
+  collectionYear: ipedsSuite.collectionYear,
+  officialLayoutCount: ipedsSuite.officialImportLayoutCodes.length,
+  officialLayoutCodes: ipedsSuite.officialImportLayoutCodes,
+  questionnaireWorkflowCount: Object.keys(ipedsSuite.nonImportable ?? {}).length,
+  packages: Object.values(ipedsSuite.packages).map((surveyPackage) => ({
+    code: surveyPackage.code,
+    sourceReadiness: surveyPackage.sourceReadiness,
+    sourceReadinessLabel: surveyPackage.sourceReadinessLabel,
+    completeSurveyPackage: surveyPackage.completeSurveyPackage,
+    structuralFailureCount: surveyPackage.structuralFailureCount,
+    reconciliationFailureCount: surveyPackage.reconciliationFailureCount,
+  })),
+};
+
+const ipedsPackages = Object.values(ipedsSuite.packages);
+const ipedsCoverageSummary = {
+  sourceBacked: ipedsPackages.filter(
+    (surveyPackage) => surveyPackage.sourceReadiness === "source_backed",
+  ).length,
+  modeledDemo: ipedsPackages.filter(
+    (surveyPackage) => surveyPackage.sourceReadiness === "modeled_demo",
+  ).length,
+  sourceGap: ipedsPackages.filter(
+    (surveyPackage) => surveyPackage.sourceReadiness === "source_gap",
+  ).length,
+  questionnaire: Object.keys(ipedsSuite.nonImportable ?? {}).length,
+  officialLayouts: ipedsSuite.officialImportLayoutCodes.length,
+  expectedOfficialLayouts: ipedsSuite.officialImportLayoutCodes.length,
+  sourceBackedCodes: ipedsPackages
+    .filter((surveyPackage) => surveyPackage.sourceReadiness === "source_backed")
+    .map((surveyPackage) => surveyPackage.code),
+  incompleteSourceBackedCodes: ipedsPackages
+    .filter(
+      (surveyPackage) =>
+        surveyPackage.sourceReadiness === "source_backed" &&
+        surveyPackage.completeSurveyPackage !== true,
+    )
+    .map((surveyPackage) => surveyPackage.code),
+};
+
+const governedProgramCatalog = createIpedsProgramDisplayCatalog(programs);
 
 const askEduInsightDataset = {
-  generatedAt,
+  generatedAt: institutionalSourceSnapshotAt,
   dataBoundary: institutions[0].data_classification,
   institution: {
     id: institutions[0].institution_id,
@@ -793,12 +881,12 @@ const askEduInsightDataset = {
   },
   catalogs: {
     years: fallTerms.map((term) => Number(term.term_id.slice(0, 4))),
-    programs: programs.map((program) => ({
-      programId: program.program_id,
-      programName: program.program_name,
-      degreeLevel: program.degree_level,
-      college: program.college,
-      cipCode: program.cip_code,
+    programs: governedProgramCatalog.map((program) => ({
+      programId: program.programId,
+      programName: program.programName,
+      degreeLevel: program.degreeLevel,
+      college: programById.get(program.programId)?.college,
+      cipCode: program.cipCode,
     })),
     residencies: [...new Set(students.map((student) => student.residency))].sort(),
     genders: [...new Set(students.map((student) => student.gender || "Unknown"))].sort(),
@@ -814,20 +902,35 @@ const askEduInsightDataset = {
   },
   enrollment: enrollmentSeries,
   enrollmentCubes,
+  completions: [...new Set(completions.map((row) => Number(row.reporting_year)))]
+    .sort((a, b) => a - b)
+    .map((year) => ({
+      year,
+      count: completions.filter(
+        (row) => Number(row.reporting_year) === year,
+      ).length,
+    })),
   retention: retentionSeries,
   retentionCubes,
   ipedsReadiness: ipedsRuns.map((run) => ({
     runId: run.run_id,
     sequence: run.run_sequence,
-    readiness: round(run.readiness, 4),
     passedChecks: run.passed_checks,
     totalChecks: run.total_checks,
     timestamp: run.timestamp,
   })),
-  qualityIssues: qualityFindings,
+  qualityIssues: qualityFindingsWithDefaultLifecycle,
   qualityRuleCatalog,
   qualityRuleResults: dataQualityEvaluation.results,
   qualityEvaluationSummary: dataQualitySummary,
+  governedDefinitions,
+  governedDefinitionContract: {
+    contractVersion: institutionalMemoryContract.contractVersion,
+    definitionCount: institutionalMemoryContract.counts.definitions,
+    sourceCatalogs: institutionalMemoryContract.sourceCatalogs,
+    technicalValidation: institutionalMemoryContract.technicalValidation,
+  },
+  ipedsPackageSummary,
   ipedsChecks: ipedsResults.map((result) => ({
     runId: result.run_id,
     sequence: Number(result.run_sequence),
@@ -869,8 +972,10 @@ const brief = [
   {
     priority: 1,
     severity: "critical",
+    attentionState: "Critical data-quality finding",
+    governedSeverity: "Critical",
     title: `${fullTimeCreditMismatch} full-time classifications look wrong`,
-    subtitle: "Data Quality Agent · reconciled to SIS upload",
+    subtitle: "Data quality check · source-derived finding",
     destination: "quality",
     affectedRecords: fullTimeCreditMismatch,
     sourceFiles: ["student_terms.csv", "terms.csv"],
@@ -878,25 +983,32 @@ const brief = [
   {
     priority: 2,
     severity: "warning",
+    attentionState: "High data-quality anomaly",
+    governedSeverity: "High",
     title: `Fall headcount is ${Math.abs(headcountDelta * 100).toFixed(1)}% below last year`,
-    subtitle: "Silent Error Monitor · census comparison",
+    subtitle: "Census variance check · year-over-year comparison",
     destination: "quality",
-    affectedRecords: Math.abs(currentHeadcount - priorHeadcount),
+    observationCount: 1,
+    absoluteChange: currentHeadcount - priorHeadcount,
+    percentChange: headcountDelta * 100,
+    defectiveRecordCount: 0,
     sourceFiles: ["student_terms.csv", "terms.csv"],
   },
   {
     priority: 3,
     severity: "calm",
-    title: `Fall Enrollment is ${Math.round(currentIpedsRun.readiness * 100)}% submission-ready`,
-    subtitle: `IPEDS Agent · ${currentIpedsRun.passed_checks} of ${currentIpedsRun.total_checks} checks passed`,
+    attentionState: "Informational package coverage",
+    governedSeverity: null,
+    title: `IPEDS coverage includes ${ipedsCoverageSummary.sourceBacked} source-backed package and ${ipedsCoverageSummary.modeledDemo} modeled demos`,
+    subtitle: `${ipedsCoverageSummary.sourceGap} source gaps · ${ipedsCoverageSummary.questionnaire} questionnaire workflow · ${ipedsCoverageSummary.officialLayouts}/${ipedsCoverageSummary.expectedOfficialLayouts} official layouts`,
     destination: "ipeds",
     affectedRecords: 0,
-    sourceFiles: ["ipeds_validation_results.csv"],
+    sourceFiles: ["ipeds-suite.generated.json"],
   },
 ];
 
 const commandCenter = {
-  generatedAt,
+  generatedAt: artifactBuiltAt,
   pipelineVersion: "2.0.0-dq-source-derived",
   dataBoundary: institutions[0].data_classification,
   institution: {
@@ -906,12 +1018,46 @@ const commandCenter = {
     currentTermLabel: `${currentTerm.season} ${currentTerm.academic_year.slice(0, 4)}`,
     censusDate: currentTerm.census_date,
   },
-  briefDate: "Oct 14, 2025",
-  activeAgents: 5,
+  briefPeriod: `${currentTerm.season} ${currentTerm.academic_year.slice(0, 4)} data period`,
+  snapshotMetadata: {
+    dataPeriod: {
+      termId: currentTerm.term_id,
+      label: `${currentTerm.season} ${currentTerm.academic_year.slice(0, 4)}`,
+      censusDate: currentTerm.census_date,
+    },
+    institutionalSourceSnapshotAt,
+    moduleVerification: {
+      ipeds: {
+        generatedAt: ipedsSuite.generatedAt,
+        collectionYear: ipedsSuite.collectionYear,
+      },
+      institutionalMemory: {
+        verifiedAt: [
+          institutionalMemory.verifiedAt,
+          institutionalMemoryExpanded.verifiedAt,
+        ].filter(Boolean).sort().at(-1),
+        catalogVersions: [
+          institutionalMemory.catalogVersion,
+          institutionalMemoryExpanded.catalogVersion,
+        ].filter(Boolean),
+      },
+    },
+    artifactBuiltAt,
+    artifactMode: "static_snapshot",
+    freshnessDisclosure:
+      "Governed generated snapshot; not a live warehouse connection.",
+    rebuildFailureMode: "fail_closed_previous_snapshot_retained",
+    rebuildFailureDisclosure:
+      "A failed rebuild exits without replacing this artifact; the retained snapshot keeps its original build timestamp.",
+    runtimeFreshnessMonitoring: false,
+  },
   qualityFindings,
   qualityRuleCatalog,
   qualityRuleResults: dataQualityEvaluation.results,
   qualityEvaluationSummary: dataQualitySummary,
+  referenceCatalogs: {
+    programs: governedProgramCatalog,
+  },
   ipedsComPackage,
   ipedsEfPackage,
   ipedsSuite,
@@ -940,21 +1086,18 @@ const commandCenter = {
       sources: ["students.csv", "student_terms.csv", "terms.csv"],
     },
     ipedsReadiness: {
-      label: "IPEDS readiness",
-      value: round(currentIpedsRun.readiness, 4),
-      display: `${Math.round(currentIpedsRun.readiness * 100)}%`,
-      comparisonValue: round(priorIpedsRun.readiness, 4),
-      delta: round(currentIpedsRun.readiness - priorIpedsRun.readiness, 4),
-      deltaDisplay: formatSignedPoints(
-        currentIpedsRun.readiness - priorIpedsRun.readiness,
-        0,
-      ),
-      context: "Fall Enrollment",
-      trend: ipedsRuns.map((run) => round(run.readiness * 100, 1)),
-      sources: ["ipeds_validation_results.csv"],
+      label: "IPEDS source readiness",
+      value: ipedsCoverageSummary.sourceBacked,
+      display: `${ipedsCoverageSummary.sourceBacked} source-backed`,
+      comparisonValue: null,
+      delta: null,
+      deltaDisplay: `${ipedsCoverageSummary.modeledDemo} modeled demos`,
+      context: `${ipedsCoverageSummary.sourceGap} source gaps · ${ipedsCoverageSummary.questionnaire} questionnaire`,
+      trend: [ipedsCoverageSummary.sourceBacked],
+      sources: ["ipeds-suite.generated.json"],
     },
     openQualityIssues: {
-      label: "Open quality issues",
+      label: "Active findings",
       value: openQualityIssues.length,
       display: String(openQualityIssues.length),
       comparisonValue: null,
@@ -967,28 +1110,29 @@ const commandCenter = {
   },
   brief,
   programSignals,
+  ipedsCoverageSummary,
   activity: [
     {
       status: "complete",
-      activity: "Reconciled Fall census snapshot",
+      statusLabel: "Processing step complete",
+      activity: "Prepared Fall census snapshot",
       detail: `${studentTerms.length.toLocaleString("en-US")} student-term rows · source lineage retained`,
-      time: "9:42",
     },
     {
       status: "complete",
-      activity: "Validated Fall Enrollment package",
-      detail: `${currentIpedsRun.passed_checks} checks passed · ${currentIpedsRun.total_checks - currentIpedsRun.passed_checks} need review`,
-      time: "8:17",
+      statusLabel: "Processing step complete",
+      activity: "Assessed IPEDS package coverage",
+      detail: `${ipedsCoverageSummary.sourceBacked} source-backed · ${ipedsCoverageSummary.modeledDemo} modeled demos · ${ipedsCoverageSummary.sourceGap} source gaps · ${ipedsCoverageSummary.questionnaire} questionnaire`,
     },
     {
       status: "complete",
+      statusLabel: "Processing step complete",
       activity: "Evaluated data-quality rules",
-      detail: `${openQualityIssues.length} open findings · ${fullTimeCreditMismatch} record-level mismatches reconciled`,
-      time: "7:54",
+      detail: `${openQualityIssues.length} active findings · ${fullTimeCreditMismatch} enrollment records flagged`,
     },
   ],
   audit: {
-    runId: "RUN-2025-10-14-0942",
+    runId: `BUILD-${artifactBuiltAt.replace(/[-:.TZ]/g, "").slice(0, 14)}`,
     steps: [
       {
         label: "Source upload",
@@ -1008,7 +1152,7 @@ const commandCenter = {
       },
       {
         label: "Published result",
-        detail: `${currentHeadcount.toLocaleString("en-US")} Fall students · generated 2025-10-14 09:42`,
+        detail: `${currentHeadcount.toLocaleString("en-US")} Fall students · static artifact built ${artifactBuiltAt}`,
       },
     ],
   },
@@ -1020,7 +1164,8 @@ const commandCenter = {
     { file: "student_terms.csv", rows: studentTerms.length, role: "Official enrollment snapshots" },
     { file: "sections.csv", rows: sections.length, role: "Course capacity" },
     { file: "section_enrollments.csv", rows: sectionEnrollments.length, role: "Filled seats" },
-    { file: "ipeds_validation_results.csv", rows: ipedsResults.length, role: "IPEDS readiness" },
+    { file: "ipeds-suite.generated.json", rows: ipedsPackages.length, role: "IPEDS package classification" },
+    { file: "ipeds_validation_results.csv", rows: ipedsResults.length, role: "Historical IPEDS validation checks" },
     { file: "completions.csv", rows: completions.length, role: "IPEDS Completions source population" },
     { file: "financial_aid.csv", rows: financialAid.length, role: "Financial aid and Pell-recipient source population" },
   ],
@@ -1028,7 +1173,8 @@ const commandCenter = {
 
 const validationReport = {
   status: "passed",
-  generatedAt: commandCenter.generatedAt,
+  generatedAt: artifactBuiltAt,
+  contentSnapshotAt: institutionalSourceSnapshotAt,
   checks: [
     { check: "required_files", status: "passed", files: Object.keys(contracts).length },
     { check: "required_columns", status: "passed" },
@@ -1072,7 +1218,7 @@ await Promise.all([
     path.join(processedDir, "data-quality-results.json"),
     `${JSON.stringify(
       {
-        generatedAt,
+        generatedAt: institutionalSourceSnapshotAt,
         summary: dataQualitySummary,
         results: dataQualityEvaluation.results,
         activeFindings: qualityFindings,
@@ -1099,7 +1245,7 @@ await Promise.all([
   ),
   fs.writeFile(
     path.join(appDataDir, "ipeds-ef.generated.json"),
-    `${JSON.stringify(ipedsEfPackage, null, 2)}\n`,
+    `${JSON.stringify(ipedsSuite.packages.EF, null, 2)}\n`,
     "utf8",
   ),
   fs.writeFile(
@@ -1137,10 +1283,10 @@ await Promise.all([
           display: commandCenter.kpis.firstYearRetention.display,
         },
         {
-          metric: "ipeds_readiness",
-          current_value: currentIpedsRun.readiness,
-          comparison_value: priorIpedsRun.readiness,
-          delta: currentIpedsRun.readiness - priorIpedsRun.readiness,
+          metric: "ipeds_source_backed_packages",
+          current_value: ipedsCoverageSummary.sourceBacked,
+          comparison_value: "",
+          delta: "",
           display: commandCenter.kpis.ipedsReadiness.display,
         },
         {

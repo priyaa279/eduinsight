@@ -35,11 +35,7 @@ test("the ingest pipeline materializes a text file and review CSV for every layo
 
 test("complete packages have zero structural and reconciliation failures", () => {
   for (const [code, pkg] of Object.entries(suite.packages)) {
-    assert.equal(
-      pkg.validations.length,
-      8,
-      `${code} must expose the common eight-check contract`,
-    );
+    assert.ok(pkg.validations.length >= 8, `${code} must expose at least the common validation contract`);
     assert.equal(pkg.structuralFailureCount, 0, `${code} structural failures`);
     assert.equal(pkg.reconciliationFailureCount, 0, `${code} reconciliation failures`);
     assert.match(pkg.uploadText, /UNITID=999999/);
@@ -49,6 +45,9 @@ test("complete packages have zero structural and reconciliation failures", () =>
 });
 
 test("complete packages and governed partial files are explicitly distinguished", () => {
+  assert.equal(suite.packages.C.completeSurveyPackage, false);
+  assert.equal(suite.packages.C.sourceReadiness, "source_backed");
+  assert.ok(suite.packages.C.blockedParts.some((part) => part.code === "B"));
   assert.equal(suite.packages.EF.completeSurveyPackage, true);
   assert.deepEqual(
     suite.packages.EF.generatedParts.sort(),

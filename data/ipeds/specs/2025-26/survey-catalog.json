@@ -105,7 +105,7 @@
       "uploadCode": "EF1",
       "coverage": "full",
       "status": "Buildable",
-      "reason": "Parts A-H are generated from governed fall census and supplemental enrollment controls.",
+      "reason": "Parts A, B, D, and H are source-derived from the Fall census. Parts C, E, F, and G are structurally generated from explicitly modeled demonstration controls and are not operational submission-ready data.",
       "generator": true,
       "specId": "ipeds_spec.fall_enrollment.v2025_26",
       "uploadLayoutId": 22

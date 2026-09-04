@@ -240,7 +240,7 @@ test("IPEDS check-count questions display counts rather than readiness", () => {
 test("the data catalog describes supported governed domains", () => {
   const result = analyzeQuestion("What data is available?", dataset);
   assert.equal(result.plan.metric, "data_catalog");
-  assert.match(result.answer.headline, /six governed analysis domains/i);
+  assert.match(result.answer.headline, /seven governed analysis domains/i);
   assert.ok(result.answer.sources.includes("students.csv"));
 });
 

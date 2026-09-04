@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { deriveEligibleCapacityPrograms } from "../lib/scenario-model.mjs";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const uploadDir = path.join(projectRoot, "data", "sample-university-upload");
@@ -93,6 +94,13 @@ const distinctByLevel = (level) =>
       .filter((row) => row.level === level)
       .map((row) => row.student_id),
   ).size;
+const currentHeadcountByProgram = new Map();
+for (const row of currentStudentTerms) {
+  const studentIds =
+    currentHeadcountByProgram.get(row.program_id) ?? new Set();
+  studentIds.add(row.student_id);
+  currentHeadcountByProgram.set(row.program_id, studentIds);
+}
 
 const currentAid = financialAid.filter((row) => row.term_id === termId);
 const pellEligibleStudents = currentAid.filter(
@@ -129,9 +137,6 @@ for (const enrollment of sectionEnrollments.filter(
   );
 }
 
-const programById = new Map(
-  programs.map((program) => [program.program_id, program]),
-);
 const retention = askData.retention.at(-1)?.groups?.all;
 if (!retention) {
   throw new Error("The current governed retention cohort is unavailable.");
@@ -152,17 +157,55 @@ const tenureCounts = {
 };
 
 const cost = ipedsMarts.cost;
+const enrollmentBaseline = {
+  undergraduateHeadcount: distinctByLevel("UG"),
+  graduateHeadcount: distinctByLevel("GR"),
+  studentsPerSection: 24,
+  sectionsPerFacultyFte: 8,
+  sources: ["student_terms.csv", "terms.csv"],
+};
+const pricingBaseline = {
+  undergraduateTuitionAndFees:
+    cost.undergraduateInStateTuition + cost.undergraduateRequiredFees,
+  graduateTuitionAndFees:
+    cost.graduateInStateTuition + cost.graduateRequiredFees,
+  basis: "Published in-state tuition and required fees",
+  sources: ["ipeds_marts.json — modeled demonstration Cost contract"],
+  limitation:
+    "IPEDS Cost values are modeled demonstration inputs, not operational institutional finance data.",
+};
+const capacityProgramCandidates = programs.map((program) => {
+  const capacity = capacityByProgram.get(program.program_id) ?? 0;
+  const sectionCount = sectionCountByProgram.get(program.program_id) ?? 0;
+  return {
+    programId: program.program_id,
+    name: program.program_name,
+    currentHeadcount:
+      currentHeadcountByProgram.get(program.program_id)?.size ?? 0,
+    filledCourseSeats: filledByProgram.get(program.program_id) ?? 0,
+    courseSeatCapacity: capacity,
+    sectionCount,
+    averageSectionCapacity: sectionCount ? capacity / sectionCount : 0,
+    tuitionAndFees:
+      program.degree_level === "Graduate"
+        ? pricingBaseline.graduateTuitionAndFees
+        : program.degree_level === "Undergraduate"
+          ? pricingBaseline.undergraduateTuitionAndFees
+          : null,
+    memoryRecordId:
+      program.program_id === "PCS" ? "analysis-cs-capacity" : null,
+  };
+});
+const eligibleCapacityPrograms = deriveEligibleCapacityPrograms({
+  enrollment: enrollmentBaseline,
+  pricing: pricingBaseline,
+  programs: capacityProgramCandidates,
+});
 const scenarioBaselines = {
   version: "scenario-baselines.v2025_26",
-  generatedAt: new Date().toISOString(),
+  generatedAt: commandCenter.generatedAt,
   institution: commandCenter.institution,
-  enrollment: {
-    undergraduateHeadcount: distinctByLevel("UG"),
-    graduateHeadcount: distinctByLevel("GR"),
-    studentsPerSection: 24,
-    sectionsPerFacultyFte: 8,
-    sources: ["student_terms.csv", "terms.csv"],
-  },
+  enrollment: enrollmentBaseline,
   retention: {
     cohortYear: askData.retention.at(-1).cohortYear,
     cohortSize: retention.cohortSize,
@@ -171,41 +214,14 @@ const scenarioBaselines = {
     horizonYears: 4,
     sources: ["students.csv", "student_terms.csv", "terms.csv"],
   },
-  pricing: {
-    undergraduateTuitionAndFees:
-      cost.undergraduateInStateTuition + cost.undergraduateRequiredFees,
-    graduateTuitionAndFees:
-      cost.graduateInStateTuition + cost.graduateRequiredFees,
-    basis: "Published in-state tuition and required fees",
-    sources: ["ipeds_marts.json — governed Cost contract"],
-  },
+  pricing: pricingBaseline,
   aid: {
     pellEligibleStudents,
     sources: ["financial_aid.csv"],
     limitation:
       "The current upload identifies Pell eligibility but does not contain a governed institutional-grant award amount.",
   },
-  programs: commandCenter.programSignals.map((signal) => {
-    const program = programById.get(signal.programId);
-    const capacity = capacityByProgram.get(signal.programId) ?? 0;
-    const sectionCount = sectionCountByProgram.get(signal.programId) ?? 0;
-    return {
-      programId: signal.programId,
-      name: program?.program_name ?? signal.label,
-      currentHeadcount: signal.currentHeadcount,
-      filledCourseSeats: filledByProgram.get(signal.programId) ?? 0,
-      courseSeatCapacity: capacity,
-      sectionCount,
-      averageSectionCapacity: sectionCount ? capacity / sectionCount : 0,
-      tuitionAndFees:
-        program?.degree_level === "Graduate"
-          ? cost.graduateInStateTuition + cost.graduateRequiredFees
-          : cost.undergraduateInStateTuition +
-            cost.undergraduateRequiredFees,
-      memoryRecordId:
-        signal.programId === "PCS" ? "analysis-cs-capacity" : null,
-    };
-  }),
+  programs: eligibleCapacityPrograms,
   faculty: {
     fullTimeInstructionalCount: fullTimeInstructional.length,
     tenureCounts,
@@ -214,9 +230,11 @@ const scenarioBaselines = {
     ),
     sectionsPerFacultyFteAssumption: 8,
     seatsPerSectionAssumption: 24,
-    sources: ["ipeds_marts.json — governed HR contract"],
+    sources: ["ipeds_marts.json — modeled demonstration HR contract"],
     limitation:
       "The current HR source does not include hire_year, so retirement eligibility and timing cannot be modeled.",
+    sourceLimitation:
+      "IPEDS HR values are modeled demonstration inputs, not an operational human-resources source.",
   },
 };
 

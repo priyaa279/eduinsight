@@ -19,7 +19,7 @@
       "keyOrder": ["UNITID", "SURVSECT", "PART", "LINE", "SLEVEL", "SEX", "COUNT"]
     },
     "C": {
-      "status": "blocked",
+      "status": "modeled_demo",
       "description": "Residence of first-time degree/certificate-seeking undergraduates.",
       "missingFields": ["admission_state_fips", "recent_high_school_graduate"]
     },
@@ -29,17 +29,17 @@
       "keyOrder": ["UNITID", "SURVSECT", "PART", "COUNT"]
     },
     "E": {
-      "status": "blocked",
+      "status": "modeled_demo",
       "description": "Retention cohort counts.",
       "missingFields": ["cohort_exclusions", "cohort_inclusions"]
     },
     "F": {
-      "status": "blocked",
+      "status": "modeled_demo",
       "description": "Student-to-faculty ratio.",
       "missingFields": ["official_student_faculty_ratio"]
     },
     "G": {
-      "status": "blocked",
+      "status": "modeled_demo",
       "description": "Distance education enrollment and student location.",
       "missingFields": ["distance_education_status", "online_state_fips", "institution_state_fips"]
     },

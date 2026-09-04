@@ -345,6 +345,49 @@ test("recurrence appends a reopen event and restores active status to Open", asy
   }
 });
 
+for (const priorStatus of ["Open", "In Review", "Resolved", "Suppressed"]) {
+  test(`${priorStatus} -> inactive -> reopened preserves deterministic chronology`, async () => {
+    const state = await fixture();
+    try {
+      const finding = findings[0];
+      if (priorStatus !== "Open") {
+        await review(
+          state.db,
+          finding,
+          priorStatus,
+          `Prior ${priorStatus} evidence.`,
+          "2026-08-21T11:00:00.000Z",
+        );
+      }
+      await synchronizeLifecycleRecords(
+        state.db,
+        findings.slice(1),
+        "2026-08-22T00:00:00.000Z",
+        "2026-08-22T00:01:00.000Z",
+      );
+      await synchronizeLifecycleRecords(
+        state.db,
+        findings,
+        "2026-08-23T00:00:00.000Z",
+        "2026-08-23T00:01:00.000Z",
+      );
+
+      const events = await readLifecycleAuditEvents(
+        state.db,
+        stableFindingIdentity(finding),
+      );
+      assert.deepEqual(
+        events.slice(-2).map((event) => event.eventType),
+        ["FINDING_BECAME_INACTIVE", "FINDING_REOPENED"],
+      );
+      assert.equal(events.at(-1).previousStatus, priorStatus);
+      assert.equal(events.at(-1).newStatus, "Open");
+    } finally {
+      state.close();
+    }
+  });
+}
+
 test("resolution history remains preserved after inactivity and recurrence", async () => {
   const state = await fixture();
   try {
@@ -558,7 +601,7 @@ test("pre-audit lifecycle rows receive one honest baseline event only", async ()
       findingKey,
       finding.issueId,
       finding.ruleId,
-      finding.openedAt,
+      evaluationAt,
       "2026-08-20T12:00:00.000Z",
       evaluationAt,
     ).run();

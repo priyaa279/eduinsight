@@ -23,7 +23,7 @@ Authoritative references:
 
 ## Shared import-file contract
 
-Every official layout uses the same deterministic three-stage pattern:
+Every official layout uses the same deterministic four-stage pattern:
 
 1. Governed university source data
 2. Prepared survey-specific contract
@@ -40,20 +40,20 @@ The ingest pipeline also materializes the artifacts under `data/processed/ipeds/
 
 | Component | Import file | Current state |
 |---|---|---|
-| C | Generated | Buildable; distance-education-per-CIP and second-major assumptions remain visible |
-| E12 | Generated | Buildable from the annual enrollment mart |
-| EF | Generated | Buildable; Parts A–H are represented |
-| SFA | Generated | Buildable from the governed financial-aid mart |
-| GR | Generated | Buildable from the governed cohort mart |
-| GR200 | Generated | Buildable from the governed cohort mart |
-| ADM | Generated | Complete modeled package; first-time and transfer funnels are estimated from governed enrolled headcount and visibly caveated |
-| CST | Generated | Complete applicable package; official Part F is not applicable because Atlas Valley has no doctor’s-professional-practice program |
-| OM | Generated | Partial; completion after transfer remains blocked on National Student Clearinghouse data |
-| HR | Generated | Complete applicable package; official census, graduate-assistant, salary, and new-hire sections are included |
-| F | Generated | Partial; selected controls are available, but full official GASB statement and Census schedules require audited general-ledger detail |
+| C | Generated | Source-backed and reconciled for supported award evidence; full package incomplete because distance-education and second-major evidence is unavailable |
+| E12 | Generated | Modeled demo package; not source-backed for institutional keyholder review |
+| EF | Generated | Modeled demo package; structurally complete demonstration artifact, not a source-backed package |
+| SFA | Generated | Modeled demo package; not source-backed for institutional keyholder review |
+| GR | Generated | Modeled demo package; not source-backed for institutional keyholder review |
+| GR200 | Generated | Modeled demo package; not source-backed for institutional keyholder review |
+| ADM | Generated | Modeled demo package; applicant funnels are demonstration values, not operational applicant records |
+| CST | Generated | Modeled demo package; not source-backed for institutional keyholder review |
+| OM | Generated | Source gap; completion after transfer requires National Student Clearinghouse or equivalent evidence |
+| HR | Generated | Modeled demo package; not source-backed for institutional keyholder review |
+| F | Generated | Source gap; audited general-ledger detail is unavailable |
 | IC | Not applicable | Official public NCES catalog exposes no import layout |
 
-The admissions funnel is labeled as an estimate derived from enrolled headcount, not as applicant-tracking data. The finance mart is labeled as a modeled aggregate summary. Both demonstrate the import pipeline and must be replaced with governed university extracts before a real submission.
+Modeled demo packages demonstrate file construction and structural validation only. They must be replaced with governed university extracts before institutional keyholder review. Finance remains a source gap rather than a modeled source-backed package.
 
 Missing survey parts are intentionally left blank rather than estimated when the required fact is outside the institution’s modeled sources. In particular, Outcome Measures completion after transfer remains blocked because it requires National Student Clearinghouse data.
 
@@ -62,14 +62,16 @@ The 2025-26 NCES layouts also clarify two scope points:
 - CST Part F is for doctor’s-professional-practice charges; it is not a CIP/program-level cost schedule.
 - HR contains new-hire and salary sections, but it does not contain a separations section or generic salary-band fields.
 
-## Completions assumptions
+## Completions source grain and limitations
 
-The Completions file reconciles exactly to the distinct governed completer count. Two limitations remain surfaced rather than silently inferred:
+The current Completions source contains **1,056 award/completion records**. Its upload-cell reconciliation is performed at that award-record grain. The current synthetic file also contains **1,056 distinct completers**, but that equality is dataset-specific: one person may receive multiple awards, so award count and distinct completer count are separate governed measures.
 
-- Distance-education status is not modeled per CIP; generated cells carry a conservative assumption and manual-review marker.
-- Second majors are not modeled; `MajorNumber` remains 1.
+Two source limitations remain surfaced rather than silently inferred:
 
-## Approval and keyholder handoff
+- Distance-education status is unavailable per CIP and award level; the package remains incomplete rather than inventing a value.
+- Second-major evidence is unavailable; the package remains incomplete rather than asserting that every award is a first major.
+
+## Institutional review and approval workflow
 
 “Approve package” does not submit anything to NCES. It requires:
 

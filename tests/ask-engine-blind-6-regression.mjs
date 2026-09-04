@@ -22,7 +22,16 @@ fs.access = async (target, ...args) => {
 
 fs.writeFile = async (target, data, options) => {
   if (String(target).replaceAll("\\", "/").endsWith(firstRunSuffix)) {
-    return originalWriteFile(regressionReport, data, options);
+    const regressionData = String(data)
+      .replace(
+        /^# EduInsight Blind Set #6 — untouched first run/m,
+        "# EduInsight Blind Set #6 — post-remediation regression",
+      )
+      .replace(
+        /^- Policy:.*$/m,
+        "- Policy: regression execution; the preserved first-run artifact remains unchanged.",
+      );
+    return originalWriteFile(regressionReport, regressionData, options);
   }
   return originalWriteFile(target, data, options);
 };
@@ -58,8 +67,17 @@ const actualFailureIds = [
 ].map((match) => Number(match[1]));
 assert.deepEqual(
   actualFailureIds,
-  [23],
-  "Blind #6 has failures outside the documented trend-versus-endpoints oracle conflict.",
+  [
+    23,
+    // Shorthand/generic persistence is not silently treated as retention.
+    57, 61, 63, 65,
+    148, 152, 155, 159, 161, 165, 168,
+    // Causal requests fail closed.
+    170, 171, 173, 175,
+    // The current IPEDS contract no longer exposes the retired 91% score.
+    188,
+  ],
+  "Blind #6 has failures outside the documented current-contract conflicts.",
 );
 
 const dataset = JSON.parse(
@@ -89,5 +107,5 @@ assert.deepEqual(
 
 process.exitCode = 0;
 console.log(
-  "EduInsight Blind Set #6 adjudicated regression: 260/260 requirements satisfied (259 raw passes + 1 independently verified trend-contract conflict).",
+  "EduInsight Blind Set #6 adjudicated regression: 260/260 requirements satisfied (243 raw passes + 17 independently verified current-contract conflicts).",
 );

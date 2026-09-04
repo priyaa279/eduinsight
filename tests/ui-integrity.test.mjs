@@ -13,6 +13,81 @@ const commandCenter = JSON.parse(
     "utf8",
   ),
 );
+const readme = fs.readFileSync(new URL("../README.md", import.meta.url), "utf8");
+
+test("global page header has no Audit trail trigger", () => {
+  const headerSource = page.slice(
+    page.indexOf("function Header"),
+    page.indexOf("function Overview"),
+  );
+  assert.doesNotMatch(headerSource, /Audit trail|onAudit|<button/);
+  assert.doesNotMatch(headerSource, /demo-disclosure|Demo environment|Synthetic higher-education data/);
+  assert.doesNotMatch(css, /\.demo-disclosure|\.header-actions/);
+});
+
+test("synthetic-data disclosure is subtle, singular, and documented", () => {
+  const disclosure =
+    "Data: Synthetic institutional dataset created for demonstration and testing.";
+  assert.equal(page.split(disclosure).length - 1, 1);
+  assert.match(page, /<div className="audit-note">\s*<strong>Data disclosure<\/strong>/);
+  assert.match(readme, /prototype are synthetic/i);
+  assert.match(
+    readme,
+    /No FERPA-regulated or institution-owned data is\s+included\./,
+  );
+});
+
+test("governed workspace card uses data-status wording without changing its destination", () => {
+  assert.match(page, /<strong>Governed workspace<\/strong>/);
+  assert.match(page, /<small>Source snapshot loaded<\/small>/);
+  assert.match(
+    page,
+    /<button onClick=\{openAudit\}>\s*View data status <AppIcon name="arrow-right" \/>/,
+  );
+  assert.doesNotMatch(page, /View system status/);
+});
+
+test("audit drawer has modal keyboard and focus-management contracts", () => {
+  assert.match(page, /role="dialog"/);
+  assert.match(page, /aria-modal="true"/);
+  assert.match(page, /aria-labelledby="audit-drawer-title"/);
+  assert.match(page, /event\.key === "Escape"/);
+  assert.match(page, /event\.key !== "Tab"/);
+  assert.match(page, /setAttribute\("inert", ""\)/);
+  assert.match(page, /returnFocusRef\.current\?\.focus\(\)/);
+});
+
+test("closed mobile navigation is not keyboard interactive off screen", () => {
+  const mobileRule = css.slice(css.indexOf("@media (max-width: 1020px)"));
+  assert.match(mobileRule, /\.sidebar\s*\{[^}]*visibility:\s*hidden;[^}]*pointer-events:\s*none;/s);
+  assert.match(mobileRule, /\.sidebar\.mobile-open\s*\{[^}]*visibility:\s*visible;[^}]*pointer-events:\s*auto;/s);
+});
+
+test("IPEDS approval UI uses portfolio-facing review terminology", () => {
+  const ipedsUiSource = page.slice(
+    page.indexOf("function Ipeds("),
+    page.indexOf("function Scenario("),
+  );
+  const approvalHistorySource = page.slice(
+    page.indexOf("function AuditDrawer("),
+    page.indexOf("export default function EduInsightApp"),
+  );
+  const renderedIpedsUi = `${ipedsUiSource}\n${approvalHistorySource}`;
+  assert.match(page, /Ready for IPEDS keyholder review/);
+  assert.match(page, /Demo workflow · EduInsight does not submit data to NCES\./);
+  assert.match(page, /Modeled demo packages/);
+  assert.match(page, /The public portfolio is read-only/);
+  assert.match(page, /Institutional review/);
+  assert.match(page, /Approval history/);
+  assert.match(page, /Institutional explanations/);
+  assert.match(page, /ipedsApprovalStatusLabel\(approval\.status\)/);
+  assert.match(page, /Historical event wording is retained in the immutable record/);
+  assert.doesNotMatch(
+    renderedIpedsUi,
+    /NCES DCS|DCS upload|keyholder upload|keyholder handoff/i,
+  );
+  assert.match(css, /\.demo-workflow-note/);
+});
 
 test("Data Quality summary values reconcile to qualityFindings", () => {
   const findings = commandCenter.qualityFindings;
@@ -21,20 +96,14 @@ test("Data Quality summary values reconcile to qualityFindings", () => {
       .length,
     high: findings.filter((finding) => finding.severity === "High").length,
     medium: findings.filter((finding) => finding.severity === "Medium").length,
-    open: findings.filter(
-      (finding) => finding.lifecycleStatus !== "Resolved",
-    ).length,
-    resolved: findings.filter(
-      (finding) => finding.lifecycleStatus === "Resolved",
-    ).length,
+    active: findings.length,
   };
 
   assert.deepEqual(counts, {
     critical: 1,
     high: 3,
     medium: 0,
-    open: 4,
-    resolved: 0,
+    active: 4,
   });
   assert.match(page, /qualitySummary\.critical/);
   assert.match(page, /qualitySummary\.notEvaluated/);
@@ -52,7 +121,7 @@ test("Data Quality summary values reconcile to qualityFindings", () => {
   assert.match(page, /selected\.observation\?\.currentTerm/);
   assert.match(page, /selected\.observation\?\.thresholdPercent/);
   assert.doesNotMatch(page, /Silent errors|<strong>94<\/strong>|<strong>41<\/strong>/);
-  assert.match(page, /item\.id === "quality" && <em>\{qualitySummary\.open\}<\/em>/);
+  assert.match(page, /item\.id === "quality" && <em>\{qualitySummary\.active\}<\/em>/);
 });
 
 test("static rings and legacy IPEDS implementations are absent", () => {
@@ -68,6 +137,17 @@ test("Data Quality finding details expose compact immutable lifecycle history", 
   assert.match(page, /Earlier lifecycle actions are unavailable/);
   assert.match(css, /\.lifecycle-history/);
   assert.match(css, /\.history-marker/);
+});
+
+test("Data Quality findings expose safe filtering, accessibility state, and selected lineage", () => {
+  assert.match(page, /No \{filter === "All" \? "active" : filter\} findings in the current view/);
+  assert.match(page, /aria-pressed=\{filter === item\}/);
+  assert.match(page, /aria-pressed=\{selected\?\.findingKey === issue\.findingKey\}/);
+  assert.match(page, /Why this check flagged the observation/);
+  assert.match(page, /Selected finding source trace/);
+  assert.match(page, /selected\.sourceFiles\.join/);
+  assert.match(page, /selected\.sourceFields\.join/);
+  assert.match(page, /selected\.applicabilityLimitation/);
 });
 
 test("small typography, icons, colors, and serif fonts use shared primitives", () => {

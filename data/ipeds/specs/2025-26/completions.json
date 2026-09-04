@@ -5,7 +5,14 @@
   "collectionYear": "2025-26",
   "verifiedAt": "2026-07-29",
   "sourceUrl": "https://nces.ed.gov/ipeds/use-the-data/annual-survey-forms-packages-archived",
-  "keyOrder": ["UNITID", "SURVSECT", "MAJORNUM", "CIPCODE", "AWLEVEL", "RACE", "SEX", "COUNT"],
+  "keyOrder": ["UNITID", "SURVSECT", "PART"],
+  "partKeyOrder": {
+    "A": ["UNITID", "SURVSECT", "PART", "MAJORNUM", "CIPCODE", "AWLEVEL", "RACE", "SEX", "COUNT"],
+    "B": ["UNITID", "SURVSECT", "PART", "MAJORNUM", "CIPCODE", "AWLEVEL", "DistanceED"],
+    "C": ["UNITID", "SURVSECT", "PART", "RACE", "SEX", "COUNT"],
+    "D": ["UNITID", "SURVSECT", "PART", "CTLEVEL"],
+    "E": ["UNITID", "SURVSECT", "PART", "CSEXUG", "CSEXG"]
+  },
   "codeTables": {
     "race": {
       "Nonresident alien": 1,

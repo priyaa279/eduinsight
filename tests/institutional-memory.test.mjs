@@ -8,17 +8,128 @@ import expandedMemory from "../app/data/institutional-memory-expanded.json" with
 import annualChanges from "../data/ipeds/specs/2025-26/annual-changes.json" with {
   type: "json",
 };
+import {
+  formatMemoryVerificationDate,
+  memoryKindDisplayLabel,
+} from "../lib/institutional-memory-presentation.mjs";
+import {
+  buildInstitutionalMemoryCatalog,
+  resolveMemoryRelatedReference,
+} from "../lib/institutional-memory-contract.mjs";
 
-const records = [...memory.records, ...expandedMemory.records];
+const combinedCatalog = buildInstitutionalMemoryCatalog([memory, expandedMemory]);
+const records = combinedCatalog.records;
 const pageSource = readFileSync(
   new URL("../app/page.tsx", import.meta.url),
   "utf8",
 );
+const cssSource = readFileSync(
+  new URL("../app/globals.css", import.meta.url),
+  "utf8",
+);
 
-test("institutional memory presents a human verification date while retaining the raw audit version", () => {
-  assert.match(pageSource, /Definitions verified July 30, 2026/);
-  assert.match(pageSource, /institutionalMemoryExpanded\.catalogVersion/);
-  assert.ok(expandedMemory.catalogVersion);
+test("institutional memory hero search is wide on desktop and full-width on narrow screens", () => {
+  assert.match(
+    cssSource,
+    /\.memory-search\s*\{[^}]*grid-template-columns:\s*44px minmax\(0, 1fr\) minmax\(340px, min\(40%, 600px\)\);/s,
+  );
+  assert.match(
+    cssSource,
+    /\.memory-search h2\s*\{[^}]*font-size:\s*clamp\(16px, 1\.25vw, 20px\);[^}]*white-space:\s*nowrap;/s,
+  );
+  const narrowLayout = cssSource.slice(
+    cssSource.indexOf("@media (max-width: 1250px)"),
+    cssSource.indexOf("@media (max-width: 900px)"),
+  );
+  assert.match(
+    narrowLayout,
+    /\.memory-search\s*\{[^}]*grid-template-columns:\s*44px minmax\(0, 1fr\);/s,
+  );
+  assert.match(
+    narrowLayout,
+    /\.memory-search label\s*\{[^}]*grid-column:\s*1 \/ -1;[^}]*width:\s*100%;[^}]*margin-left:\s*0;/s,
+  );
+  assert.match(pageSource, /placeholder="Search definitions, policies, IPEDS, retention, census\.\.\."/);
+});
+
+test("institutional memory preserves each source catalog verification event", () => {
+  assert.equal(formatMemoryVerificationDate(expandedMemory.verifiedAt), "July 30, 2026");
+  assert.equal(formatMemoryVerificationDate(memory.verifiedAt), "July 29, 2026");
+  assert.match(pageSource, /Governed knowledge catalog/);
+  assert.match(pageSource, /memoryCatalog\.sourceCatalogs\.map/);
+  assert.match(pageSource, /Catalog version/);
+  assert.doesNotMatch(pageSource, /Governed records verified/);
+  assert.deepEqual(combinedCatalog.sourceCatalogs, [
+    {
+      catalogVersion: memory.catalogVersion,
+      verifiedAt: memory.verifiedAt,
+      recordCount: memory.records.length,
+    },
+    {
+      catalogVersion: expandedMemory.catalogVersion,
+      verifiedAt: expandedMemory.verifiedAt,
+      recordCount: expandedMemory.records.length,
+    },
+  ]);
+  assert.doesNotMatch(pageSource, /· version|>version</i);
+  assert.doesNotMatch(cssSource, /content:\s*["']\s*· version["']/i);
+});
+
+test("institutional memory uses reusable portfolio-facing category labels", () => {
+  assert.deepEqual(
+    Object.fromEntries(
+      ["All", "Definition", "Policy", "Submission", "Analysis", "Accreditation"].map(
+        (kind) => [kind, memoryKindDisplayLabel(kind)],
+      ),
+    ),
+    {
+      All: "All",
+      Definition: "Definitions",
+      Policy: "Policies",
+      Submission: "Prior submissions",
+      Analysis: "Analyses",
+      Accreditation: "Accreditation evidence",
+    },
+  );
+  assert.match(pageSource, /memoryKindDisplayLabel\(item\)/);
+});
+
+test("portfolio wording broadens Memory without changing its generated counts", () => {
+  const counts = Object.fromEntries(
+    ["Definition", "Policy", "Submission", "Analysis", "Accreditation"].map(
+      (kind) => [kind, records.filter((record) => record.kind === kind).length],
+    ),
+  );
+  assert.deepEqual(counts, {
+    Definition: 81,
+    Policy: 5,
+    Submission: 1,
+    Analysis: 1,
+    Accreditation: 1,
+  });
+  assert.equal(records.length, 89);
+  assert.equal(new Set(records.map((record) => record.source)).size, 67);
+  assert.equal(new Set(records.map((record) => record.owner)).size, 10);
+  assert.match(pageSource, /Distinct source references/);
+  assert.match(pageSource, /Distinct owner references/);
+  assert.match(
+    pageSource,
+    /Understand the definition, source, and history behind the number\./,
+  );
+  assert.doesNotMatch(pageSource, /Find the definition before using the number\./);
+  assert.match(pageSource, /<h3>Summary<\/h3>/);
+  assert.match(pageSource, /<h3>Institutional use<\/h3>/);
+});
+
+test("Policy, Analysis, and Accreditation selections retain governed detail fields", () => {
+  assert.match(pageSource, /onClick=\{\(\) => setSelected\(item\)\}/);
+  for (const kind of ["Policy", "Analysis", "Accreditation"]) {
+    const record = records.find((candidate) => candidate.kind === kind);
+    assert.ok(record, `${kind} record exists`);
+    for (const field of ["title", "status", "updated", "effective", "owner", "source"]) {
+      assert.ok(record[field]?.trim(), `${kind}.${field}`);
+    }
+  }
 });
 
 test("institutional memory exposes a governed, searchable catalog", () => {
@@ -125,19 +236,9 @@ test("core institutional and IPEDS definitions are present", () => {
 test("every related-term link resolves to another governed record", () => {
   for (const record of records) {
     for (const related of record.related) {
-      const needle = related.toLowerCase();
-      assert.ok(
-        records.some(
-          (candidate) =>
-            candidate.id !== record.id &&
-            (candidate.title.toLowerCase().includes(needle) ||
-              candidate.term.toLowerCase().includes(needle) ||
-              candidate.tags.some((tag) =>
-                needle.includes(tag.toLowerCase()),
-              )),
-        ),
-        `${record.id} has an unresolved related term: ${related}`,
-      );
+      const target = resolveMemoryRelatedReference(records, record, related);
+      assert.ok(target, `${record.id} has an unresolved related term: ${related}`);
+      assert.notEqual(target.id, record.id, `${record.id} cannot relate to itself`);
     }
   }
 });

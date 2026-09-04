@@ -281,8 +281,8 @@ add("retention-basic", "Which cohort year had the highest retention?", {
   headlineIncludes: ["highest"],
 });
 add("retention-basic", "Which cohort year had the lowest retention?", {
-  topLabel: "2022",
-  topValue: 71,
+  topLabel: "2020",
+  topValue: 70,
   headlineIncludes: ["lowest"],
 });
 add("retention-subgroups", "Compare first-generation and continuing-generation retention in 2024.", {
@@ -410,7 +410,8 @@ add("ipeds", "Which IPEDS checks require review?", {
 });
 add("ipeds", "Are we ready for IPEDS submission?", {
   metric: "ipeds_readiness",
-  headlineIncludes: ["91%"],
+  headlineIncludes: ["1 source-backed package", "8 modeled demo packages", "2 source gaps"],
+  textIncludes: ["does not submit data to NCES"],
 });
 add("ipeds", "How many IPEDS validation issues are open?", {
   metric: "ipeds_readiness",
@@ -470,7 +471,8 @@ add("data-quality", "Show issues assigned to Institutional Research.", {
   textIncludes: ["1"],
 });
 add("data-quality", "Which issues have been reviewed?", {
-  disposition: "limitation",
+  operation: "quality_lifecycle_status",
+  textIncludes: ["0", "In Review"],
 });
 add("data-quality", "How many records are affected by open issues?", {
   measure: "affected_records",

@@ -13,7 +13,7 @@ Having a definition does not make a metric submission-ready. Each entry's status
 
 | Component | Required governed definitions | Coverage | Current limitation |
 | --- | --- | --- | --- |
-| C | Completion, Completer, CIP code, AWLEVEL, distance-education status | Covered | Per-CIP distance-education values and second majors remain explicit review items in the package workflow. |
+| C | Completion, Completer, CIP code, AWLEVEL, distance-education status | Covered definitions; source-backed evidence is incomplete | Award records support the current source-backed cells. Per-CIP distance-education evidence and second-major evidence are unavailable, so the full package remains blocked. |
 | E12 | 12-month enrollment, unduplicated headcount, instructional activity, student FTE, distance-education status, dual enrollment | Covered | Governed annual reporting period, instructional activity, and student-level categories must remain aligned. |
 | EF | Fall headcount, retention, student-to-faculty ratio, race/ethnicity, and sex reporting categories | Covered | Uses the certified Fall census and current component rules. |
 | SFA | Student Financial Aid, Pell recipient, average net price | Covered | Eligibility and aid receipt remain distinct populations. |

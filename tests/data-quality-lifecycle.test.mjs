@@ -201,7 +201,7 @@ test("lifecycle timestamps remain separate from evaluator timestamps and counts"
   const record = records.find(
     (candidate) => candidate.findingKey === stableFindingIdentity(findings[0]),
   );
-  assert.equal(record.createdAt, findings[0].openedAt);
+  assert.equal(record.createdAt, evaluationAt);
   assert.equal(record.updatedAt, "2026-08-23T00:00:00.000Z");
   assert.equal(findings[0].affectedRecords, 146);
   assert.equal(findings[1].affectedRecords, 119);

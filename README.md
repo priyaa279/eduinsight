@@ -1,201 +1,272 @@
-# EduInsight AI
+# EduInsight
 
-EduInsight is an interactive institutional-intelligence workspace for higher
-education. This prototype uses only synthesized records and demonstrates six
-connected product capabilities:
+**Governed institutional intelligence for higher education.**
 
-- an institutional command center with agent-generated briefs;
-- a governed natural-language analyst with visible definitions and sources;
-- data-quality triage, including silent-error detection;
-- IPEDS preparation, validation, explanation, and human approval;
-- transparent deterministic scenario modeling;
-- searchable institutional memory and end-to-end audit provenance.
+EduInsight is a synthetic higher-education platform that brings enrollment and
+student-success analytics, data-quality workflows, IPEDS preparation, scenario
+planning, and institutional definitions into one governed experience. It pairs
+deterministic natural-language analysis with source-aware calculations,
+validation, and traceable institutional knowledge.
 
-## Data boundary
+**[Open the live demo →](https://eduinsight-ai.eduinsight-demo.workers.dev)**
 
-All institutions, students, metrics, findings, documents, and results in this
-prototype are synthetic. No FERPA-regulated or institution-owned data is
-included.
+*Synthetic higher-education data · Public demo is read-only*
+
+![EduInsight Command Center showing enrollment, retention, Data Quality, and IPEDS signals](docs/images/eduinsight-command-center.png)
+
+## What it does
+
+### Command Center
+
+An institution-wide snapshot of enrollment, retention, Data Quality, IPEDS
+coverage, and program signals, assembled from the current governed data
+snapshot.
+
+### Ask EduInsight
+
+A deterministic natural-language interface for institutional analytics. It
+resolves governed definitions and constraints, preserves requested filters,
+refuses privacy-sensitive requests, and shows calculation provenance—without
+calling an external LLM API.
+
+### Data Quality
+
+Source-derived validation with PASS, FAIL, and NOT_EVALUATED outcomes, affected
+record evidence, lifecycle review, notes, recurrence handling, and append-only
+audit history.
+
+### IPEDS Center
+
+IPEDS preparation support for source readiness, package generation, structural
+validation, reconciliation, institutional explanations, and human review. It
+clearly separates source-backed work from modeled demonstrations and source
+gaps; EduInsight does not submit data to NCES.
+
+### Scenario Lab
+
+Deterministic what-if analysis for enrollment mix, retention, tuition and aid,
+program capacity, and faculty staffing. Results are planning sensitivities, not
+forecasts or predictions.
+
+### Institutional Memory
+
+A governed, searchable catalog of definitions, policies, sources, owners,
+prior submissions, analyses, and accreditation evidence, with explainable
+direct and related-term search.
+
+## Inside EduInsight
+
+### Command Center
+
+A governed institutional overview brings current KPIs, reporting risks, and
+cross-module signals into one decision-ready brief.
+
+![EduInsight Command Center with governed institutional metrics and reporting signals](docs/images/eduinsight-command-center.png)
+
+### Ask EduInsight
+
+A plain-English enrollment question resolves to a deterministic answer with
+the governed population and calculation context kept visible.
+
+![Ask EduInsight showing the governed Fall 2025 enrollment result](docs/images/eduinsight-ask.png)
+
+### Data Quality
+
+Source-derived findings connect rule severity and affected counts to evidence,
+ownership, and a read-only public review state.
+
+![EduInsight Data Quality findings with selected rule evidence and lifecycle context](docs/images/eduinsight-data-quality.png)
+
+### IPEDS Center
+
+The Completions workflow separates source reconciliation and structural
+validation from the missing evidence that blocks institutional review.
+
+![EduInsight IPEDS Completions workflow showing validation and blocked review state](docs/images/eduinsight-ipeds.png)
+
+### Scenario Lab
+
+A transparent enrollment-change scenario shows its governed baseline,
+adjustable assumptions, and deterministic Year 1 effects.
+
+![EduInsight Scenario Lab showing an enrollment-change what-if analysis](docs/images/eduinsight-scenario-lab.png)
+
+### Institutional Memory
+
+The knowledge catalog pairs searchable institutional definitions with owners,
+effective dates, formulas, and source context.
+
+![EduInsight Institutional Memory showing the Fall enrollment headcount definition](docs/images/eduinsight-institutional-memory.png)
+
+## Architecture
+
+```text
+Synthetic governed CSV/JSON source package
+  → schema, identity, and reconciliation checks
+  → deterministic transformations and metric contracts
+  → generated analytical artifacts
+  → Next.js / React application modules
+       ↳ Cloudflare D1: review lifecycle and approval ledgers
+       ↳ Cloudflare R2: approved review artifacts
+  → Cloudflare Worker and static assets
+```
+
+Ask EduInsight follows a separate fail-closed analytical path:
+
+```text
+Question
+  → local intent and question-quality checks
+  → governed entity, filter, and time resolution
+  → strict query-plan validation and constraint reconciliation
+  → deterministic calculation
+  → sourced answer, clarification, limitation, or privacy refusal
+```
+
+No external language model, OpenAI API, API key, token service, or autonomous
+agent participates in the answer path. Persistent workflow state belongs in D1;
+the governed analytical sources and generated artifacts do not.
+
+### Technical stack
+
+- Next.js 16 and React 19
+- TypeScript 5.9 and deterministic JavaScript/ESM analytics
+- Vinext on Vite 8 for the Next-compatible Cloudflare build
+- Cloudflare Workers, D1, and R2
+- Drizzle ORM for durable workflow tables and migrations
+- Governed CSV/JSON source contracts and generated analytical artifacts
+- Automated release verification across modules and cross-module reconciliation
+
+## Why this project is different
+
+- **Definitions travel with metrics.** A result includes the governed meaning,
+  population, filters, source fields, and limitations behind the number.
+- **Natural language does not bypass governance.** Ask conserves every detected
+  constraint and fails closed when a request cannot be represented safely.
+- **Data quality is operational.** Findings retain reviewer state and notes,
+  reopen explicitly on recurrence, and write immutable lifecycle events.
+- **IPEDS readiness is not reduced to a score.** Structural completeness and
+  substantive source readiness are separate, visible concepts.
+- **Scenarios are honest what-if calculations.** Inputs produce repeatable
+  arithmetic without predictive or causal claims.
+- **The hosted portfolio is intentionally read-only.** Public visitors can
+  explore governed behavior without changing lifecycle or approval state.
+
+## Engineering highlights
+
+- 89 Institutional Memory records, including 81 governed definitions
+- 35 Data Quality rules with 4 current source-derived findings
+- Append-only Data Quality lifecycle audit history with recurrence handling
+- IPEDS coverage classified as 1 source-backed package, 8 modeled demos,
+  2 source gaps, and 1 questionnaire workflow
+- Public mutation guards for Data Quality review state and IPEDS approvals
+- Deterministic generation, source reconciliation, and dataset-isolation checks
+- 600+ automated release checks across analytics, persistence, validation,
+  accessibility contracts, public read-only behavior, and cross-module results
+- Public Cloudflare Worker deployment backed by dedicated D1 and R2 resources
+
+Representative governed values in the current synthetic snapshot include:
+
+| Metric | Current value |
+| --- | ---: |
+| Fall 2025 census enrollment | 18,426 |
+| 2024 first-time, full-time retention | 78.4% |
+| 2025 completion award records | 1,056 |
+| Active Data Quality findings | 4 |
+
+## Data and trust boundary
+
+> EduInsight uses synthetic higher-education data created for portfolio
+> demonstration and testing.
+>
+> All records in this prototype are synthetic. No FERPA-regulated or institution-owned data is included. The hosted public demo is read-only.
+
+The public deployment permits analytical reads and client-side exploration but
+rejects Data Quality lifecycle changes and IPEDS approval mutations. Trusted
+local development can exercise those workflows against local or explicitly
+configured development storage.
+
+The current IPEDS work is preparation and review support, not federal
+submission. Completions is source-backed for its supported generated parts, but
+the complete package remains blocked because per-CIP distance-education and
+second-major evidence are unavailable. Modeled-demo packages demonstrate file
+construction and validation; source-gap packages remain explicitly incomplete.
+
+## Project structure
+
+| Path | Purpose |
+| --- | --- |
+| `app/` | Next.js interface, API routes, styles, and generated app artifacts |
+| `lib/` | Deterministic Ask, Data Quality, IPEDS, Memory, and Scenario contracts |
+| `data/` | Synthetic upload package, IPEDS specifications, and processed outputs |
+| `scripts/` | Synthetic generation, ingestion, reconciliation, and release reporting |
+| `tests/` | Module, cross-module, privacy, persistence, and release regressions |
+| `drizzle/` | Versioned D1 schema migrations |
+| `docs/` | Domain audits, deployment guidance, and implementation references |
+| `worker/` | Cloudflare Worker integration source |
 
 ## Run locally
 
 Requires Node.js 22.13 or later.
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
-Build and verify:
+The development server prints its local URL. Cloudflare credentials are not
+required to inspect the application locally.
+
+Build the production Worker bundle:
+
+```bash
+npm run build
+```
+
+Run the complete release gate:
+
+```bash
+npm run verify:release
+```
+
+To regenerate the included synthetic dataset and derived artifacts:
 
 ```bash
 npm run data:refresh
-npm run build
-node --test tests/rendered-html.test.mjs
 ```
 
-## University upload pipeline
+## Verification approach
 
-The Command Center is generated from a nine-file university upload contract in
-`data/sample-university-upload/`. The included package is synthetic, but it has
-the same separation of concerns expected from institutional exports: SIS
-students and census enrollment, term definitions, curriculum catalog, course
-capacity, registrations, IPEDS validation results, and a data-quality issue log.
+The release gate covers deterministic analytics, source reconciliation,
+filter conservation, privacy refusals, unsupported-request handling, Data
+Quality lifecycle and audit behavior, IPEDS generation, Scenario calculations,
+Institutional Memory integrity, Command Center reconciliation, accessibility
+contracts, and public read-only enforcement.
 
-```text
-CSV upload package
-  -> schema and key validation
-  -> referential-integrity checks
-  -> cross-source reconciliation
-  -> governed metric transformations
-  -> generated Command Center JSON
-  -> React interface
-```
+Historical blind-evaluation results remain preserved under `tests/reports/`.
+They are retained as engineering evidence rather than presented as current
+unseen scores after their cases became regression coverage.
 
-Use `npm run data:ingest` after replacing the nine CSV files. The detailed file
-contract and current source-to-metric reconciliation are documented in
-`outputs/eduinsight-university-upload/eduinsight_university_upload_contract.xlsx`.
+## Documentation
 
-## Ask EduInsight
+- [Cloudflare deployment](docs/cloudflare-deployment.md)
+- [IPEDS 2025–26 implementation](docs/ipeds-2025-26-implementation.md)
+- [Data Quality catalog audit](docs/data-quality-catalog-audit.md)
+- [Institutional Memory coverage](docs/institutional-memory-coverage.md)
+- [Product principles](PRODUCT.md)
+- [Design system](DESIGN.md)
+- [Technical project dossier](EDUINSIGHT-DOSSIER.md) — detailed architecture,
+  design decisions, and preserved evaluation context
 
-Ask EduInsight no longer selects from prewritten answers. Each question is
-resolved to a validated query plan and calculated against the governed
-aggregate dataset generated by `npm run data:ingest`.
+## Current limitations
 
-The built-in local planner supports:
-
-- Fall census enrollment totals, trends, rankings, and breakdowns by program,
-  degree level, residency, gender, race and ethnicity, first-generation
-  status, Pell status, attendance status, and academic standing;
-- first-year retention totals, trends, rankings, and comparisons by program,
-  degree level, residency, gender, race and ethnicity, first-generation
-  status, and Pell status;
-- IPEDS Fall Enrollment readiness trends and current validation-check status;
-- data-quality issue and affected-record counts by status, severity, owner,
-  and source system;
-- scheduled-section utilization and available seats by program, course, and
-  modality;
-- DFW course outcomes when the uploaded registration file contains final
-  grades; and
-- a data-catalog answer that explains the available sources and capabilities.
-
-Ask EduInsight is intentionally local and deterministic. It does not call
-OpenAI or another external language-model API, does not use API keys, and has no
-token or credit cost. The runtime path is:
-
-```text
-question-quality check
-  -> local semantic parser
-  -> strict governed-plan validation
-  -> deterministic calculation
-  -> sourced answer
-```
-
-The local parser is designed for clear, complete institutional-data questions
-written in normal English. A supported question is executed only when its
-metric, entity, population, filters, comparison, and time semantics can be
-represented without loss. Complete questions may use recognized governed
-higher-education abbreviations, including MS, BS, CS, grad, undergrad, intl,
-FT/PT, IPEDS, DFW, HC, pct, and terms such as FA25. Shorthand-heavy or
-incomplete fragments still ask for a full-English rephrase. Compact requests
-such as `CS enrollment in 2024?` execute because the program, metric, and exact
-year are all explicit. Vague metrics and ambiguous entities or dates ask a
-targeted clarification. Contradictory filters are explained, unsupported
-domains return a governed source limitation, and individual or student-level
-requests are refused.
-
-Every recognized constraint is reconciled against the executable plan. If a
-constraint is unresolved or disappears during planning, EduInsight fails closed
-and publishes no number or chart. Numeric calculations, denominators, source
-lineage, and confidence checks remain deterministic.
-
-Verify the no-API execution contract separately:
-
-```bash
-npm run test:no-api-contract
-npm run test:semantic-parser
-npm run test:planner-ui
-```
-
-## Ask-engine evaluation suite
-
-Run the data-driven regression suite after changing the planner, calculations,
-or answer renderer:
-
-```bash
-npm run eval:ask
-```
-
-The suite exercises enrollment, demographics, combined filters, comparisons,
-retention, capacity, DFW, IPEDS, data quality, ranking limits, ambiguity,
-unsupported questions, impossible values, contradictions, dates,
-calculations, causal wording, and provenance follow-ups. Each case declares the
-expected metric, filters, chart dimension, numeric result, or rejection
-behavior. The command returns a non-zero exit code while any expectation fails,
-so it can be used as a CI regression gate once the known gaps are fixed.
-
-Additional suites measure behavior beyond the known regression cases:
-
-```bash
-npm run eval:blind
-npm run eval:blind2
-npm run test:adversarial
-npm run test:systemic
-npm run test:ask-release
-```
-
-`eval:blind` contains the 100 questions that were sealed before their first
-execution. The original 55/100 score remains preserved in
-`tests/reports/blind-first-run.md`; after that score was reported, the cases
-were promoted to regression coverage and now pass 100/100. Create a different
-unseen set for the next true blind evaluation instead of treating the current
-100 as blind again.
-
-`eval:blind2` is the separately sealed 180-question evaluation. Its untouched
-first and only blind run scored 84/180 (46.7%); the hash, category scores, and
-failure IDs are preserved in `tests/reports/blind-2-first-run.md`. It is no
-longer a blind set and must not be used as the next unbiased release score.
-After remediation it passes 180/180 as ordinary regression coverage.
-
-`test:adversarial` checks arithmetic identities, missing and contradictory
-data, duplicate records, zero denominators, prompt injection, partial
-compound answers, stateless follow-ups, dataset isolation, narrative
-consistency, ties, repeatability, provenance, confidence, and a local
-1,000-query performance budget. Its latest diagnostic report is in
-`tests/reports/adversarial-run.md`.
-
-`test:systemic` uses controlled numeric fixtures, destructive data mutations,
-cross-answer reconciliation, narrative and chart contracts, provenance,
-aggregate-only governance checks, and a structurally different second
-university. Its first run scored 36/44 (81.8%); that original result remains in
-`tests/reports/systemic-first-run.md`. The remediated suite now passes 47/47,
-including filter auditing, pre-planner privacy enforcement, and an
-API-planner governance-bypass check.
-
-The original browser smoke result remains preserved as 1/4 in
-`tests/reports/blind-2-browser-smoke.md`. Post-remediation critical flows pass
-7/7 in `tests/reports/remediation-browser-critical-flows.md`.
-
-`test:ask-release` runs every known Ask EduInsight evaluation in sequence. A
-green result verifies the documented deterministic contract, including safe
-clarification for questions that intentionally fall outside the supported
-full-English grammar.
-
-## Product architecture
-
-The interface models the intended production flow:
-
-```text
-source snapshots
-  -> governed warehouse models
-  -> versioned semantic definitions
-  -> specialized quality / IPEDS / analyst agents
-  -> human review and approval
-  -> auditable answers and submissions
-```
-
-The current build is a deterministic, interaction-complete batch-upload
-prototype. Production deployment would add an authenticated upload service,
-institution-specific source mappings, encrypted storage, approved model access
-controls, and persistent approvals and audit events. Ask EduInsight itself
-remains local and deterministic under this product contract.
+- The dataset and institution are synthetic.
+- The public demo is read-only; review-state mutations are local/trusted-workspace
+  behavior.
+- Ask supports a bounded institutional-data grammar and does not use an external
+  LLM.
+- Several IPEDS packages are modeled demonstrations or source gaps rather than
+  source-backed institutional packages.
+- EduInsight prepares and validates review artifacts but does not submit data to
+  NCES.
+- Scenario Lab provides deterministic what-if analysis, not prediction or
+  forecasting.

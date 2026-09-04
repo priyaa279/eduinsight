@@ -1,6 +1,6 @@
 # EduInsight Blind Set #9 — post-remediation adjudicated regression
 
-- Executed: 2026-08-20T20:04:32.640Z
+- Executed: 2026-09-03T04:32:51.361Z
 - Immutable untouched baseline: **154/220 (70%)**.
 - Untouched baseline report SHA-256: `41feb6c7e2fbc4d63b56e29d97028346e78a597cff19d1cd2175c91ca9e7d18b`.
 - Raw original-contract result after remediation: **186/220 (84.5%)**.
@@ -23,7 +23,7 @@ The untouched score is never changed. Post-remediation adjudication accepts only
 | Equivalent ordering, labels, or count presentation | 6 | 55, 58, 59, 85, 114, 115 |
 | Source-derived quality evaluator contract | 9 | 131, 132, 133, 134, 135, 136, 137, 138, 218 |
 | Retention comparison answer shape | 2 | 112, 113 |
-| IPEDS latest-run/readiness label equivalence | 2 | 126, 217 |
+| Current IPEDS package/source-readiness contract | 2 | 126, 217 |
 | IPEDS review-count answer shape | 1 | 129 |
 | Tie and displayed-precision ranking contract | 3 | 66, 77, 79 |
 | Capacity plan/presentation contract | 8 | 116, 117, 118, 119, 122, 123, 124, 219 |

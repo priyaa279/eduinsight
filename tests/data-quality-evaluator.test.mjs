@@ -157,7 +157,7 @@ test("Data Quality, Command Center, and Ask use the identical active finding set
 
 test("sidebar badge derives from the active summary", () => {
   const page = fs.readFileSync(new URL("../app/page.tsx", import.meta.url), "utf8");
-  assert.match(page, /item\.id === "quality" && <em>\{qualitySummary\.open\}<\/em>/);
+  assert.match(page, /item\.id === "quality" && <em>\{qualitySummary\.active\}<\/em>/);
   assert.doesNotMatch(page, /item\.id === "quality" && <em>3<\/em>/);
 });
 

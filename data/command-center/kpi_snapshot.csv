@@ -1,5 +1,5 @@
 metric_id,metric_name,current_value,comparison_value,unit,calculation_type,display_context,primary_source_model,certified_snapshot
 fall_headcount,Fall headcount,18426,19234,students,percent_change,as of census,fct_student_term,fall_2025_census
 first_year_retention,First-year retention,0.784,0.776,rate,percentage_point_change,2024 FTIC cohort,fct_retention_cohort,retention_2024_cohort
-ipeds_readiness,IPEDS readiness,0.91,0.79,rate,percentage_point_change,Fall Enrollment,fct_ipeds_validation_run,ef_2025_26_working
+ipeds_source_backed_packages,IPEDS source-backed packages,1,,packages,current_state,8 modeled demos · 2 source gaps · 1 questionnaire,ipeds-suite.generated.json,ipeds_2025_26_package_contract
 open_quality_issues,Open quality issues,27,36,issues,absolute_change,3 critical,fct_data_quality_issue,dq_run_2025_10_14

@@ -1,4 +1,4 @@
 priority,severity,finding,agent,detected_at,age_minutes,metric_id,affected_records,destination
 1,Critical,146 full-time classifications look wrong,Data Quality Agent,2025-10-14 09:34,8,full_time_credit_mismatch,146,Data quality
 2,High,Fall headcount is 4.2% below last year,Silent Error Monitor,2025-10-14 09:21,21,fall_headcount,684,Data quality
-3,Informational,Fall Enrollment is 91% submission-ready,IPEDS Agent,2025-10-14 09:08,34,ipeds_readiness,0,IPEDS center
+3,Informational,IPEDS coverage includes 1 source-backed package and 8 modeled demos,IPEDS Agent,2025-10-14 09:08,34,ipeds_source_backed_packages,0,IPEDS center

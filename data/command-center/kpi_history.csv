@@ -11,12 +11,7 @@ first_year_retention,3,2022 cohort,0.71,71,rate
 first_year_retention,4,2023 cohort,0.74,74,rate
 first_year_retention,5,2024 prior,0.776,76,rate
 first_year_retention,6,2024 certified,0.784,78,rate
-ipeds_readiness,1,Run 1,0.45,45,rate
-ipeds_readiness,2,Run 2,0.54,54,rate
-ipeds_readiness,3,Run 3,0.61,61,rate
-ipeds_readiness,4,Run 4,0.74,74,rate
-ipeds_readiness,5,Run 5,0.82,82,rate
-ipeds_readiness,6,Current run,0.91,91,rate
+ipeds_source_backed_packages,1,Current package contract,1,1,packages
 open_quality_issues,1,Week -5,53,92,issues
 open_quality_issues,2,Week -4,48,84,issues
 open_quality_issues,3,Week -3,44,70,issues

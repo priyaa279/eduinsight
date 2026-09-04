@@ -1,0 +1,24 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "eduinsight-ai",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-05-15",
+  "compatibility_flags": ["nodejs_compat"],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "eduinsight-demo-db",
+      "database_id": "98a620ed-85f9-4640-9742-6c048720bea0",
+      "migrations_dir": "drizzle"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "ARTIFACTS",
+      "bucket_name": "eduinsight-demo-artifacts"
+    }
+  ],
+  "observability": {
+    "enabled": true
+  }
+}

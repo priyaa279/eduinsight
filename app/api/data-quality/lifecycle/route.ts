@@ -2,40 +2,69 @@ import { env } from "cloudflare:workers";
 import commandCenter from "../../../data/command-center.generated.json";
 import {
   isLifecycleStatus,
+  reconcileFindingLifecycles,
   stableFindingIdentity,
 } from "../../../../lib/data-quality/lifecycle.mjs";
 import {
   ensureLifecycleSchema,
   LifecycleConflictError,
   readLifecycleAuditEvents,
+  readStoredLifecycles,
   reconcileStoredLifecycles,
   synchronizeLifecycleRecords,
   updateLifecycleRecord,
 } from "../../../../lib/data-quality/lifecycle-store.mjs";
+import {
+  isPublicDemoReadOnly,
+  publicDemoReadOnlyResponse,
+} from "../../../../lib/public-demo-mode.mjs";
 
 export const runtime = "edge";
 
 const REVIEWER_IDENTITY = "local-ir-admin";
 const REVIEWER_DISPLAY_NAME = "Institutional Research";
 const MAX_NOTES_LENGTH = 4000;
+const evaluationSnapshotAt =
+  commandCenter.snapshotMetadata.institutionalSourceSnapshotAt;
 
 function currentFindings() {
   return commandCenter.qualityFindings;
 }
 
-export async function GET() {
+export async function GET(request: Request) {
+  const publicReadOnly = isPublicDemoReadOnly(request);
   try {
     if (!env.DB) throw new Error("D1 binding DB is unavailable.");
-    const reconciled = await reconcileStoredLifecycles(
-      env.DB,
-      currentFindings(),
-      commandCenter.generatedAt,
-      new Date().toISOString(),
-    );
-    return Response.json(reconciled, {
+    const reconciled = publicReadOnly
+      ? await readStoredLifecycles(
+          env.DB,
+          currentFindings(),
+          evaluationSnapshotAt,
+        )
+      : await reconcileStoredLifecycles(
+          env.DB,
+          currentFindings(),
+          evaluationSnapshotAt,
+          new Date().toISOString(),
+        );
+    return Response.json({ ...reconciled, persistenceAvailable: true }, {
       headers: { "Cache-Control": "no-store" },
     });
   } catch {
+    if (publicReadOnly) {
+      return Response.json(
+        {
+          ...reconcileFindingLifecycles(
+            currentFindings(),
+            [],
+            evaluationSnapshotAt,
+          ),
+          auditEvents: [],
+          persistenceAvailable: false,
+        },
+        { headers: { "Cache-Control": "no-store" } },
+      );
+    }
     return Response.json(
       { error: "Data Quality lifecycle records are unavailable." },
       { status: 503 },
@@ -44,6 +73,7 @@ export async function GET() {
 }
 
 export async function PATCH(request: Request) {
+  if (isPublicDemoReadOnly(request)) return publicDemoReadOnlyResponse();
   try {
     const body = (await request.json()) as {
       findingKey?: unknown;
@@ -82,7 +112,7 @@ export async function PATCH(request: Request) {
     await synchronizeLifecycleRecords(
       env.DB,
       currentFindings(),
-      commandCenter.generatedAt,
+      evaluationSnapshotAt,
     );
     const existing = await env.DB.prepare(
       `SELECT updated_at AS updatedAt
